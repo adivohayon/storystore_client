@@ -1,6 +1,6 @@
 const pkg = require('./package');
 const secrets = require('./server/secrets.json');
-console.log('process.env.NODE_ENV ', process.env.NODE_ENV );
+console.log('process.env.NODE_ENV ', process.env.NODE_ENV);
 module.exports = {
 	mode: 'universal',
 	server: {
@@ -32,13 +32,17 @@ module.exports = {
   */
 	css: [
 		// '@/sass/breakpoints.mixin.scss',
+		{ src: 'swiper/dist/css/swiper.min.css', lang: 'css' },
 	],
 
 	/*
   ** Plugins to load before mounting the App
   */
-	// plugins: [{ src: '~/plugins/vue-glide-js', ssr: false }],
-	plugins: [{ src: '~/plugins/vuex-persist', ssr: false }],
+	// plugins: [],
+	plugins: [
+		{ src: '~/plugins/swiper', ssr: false },
+		{ src: '~/plugins/vuex-persist', ssr: false },
+	],
 
 	/*
   ** Nuxt.js modules
@@ -58,7 +62,10 @@ module.exports = {
   ** Build configuration
   */
 	env: {
-		staticDir: process.env.NODE_ENV === 'development' ? '/assets/' : '//cdn.shop-together.io/assets/',
+		staticDir:
+			process.env.NODE_ENV === 'development'
+				? '/assets/'
+				: '//cdn.shop-together.io/assets/',
 	},
 
 	build: {
@@ -83,11 +90,10 @@ module.exports = {
 
 			if (!ctx.isDev) {
 				config.externals = {
-					static: '~/static'
-				}
+					static: '~/static',
+				};
 				// config.module.rules.push({
 				// 	test: /\.(ico|jpg|png|gif|mp4)(\?.*)?$/,
-
 
 				// })
 			}
