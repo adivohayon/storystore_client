@@ -9,6 +9,9 @@ export default {
 				return {};
 			},
 		},
+		shelfIndex: {
+			type: Number,
+		},
 	},
 	data() {
 		return {
@@ -22,7 +25,7 @@ export default {
 	},
 	created() {},
 	mounted() {
-		this.swiper = new this.$Swiper('.swiper-container', {
+		this.swiper = new this.$Swiper(`#shelf-content-slider-${this.shelfIndex}`, {
 			// Optional parameters
 			direction: 'horizontal',
 			loop: true,

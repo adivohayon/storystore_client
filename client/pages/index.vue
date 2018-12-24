@@ -1,14 +1,17 @@
 <template>
 	<div>
 		<nav class="fixed-top">
-			<header class="top-header">
-				storystore
-			</header>
+			<header class="top-header">storystore</header>
 			<navigation :categories="categories"></navigation>
 		</nav>
 		<feed>
 			<no-ssr>
-				<shelf v-for="(shelf, shelfIndex) in shelves" :key="shelfIndex" :shelf="shelf"></shelf>
+				<shelf
+					v-for="(shelf, shelfIndex) in shelves"
+					:key="shelfIndex"
+					:shelf="shelf"
+					:shelf-index="shelfIndex"
+				></shelf>
 			</no-ssr>
 		</feed>
 	</div>
