@@ -8,9 +8,7 @@
 		</nav>
 		<feed>
 			<no-ssr>
-				<shelf></shelf>
-				<shelf></shelf>
-				<shelf></shelf>
+				<shelf v-for="(shelf, shelfIndex) in shelves" :key="shelfIndex" :shelf="shelf"></shelf>
 			</no-ssr>
 		</feed>
 	</div>
@@ -20,14 +18,16 @@
 import Feed from '@/components/feed';
 import Shelf from '@/components/shelf';
 import Navigation from '@/components/navigation';
-import { getCategories } from '@/services/api.service';
+import { getCategories, getShelves } from '@/services/api.service';
 export default {
 	components: { Feed, Shelf, Navigation },
 	async asyncData({ params }) {
 		try {
-			const categories = await getCategories();
+			const categories = await getCategories(0);
+			const shelves = await getShelves(0);
 			return {
 				categories,
+				shelves,
 			};
 		} catch (err) {
 			console.error(err);

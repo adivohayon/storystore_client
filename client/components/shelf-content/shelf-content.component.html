@@ -1,0 +1,21 @@
+<div class="shelf-content swiper-slide">
+	<!-- Image -->
+	<img v-if="content.type == 'image'" :src="content.value" />
+
+	<!-- Video -->
+	<video
+		v-if="content.type == 'video'"
+		class="shelf-content__video"
+		autoplay
+		muted
+		loop
+	>
+		<source :src="content.value" type="video/mp4" />
+		Sorry, your browser doesn't support embedded videos.
+	</video>
+
+	<!-- Description -->
+	<div v-if="content.type == 'description'"" class="shelf-content__description">
+		{{content.value}}
+	</div>
+</div>

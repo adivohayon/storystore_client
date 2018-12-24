@@ -1,13 +1,25 @@
+import ShelfContent from './../shelf-content';
 export default {
 	name: 'shelf',
-	components: {},
-	props: [],
+	components: { ShelfContent },
+	props: {
+		shelf: {
+			type: Object,
+			default: () => {
+				return {};
+			},
+		},
+	},
 	data() {
 		return {
 			swiper: null,
 		};
 	},
-	computed: {},
+	computed: {
+		variant() {
+			return this.shelf.variations[0];
+		},
+	},
 	created() {},
 	mounted() {
 		this.swiper = new this.$Swiper('.swiper-container', {
