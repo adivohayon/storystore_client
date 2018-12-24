@@ -30,6 +30,23 @@ export default {
 			// If we need pagination
 			pagination: {
 				el: '.swiper-pagination',
+				clickable: true,
+				renderBullet: (index, className) => {
+					const shelfContentType = this.variant.shelfContent[index].type;
+					let bullet = '';
+					switch (shelfContentType) {
+						case 'image':
+							bullet = 'img';
+							break;
+						case 'video':
+							bullet = 'vid';
+							break;
+						case 'description':
+							bullet = 'פרטים';
+							break;
+					}
+					return '<span class="' + className + '">' + bullet + '</span>';
+				},
 			},
 
 			// Navigation arrows

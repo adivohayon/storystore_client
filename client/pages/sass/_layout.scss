@@ -1,11 +1,8 @@
-
-
 $fixed-top-height: 3.2; //rems
 $navigation-height: 4.5; //rems
 $shelf-header-height: 5.3rem; //rems
 
 $total-fixed-height: $fixed-top-height + $navigation-height + 0rem;
-
 
 .fixed-top {
 	position: fixed;
@@ -27,11 +24,35 @@ $total-fixed-height: $fixed-top-height + $navigation-height + 0rem;
 	margin-top: $total-fixed-height;
 }
 
-
 /deep/ .shelf {
 	height: calc(100vh - #{$total-fixed-height});
 
 	.swiper-container {
 		height: calc(100% - #{$shelf-header-height});
+	}
+	.swiper {
+		&-pagination {
+			display: flex;
+			flex-direction: row;
+			width: 80%;
+			margin: auto;
+			left: 0;
+			right: 0;
+			&-bullet {
+				width: 100%;
+				border-radius: 1rem;
+				height: 20px;
+				text-align: center;
+				line-height: 20px;
+				font-size: 12px;
+				color: #000;
+				opacity: 1;
+				background: rgba(0, 0, 0, 0.2);
+				&-active {
+					color: #fff;
+					background: #007aff;
+				}
+			}
+		}
 	}
 }
