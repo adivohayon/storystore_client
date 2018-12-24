@@ -1,0 +1,37 @@
+
+
+$fixed-top-height: 3.2; //rems
+$navigation-height: 4.5; //rems
+$shelf-header-height: 5.3rem; //rems
+
+$total-fixed-height: $fixed-top-height + $navigation-height + 0rem;
+
+
+.fixed-top {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	background-color: #ffffff;
+	z-index: 999;
+}
+.top-header {
+	height: $fixed-top-height + 0rem;
+	border-bottom: 1px solid #d0d0d0;
+}
+.navigation {
+	height: $navigation-height + 0rem;
+	overflow: hidden;
+}
+
+/deep/ .feed {
+	margin-top: $total-fixed-height;
+}
+
+
+/deep/ .shelf {
+	height: calc(100vh - #{$total-fixed-height});
+
+	.swiper-container {
+		height: calc(100% - #{$shelf-header-height});
+	}
+}
