@@ -9,7 +9,7 @@ export const shelves = [
 		variations: [
 			{
 				sku: 'TLDSAD',
-				color: 'black',
+				color: { label: 'black', value: '#000000' },
 				size: 'OS',
 				shelfContent: [
 					{
@@ -40,7 +40,7 @@ export const shelves = [
 			},
 			{
 				sku: '432JASDO',
-				color: 'mustard',
+				color: { label: 'mustard', value: '#B99557' },
 				size: 'OS',
 				shelfContent: [
 					{
@@ -81,7 +81,7 @@ export const shelves = [
 		variations: [
 			{
 				sku: 'TLDSAD',
-				color: 'black',
+				color: { label: 'black', value: '#000000' },
 				size: 'OS',
 				shelfContent: [
 					{
@@ -112,7 +112,7 @@ export const shelves = [
 			},
 			{
 				sku: '432JASDO',
-				color: 'mustard',
+				color: { label: 'mustard', value: '#B99557' },
 				size: 'OS',
 				shelfContent: [
 					{
@@ -153,7 +153,7 @@ export const shelves = [
 		variations: [
 			{
 				sku: 'TLDSAD',
-				color: 'black',
+				color: { label: 'black', value: '#000000' },
 				size: 'OS',
 				shelfContent: [
 					{
@@ -184,7 +184,7 @@ export const shelves = [
 			},
 			{
 				sku: '432JASDO',
-				color: 'mustard',
+				color: { label: 'mustard', value: '#B99557' },
 				size: 'OS',
 				shelfContent: [
 					{

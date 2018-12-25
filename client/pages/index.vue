@@ -39,5 +39,5 @@ export default {
 };
 </script>
 
-<style src="./sass/index.scss" scoped lang="scss">
+<style src="./sass/index.scss" lang="scss">
 </style>

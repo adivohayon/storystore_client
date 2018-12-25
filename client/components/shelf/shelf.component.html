@@ -1,4 +1,4 @@
-<div class="shelf">
+<div class="shelf" :class="variantsPickersClass">
 	<header class="shelf-header">
 		<div class="shelf-header__container--price-title">
 			<span class="shelf-product__price">₪59.9</span>
@@ -9,7 +9,7 @@
 		</div>
 	</header>
 	<!-- Slider main container -->
-	<div class="swiper-container" :id="`shelf-content-slider-${shelfIndex}`">
+	<section class="swiper-container" :id="`shelf-content-slider-${shelfIndex}`">
 		<!-- Additional required wrapper -->
 		<div class="swiper-wrapper">
 			<!-- Slides -->
@@ -28,5 +28,13 @@
 
 		<!-- If we need scrollbar -->
 		<!-- <div class="swiper-scrollbar"></div> -->
-	</div>
+	</section>
+
+	<section class="shelf-variants">
+		<color-picker v-if="hasColorPicker" :colors="colors" @switch-variant="switchVariant"></color-picker>
+		<size-picker v-if="hasSizePicker"></size-picker>
+	</section>
+	<footer class="shelf-footer">
+		<add-to-cart></add-to-cart>
+	</footer>
 </div>

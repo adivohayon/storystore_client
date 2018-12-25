@@ -1,7 +1,11 @@
 import ShelfContent from './../shelf-content';
+import ColorPicker from './../color-picker';
+import SizePicker from './../size-picker';
+import AddToCart from './../add-to-cart';
+import { removeDuplicates } from '@/helpers/collection.helpers';
 export default {
 	name: 'shelf',
-	components: { ShelfContent },
+	components: { ShelfContent, ColorPicker, SizePicker, AddToCart },
 	props: {
 		shelf: {
 			type: Object,
@@ -16,11 +20,36 @@ export default {
 	data() {
 		return {
 			swiper: null,
+			selectedVariantIndex: 0,
 		};
 	},
 	computed: {
 		variant() {
-			return this.shelf.variations[0];
+			return this.shelf.variations[this.selectedVariantIndex];
+		},
+		hasColorPicker() {
+			return !!this.variant.color;
+		},
+		hasSizePicker() {
+			return !!this.variant.size;
+		},
+		variantsPickersClass() {
+			let num = 0;
+			if (this.hasSizePicker) {
+				num++;
+			}
+
+			if (this.hasColorPicker) {
+				num++;
+			}
+
+			return `variants-pickers-${num}`;
+		},
+		colors() {
+			return removeDuplicates(
+				this.shelf.variations.map(variant => variant.color),
+				'label'
+			);
 		},
 	},
 	created() {},
@@ -64,5 +93,21 @@ export default {
 			},
 		});
 	},
-	methods: {},
+	methods: {
+		switchVariant(options) {
+			switch (options.type) {
+				case 'color':
+					const colorLabel = options.payload.label;
+					const variantIndex = this.shelf.variations.findIndex(variant => {
+						if (variant.color) {
+							return variant.color.label === colorLabel;
+						}
+					});
+					if (variantIndex > -1) {
+						this.selectedVariantIndex = variantIndex;
+					}
+					break;
+			}
+		},
+	},
 };

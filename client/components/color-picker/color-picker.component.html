@@ -1,0 +1,17 @@
+<div class="color-picker">
+	<h6>צבעים</h6>
+	<ul>
+		<li
+			v-for="(color, colorIndex) in colors"
+			:key="colorIndex"
+			:class="{'color--active': colorIndex == selectedColorIndex}"
+			class="color"
+		>
+			<button
+				:style="{backgroundColor: color.value}"
+				:title="color.label"
+				@click="setColor(color, colorIndex)"
+			></button>
+		</li>
+	</ul>
+</div>
