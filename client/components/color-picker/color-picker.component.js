@@ -20,7 +20,7 @@ export default {
 	methods: {
 		setColor(color, colorIndex) {
 			this.selectedColorIndex = colorIndex;
-			this.$emit('switch-variant', { type: 'color', payload: color });
+			this.$emit('changed-color', color);
 		},
 	},
 };

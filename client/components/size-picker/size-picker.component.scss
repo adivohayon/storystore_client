@@ -1,3 +1,11 @@
 .size-picker {
 	background-color: blue;
 }
+
+.size {
+	&--active {
+		.btn {
+			background-color: red;
+		}
+	}
+}

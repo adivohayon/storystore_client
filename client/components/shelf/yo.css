@@ -1,0 +1,123 @@
+/* Add your CSS code here.
+
+For example:
+.example {
+    color: red;
+}
+
+For brushing up on your CSS knowledge, check out http://www.w3schools.com/css/css_syntax.asp
+
+End of comment */
+
+.getting-started__form h4 {
+	text-align: left;
+	font-size: 1.2rem;
+	margin-bottom: 0.3rem;
+}
+
+.getting-started__form h3 {
+	text-align: center;
+	font-size: 3rem;
+}
+.getting-started__form p {
+	margin: 0;
+}
+.getting-started__form p.p1 {
+	text-align: center;
+	margin-bottom: 1.5rem;
+}
+
+.getting-started__form hr {
+	margin: 1.5rem 0;
+}
+.getting-started__buttons .wpcf7-list-item-label {
+	display: none;
+}
+
+.getting-started__form input[type='text'],
+.getting-started__form input[type='email'],
+.getting-started__form input[type='tel'] {
+	margin-bottom: 1rem;
+}
+/*
+.wpcf7 input[type=text],.wpcf7 input[type=email],.wpcf7 input[type=tel] {
+  background-color: white;
+  border: 1px solid black;
+  margin: 0.5rem 0;
+  border-radius: 0;
+  height: 2rem;
+  width: 100%;
+}
+*/
+
+.getting-started__buttons {
+	display: flex;
+	width: 100%;
+	justify-content: center;
+}
+.getting-started__buttons .wpcf7-list-item {
+	padding: 0;
+	margin: 0;
+	text-align: center;
+	display: block;
+	flex: 1;
+}
+.wpcf7-form-control-wrap span {
+	padding: 0;
+}
+
+.getting-started__buttons input[type='radio'] {
+	display: block;
+	-webkit-appearance: unset;
+	border: 1px solid #18b3e3 !important;
+	outline: none;
+	cursor: pointer;
+	background-color: #18b3e3;
+
+	-webkit-appearance: unset;
+	-moz-appearance: unset;
+	appearance: unset;
+	margin: auto;
+
+	text-decoration: none;
+	line-height: 1;
+	display: inline-block;
+	max-width: 100%;
+	padding: 5px 37.5px;
+	cursor: pointer;
+	text-align: center;
+	overflow: hidden;
+	vertical-align: top;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	border: 1px solid;
+	box-shadow: none;
+	transition: 0.3s;
+	text-transform: uppercase;
+	font-size: 12px;
+	font-size: 0.75rem;
+	font-weight: 600;
+	letter-spacing: 0.72px;
+	border-radius: 3px;
+}
+.getting-started__buttons input[type='radio']:hover {
+	background-color: #000000;
+	border-color: #000000;
+}
+.getting-started__buttons input[type='radio']:before {
+	text-align: center;
+	width: 100%;
+	display: block;
+	line-height: 2rem;
+	color: #ffffff;
+}
+.getting-started__buttons input[value='api']:before {
+	content: 'Get an API key';
+}
+.getting-started__buttons input[value='demo']:before {
+	content: 'Request a demo';
+}
+
+.row-padding {
+	padding: 0 1rem;
+}

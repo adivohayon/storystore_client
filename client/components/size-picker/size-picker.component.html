@@ -1,3 +1,16 @@
 <div class="size-picker">
-	size
+	<ul>
+		<li
+			v-for="(size, sizeIndex) in sizes"
+			:key="sizeIndex"
+			:class="{'size--active': sizeIndex == selectedSizeIndex}"
+			class="size"
+		>
+			<button
+				class="btn btn--round"
+				:title="size"
+				@click="setSize(size, sizeIndex)"
+			>{{size}}</button>
+		</li>
+	</ul>
 </div>

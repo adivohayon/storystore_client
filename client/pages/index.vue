@@ -1,9 +1,9 @@
 <template>
 	<div>
-		<nav class="fixed-top">
+		<!-- <nav class="fixed-top">
 			<header class="top-header">storystore</header>
 			<navigation :categories="categories"></navigation>
-		</nav>
+		</nav> -->
 		<feed>
 			<no-ssr>
 				<shelf

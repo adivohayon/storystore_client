@@ -2,10 +2,11 @@ import ShelfContent from './../shelf-content';
 import ColorPicker from './../color-picker';
 import SizePicker from './../size-picker';
 import AddToCart from './../add-to-cart';
+import ShelfTitle from './../shelf-title';
 import { removeDuplicates } from '@/helpers/collection.helpers';
 export default {
 	name: 'shelf',
-	components: { ShelfContent, ColorPicker, SizePicker, AddToCart },
+	components: { ShelfContent, ColorPicker, SizePicker, AddToCart, ShelfTitle },
 	props: {
 		shelf: {
 			type: Object,
@@ -21,29 +22,18 @@ export default {
 		return {
 			swiper: null,
 			selectedVariantIndex: 0,
+			selectedColor: null,
+			selectedSize: null,
 		};
 	},
 	computed: {
 		variant() {
-			return this.shelf.variations[this.selectedVariantIndex];
-		},
-		hasColorPicker() {
-			return !!this.variant.color;
-		},
-		hasSizePicker() {
-			return !!this.variant.size;
-		},
-		variantsPickersClass() {
-			let num = 0;
-			if (this.hasSizePicker) {
-				num++;
-			}
-
-			if (this.hasColorPicker) {
-				num++;
-			}
-
-			return `variants-pickers-${num}`;
+			return this.shelf.variations.find(variant => {
+				return (
+					variant.size === this.selectedSize &&
+					variant.color.label === this.selectedColor.label
+				);
+			});
 		},
 		colors() {
 			return removeDuplicates(
@@ -51,8 +41,14 @@ export default {
 				'label'
 			);
 		},
+		sizes() {
+			return [...new Set(this.shelf.variations.map(variant => variant.size))];
+		},
 	},
-	created() {},
+	created() {
+		this.selectedColor = this.shelf.variations[0].color || null;
+		this.selectedSize = this.shelf.variations[0].size || null;
+	},
 	mounted() {
 		this.swiper = new this.$Swiper(`#shelf-content-slider-${this.shelfIndex}`, {
 			// Optional parameters
@@ -94,20 +90,13 @@ export default {
 		});
 	},
 	methods: {
-		switchVariant(options) {
-			switch (options.type) {
-				case 'color':
-					const colorLabel = options.payload.label;
-					const variantIndex = this.shelf.variations.findIndex(variant => {
-						if (variant.color) {
-							return variant.color.label === colorLabel;
-						}
-					});
-					if (variantIndex > -1) {
-						this.selectedVariantIndex = variantIndex;
-					}
-					break;
-			}
+		setSize(size) {
+			console.log('Shelf / setSize', size);
+			this.selectedSize = size;
+		},
+		setColor(color) {
+			console.log('Shelf / setColor', color);
+			this.selectedColor = color;
 		},
 	},
 };

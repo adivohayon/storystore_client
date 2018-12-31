@@ -1,5 +1,5 @@
-<div class="shelf" :class="variantsPickersClass">
-	<header class="shelf-header">
+<div class="shelf">
+	<!-- <header class="shelf-header">
 		<div class="shelf-header__container--price-title">
 			<span class="shelf-product__price">₪59.9</span>
 			<span class="shelf-product__title">שמלת טליה</span>
@@ -7,7 +7,7 @@
 		<div class="shelf-header__logo">
 			<img src="assets/logo--simplyfashion.png" alt="" />
 		</div>
-	</header>
+	</header> -->
 	<!-- Slider main container -->
 	<section class="swiper-container" :id="`shelf-content-slider-${shelfIndex}`">
 		<!-- Additional required wrapper -->
@@ -23,18 +23,31 @@
 		<div class="swiper-pagination"></div>
 
 		<!-- If we need navigation buttons -->
-		<div class="swiper-button-prev"></div>
-		<div class="swiper-button-next"></div>
+		<!-- <div class="swiper-button-prev"></div>
+		<div class="swiper-button-next"></div> -->
 
 		<!-- If we need scrollbar -->
 		<!-- <div class="swiper-scrollbar"></div> -->
 	</section>
-
-	<section class="shelf-variants">
-		<color-picker v-if="hasColorPicker" :colors="colors" @switch-variant="switchVariant"></color-picker>
-		<size-picker v-if="hasSizePicker"></size-picker>
-	</section>
+	<aside class="shelf-buttons">
+		<ul>
+			<li><button class="btn btn--round">C</button></li>
+			<li><button class="btn btn--round">i</button></li>
+		</ul>
+	</aside>
+	<!-- <section class="shelf-variants"></section> -->
 	<footer class="shelf-footer">
+		<shelf-title :price="shelf.price" :currency="shelf.currency" :title="shelf.productName"></shelf-title>
+		<color-picker
+			v-if="colors.length"
+			:colors="colors"
+			@changed-color="setColor"
+		></color-picker>
+		<size-picker v-if="sizes.length" :sizes="sizes" @changed-size="setSize"></size-picker>
 		<add-to-cart></add-to-cart>
 	</footer>
+	<div class="shelf-scrims">
+		<div class="shelf-scrims--top"></div>
+		<div class="shelf-scrims--bottom"></div>
+	</div>
 </div>

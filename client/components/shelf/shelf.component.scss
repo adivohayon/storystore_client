@@ -1,45 +1,45 @@
-$header-height: 5.3rem;
 .shelf {
-	// height: 100vh;
-	// display: flex;
-	// flex-direction: column;
-	// height: 100vh;
-	// align-items: stretch;
-	// align-content: stretch;
-	// display: flex;
-	// flex-direction: column;
+	height: 100vh;
+	overflow: hidden;
+	position: relative;
+	color: #ffffff;
 
-	&-header {
-		display: flex;
-		flex-direction: row;
-		height: $header-height;
-		padding: 0.8rem;
-		&__logo {
-			height: 100%;
-			img {
-				height: 100%;
-				width: auto;
-			}
-		}
-
-		&__container {
-			&--price-title {
-				flex: 1;
-			}
+	.swiper {
+		&-pagination {
+			top: 1rem;
 		}
 	}
 
-	&-product {
-		&__price {
-			display: block;
-			font-weight: bold;
+	&-buttons {
+		position: absolute;
+		right: 1rem;
+		top: 50%;
+		z-index: 10;
+		ul {
+			list-style-type: none;
+			padding: 0;
+			li {
+				margin-bottom: 0.5rem;
+			}
 		}
-
-		&__title {
-			display: block;
+		.btn {
+			background-color: #ffffff;
 		}
 	}
 
-	
+	&-footer {
+		position: absolute;
+		bottom: 1rem;
+		z-index: 10;
+		width: 100%;
+	}
+
+	&-scrims {
+		&--top {
+
+		}
+		&--bottom {
+			
+		}
+	}
 }
-
