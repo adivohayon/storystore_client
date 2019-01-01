@@ -1,5 +1,5 @@
 <div class="color-picker">
-	<h6>צבעים</h6>
+	<!-- <h6>צבעים</h6> -->
 	<ul>
 		<li
 			v-for="(color, colorIndex) in colors"
@@ -11,7 +11,9 @@
 				:style="{backgroundColor: color.value}"
 				:title="color.label"
 				@click="setColor(color, colorIndex)"
+				class="btn btn--round"
 			></button>
+			<div class="selected"></div>
 		</li>
 	</ul>
 </div>

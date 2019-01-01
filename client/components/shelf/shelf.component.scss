@@ -5,6 +5,9 @@
 	color: #ffffff;
 
 	.swiper {
+		&-container {
+			height: 100%;
+		}
 		&-pagination {
 			top: 1rem;
 		}

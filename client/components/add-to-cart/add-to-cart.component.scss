@@ -1,4 +1,15 @@
 .add-to-cart {
-	background-color: green;
+	border-top: 1px solid rgba(203, 202, 202, 0.5);
 	height: 100%;
+	button {
+		text-align: center;
+		padding: 0.6rem 6.5rem;
+		border: none;
+		background-color: rgb(247, 247, 247);
+		font-size: 1.6rem;
+		height: 80%;
+		border-radius: 30px;
+		display: block;
+		margin: 0.7rem auto 0rem auto;
+	}
 }
