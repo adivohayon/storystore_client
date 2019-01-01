@@ -22,9 +22,11 @@
     "express": "^4.16.4",
     "nuxt": "^2.3.1",
     "nuxt-sass-resources-loader": "^2.0.5",
+    "scroll-snap": "^1.0.6",
     "serverless-apigw-binary": "^0.4.4",
     "serverless-http": "^1.8.0",
     "swiper": "^4.4.6",
+    "vue-fullpage.js": "^0.1.1",
     "vuex-persist": "^2.0.0"
   },
   "devDependencies": {

@@ -1,3 +1,4 @@
+// kick off the polyfill!
 export default {
 	name: 'feed',
 	components: {},
@@ -7,6 +8,13 @@ export default {
 	},
 	computed: {},
 	created() {},
-	mounted() {},
+	mounted() {
+		// const element = this.$refs.feedEl;
+		// const el = document.getElementById('feed');
+		// new fullpage('#feed', {
+		// 	navigation: true,
+		// 	sectionSelector: '.shelf',
+		// });
+	},
 	methods: {},
 };

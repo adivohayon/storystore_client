@@ -3,17 +3,31 @@
 		<!-- <nav class="fixed-top">
 			<header class="top-header">storystore</header>
 			<navigation :categories="categories"></navigation>
-		</nav> -->
-		<feed>
-			<no-ssr>
+		</nav>-->
+		<!-- <no-ssr> -->
+		<!-- <feed> -->
+		<no-ssr>
+			<full-page id="fullpage" ref="fullpage" :options="feedOptions">
 				<shelf
 					v-for="(shelf, shelfIndex) in shelves"
 					:key="shelfIndex"
 					:shelf="shelf"
 					:shelf-index="shelfIndex"
 				></shelf>
-			</no-ssr>
-		</feed>
+			</full-page>
+		</no-ssr>
+		<!-- </feed> -->
+		<!-- </no-ssr> -->
+		<!-- <div id="shelf-1">uoooo</div> -->
+		<!-- <no-ssr>
+			<shelf
+				v-for="(shelf, shelfIndex) in shelves"
+				:key="shelfIndex"
+				:shelf="shelf"
+				:shelf-index="shelfIndex"
+				:id="`shelf-${shelfIndex}`"
+			></shelf>
+		</no-ssr>-->
 	</div>
 </template>
 
@@ -24,6 +38,21 @@ import Navigation from '@/components/navigation';
 import { getCategories, getShelves } from '@/services/api.service';
 export default {
 	components: { Feed, Shelf, Navigation },
+	data() {
+		return {
+			feedOptions: {
+				// dragAndMove: true,
+				sectionSelector: '.shelf',
+				licenseKey: '45154D42-6F8E4ACE-AB31A7B3-11A8CE75',
+				dragAndMoveKey: 'F5E0D91E-52F94E24-98489795-9E741DA2',
+				dragAndMove: true,
+			},
+		};
+	},
+	mounted() {
+		// const el = document.querySelector('#shelf-1');
+		// console.log('elll', el);
+	},
 	async asyncData({ params }) {
 		try {
 			const categories = await getCategories(0);

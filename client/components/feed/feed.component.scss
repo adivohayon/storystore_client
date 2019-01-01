@@ -1,3 +1,8 @@
 .feed {
-	
+	// scroll-snap-type: y proximity;
+	max-height: 100vh;
+	overflow-y: scroll;
+	.shelf {
+		// scroll-snap-align: start;
+	}
 }
