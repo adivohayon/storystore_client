@@ -3,3 +3,6 @@
 @import 'layout';
 @import 'shelf-layout';
 
+.fp-enabled {
+	overflow: unset !important;
+}

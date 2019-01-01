@@ -9,27 +9,26 @@
 		</div>
 	</header> -->
 	<!-- Slider main container -->
+	<section class="swiper-container" :id="`shelf-content-slider-${shelfIndex}`">
+		<!-- Additional required wrapper -->
+		<div class="swiper-wrapper">
+			<!-- Slides -->
+			<shelf-content
+				v-for="(content, contentIndex) in variant.shelfContent"
+				:key="contentIndex"
+				:content="content"
+			></shelf-content>
+		</div>
+		<!-- If we need pagination -->
+		<div class="swiper-pagination"></div>
 
-		<section class="swiper-container" :id="`shelf-content-slider-${shelfIndex}`">
-			<!-- Additional required wrapper -->
-			<div class="swiper-wrapper">
-				<!-- Slides -->
-				<shelf-content
-					v-for="(content, contentIndex) in variant.shelfContent"
-					:key="contentIndex"
-					:content="content"
-				></shelf-content>
-			</div>
-			<!-- If we need pagination -->
-			<div class="swiper-pagination"></div>
-	
-			<!-- If we need navigation buttons -->
-			<!-- <div class="swiper-button-prev"></div>
-			<div class="swiper-button-next"></div> -->
-	
-			<!-- If we need scrollbar -->
-			<!-- <div class="swiper-scrollbar"></div> -->
-		</section>
+		<!-- If we need navigation buttons -->
+		<!-- <div class="swiper-button-prev"></div>
+		<div class="swiper-button-next"></div> -->
+
+		<!-- If we need scrollbar -->
+		<!-- <div class="swiper-scrollbar"></div> -->
+	</section>
 	<aside class="shelf-buttons">
 		<ul>
 			<li><button class="btn btn--round">C</button></li>
