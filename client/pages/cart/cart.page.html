@@ -13,9 +13,9 @@
 				<span class="cart-page__container__wrapper--total__price">{{subtotal}} ש"ח</span>
 			</div>
 			<cart-item 
-			v-for="(item, itemIndex) of itemsList"
+			v-for="(item, itemIndex) of items"
 			:key="itemIndex"
-			:productName="item.productName"
+			:item="item"
 			></cart-item>
 		</div>
 	</div>

@@ -8,7 +8,7 @@ export const shelves = [
 		categoryId: 0,
 		variations: [
 			{
-				sku: 'TLDSAD',
+				sku: 'ASDasdj13',
 				color: { label: 'black', value: '#000000' },
 				size: 'S',
 				shelfContent: [
@@ -39,7 +39,7 @@ export const shelves = [
 				],
 			},
 			{
-				sku: 'TLDSAD',
+				sku: 'ASdjio2',
 				color: { label: 'black', value: '#000000' },
 				size: 'L',
 				shelfContent: [
@@ -101,7 +101,7 @@ export const shelves = [
 				],
 			},
 			{
-				sku: '432JASDO',
+				sku: '234Ajio',
 				color: { label: 'mustard', value: '#B99557' },
 				size: 'L',
 				shelfContent: [

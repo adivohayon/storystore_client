@@ -3,8 +3,8 @@ export const state = () => ({
 });
 
 export const mutations = {
-	add(state, { item }) {
-		console.log('item', item.quantity);
+	add(state, item) {
+		console.log('item', item);
 		const addedIndex = state.added.findIndex(
 			addedItem => addedItem.sku === item.sku
 		);

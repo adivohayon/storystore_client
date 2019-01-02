@@ -8,11 +8,11 @@ export default {
 	},
 	mounted() {},
 	computed: {
-		itemsList() {
-			return this.$store.getters.items;
+		items() {
+			return this.$store.getters['cart/items'];
 		},
 		subtotal() {
-			return this.$store.getters.subtotal;
+			return this.$store.getters['cart/subtotal'];
 		},
 	},
 	methods: {

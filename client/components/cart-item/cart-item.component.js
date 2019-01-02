@@ -3,22 +3,11 @@ export default {
 	components: {},
 	async asyncData({ params }) {},
 	props: {
-		price: {
-			type: Number,
-		},
-		size: {
-			type: String,
-		},
-		productName: {
-			type: String,
-		},
+		item: {},
 	},
 	data() {
 		return {};
 	},
-	mounted() {
-		// const el = document.querySelector('#shelf-1');
-		// console.log('elll', el);
-	},
+	mounted() {},
 	computed() {},
 };
