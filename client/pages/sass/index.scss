@@ -4,5 +4,37 @@
 @import 'shelf-layout';
 
 .fp-enabled {
-	overflow: unset !important;
+	// overflow: unset !important;
+}
+
+.fp-tableCell {
+	position: relative;
+	// overflow: hidden;
+}
+
+.fixer-class {
+	/deep/ .swiper-container {
+		z-index: 1 !important;
+	}
+}
+#fullpage {
+	// direction: ltr;
+}
+.shelf {
+	&-1 {
+		// background-color: red;
+	}
+	&-2 {
+		background-color: green;
+	}
+
+	&-content {
+		&-1 {
+			background-color: orange;
+		}
+
+		&-2 {
+			background-color: purple;
+		}
+	}
 }

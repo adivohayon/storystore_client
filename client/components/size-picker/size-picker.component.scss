@@ -1,5 +1,6 @@
 .size-picker {
-	border-top: 1px solid rgba(203, 202, 202, 0.5);
+	border-bottom: 1px solid rgba(203, 202, 202, 0.5);
+	padding: 0.7rem 1.4rem;
 	ul {
 		display: flex;
 		flex-direction: row;
@@ -8,27 +9,19 @@
 		padding: 0;
 	}
 	li {
-		margin: 0.4rem 0.8rem 0.5rem 0.6rem;
+		margin-left: 1rem;
 		background-color: inherit;
 		color: black;
 	}
-}
-.btn {
-	background-color: white;
-}
-.selected {
-	display: none;
-	width: 1.9rem;
-	height: 0.3rem;
-	background-color: white;
-	margin: auto;
-	margin-top: 0.4rem;
-}
 
-.size {
-	&--active {
-		.selected {
-			display: block;
+	.btn {
+		background-color: white;
+	}
+
+	.size {
+		&--active {
+			border-bottom: 3px solid white;
+			padding-bottom: 6px;
 		}
 	}
 }

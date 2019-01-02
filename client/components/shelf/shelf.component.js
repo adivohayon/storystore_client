@@ -54,10 +54,9 @@ export default {
 			// Optional parameters
 			direction: 'horizontal',
 			loop: true,
-
 			// If we need pagination
 			pagination: {
-				el: '.swiper-pagination',
+				el: '.shelf-content__pagination',
 				clickable: true,
 				renderBullet: (index, className) => {
 					const shelfContentType = this.variant.shelfContent[index].type;
@@ -76,27 +75,29 @@ export default {
 					return '<span class="' + className + '">' + bullet + '</span>';
 				},
 			},
-
 			// Navigation arrows
 			navigation: {
 				nextEl: '.swiper-button-next',
 				prevEl: '.swiper-button-prev',
 			},
-
 			// And if we need scrollbar
 			scrollbar: {
 				el: '.swiper-scrollbar',
 			},
 		});
+		// const fullpageEl = document.getElementById('fullpage');
+		// fullpageEl.build();
+		// console.log('fullpage', fullpageEl);
 	},
 	methods: {
 		setSize(size) {
 			console.log('Shelf / setSize', size);
 			this.selectedSize = size;
 		},
-		setColor(color) {
+		async setColor(color) {
 			console.log('Shelf / setColor', color);
 			this.selectedColor = color;
+			await this.$nextTick();
 		},
 	},
 };

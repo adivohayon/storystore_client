@@ -1,15 +1,18 @@
 .add-to-cart {
-	border-top: 1px solid rgba(203, 202, 202, 0.5);
 	height: 100%;
+	width: 100%;
+	padding: 0 1.3rem;
+	margin-top: 1rem;
 	button {
 		text-align: center;
-		padding: 0.6rem 6.5rem;
+		padding: 1.2rem 0.9rem;
 		border: none;
-		background-color: rgb(247, 247, 247);
-		font-size: 1.6rem;
-		height: 80%;
-		border-radius: 30px;
+		background-color: #f0f0f0;
+		font-size: 1.2rem;
+		height: 3.4rem;
+		line-height: 1;
+		border-radius: 23px;
 		display: block;
-		margin: 0.7rem auto 0rem auto;
+		width: 100%;
 	}
 }
