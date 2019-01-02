@@ -36,6 +36,8 @@ import Feed from '@/components/feed';
 import Shelf from '@/components/shelf';
 import Navigation from '@/components/navigation';
 import { getCategories, getShelves } from '@/services/api.service';
+import '../icons';
+
 export default {
 	components: { Feed, Shelf, Navigation },
 	async asyncData({ params }) {

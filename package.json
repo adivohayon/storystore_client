@@ -14,7 +14,8 @@
     "server": "npm run build && node server/server.js",
     "deploy:sls": "npm run build && sls deploy --region eu-central-1",
     "deploy:static": "aws s3 cp ./client/static/ s3://cdn.shop-together.io --recursive --exclude \".DS_Store\"",
-    "sls:offline": "npm run build && sls offline start"
+		"sls:offline": "npm run build && sls offline start",
+		"svg": "vsvg -s ./svgs -t ./client/icons"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.3.6",
@@ -42,6 +43,7 @@
     "prettier": "1.14.3",
     "sass-loader": "^7.1.0",
     "serverless-domain-manager": "^2.6.6",
-    "serverless-offline": "^3.31.3"
+    "serverless-offline": "^3.31.3",
+    "vue-svgicon": "^3.2.2"
   }
 }

@@ -34,6 +34,9 @@ plugins:
 
 
 custom:
+  serverless-offline:
+    port: 6767
+    host: 127.0.0.1
   secrets: ${file(server/secrets.json)}
   apigwBinary:
     types:
