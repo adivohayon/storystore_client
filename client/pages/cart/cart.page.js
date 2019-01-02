@@ -1,11 +1,23 @@
+import CartItem from '../../components/cart-item';
+
 export default {
-	components: {},
+	components: { CartItem },
 	async asyncData({ params }) {},
 	data() {
 		return {};
 	},
-	mounted() {
-		// const el = document.querySelector('#shelf-1');
-		// console.log('elll', el);
+	mounted() {},
+	computed: {
+		itemsList() {
+			return this.$store.getters.items;
+		},
+		subtotal() {
+			return this.$store.getters.subtotal;
+		},
+	},
+	methods: {
+		back() {
+			this.$router.push('/');
+		},
 	},
 };

@@ -1,0 +1,35 @@
+<div class="cart-item">
+	<div class="cart-item__product">
+		<div class="cart-item__product--details">
+			<div class="cart-item__product--details--image"></div>
+			<div class="cart-item__product--details--details">
+				<div class="cart-item__product--details--details--price">239.90</div>
+				<div class="cart-item__product--details--details--title">שמלת טליה</div>
+			</div>
+		</div>
+		<div class="cart-item__product--details--pickers">
+			<div class="cart-item__product--details--pickers__picker">
+				<div class="cart-item__product--details--pickers__picker--title">צבע:</div>
+				<div class="cart-item__product--details--pickers__picker--box picker-button">
+					<select :v-model="quantity">
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+					</select>
+				</div>
+				<div class="cart-item__product--details--pickers__picker--button chevron">
+				</div>
+			</div>
+			<div class="cart-item__product--details--pickers__picker">
+					<div class="cart-item__product--details--pickers__picker--title">מידה:</div>
+					<div class="cart-item__product--details--pickers__picker--box picker-button">XL</div>
+					<div class="cart-item__product--details--pickers__picker--button chevron"></div>
+			</div>
+			<div class="cart-item__product--details--pickers__picker">
+					<div class="cart-item__product--details--pickers__picker--title">כמות:</div>
+					<div class="cart-item__product--details--pickers__picker--box picker-button">1</div>
+					<div class="cart-item__product--details--pickers__picker--button chevron"></div>
+			</div>
+		</div>
+	</div>
+</div>

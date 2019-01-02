@@ -1,3 +1,22 @@
 <div class="cart-page">
-	cart
+	<div class="cart-page__container">
+		<div class="cart-page__container__wrapper">
+			<div class="cart-page__container__wrapper--header">
+				<button 
+				v-on:click="back()"
+				class="cart-page__container__wrapper--header--back-button"
+				></button>
+				<button class="cart-page__container__wrapper--header--payment-button">לתשלום</button>
+			</div>
+			<div class="cart-page__container__wrapper--total">
+				<span class="cart-page__container__wrapper--total__text"> פריטים: סה"כ (כולל משלוח)</span>
+				<span class="cart-page__container__wrapper--total__price">{{subtotal}} ש"ח</span>
+			</div>
+			<cart-item 
+			v-for="(item, itemIndex) of itemsList"
+			:key="itemIndex"
+			:productName="item.productName"
+			></cart-item>
+		</div>
+	</div>
 </div>

@@ -1,3 +1,5 @@
+import { throws } from 'assert';
+
 export default {
 	name: 'add-to-cart',
 	components: {},
@@ -8,5 +10,10 @@ export default {
 	computed: {},
 	created() {},
 	mounted() {},
-	methods: {},
+	methods: {
+		addToCart() {
+			// adding to persist cart state.
+			this.$router.push('/cart');
+		},
+	},
 };
