@@ -1,0 +1,32 @@
+<div v-if="item" class="cart-item">
+	<div class="cart-item__product">
+		<div class="cart-item__product--details">
+			<div class="cart-item__product--details--image"></div>
+			<div class="cart-item__product--details--details">
+				<div class="cart-item__product--details--details--price">{{item.price}} {{item.currency}}</div>
+				<div class="cart-item__product--details--details--title">שמלת טליה</div>
+			</div>
+		</div>
+		<div class="cart-item__product--details--pickers">
+			<div class="cart-item__product--details--pickers__picker">
+				<div class="cart-item__product--details--pickers__picker--title">צבע:</div>
+				<div 
+				:style="{ backgroundColor: item.color.value }"
+				class="cart-item__product--details--pickers__picker--box picker-button"
+				></div>
+				<div class="cart-item__product--details--pickers__picker--button chevron">
+				</div>
+			</div>
+			<div class="cart-item__product--details--pickers__picker">
+					<div class="cart-item__product--details--pickers__picker--title">מידה:</div>
+					<div class="cart-item__product--details--pickers__picker--box picker-button">{{item.size}}</div>
+					<div class="cart-item__product--details--pickers__picker--button chevron"></div>
+			</div>
+			<div class="cart-item__product--details--pickers__picker">
+					<div class="cart-item__product--details--pickers__picker--title">כמות:</div>
+					<div class="cart-item__product--details--pickers__picker--box picker-button">{{item.quantity}}</div>
+					<div class="cart-item__product--details--pickers__picker--button chevron"></div>
+			</div>
+		</div>
+	</div>
+</div>

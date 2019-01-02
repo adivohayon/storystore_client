@@ -2,6 +2,7 @@
 @import 'buttons';
 @import 'layout';
 @import 'shelf-layout';
+@import 'icons';
 
 .fp-enabled {
 	// overflow: unset !important;
@@ -37,4 +38,17 @@
 			background-color: purple;
 		}
 	}
+}
+
+.counter {
+	height: 1.5em;
+	width: 1.5em;
+	border-radius: 50%;
+	background-color: #f6402b;
+	color: #ffffff;
+	line-height: 1;
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 1.5em;
+	position: absolute;
 }

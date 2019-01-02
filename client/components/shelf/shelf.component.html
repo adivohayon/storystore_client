@@ -37,7 +37,12 @@
 	<!-- <div class="test"></div> -->
 	<aside class="shelf-buttons">
 		<ul>
-			<li><button class="btn btn--round">C</button></li>
+			<li>
+				<button class="btn btn--round">
+					<icon name="cart" :original="true" width="26" height="26"></icon>
+					<div class="counter">1</div>
+				</button>
+			</li>
 			<li>
 				<button
 					class="btn btn--round"
@@ -67,7 +72,11 @@
 			:sizes="sizes"
 			@changed-size="setSize"
 		></size-picker>
-		<add-to-cart :sku="variant"></add-to-cart>
+		<add-to-cart
+			:sku="variant"
+			:price="shelf.price"
+			:currency="shelf.currency"
+		></add-to-cart>
 	</footer>
 	<transition name="shelf-info">
 		<shelf-info

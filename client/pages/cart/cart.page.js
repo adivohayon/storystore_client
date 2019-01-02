@@ -1,11 +1,26 @@
+import CartItem from '../../components/cart-item';
+
 export default {
-	components: {},
+	components: { CartItem },
 	async asyncData({ params }) {},
 	data() {
 		return {};
 	},
-	mounted() {
-		// const el = document.querySelector('#shelf-1');
-		// console.log('elll', el);
+	mounted() {},
+	computed: {
+		items() {
+			return this.$store.getters['cart/items'];
+		},
+		subtotal() {
+			return this.$store.getters['cart/subtotal'].toFixed(2);
+		},
+		itemsCount() {
+			return this.$store.getters['cart/itemsCount'];
+		},
+	},
+	methods: {
+		back() {
+			this.$router.push('/');
+		},
 	},
 };

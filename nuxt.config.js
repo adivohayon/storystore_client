@@ -43,6 +43,7 @@ module.exports = {
 		{ src: '~/plugins/swiper', ssr: false },
 		{ src: '~/plugins/vuex-persist', ssr: false },
 		{ src: '~/plugins/fullpage', ssr: false },
+		{ src: '~/plugins/svg', ssr: true },
 	],
 
 	/*
