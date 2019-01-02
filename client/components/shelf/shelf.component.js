@@ -3,10 +3,18 @@ import ColorPicker from './../color-picker';
 import SizePicker from './../size-picker';
 import AddToCart from './../add-to-cart';
 import ShelfTitle from './../shelf-title';
+import ShelfInfo from './../shelf-info';
 import { removeDuplicates } from '@/helpers/collection.helpers';
 export default {
 	name: 'shelf',
-	components: { ShelfContent, ColorPicker, SizePicker, AddToCart, ShelfTitle },
+	components: {
+		ShelfContent,
+		ColorPicker,
+		SizePicker,
+		AddToCart,
+		ShelfTitle,
+		ShelfInfo,
+	},
 	props: {
 		shelf: {
 			type: Object,
@@ -24,6 +32,7 @@ export default {
 			selectedVariantIndex: 0,
 			selectedColor: null,
 			selectedSize: null,
+			showShelfInfo: false,
 		};
 	},
 	computed: {

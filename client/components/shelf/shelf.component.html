@@ -38,7 +38,14 @@
 	<aside class="shelf-buttons">
 		<ul>
 			<li><button class="btn btn--round">C</button></li>
-			<li><button class="btn btn--round">i</button></li>
+			<li>
+				<button
+					class="btn btn--round"
+					v-on:click="showShelfInfo = !showShelfInfo"
+				>
+					i
+				</button>
+			</li>
 		</ul>
 	</aside>
 	<footer class="shelf-footer">
@@ -47,6 +54,9 @@
 			:currency="shelf.currency"
 			:title="shelf.productName"
 		></shelf-title>
+		<!-- <button v-on:click="showShelfInfo = !showShelfInfo">
+			TOGGLE-SHELF {{ showShelfInfo }}
+		</button> -->
 		<color-picker
 			v-if="colors.length"
 			:colors="colors"
@@ -59,6 +69,12 @@
 		></size-picker>
 		<add-to-cart :sku="variant"></add-to-cart>
 	</footer>
+	<transition name="shelf-info">
+		<shelf-info
+			v-if="showShelfInfo"
+			v-on:close-info="showShelfInfo = false"
+		></shelf-info>
+	</transition>
 	<div class="shelf-scrims">
 		<div class="shelf-scrims--top"></div>
 		<div class="shelf-scrims--bottom"></div>

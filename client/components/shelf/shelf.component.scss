@@ -105,4 +105,17 @@
 			);
 		}
 	}
+	// SHELF INFO ANIMATION
+	.shelf-info-enter,
+	.shelf-info-leave-to {
+		height: 0;
+	}
+	.shelf-info-enter-active,
+	.shelf-info-leave-active {
+		transition: height 0.6s;
+	}
+	.shelf-info-enter-to,
+	.shelf-info-leave {
+		height: 35rem;
+	}
 }
