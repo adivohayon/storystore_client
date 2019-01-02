@@ -53,6 +53,9 @@ export default {
 		sizes() {
 			return [...new Set(this.shelf.variations.map(variant => variant.size))];
 		},
+		cartItemsCount() {
+			return this.$store.getters['cart/itemsCount'];
+		},
 	},
 	created() {
 		this.selectedColor = this.shelf.variations[0].color || null;
