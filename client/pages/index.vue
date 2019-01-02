@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div id="page" :class="fixerClass">
 		<!-- <nav class="fixed-top">
 			<header class="top-header">storystore</header>
 			<navigation :categories="categories"></navigation>
@@ -38,21 +38,6 @@ import Navigation from '@/components/navigation';
 import { getCategories, getShelves } from '@/services/api.service';
 export default {
 	components: { Feed, Shelf, Navigation },
-	data() {
-		return {
-			feedOptions: {
-				// dragAndMove: true,
-				sectionSelector: '.shelf',
-				licenseKey: '45154D42-6F8E4ACE-AB31A7B3-11A8CE75',
-				dragAndMoveKey: 'F5E0D91E-52F94E24-98489795-9E741DA2',
-				dragAndMove: true,
-			},
-		};
-	},
-	mounted() {
-		// const el = document.querySelector('#shelf-1');
-		// console.log('elll', el);
-	},
 	async asyncData({ params }) {
 		try {
 			const categories = await getCategories(0);
@@ -64,6 +49,26 @@ export default {
 		} catch (err) {
 			console.error(err);
 		}
+	},
+	data() {
+		return {
+			fixerClass: '',
+			feedOptions: {
+				// dragAndMove: true,
+				sectionSelector: '.shelf',
+				// slideSelector: '.shelf-content',
+				licenseKey: '45154D42-6F8E4ACE-AB31A7B3-11A8CE75',
+				dragAndMoveKey: 'F5E0D91E-52F94E24-98489795-9E741DA2',
+				dragAndMove: true,
+				controlArrows: false,
+				slidesNavigation: true,
+			},
+		};
+	},
+	mounted() {
+		// this.$refs.fullpage.build();
+		// const el = document.querySelector('#shelf-1');
+		// console.log('elll', el);
 	},
 };
 </script>
