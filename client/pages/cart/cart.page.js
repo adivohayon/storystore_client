@@ -12,7 +12,10 @@ export default {
 			return this.$store.getters['cart/items'];
 		},
 		subtotal() {
-			return this.$store.getters['cart/subtotal'];
+			return this.$store.getters['cart/subtotal'].toFixed(2);
+		},
+		itemsCount() {
+			return this.$store.getters['cart/itemsCount'];
 		},
 	},
 	methods: {

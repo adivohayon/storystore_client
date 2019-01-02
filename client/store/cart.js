@@ -25,8 +25,14 @@ export const mutations = {
 export const getters = {
 	subtotal(state) {
 		return state.added.reduce((acc, item) => {
-			const itemTotal = item.quantity * item.size.price;
+			const itemTotal = item.quantity * item.price;
 			return acc + itemTotal;
+		}, 0);
+	},
+	itemsCount(state) {
+		return state.added.reduce((acc, item) => {
+			const itemCount = item.quantity;
+			return acc + itemCount;
 		}, 0);
 	},
 	items(state) {
