@@ -9,7 +9,10 @@
 		</div>
 	</header> -->
 	<!-- Slider main container -->
-	<section class="swiper-container shelf-content__slider" :id="`shelf-content-slider-${shelfIndex}`">
+	<section
+		class="swiper-container shelf-content__slider"
+		:id="`shelf-content-slider-${shelfIndex}`"
+	>
 		<!-- Additional required wrapper -->
 		<div class="swiper-wrapper">
 			<!-- Slides -->
@@ -19,7 +22,7 @@
 				:content="content"
 			></shelf-content>
 		</div>
-	
+
 		<!-- If we need pagination -->
 		<div class="shelf-content__pagination"></div>
 
@@ -31,8 +34,7 @@
 		<!-- <div class="swiper-scrollbar"></div> -->
 	</section>
 
-
-		<!-- <div class="test"></div> -->
+	<!-- <div class="test"></div> -->
 	<aside class="shelf-buttons">
 		<ul>
 			<li><button class="btn btn--round">C</button></li>
@@ -40,20 +42,23 @@
 		</ul>
 	</aside>
 	<footer class="shelf-footer">
-		<shelf-title :price="shelf.price" :currency="shelf.currency" :title="shelf.productName"></shelf-title>
+		<shelf-title
+			:price="shelf.price"
+			:currency="shelf.currency"
+			:title="shelf.productName"
+		></shelf-title>
 		<color-picker
 			v-if="colors.length"
 			:colors="colors"
 			@changed-color="setColor"
 		></color-picker>
-		<size-picker v-if="sizes.length" :sizes="sizes" @changed-size="setSize"></size-picker>
+		<size-picker
+			v-if="sizes.length"
+			:sizes="sizes"
+			@changed-size="setSize"
+		></size-picker>
 		<add-to-cart></add-to-cart>
 	</footer>
-
-
-
-
-
 	<div class="shelf-scrims">
 		<div class="shelf-scrims--top"></div>
 		<div class="shelf-scrims--bottom"></div>
