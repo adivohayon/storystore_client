@@ -41,7 +41,7 @@
 				<nuxt-link to="/cart">
 					<button class="btn btn--round">
 						<icon name="cart" :original="true" width="26" height="26"></icon>
-						<div class="counter">{{ cartItemsCount }}</div>
+						<div v-if="cartItemsCount != 0" class="counter">{{ cartItemsCount }}</div>
 					</button>
 				</nuxt-link>
 			</li>
