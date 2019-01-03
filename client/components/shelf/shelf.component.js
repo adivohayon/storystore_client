@@ -46,7 +46,11 @@ export default {
 		},
 		colors() {
 			return removeDuplicates(
-				this.shelf.variations.map(variant => variant.color),
+				this.shelf.variations.map(variant => {
+					const color = { ...variant.color };
+					color.image = variant.shelfContent[0].value;
+					return color;
+				}),
 				'label'
 			);
 		},

@@ -17,6 +17,18 @@ export default {
 			type: String,
 			default: '‎₪',
 		},
+		colors: {
+			type: Array,
+			default() {
+				return [];
+			},
+		},
+		sizes: {
+			type: Array,
+			default() {
+				return [];
+			},
+		},
 	},
 	data() {
 		return {};
@@ -31,6 +43,10 @@ export default {
 				quantity: 1,
 				price: this.price,
 				currency: this.currency,
+				variations: {
+					colors: this.colors,
+					sizes: this.sizes,
+				},
 			});
 			console.log('Add to cart', sku);
 		},
