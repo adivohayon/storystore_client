@@ -27,6 +27,7 @@
     "serverless-apigw-binary": "^0.4.4",
     "serverless-http": "^1.8.0",
     "swiper": "^4.4.6",
+    "v-selectmenu": "^1.0.7",
     "vue-fullpage.js": "^0.1.1",
     "vuex-persist": "^2.0.0"
   },

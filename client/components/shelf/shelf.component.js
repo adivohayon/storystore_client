@@ -46,12 +46,19 @@ export default {
 		},
 		colors() {
 			return removeDuplicates(
-				this.shelf.variations.map(variant => variant.color),
+				this.shelf.variations.map(variant => {
+					const color = { ...variant.color };
+					color.image = variant.shelfContent[0].value;
+					return color;
+				}),
 				'label'
 			);
 		},
 		sizes() {
 			return [...new Set(this.shelf.variations.map(variant => variant.size))];
+		},
+		cartItemsCount() {
+			return this.$store.getters['cart/itemsCount'];
 		},
 	},
 	created() {

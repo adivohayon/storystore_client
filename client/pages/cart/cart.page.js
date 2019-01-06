@@ -1,5 +1,5 @@
 import CartItem from '../../components/cart-item';
-
+import '../../icons';
 export default {
 	components: { CartItem },
 	async asyncData({ params }) {},
@@ -18,9 +18,5 @@ export default {
 			return this.$store.getters['cart/itemsCount'];
 		},
 	},
-	methods: {
-		back() {
-			this.$router.push('/');
-		},
-	},
+	methods: {},
 };

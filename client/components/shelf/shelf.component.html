@@ -38,10 +38,12 @@
 	<aside class="shelf-buttons">
 		<ul>
 			<li>
-				<button class="btn btn--round">
-					<icon name="cart" :original="true" width="26" height="26"></icon>
-					<div class="counter">1</div>
-				</button>
+				<nuxt-link to="/cart">
+					<button class="btn btn--round">
+						<icon name="cart" :original="true" width="26" height="26"></icon>
+						<div v-if="cartItemsCount != 0" class="counter">{{ cartItemsCount }}</div>
+					</button>
+				</nuxt-link>
 			</li>
 			<li>
 				<button
@@ -76,6 +78,8 @@
 			:sku="variant"
 			:price="shelf.price"
 			:currency="shelf.currency"
+			:colors="colors"
+			:sizes="sizes"
 		></add-to-cart>
 	</footer>
 	<transition name="shelf-info">
