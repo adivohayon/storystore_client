@@ -1,0 +1,25 @@
+<div class="profile-page">
+	<div class="profile-page__header">
+		<nuxt-link to="/" class="cart-page__container__wrapper--header--back">
+			<icon name="back" :original="true" width="26" height="26"></icon>
+		</nuxt-link>
+		<div class="profile-page__header--name">SWARA</div>
+	</div>
+	<div class="profile-page__info">
+		<div class="profile-page__info--image"></div>
+		<div class="profile-page__info--tabs">
+			<div class="profile-page__info--tabs--tab-content">
+				{{ selectedTabIndex }} {{ tabContent }}
+			</div>
+			<div class="profile-page__info--tabs--tab-labels">
+				<div
+					class="profile-page__info--tabs--tab-labels--label"
+					v-for="(tab, index) in infoTabs"
+					@click="updateSelectedTabIndex(index)"
+				>
+					{{ tab }}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
