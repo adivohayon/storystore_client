@@ -7,6 +7,10 @@ export const shelves = [
 		currency: '₪',
 		slug: 'talya-dress',
 		categoryId: 0,
+		shelfSale: {
+			saleText: 'קני עכשיו וקבלי 20 ש״ח מתנה!',
+			saleComment: 'ההנחה תתעדכן בסל הקניות',
+		},
 		shelfInfo: [
 			{
 				tabLabel: 'תיאור',
@@ -135,249 +139,6 @@ export const shelves = [
 			},
 		],
 	},
-	// {
-	// 	productId: 0,
-	// 	productName: 'שמלת טליה',
-	// 	price: 59.9,
-	// 	currency: '₪',
-	// 	slug: 'talya-dress',
-	// 	categoryId: 0,
-	// 	shelfInfo: [
-	// 		{
-	// 			tabLabel: 'תיאור',
-	// 			tabContent:
-	// 				'שמלת מיני דקיקה בגזרה לוזית בשילוב קפוצ׳ון אורך: 82 ס״מ היקף: 90 ס״מ',
-	// 		},
-	// 		{
-	// 			tabLabel: 'משלוחים',
-	// 			tabContent:
-	// 				'מהרגע שהזמנת-החבילה תצא אליך בתוך 1-2 ימי עסקים. במידה ולחצת על אופצייה של דואר רשום, לוקח בין יומיים לשבועיים להזמנה המהממת שלך להגיע! המשלוח ימתין לך בסניף הדואר הקרוב לביתך. בהזמנה שנכנס למעטפה רגילה, החבילה תישלח אלייך ישירות לבית! ',
-	// 		},
-	// 		{
-	// 			tabLabel: 'החזרות',
-	// 			tabContent:
-	// 				'במידה ותרצי להחזיר את הפריט שקנית, תוכלי לעשות זאת תוך 7 ימים מרגע קבלת הפריט ותוכלי לקבל זיכוי כספי ותוך 14 ימים לקבלת זיכוי באתר. תוכלי לקבל החזר כספי על המוצר, אבל לא על דמי המשלוח. ההחזר הכספי יינתן במידה ולא נעשה כל שימוש בפריט והוא עם תווית ובאריזתו המקורית. לא ניתן להחזיר או להחליף תחתונים ו/או גרביונים ו/או מוצרי טיפוח מתוקף החוק. במידה וביצעת הזמנה באמצעות כרטיס אשראי דיירקט או כרטיס נטען של הדואר או במזומן לא תוכלי לקבל החזר כספי אלא רק זיכוי באתר.',
-	// 		},
-	// 	],
-	// 	variations: [
-	// 		{
-	// 			sku: 'TLDSAD',
-	// 			color: { label: 'black', value: '#000000' },
-	// 			size: 'S',
-	// 			shelfContent: [
-	// 				{
-	// 					type: 'image',
-	// 					value: 'assets/simplyfashion_dress_black_front.jpg',
-	// 				},
-	// 				{
-	// 					type: 'image',
-	// 					value: 'assets/simplyfashion_dress_black_back.jpg',
-	// 				},
-	// 				{
-	// 					type: 'image',
-	// 					value: 'assets/simplyfashion_dress_black_closeup.jpg',
-	// 				},
-	// 				{
-	// 					type: 'image',
-	// 					value: 'assets/simplyfashion_dress_black_side.jpg',
-	// 				},
-	// 				{
-	// 					type: 'video',
-	// 					value: 'assets/simplyfashion_dress_black_video.mp4',
-	// 				},
-	// 			],
-	// 		},
-	// 		{
-	// 			sku: 'TLDSAD',
-	// 			color: { label: 'black', value: '#000000' },
-	// 			size: 'L',
-	// 			shelfContent: [
-	// 				{
-	// 					type: 'image',
-	// 					value: 'assets/simplyfashion_dress_black_front.jpg',
-	// 				},
-	// 				{
-	// 					type: 'image',
-	// 					value: 'assets/simplyfashion_dress_black_back.jpg',
-	// 				},
-	// 				{
-	// 					type: 'image',
-	// 					value: 'assets/simplyfashion_dress_black_closeup.jpg',
-	// 				},
-	// 				{
-	// 					type: 'image',
-	// 					value: 'assets/simplyfashion_dress_black_side.jpg',
-	// 				},
-	// 				{
-	// 					type: 'video',
-	// 					value: 'assets/simplyfashion_dress_black_video.mp4',
-	// 				},
-	// 			],
-	// 		},
-	// 		{
-	// 			sku: '432JASDO',
-	// 			color: { label: 'mustard', value: '#B99557' },
-	// 			size: 'OS',
-	// 			shelfContent: [
-	// 				{
-	// 					type: 'image',
-	// 					value: 'assets/simplyfashion_dress_mustard_front.jpg',
-	// 				},
-	// 				{
-	// 					type: 'image',
-	// 					value: 'assets/simplyfashion_dress_mustard_back.jpg',
-	// 				},
-	// 				{
-	// 					type: 'image',
-	// 					value: 'assets/simplyfashion_dress_mustard_closeup.jpg',
-	// 				},
-	// 				{
-	// 					type: 'image',
-	// 					value: 'assets/simplyfashion_dress_mustard_side.jpg',
-	// 				},
-	// 				{
-	// 					type: 'video',
-	// 					value: 'assets/simplyfashion_dress_mustard_video.mp4',
-	// 				},
-	// 			],
-	// 		},
-	// 	],
-	// },
-	// {
-	// 	productId: 0,
-	// 	productName: 'שמלת טליה',
-	// 	price: 59.9,
-	// 	currency: '₪',
-	// 	slug: 'talya-dress',
-	// 	categoryId: 0,
-	// 	shelfInfo: [
-	// 		{
-	// 			tabLabel: 'תיאור',
-	// 			tabContent:
-	// 				'שמלת מיני דקיקה בגזרה לוזית בשילוב קפוצ׳ון אורך: 82 ס״מ היקף: 90 ס״מ',
-	// 		},
-	// 		{
-	// 			tabLabel: 'משלוחים',
-	// 			tabContent:
-	// 				'מהרגע שהזמנת-החבילה תצא אליך בתוך 1-2 ימי עסקים. במידה ולחצת על אופצייה של דואר רשום, לוקח בין יומיים לשבועיים להזמנה המהממת שלך להגיע! המשלוח ימתין לך בסניף הדואר הקרוב לביתך. בהזמנה שנכנס למעטפה רגילה, החבילה תישלח אלייך ישירות לבית! ',
-	// 		},
-	// 		{
-	// 			tabLabel: 'החזרות',
-	// 			tabContent:
-	// 				'במידה ותרצי להחזיר את הפריט שקנית, תוכלי לעשות זאת תוך 7 ימים מרגע קבלת הפריט ותוכלי לקבל זיכוי כספי ותוך 14 ימים לקבלת זיכוי באתר. תוכלי לקבל החזר כספי על המוצר, אבל לא על דמי המשלוח. ההחזר הכספי יינתן במידה ולא נעשה כל שימוש בפריט והוא עם תווית ובאריזתו המקורית. לא ניתן להחזיר או להחליף תחתונים ו/או גרביונים ו/או מוצרי טיפוח מתוקף החוק. במידה וביצעת הזמנה באמצעות כרטיס אשראי דיירקט או כרטיס נטען של הדואר או במזומן לא תוכלי לקבל החזר כספי אלא רק זיכוי באתר.',
-	// 		},
-	// 	],
-	// 	variations: [
-	// 		{
-	// 			sku: 'TLDSAD',
-	// 			color: { label: 'black', value: '#000000' },
-	// 			size: 'S',
-	// 			shelfContent: [
-	// 				{
-	// 					type: 'image',
-	// 					value: 'assets/simplyfashion_dress_black_front.jpg',
-	// 				},
-	// 				{
-	// 					type: 'image',
-	// 					value: 'assets/simplyfashion_dress_black_back.jpg',
-	// 				},
-	// 				{
-	// 					type: 'image',
-	// 					value: 'assets/simplyfashion_dress_black_closeup.jpg',
-	// 				},
-	// 				{
-	// 					type: 'image',
-	// 					value: 'assets/simplyfashion_dress_black_side.jpg',
-	// 				},
-	// 				{
-	// 					type: 'video',
-	// 					value: 'assets/simplyfashion_dress_black_video.mp4',
-	// 				},
-	// 			],
-	// 		},
-	// 		{
-	// 			sku: 'TLDSAD',
-	// 			color: { label: 'black', value: '#000000' },
-	// 			size: 'L',
-	// 			shelfContent: [
-	// 				{
-	// 					type: 'image',
-	// 					value: 'assets/simplyfashion_dress_black_front.jpg',
-	// 				},
-	// 				{
-	// 					type: 'image',
-	// 					value: 'assets/simplyfashion_dress_black_back.jpg',
-	// 				},
-	// 				{
-	// 					type: 'image',
-	// 					value: 'assets/simplyfashion_dress_black_closeup.jpg',
-	// 				},
-	// 				{
-	// 					type: 'image',
-	// 					value: 'assets/simplyfashion_dress_black_side.jpg',
-	// 				},
-	// 				{
-	// 					type: 'video',
-	// 					value: 'assets/simplyfashion_dress_black_video.mp4',
-	// 				},
-	// 			],
-	// 		},
-	// 		{
-	// 			sku: '432JASDO',
-	// 			color: { label: 'mustard', value: '#B99557' },
-	// 			size: 'S',
-	// 			shelfContent: [
-	// 				{
-	// 					type: 'image',
-	// 					value: 'assets/simplyfashion_dress_mustard_front.jpg',
-	// 				},
-	// 				{
-	// 					type: 'image',
-	// 					value: 'assets/simplyfashion_dress_mustard_back.jpg',
-	// 				},
-	// 				{
-	// 					type: 'image',
-	// 					value: 'assets/simplyfashion_dress_mustard_closeup.jpg',
-	// 				},
-	// 				{
-	// 					type: 'image',
-	// 					value: 'assets/simplyfashion_dress_mustard_side.jpg',
-	// 				},
-	// 				{
-	// 					type: 'video',
-	// 					value: 'assets/simplyfashion_dress_mustard_video.mp4',
-	// 				},
-	// 			],
-	// 		},
-	// 		{
-	// 			sku: '432JASDO',
-	// 			color: { label: 'mustard', value: '#B99557' },
-	// 			size: 'L',
-	// 			shelfContent: [
-	// 				{
-	// 					type: 'image',
-	// 					value: 'assets/simplyfashion_dress_mustard_front.jpg',
-	// 				},
-	// 				{
-	// 					type: 'image',
-	// 					value: 'assets/simplyfashion_dress_mustard_back.jpg',
-	// 				},
-	// 				{
-	// 					type: 'image',
-	// 					value: 'assets/simplyfashion_dress_mustard_closeup.jpg',
-	// 				},
-	// 				{
-	// 					type: 'image',
-	// 					value: 'assets/simplyfashion_dress_mustard_side.jpg',
-	// 				},
-	// 				{
-	// 					type: 'video',
-	// 					value: 'assets/simplyfashion_dress_mustard_video.mp4',
-	// 				},
-	// 			],
-	// 		},
-	// 	],
-	// },
 	// YUCCA
 	{
 		productId: 1,
@@ -386,6 +147,10 @@ export const shelves = [
 		currency: '₪',
 		slug: 'squares-sweater',
 		categoryId: 0,
+		shelfSale: {
+			saleText: 'מבצע קני היום 1+1 !',
+			saleComment: 'ההנחה תתעדכן בסל הקניות',
+		},
 		shelfInfo: [
 			{
 				tabLabel: 'תיאור',
@@ -502,6 +267,10 @@ export const shelves = [
 		currency: '₪',
 		slug: 'gold-galabiya',
 		categoryId: 0,
+		shelfSale: {
+			saleText: 'מבצע קני היום 1+1 !',
+			saleComment: 'ההנחה תתעדכן בסל הקניות',
+		},
 		shelfInfo: [
 			{
 				tabLabel: 'תיאור',

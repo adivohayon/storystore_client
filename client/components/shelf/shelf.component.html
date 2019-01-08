@@ -102,6 +102,7 @@
 	<transition name="shelf-overlay-bottom">
 		<shelf-sale
 			v-if="showShelfSale"
+			:shelf-sale="shelf.shelfSale"
 			v-on:close-sale="showShelfSale = false"
 		></shelf-sale>
 	</transition>

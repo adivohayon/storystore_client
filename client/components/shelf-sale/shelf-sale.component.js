@@ -1,7 +1,11 @@
 export default {
 	name: 'shelf-sale',
 	components: {},
-	props: {},
+	props: {
+		shelfSale: {
+			type: Object,
+		},
+	},
 	data() {
 		return {};
 	},
