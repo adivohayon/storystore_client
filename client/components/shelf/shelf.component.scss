@@ -37,8 +37,8 @@
 		transform: translate3d(0, 0, 0);
 		position: absolute;
 		right: 1rem;
-		top: 50%;
-		z-index: 30;
+		top: 40%;
+		z-index: 20;
 		ul {
 			list-style-type: none;
 			padding: 0;
@@ -113,17 +113,17 @@
 			);
 		}
 	}
-	// SHELF INFO ANIMATION
-	.shelf-info-enter,
-	.shelf-info-leave-to {
+	// SHELF OVERLAY BOTTOM ANIMATION
+	.shelf-overlay-bottom-enter,
+	.shelf-overlay-bottom-leave-to {
 		height: 0;
 	}
-	.shelf-info-enter-active,
-	.shelf-info-leave-active {
+	.shelf-overlay-bottom-enter-active,
+	.shelf-overlay-bottom-leave-active {
 		transition: height 0.6s;
 	}
-	.shelf-info-enter-to,
-	.shelf-info-leave {
+	.shelf-overlay-bottom-enter-to,
+	.shelf-overlay-bottom-leave {
 		height: 35rem;
 	}
 }
