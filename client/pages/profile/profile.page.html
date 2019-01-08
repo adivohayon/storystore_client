@@ -16,6 +16,7 @@
 					class="profile-page__info--tabs--tab-labels--label"
 					v-for="(tab, index) in infoTabs"
 					@click="updateSelectedTabIndex(index)"
+					:class="{active: selectedTabIndex == index}"
 				>
 					{{ tab }}
 				</div>

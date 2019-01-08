@@ -6,18 +6,18 @@ export default {
 			shelfInfo: [
 				{
 					tabLabel: 'אודות',
-					tabContent: 'תיאור תיאור תיאור',
+					tabContent: 'אודות אודות אודות',
 				},
 				{
 					tabLabel: 'צור קשר',
-					tabContent: 'משלוחים משלוחים משלוחים',
+					tabContent: 'צור קשר צור קשר צור קשר',
 				},
 				{
 					tabLabel: 'תקנון',
-					tabContent: 'החזרות החזרות החזרות',
+					tabContent: 'תקנון תקנון תקנון',
 				},
 			],
-			selectedTabIndex: Number,
+			selectedTabIndex: 0,
 		};
 	},
 	computed: {

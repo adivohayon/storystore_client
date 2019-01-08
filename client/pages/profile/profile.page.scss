@@ -8,14 +8,14 @@
 		&--name {
 			color: #818181;
 			flex: 0 1 auto;
-      position: absolute;
-      left: 50%;
+			position: absolute;
+			left: 50%;
 			transform: translateX(-50%);
 			align-self: center;
 		}
 		&--back {
 			flex: 0 1 auto;
-      margin-left: auto;   
+			margin-left: auto;
 		}
 	}
 	&__info {
@@ -26,7 +26,7 @@
 			border: solid 1px #818181;
 			width: 100px;
 			height: 100px;
-			background-image: url("../../static/assets/logo--simplyfashion.png");
+			background-image: url('../../static/assets/logo--simplyfashion.png');
 			background-size: 80px;
 			background-repeat: no-repeat;
 			background-position: center;
@@ -38,18 +38,22 @@
 				display: flex;
 				flex-direction: row;
 				&--label {
+					color: #818181;
 					flex: 1;
 					text-align: center;
 					font-size: 1.2rem;
 					border: 1px solid #818181;
 					padding: 0.3rem;
+					&.active {
+						color: black;
+					}
 				}
 			}
 			&--tab-content {
 				margin: auto;
 				text-align: center;
-				padding: 2rem 1rem;	
-				min-height: 10rem;
+				padding: 2rem 1rem;
+				min-height: 8rem;
 			}
 		}
 	}
