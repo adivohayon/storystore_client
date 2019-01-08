@@ -1,15 +1,16 @@
 <div class="shelf-info">
-	<button v-on:click="closeInfo">CLOSE</button>
+	<button class="shelf-info__close" v-on:click="closeInfo">X</button>
 	<div class="shelf-info__tabs">
-		<div
-			class="shelf-info__tabs--tab-label"
-			v-for="(tab, index) in infoTabs"
-			@click="updateSelectedTabIndex(index)"
-		>
-			{{ tab }}
+		<div class="shelf-info__tabs--header">
+			<div
+				class="shelf-info__tabs--label"
+				:class="{active: selectedTabIndex == index}"
+				v-for="(tab, index) in infoTabs"
+				@click="updateSelectedTabIndex(index)"
+			>
+				{{ tab }}
+			</div>
 		</div>
-		<div class="shelf-info__tabs--tab-content">
-			{{ selectedTabIndex }} {{ tabContent }}
-		</div>
+		<div class="shelf-info__tabs--content">{{ tabContent }}</div>
 	</div>
 </div>
