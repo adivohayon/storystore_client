@@ -18,6 +18,7 @@ export const mutations = {
 	},
 
 	remove(state, itemIndex) {
+		console.log('removed item number', itemIndex);
 		state.added.splice(itemIndex, 1);
 	},
 };

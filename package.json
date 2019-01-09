@@ -29,6 +29,7 @@
     "swiper": "^4.4.6",
     "v-selectmenu": "^1.0.7",
     "vue-fullpage.js": "^0.1.1",
+    "vue2-touch-events": "^1.1.1",
     "vuex-persist": "^2.0.0"
   },
   "devDependencies": {

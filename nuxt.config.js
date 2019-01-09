@@ -45,6 +45,7 @@ module.exports = {
 		{ src: '~/plugins/fullpage', ssr: false },
 		{ src: '~/plugins/v-selectmenu', ssr: false },
 		{ src: '~/plugins/svg', ssr: true },
+		{ src: '~/plugins/v-touch', ssr: false },
 	],
 
 	/*

@@ -1,7 +1,10 @@
-<div v-if="item" class="cart-item">
+<div v-if="item" class="cart-item" v-touch:swipe.right="swipeHandlerRight" v-touch:swipe.left="swipeHandlerLeft">
 	<div class="cart-item__product">
 		<div class="cart-item__product--details">
-			<div class="cart-item__product--details--image" :style="{backgroundImage: `url(${itemImage}`}"></div>
+			<div
+				class="cart-item__product--details--image"
+				:style="{backgroundImage: `url(${itemImage}`}"
+			></div>
 			<div class="cart-item__product--details--details">
 				<div class="cart-item__product--details--details--price">
 					{{ item.price }} {{ item.currency }}
@@ -21,12 +24,6 @@
 				<div
 					class="cart-item__product--details--pickers__picker--button chevron"
 				></div>
-				<v-selectmenu
-				:data="test"
-				
-
-				>
-				</v-selectmenu>
 			</div>
 			<div class="cart-item__product--details--pickers__picker">
 				<div class="cart-item__product--details--pickers__picker--title">
@@ -55,5 +52,8 @@
 				></div>
 			</div>
 		</div>
+	</div>
+	<div @click="removeItem" :id="`remove_${itemIndex}`" class="cart-item__delete">
+		<div>מחק מוצר</div>
 	</div>
 </div>

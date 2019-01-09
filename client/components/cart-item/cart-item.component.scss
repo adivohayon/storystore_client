@@ -10,10 +10,10 @@
 	}
 	display: flex;
 	flex-direction: row;
-	padding: 1rem 0;
 	border-bottom: 1px solid rgba(229, 229, 229, 0.4);
 	&__product {
-		width: 100%;
+		padding: 1rem 0;
+		flex: 3;
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
@@ -69,5 +69,17 @@
 				}
 			}
 		}
+	}
+	&__delete {
+		background-color: red;
+		color: white;
+		display: none;
+		flex: 1;
+		max-width: 30%;
+		margin-right: 0.5rem;
+		margin-left: -5.5%;
+		flex-direction: column;
+		justify-content: center;
+		text-align: center;
 	}
 }
