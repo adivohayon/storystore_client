@@ -33,6 +33,7 @@ module.exports = {
 	css: [
 		// '@/sass/breakpoints.mixin.scss',
 		{ src: 'swiper/dist/css/swiper.min.css', lang: 'css' },
+		{src: 'video.js/dist/video-js.css', lang: 'css'},
 	],
 
 	/*
@@ -46,6 +47,7 @@ module.exports = {
 		{ src: '~/plugins/v-selectmenu', ssr: false },
 		{ src: '~/plugins/svg', ssr: true },
 		{ src: '~/plugins/v-touch', ssr: false },
+		{ src: '~/plugins/vue-video-player', ssr: true },
 	],
 
 	/*

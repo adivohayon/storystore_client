@@ -21,6 +21,7 @@
     "@nuxtjs/axios": "^5.3.6",
     "cross-env": "^5.2.0",
     "express": "^4.16.4",
+    "mobile-detect": "^1.4.3",
     "nuxt": "^2.3.1",
     "nuxt-sass-resources-loader": "^2.0.5",
     "scroll-snap": "^1.0.6",
@@ -30,6 +31,7 @@
     "v-selectmenu": "^1.0.7",
     "vue-fullpage.js": "^0.1.1",
     "vue2-touch-events": "^1.1.1",
+    "vue-video-player": "^5.0.2",
     "vuex-persist": "^2.0.0"
   },
   "devDependencies": {

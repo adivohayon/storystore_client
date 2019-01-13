@@ -1,0 +1,109 @@
+@import '@/sass/breakpoints.mixin.scss';
+
+body {
+	// width: 100vw;
+	// overflow: hidden;
+	background-color: #f4f5f5;
+}
+
+.show-sm {
+	display: block;
+	@include sm {
+		display: none;
+	}
+}
+
+.show-md {
+	display: none;
+	@include md {
+		display: block;
+	}
+}
+
+#our-services {
+	padding: 2rem 2rem;
+	// width: 100%;
+	.btn {
+		background-color: #58585b;
+		color: #f0f0f1;
+		font-size: 14px;
+		padding: 0.7em 2.5em;
+		outline: none;
+		font-weight: bold;
+
+		&--round {
+			border-radius: 20px;
+		}
+	}
+	.section {
+		display: flex;
+		flex-direction: column;
+		max-width: 1080px;
+		margin: auto;
+		@include md {
+			flex-direction: row;
+		}
+	}
+
+	#hero {
+		// width: 100%;
+
+		.logo {
+			text-align: center;
+			@include md {
+				text-align: right;
+				margin: 6rem 0;
+			}
+			// width: 100%;
+			img {
+				width: 100%;
+				height: auto;
+				// width: 100%;
+				margin-bottom: 1rem;
+				max-width: 20rem;
+			}
+
+			h2 {
+				margin-bottom: 1rem;
+			}
+		}
+
+		.demo-video {
+			width: 100%;
+			margin-bottom: 1rem;
+			max-width: 24rem;
+			@include md {
+				margin: 0 8rem;
+			}
+			video {
+				width: 100%;
+			}
+		}
+
+		.subtitle {
+			flex: 1;
+			text-align: center;
+
+			@include md {
+				text-align: right;
+				h2, p {max-width: 25rem;}
+				
+				.btn {
+					margin-top: 4rem;
+					font-size: 18px;
+				}
+			}
+			p {
+				margin-bottom: 1rem;
+			}
+		}
+	}
+
+	#why-storystore {
+		margin-top: 2rem;
+		.features-list {
+			&__item {
+			}
+		}
+	}
+}

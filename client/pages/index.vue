@@ -1,79 +1,63 @@
 <template>
-	<div id="page" :class="fixerClass">
-		<!-- <nav class="fixed-top">
-			<header class="top-header">storystore</header>
-			<navigation :categories="categories"></navigation>
-		</nav>-->
-		<!-- <no-ssr> -->
-		<!-- <feed> -->
-		<no-ssr>
-			<full-page id="fullpage" ref="fullpage" :options="feedOptions">
-				<shelf
-					v-for="(shelf, shelfIndex) in shelves"
-					:key="shelfIndex"
-					:shelf="shelf"
-					:shelf-index="shelfIndex"
-				></shelf>
-			</full-page>
-		</no-ssr>
-		<!-- </feed> -->
-		<!-- </no-ssr> -->
-		<!-- <div id="shelf-1">uoooo</div> -->
-		<!-- <no-ssr>
-			<shelf
-				v-for="(shelf, shelfIndex) in shelves"
-				:key="shelfIndex"
-				:shelf="shelf"
-				:shelf-index="shelfIndex"
-				:id="`shelf-${shelfIndex}`"
-			></shelf>
-		</no-ssr>-->
+	<div id="our-services">
+		<!-- HERO SECTION -->
+		<section id="hero" class="section">
+			<div class="logo show-sm">
+				<img src="/storystore_logo.png" alt="Storystore">
+				<h2>הקם סטוריסטור לעסק שלך בקלות ובמהירות</h2>
+			</div>
+
+			<div class="demo-video">
+				<video muted="muted" autoplay src="/storystore_demo.mp4"></video>
+			</div>
+			<div class="subtitle">
+				<div class="logo show-md">
+					<img src="/storystore_logo.png" alt="Storystore">
+				</div>
+				<h2 class="show-md">הקם סטוריסטור לעסק שלך בקלות ובמהירות</h2>
+				<p>כל מה שאתה צריך זה מוצרים ותוכן סטוריסטור יעשו את השאר ותוכל להתחיל למכור !</p>
+				<button class="btn btn--round">פתח/י סטוריסטור</button>
+			</div>
+		</section>
+
+		<!-- WHY STORYSTORE SECTION -->
+		<section id="why-storystore" class="section">
+			<h3>למה סטוריסטור?</h3>
+			<ul class="features-list">
+				<li
+					v-for="(feature, featureIndex) in features"
+					:key="featureIndex"
+					class="features-list__item"
+				>{{feature}}</li>
+			</ul>
+		</section>
+
+		<!-- PRICING SECTION -->
+		<section id="pricing">
+			<h3>מסלולים ומחירים</h3>
+		</section>
 	</div>
 </template>
 
 <script>
-import Feed from '@/components/feed';
-import Shelf from '@/components/shelf';
-import Navigation from '@/components/navigation';
-import { getCategories, getShelves } from '@/services/api.service';
-import '../icons';
-
 export default {
-	components: { Feed, Shelf, Navigation },
-	async asyncData({ params }) {
-		try {
-			const categories = await getCategories(0);
-			const shelves = await getShelves(0);
-			return {
-				categories,
-				shelves,
-			};
-		} catch (err) {
-			console.error(err);
-		}
-	},
+	components: {},
+	async asyncData({ params }) {},
 	data() {
 		return {
-			fixerClass: '',
-			feedOptions: {
-				// dragAndMove: true,
-				sectionSelector: '.shelf',
-				// slideSelector: '.shelf-content',
-				licenseKey: '45154D42-6F8E4ACE-AB31A7B3-11A8CE75',
-				dragAndMoveKey: 'F5E0D91E-52F94E24-98489795-9E741DA2',
-				dragAndMove: true,
-				controlArrows: false,
-				slidesNavigation: true,
-			},
+			features: [
+				'ללא עלות הקמה',
+				'ממשק קל ונוח לתפעול ולשליטה',
+				'יותר מוצרים בפחות זמן - יחס המרה גבוה יותר',
+				'חווית משתמש ייחודית וחברתית',
+				'דגש על המוצרים ואיכות התוכן  (וידאו, תמונות וטקסטים)',
+				'ליווי מקצועי צמוד של הצוות של סטורי סטור',
+			],
 		};
 	},
-	mounted() {
-		// this.$refs.fullpage.build();
-		// const el = document.querySelector('#shelf-1');
-		// console.log('elll', el);
-	},
+	mounted() {},
 };
 </script>
 
-<style src="./sass/index.scss" lang="scss">
+<style src="./our-services.page.scss" lang="scss">
 </style>

@@ -1,0 +1,55 @@
+@import 'typography';
+@import 'buttons';
+@import 'layout';
+@import 'shelf-layout';
+@import 'icons';
+
+
+.fp-enabled {
+	// overflow: unset !important;
+}
+
+.fp-tableCell {
+	position: relative;
+	// overflow: hidden;
+}
+
+.fixer-class {
+	/deep/ .swiper-container {
+		z-index: 1 !important;
+	}
+}
+#fullpage {
+	// direction: ltr;
+}
+.shelf {
+	&-1 {
+		// background-color: red;
+	}
+	&-2 {
+		background-color: green;
+	}
+
+	&-content {
+		&-1 {
+			background-color: orange;
+		}
+
+		&-2 {
+			background-color: purple;
+		}
+	}
+}
+
+.counter {
+	height: 1.5em;
+	width: 1.5em;
+	border-radius: 50%;
+	background-color: #f6402b;
+	color: #ffffff;
+	line-height: 1;
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 1.5em;
+	position: absolute;
+}

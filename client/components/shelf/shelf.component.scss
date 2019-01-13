@@ -21,6 +21,7 @@
 		position: absolute;
 		z-index: 20;
 		text-align: center;
+		pointer-events: none;
 	}
 	.swiper {
 		&-container {

@@ -3,8 +3,11 @@
 	<img v-if="content.type == 'image'" :src="content.value" />
 
 	<!-- Video -->
-	<video
+	<video-player v-if="content.type == 'video'" :source="content.value"></video-player>
+
+	<!-- <video
 		v-if="content.type == 'video'"
+		controls
 		class="shelf-content__video"
 		autoplay
 		muted
@@ -12,10 +15,10 @@
 	>
 		<source :src="content.value" type="video/mp4" />
 		Sorry, your browser doesn't support embedded videos.
-	</video>
+	</video> -->
 
 	<!-- Description -->
 	<div v-if="content.type == 'description'" class="shelf-content__description">
-		{{content.value}}
+		{{ content.value }}
 	</div>
 </div>
