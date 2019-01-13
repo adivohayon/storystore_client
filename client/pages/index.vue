@@ -33,8 +33,40 @@
 		</section>
 
 		<!-- PRICING SECTION -->
-		<section id="pricing">
+		<section id="pricing" class="section">
 			<h3>מסלולים ומחירים</h3>
+			<table class="pricing-table">
+				<thead>
+					<tr class="pricing-table__row">
+						<th></th>
+						<th>מקסימום מק״טים</th>
+						<th>אחוז מכל עסקה</th>
+						<th>עמלה מינימלית חודשית</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="pricing-table__row pricing-table__row--basic">
+						<td>בסיסי</td>
+						<td>100 מק״טים</td>
+						<td>5%</td>
+						<td>290 ש״ח</td>
+					</tr>
+					<tr class="pricing-table__row pricing-table__row--standard">
+						<td>בסיסי</td>
+						<td>100 מק״טים</td>
+						<td>5%</td>
+						<td>290 ש״ח</td>
+					</tr>
+					<tr class="pricing-table__row pricing-table__row--premium">
+						<td>בסיסי</td>
+						<td>100 מק״טים</td>
+						<td>5%</td>
+						<td>290 ש״ח</td>
+					</tr>
+				</tbody>
+			</table>
+			<button class="btn btn--round">פתח/י סטוריסטור</button>
+			<!-- <table> -->
 		</section>
 	</div>
 </template>
