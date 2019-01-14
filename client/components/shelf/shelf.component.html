@@ -17,6 +17,7 @@
 		<div class="swiper-wrapper">
 			<!-- Slides -->
 			<shelf-content
+				v-if="variant.shelfContent.length"
 				v-for="(content, contentIndex) in variant.shelfContent"
 				:key="contentIndex"
 				:content="content"

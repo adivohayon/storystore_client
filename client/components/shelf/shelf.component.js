@@ -40,25 +40,37 @@ export default {
 	},
 	computed: {
 		variant() {
-			return this.shelf.variations.find(variant => {
-				return (
-					variant.size === this.selectedSize &&
-					variant.color.label === this.selectedColor.label
-				);
-			});
+			if (this.shelf.variations.length > 1) {
+				return this.shelf.variations.find(variant => {
+					return (
+						variant.size === this.selectedSize &&
+						variant.color.label === this.selectedColor.label
+					);
+				});
+			} else {
+				return this.shelf.variations[0];
+			}
 		},
 		colors() {
-			return removeDuplicates(
-				this.shelf.variations.map(variant => {
-					const color = { ...variant.color };
-					color.image = variant.shelfContent[0].value;
-					return color;
-				}),
-				'label'
-			);
+			if (this.shelf.variations.length > 1) {
+				return removeDuplicates(
+					this.shelf.variations.map(variant => {
+						const color = { ...variant.color };
+						color.image = variant.shelfContent[0].value;
+						return color;
+					}),
+					'label'
+				);
+			} else {
+				return [];
+			}
 		},
 		sizes() {
-			return [...new Set(this.shelf.variations.map(variant => variant.size))];
+			if (this.shelf.variations.length > 1) {
+				return [...new Set(this.shelf.variations.map(variant => variant.size))];
+			} else {
+				return [];
+			}
 		},
 		cartItemsCount() {
 			return this.$store.getters['cart/itemsCount'];
