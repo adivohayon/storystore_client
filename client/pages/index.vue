@@ -23,50 +23,70 @@
 		<!-- WHY STORYSTORE SECTION -->
 		<section id="why-storystore" class="section">
 			<h3>למה סטוריסטור?</h3>
-			<ul class="features-list">
+			<ul class="list">
 				<li
 					v-for="(feature, featureIndex) in features"
 					:key="featureIndex"
-					class="features-list__item"
+					class="list__item"
 				>{{feature}}</li>
 			</ul>
 		</section>
 
 		<!-- PRICING SECTION -->
-		<section id="pricing" class="section">
+		<section id="pricing" class="section pricing">
 			<h3>מסלולים ומחירים</h3>
-			<table class="pricing-table">
-				<thead>
-					<tr class="pricing-table__row">
-						<th></th>
-						<th>מקסימום מק״טים</th>
-						<th>אחוז מכל עסקה</th>
-						<th>עמלה מינימלית חודשית</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr class="pricing-table__row pricing-table__row--basic">
-						<td>בסיסי</td>
-						<td>100 מק״טים</td>
-						<td>5%</td>
-						<td>290 ש״ח</td>
-					</tr>
-					<tr class="pricing-table__row pricing-table__row--standard">
-						<td>בסיסי</td>
-						<td>100 מק״טים</td>
-						<td>5%</td>
-						<td>290 ש״ח</td>
-					</tr>
-					<tr class="pricing-table__row pricing-table__row--premium">
-						<td>בסיסי</td>
-						<td>100 מק״טים</td>
-						<td>5%</td>
-						<td>290 ש״ח</td>
-					</tr>
-				</tbody>
-			</table>
-			<button class="btn btn--round">פתח/י סטוריסטור</button>
+			<div class="pricing__container">
+				<table class="pricing-table">
+					<thead>
+						<tr class="pricing-table__row">
+							<th></th>
+							<th>מקסימום מק״טים</th>
+							<th>אחוז מכל עסקה</th>
+							<th>עמלה מינימלית חודשית</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="pricing-table__row pricing-table__row--basic">
+							<td>בסיסי</td>
+							<td>100 מק״טים</td>
+							<td>5%</td>
+							<td>290 ש״ח</td>
+						</tr>
+						<tr class="pricing-table__row pricing-table__row--standard">
+							<td>בסיסי</td>
+							<td>100 מק״טים</td>
+							<td>5%</td>
+							<td>290 ש״ח</td>
+						</tr>
+						<tr class="pricing-table__row pricing-table__row--premium">
+							<td>בסיסי</td>
+							<td>100 מק״טים</td>
+							<td>5%</td>
+							<td>290 ש״ח</td>
+						</tr>
+					</tbody>
+				</table>
+				<button class="btn btn--round">פתח/י סטוריסטור</button>
+			</div>
 			<!-- <table> -->
+		</section>
+
+		<section id="studio" class="section studio">
+			<h3>שירותי סטודיו</h3>
+			<div class="studio__container">
+				<p>
+					תוכן איכותי ומקורי מוכר יותר, לכן סטוריסטור מציעה גם שירותי הפקה שיעזרו לקדם את המוצרים שלך.
+					אנחנו מייצרים למוצרים תוכן ויזואלי (סטילס ווידאו) המתאים לאינטרנט.
+				</p>
+				<p>מבצע ללקוחות סטוריסטור: חבילת סטילס ווידאו ב-99 ש״ח למוצר</p>
+				<ul class="list">
+					<li
+						v-for="(studioFeature, studioFeatureIndex) in studioFeatures"
+						:key="studioFeatureIndex"
+						class="list__item"
+					>{{studioFeature}}</li>
+				</ul>
+			</div>
 		</section>
 	</div>
 </template>
@@ -84,6 +104,14 @@ export default {
 				'חווית משתמש ייחודית וחברתית',
 				'דגש על המוצרים ואיכות התוכן  (וידאו, תמונות וטקסטים)',
 				'ליווי מקצועי צמוד של הצוות של סטורי סטור',
+			],
+			studioFeatures: [
+				'בניית קונספט',
+				'צילום ובימוי',
+				'סטודיו וציוד מקצועי',
+				'דוגמנים/יות במידת הצורך',
+				'הלבשה סטיילנג ואיפור',
+				'עריכה ופוסט',
 			],
 		};
 	},

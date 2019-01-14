@@ -22,6 +22,11 @@ body {
 
 #our-services {
 	// width: 100%;
+	.list {
+		&__item {
+		}
+	}
+
 	.btn {
 		background-color: #58585b;
 		color: #f0f0f1;
@@ -29,23 +34,38 @@ body {
 		padding: 0.7em 2.5em;
 		outline: none;
 		font-weight: bold;
-		max-width: 16rem;
+		transition: all 0.1s ease-in-out;
+		cursor: pointer;
+		border: none;
+		user-select: none; 
+		-webkit-tap-highlight-color: rgba(255,255,255,0);
+		-webkit-tap-highlight-color: transparent;
+		// max-width: 16rem;
+		
 
 		&--round {
 			border-radius: 20px;
+		}
+		@include md {
+			&:hover {
+				background-color: #898989;
+			}
+		}
+		&:active	 {
+			background-color: #323232;
 		}
 	}
 	.section {
 		display: flex;
 		flex-direction: column;
-		flex-wrap: wrap;
 		max-width: 1080px;
 		margin: auto;
 		margin-bottom: 2rem;
 		@include md {
 			flex-direction: row;
 			h3 {
-				margin-left: 4rem;
+				// margin-left: 4rem;
+				min-width: 11rem;
 			}
 		}
 	}
@@ -110,17 +130,22 @@ body {
 	#why-storystore {
 		padding: 0 1rem;
 		margin-top: 2rem;
-		.features-list {
-			&__item {
-			}
-		}
+		
 	}
 
-	#pricing {
+	.pricing {
 		padding: 0 0.5rem;
-		.pricing-table {
+		&__container {
+			text-align: center;
+			@include md {
+				text-align: right;
+			}
+		}
+
+		&-table {
 			font-size: 1rem;
 			width: 100%;
+			margin-bottom: 2rem;
 			@include md {
 				font-size: 1.5rem;
 				width: auto;
@@ -152,6 +177,12 @@ body {
 					opacity: 1;
 				}
 			}
+		}
+	}
+
+	.studio {
+		padding: 0 1rem;
+		&__container {
 		}
 	}
 }
