@@ -1,4 +1,324 @@
 export const shelves = [
+	// KOOKINT STORE
+	{
+		productId: 8,
+		productName: 'יאגו דורה 33.75',
+		price: 2050.0,
+		currency: '₪',
+		slug: 'yagu-dora',
+		categoryId: 0,
+		shelfSale: {
+			saleText: 'מבצע קני היום 1+1 !',
+			saleComment: 'ההנחה תתעדכן בסל הקניות',
+		},
+		shelfInfo: [
+			{
+				tabLabel: 'פירוט',
+				tabContent: `כשיש לך כינוי טוב אתה יודע שהחברים שלך יצחקו וזה המקרה של הגולש המקצועי יאגו דורה – הסקיני גווט. יגו דורה נפגש עם קארבר וידע מה דגם חלומתיו, קארבר עם בסיס גלגלים של כ17 אינטצ' ובכך להסתנכרן עם העמידה שעל הגלשן. כמו כן,  קיק כפול שמאפשר גם אימוני גלישה וגם אימוני סקייטפארק.
+				על עיצוב גרפיקת הדגם אחראי חברו הטוב מעולם הגלישה, אלן פנדריך, דגם הסקיני גוט 33.75' יפיפה ושימושי. `,
+			},
+			{
+				tabLabel: 'ציוד נלווה',
+				tabContent: `מגיע  עם גלגלי ראונד-האוס קונקייב לאחיזה מלאה שמאפשרת לכם סיבובים חדים במיוחד.`,
+			},
+			{
+				tabLabel: 'גודל',
+				tabContent: `
+				רוחב- 9 7/8"   | טייל- 6 1/4"  | חרטום- 6 1/2"  |  בסיס גלגלים- 17" | גלגלים- 69MM   גלגלי ראונד האוס קונקייב סמוק`,
+			},
+		],
+		variations: [
+			{
+				sku: 'TLDSAD',
+				// color: { label: 'white', value: 'white' },
+				// size: 'S',
+				shelfContent: [
+					{
+						type: 'image',
+						value: 'assets/kookint_board_main.jpg',
+					},
+					{
+						type: 'image',
+						value: 'assets/kookint_board_angles.jpg',
+					},
+				],
+			},
+		],
+	},
+	{
+		productId: 8,
+		productName: 'קסדת מים',
+		price: 280.0,
+		currency: '₪',
+		slug: 'water-helmet',
+		categoryId: 0,
+		shelfSale: {
+			saleText: 'מבצע קני היום 1+1 !',
+			saleComment: 'ההנחה תתעדכן בסל הקניות',
+		},
+		shelfInfo: [
+			{
+				tabLabel: 'פירוט',
+				tabContent: `דגם הקסדות החדש של טריפל אייט- ההלו סווטסייבר לוקח את ביצועי המים לרמה הגבוהה ביותר. דגם זה משיק את אותו העיצוב הישן והנוח של דגמי הבריין-סייבר הקלאסים של חברת טריפל אייט בשילוב עיצוב פנים חדש שמתאים את הדגם כולו להתמודדות עם מים!
+				.שלוש שכבות של ספוגים בתוך הקסדה מבטיחים ספיגת זיעה מירבית
+				
+				שימו לב: על מנת להבטיח כי הקסדות עומדות בתקן הישראלי, יש לחפש את מדבקת היבואן קוק אינטרנשיונל על גבי הקופסא.`,
+			},
+			{
+				tabLabel: 'משלוחים',
+				tabContent: `איסוף עצמי מהחנות
+
+				‎איסוף עצמי מהחנות אינו כרוך בעלות משלוח. 
+				
+				החנות שלנו נמצאת ברחוב לבונטין 4 בתל אביב, 5 דקות הליכה מאזור אלנבי רוטשילד, וניתן לבוא לאסוף בשעות הפעילות שלנו:
+				
+				בימים א'-ה' 10:00-19:00, ביום ו' 10:00-15:00
+				
+				החנות שלנו כיפית ויפה, אז אנחנו ממליצים לכם לא רק לבוא לאסוף, אלא גם לעשות סיבוב בחנות!
+				
+				חנייה היא על בסיס מקום פנוי ברחוב, וישנם גם חניונים בתשלום קרובים- חניון 'גינת השרון', חניון מקווה ישראל וכו'. 
+				
+				אם אינכם רוצים להחנות בשביל האיסוף העצמי, ניתן להתקשר לחנות ולתאם את קבלת החבילה ישירות עד הרכב!
+				
+				משלוח דואר רשום - 19 ש"ח
+				
+				בהזמנת פריטים במשקל עד 1.9 ק"ג, אפשר לבחור לשלוח בדואר רשום.
+				
+				אנא ציינו כתובת מלאה למשלוח- מס' בית או דירה, ומיקוד. 
+				
+				עם אישור ההזמנה תקבלו למייל את מס' המעקב עבור החבילה שלכם, איתו אפשר לעקוב אחרי החבילה באתר דואר ישראל- www.israelpost.co.il
+				
+				זמן אספקה של דואר הוא רשום עד 14 ימי אספקה, בהתאם לסניף המקומי שלכם.
+				
+				שליח עד הבית - 39 ש"ח
+				
+				השליחים שלנו מגיעים לכל מקום! אפשר לבחור באופציה של שליח עד הבית בעלות 39 ש"ח לכל חלקי הארץ.
+				
+				בקנייה באתר בסכום מעל 450 ש"ח - משלוח שליחים מוזל- רק 20 ש"ח.
+				
+				מיום ההזמנה, זמן אספקת המשלוח בדואר שליחים הוא בדר"כ עד כ -6 ימי אספקה לכל הארץ. אנא השאירו פרטים מלאים, כולל טלפון נייד כדי שהשליח יוכל לתאם אתכם את המשלוח עד פתח הבית.
+				
+				שימו לב- על מנת לייעל את תהליך השילוח- כמה טיפים חשובים: 
+				
+				* אנא הזינו כתובת למשלוח שאתם זמינים בה רוב שעות היום לקבל את המשלוח- בין אם זו כתובת בית ובין אם זו כתובת של מקום עבודה...
+				
+				* אנא השתדלו להיות זמינים בנייד, בכדי שהשליח יוכל לאתר אתכם לתיאום שעת השילוח- ככל שתהיו יותר זמינים, כך לשליח יהיה קל לספק לכם את החבילה!
+				
+				* במידה והינכם מעוניינים להשאיר את החבילה בארון חשמל, מחוץ לדלת או אצל שכן - אנא עדכנו אותנו - אנחנו נוכל לעדכן את חברת השילוח בפרטים המדויקים מכם.
+				
+				* במקרה של חבילות גדולות, תיתכן חריגה מ6 ימי אספקת המשלוח.
+				
+				* אין משלוחים בימי שישי וערבי חג
+				
+				* לכל שאלה, בעיה או בירור זמן שילוח - אנא צרו עימנו קשר במיידי - נשמח לסייע!
+				
+				`,
+			},
+			{
+				tabLabel: 'החזרות',
+				tabContent: `א) ביטול עסקה ייעשה תוך 14 ימים מקבלת המוצר, או מסמך הגילוי לפי המאוחר מביניהם.
+				ב) הודעה על הביטול תימסר בפקס/דוא"ל/דואר.
+				
+				
+				ג) בעת ביטול עסקה שלא עקב פגם או אי התאמה, בשל אי אספקת המוצר במועד שנקבע, או כל הפרה אחרת של החוזה, כספו של הצרכן יושב לו תוך 14 יום מקבלת הודעת הביטול, למעט דמי ביטול בשיעור של 5% או 100 ש"ח לפי הנמוך מביניהם, המוצר יוחזר ע"ח הצרכן.
+				
+				
+				ד) בעת ביטול עסקה עקב פגם או אי התאמה, או בשל אי אספקת המוצר במועד שנקבע, או כל הפרה אחרת של החוזה, לא ייגבו דמי ביטול, כספו של הצרכן יוחזר לו תוך 14 יום מהודעת הביטול, המוצר יוחזר על חשבון  יוגה סטור.
+				
+				
+				ה) המוצר יוחזר ככל שהדבר אפשרי, או סביר באריזתו המקורית.
+				
+				
+				ו) ליוגה סטור הזכות לתבוע את הצרכן בשל ירידה בערך המוצר.
+				
+				
+				ז) יוגה סטור תמסור לצרכן עותק של הודעת ביטול החיוב שמסר העסק לחברת האשראי.
+				
+				
+				ח) סייגים לזכות הביטול: לא ניתן לבטל רכישה של מוצרים שיוצרו במיוחד עבור הצרכן וכן מוצרים הניתנים להקלטה, העתקה ושכפול שהצרכן פתח את אריזתם המקורית.`,
+			},
+		],
+		variations: [
+			{
+				sku: 'TLDSAD',
+				color: { label: 'white', value: 'white' },
+				size: 'XS',
+				shelfContent: [
+					{
+						type: 'image',
+						value: 'assets/kookint_helmet_white.jpg',
+					},
+					{
+						type: 'image',
+						value: 'assets/kookint_helmet_upsidedown.jpg',
+					},
+				],
+			},
+			{
+				sku: 'TLDSAD',
+				color: { label: 'black', value: 'black' },
+				size: 'XS',
+				shelfContent: [
+					{
+						type: 'image',
+						value: 'assets/kookint_helmet_black.jpg',
+					},
+					{
+						type: 'image',
+						value: 'assets/kookint_helmet_upsidedown.jpg',
+					},
+				],
+			},
+			{
+				sku: 'TLDSAD',
+				color: { label: 'white', value: 'white' },
+				size: 'S',
+				shelfContent: [
+					{
+						type: 'image',
+						value: 'assets/kookint_helmet_white.jpg',
+					},
+					{
+						type: 'image',
+						value: 'assets/kookint_helmet_upsidedown.jpg',
+					},
+				],
+			},
+			{
+				sku: 'TLDSAD',
+				color: { label: 'black', value: 'black' },
+				size: 'S',
+				shelfContent: [
+					{
+						type: 'image',
+						value: 'assets/kookint_helmet_black.jpg',
+					},
+					{
+						type: 'image',
+						value: 'assets/kookint_helmet_upsidedown.jpg',
+					},
+				],
+			},
+			{
+				sku: 'TLDSAD',
+				color: { label: 'white', value: 'white' },
+				size: 'M',
+				shelfContent: [
+					{
+						type: 'image',
+						value: 'assets/kookint_helmet_white.jpg',
+					},
+					{
+						type: 'image',
+						value: 'assets/kookint_helmet_upsidedown.jpg',
+					},
+				],
+			},
+			{
+				sku: 'TLDSAD',
+				color: { label: 'black', value: 'black' },
+				size: 'M',
+				shelfContent: [
+					{
+						type: 'image',
+						value: 'assets/kookint_helmet_black.jpg',
+					},
+					{
+						type: 'image',
+						value: 'assets/kookint_helmet_upsidedown.jpg',
+					},
+				],
+			},
+			{
+				sku: 'TLDSAD',
+				color: { label: 'white', value: 'white' },
+				size: 'L',
+				shelfContent: [
+					{
+						type: 'image',
+						value: 'assets/kookint_helmet_white.jpg',
+					},
+					{
+						type: 'image',
+						value: 'assets/kookint_helmet_upsidedown.jpg',
+					},
+				],
+			},
+			{
+				sku: 'TLDSAD',
+				color: { label: 'black', value: 'black' },
+				size: 'L',
+				shelfContent: [
+					{
+						type: 'image',
+						value: 'assets/kookint_helmet_black.jpg',
+					},
+					{
+						type: 'image',
+						value: 'assets/kookint_helmet_upsidedown.jpg',
+					},
+				],
+			},
+		],
+	},
+	{
+		productId: 7,
+		productName: 'גריינדר-אקס',
+		price: 3500.0,
+		currency: '₪',
+		slug: 'grinder-x',
+		categoryId: 0,
+		shelfSale: {
+			saleText: 'מבצע קני היום 1+1 !',
+			saleComment: 'ההנחה תתעדכן בסל הקניות',
+		},
+		shelfInfo: [
+			{
+				tabLabel: 'מעמד חרבות',
+				tabContent: `שלוש, ארבע, חמש`,
+			},
+			{
+				tabLabel: 'עיצוב טייל',
+				tabContent: `סקווש, ראונד, סוואלו`,
+			},
+			{
+				tabLabel: 'מידות אפשריות',
+				tabContent: `
+				5'7" x 19" x 2 3/16"
+
+				5'8" x 19 1/4" x 2 1/4"
+				
+				5'9" x 19 3/8" x 2 5/16"
+				
+				5'10" x 19 1/2" x 2 3/8"
+				
+				5'11" x 19 5/8" x 2 3/8"
+				
+				6'0" x 19 3/4" x 2 7/16"
+				
+				6'1" x 19 7/8" x 2 1/5"
+				
+				6'2" x 20" x 2 5/8"`,
+			},
+		],
+		variations: [
+			{
+				sku: 'TLDSAD',
+				// color: { label: 'white', value: 'white' },
+				// size: 'S',
+				shelfContent: [
+					{
+						type: 'image',
+						value: 'assets/kookint_grinder_white.jpg',
+					},
+					{
+						type: 'image',
+						value: 'assets/kookint_grinder_black.jpg',
+					},
+				],
+			},
+		],
+	},
 	// QUEEN STORE
 	{
 		productId: 6,
