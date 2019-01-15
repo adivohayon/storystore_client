@@ -1,4 +1,7 @@
 .shelf-content {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 	img {
 		width: 100%;
 		height: auto;
