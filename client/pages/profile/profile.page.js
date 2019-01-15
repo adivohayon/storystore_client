@@ -5,16 +5,16 @@ export default {
 		return {
 			shelfInfo: [
 				{
-					tabLabel: 'אודות',
+					tabLabel: 'על החנות',
 					tabContent: 'אודות אודות אודות',
-				},
-				{
-					tabLabel: 'צור קשר',
-					tabContent: 'צור קשר צור קשר צור קשר',
 				},
 				{
 					tabLabel: 'תקנון',
 					tabContent: 'תקנון תקנון תקנון',
+				},
+				{
+					tabLabel: 'פרטיות',
+					tabContent: 'צור קשר צור קשר צור קשר',
 				},
 			],
 			selectedTabIndex: 0,
