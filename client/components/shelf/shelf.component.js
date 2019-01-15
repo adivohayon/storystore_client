@@ -129,6 +129,7 @@ export default {
 			console.log('Shelf / setColor', color);
 			this.selectedColor = color;
 			await this.$nextTick();
+			this.swiper.update();
 		},
 	},
 };
