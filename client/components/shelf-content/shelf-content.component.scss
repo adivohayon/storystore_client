@@ -1,10 +1,11 @@
 .shelf-content {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
+	// display: flex;
+	// flex-direction: column;
+	// justify-content: center;
+	// flex-wrap: nowrap;
 	img {
 		width: 100%;
-		height: auto;
+		max-height: auto;
 	}
 	&__video {
 		width: 100%;

@@ -39,7 +39,15 @@ export const shelves = [
 					},
 					{
 						type: 'image',
-						value: 'assets/kookint_board_angles.jpg',
+						value: 'assets/kookint_board_front.jpg',
+					},
+					{
+						type: 'image',
+						value: 'assets/kookint_board_back.jpg',
+					},
+					{
+						type: 'image',
+						value: 'assets/kookint_board_side.jpg',
 					},
 				],
 			},
@@ -456,33 +464,6 @@ export const shelves = [
 					},
 				],
 			},
-			// {
-			// 	sku: 'TLDSAD',
-			// 	color: { label: '', value: '' },
-			// 	size: 'M',
-			// 	shelfContent: [
-			// 		{
-			// 			type: 'image',
-			// 			value: 'assets/queen_dress_beri_1.jpg',
-			// 		},
-			// 		{
-			// 			type: 'image',
-			// 			value: 'assets/queen_dress_beri_2.jpg',
-			// 		},
-			// 		{
-			// 			type: 'image',
-			// 			value: 'assets/queen_dress_beri_3.jpg',
-			// 		},
-			// 		{
-			// 			type: 'image',
-			// 			value: 'assets/queen_dress_beri_4.jpg',
-			// 		},
-			// 		{
-			// 			type: 'image',
-			// 			value: 'assets/queen_dress_beri_5.jpg',
-			// 		},
-			// 	],
-			// },
 		],
 	},
 	{
