@@ -26,14 +26,15 @@ module.exports = {
 		base: '/',
 		middleware: [],
 	},
-
+	serverMiddleware: ['~/api/mailer.js'],
 	/*
   ** Global CSS
   */
 	css: [
 		// '@/sass/breakpoints.mixin.scss',
 		{ src: 'swiper/dist/css/swiper.min.css', lang: 'css' },
-		{src: 'video.js/dist/video-js.css', lang: 'css'},
+		{ src: 'video.js/dist/video-js.css', lang: 'css' },
+		{ src: '~assets/fonts/fonts.css', lang: 'css' },
 	],
 
 	/*
@@ -48,6 +49,7 @@ module.exports = {
 		{ src: '~/plugins/svg', ssr: true },
 		{ src: '~/plugins/v-touch', ssr: false },
 		{ src: '~/plugins/vue-video-player', ssr: true },
+		{ src: '~/plugins/vue-scrollto', ssr: true },
 	],
 
 	/*
@@ -70,8 +72,8 @@ module.exports = {
 	env: {
 		staticDir:
 			process.env.NODE_ENV === 'development'
-				? '/assets/'
-				: '//cdn.shop-together.io/assets/',
+				? '/'
+				: '//cdn.shop-together.io/',
 	},
 
 	build: {

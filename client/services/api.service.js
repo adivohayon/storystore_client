@@ -12,3 +12,11 @@ export const getShelves = (storeId, categoryId = 0) => {
 		resolve(shelves);
 	});
 };
+
+export const contactStorystore = formData => {
+	console.log('formData', formData);
+	return axios.post('/api/mailer', { ...formData });
+	// return new Promise(resolve => {
+	// 	resolve();
+	// });
+};

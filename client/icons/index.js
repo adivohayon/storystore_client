@@ -1,3 +1,4 @@
 /* eslint-disable */
-require('./back')
-require('./cart')
+import './back'
+import './cart'
+import './checkmark'
