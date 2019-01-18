@@ -1,4 +1,4 @@
-import '../../icons';
+import '@/icons';
 export default {
 	props: {},
 	data() {

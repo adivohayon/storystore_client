@@ -8,7 +8,7 @@
 			</div>
 
 			<div class="demo-video">
-				<video muted="muted" autoplay :src="`${staticDir}storystore_demo.mp4`"></video>
+				<video :src="`${staticDir}storystore_demo.mp4`" muted="muted" autoplay ></video>
 			</div>
 			<div class="subtitle">
 				<div class="logo show-md">
@@ -130,7 +130,7 @@
 		<footer id="footer" class="footer">
 			<div class="footer__wrapper">
 				<div class="logo">
-					<img :src="`${staticDir}/storystore_logo--white.png`" alt="Storystore Logo">
+					<img :src="`${staticDir}storystore_logo--white.png`" alt="Storystore Logo">
 					<hr>
 				</div>
 				<div class="footer__container">

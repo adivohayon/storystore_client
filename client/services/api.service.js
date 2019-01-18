@@ -7,8 +7,11 @@ export const getCategories = storeId => {
 	});
 };
 
-export const getShelves = (storeId, categoryId = 0) => {
+export const getShelves = (storeId, categoryId = 0, storeSlug) => {
 	return new Promise(resolve => {
+		if (storeSlug) {
+			resolve(shelves[storeSlug]);
+		}
 		resolve(shelves);
 	});
 };
