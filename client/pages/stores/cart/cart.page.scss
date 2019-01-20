@@ -16,40 +16,34 @@
 	}
 	&__container {
 		background-color: white;
-		&__wrapper {
-			width: 90%;
-			margin: auto;
-			&--header {
-				padding: 0.8rem 0;
-				border-bottom: 1px solid rgba(229, 229, 229, 0.4);
+		&--header {
+			padding: 0.8rem 1rem;
+			border-bottom: 1px solid rgb(210, 210, 210);
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+
+			&--back {
 				display: flex;
-				flex-direction: row;
-				justify-content: space-between;
-				
-				&--back {
-					display: flex;
-					justify-content: center;
-					align-items: center;
-					padding: 0.4rem 0.5rem;
-				}
-				&--payment-button {
-					color: white;
-					padding: 0.5rem 2rem;
-					background-color: green;
-					font-size: 1.2rem;
-					border: 0;
-					border-radius: 30px;
-				}
+				justify-content: center;
+				align-items: center;
+				padding: 0.4rem 0.5rem;
 			}
-			&--total {
-				text-align: center;
-				color: #494949;
-				font-size: 0.8rem;
-				padding: 0.5rem 0;
-				border-bottom: 1px solid rgba(229, 229, 229, 0.4);
-				&__price {
-					font-weight: bold;
-				}
+			&--payment-button {
+				color: white;
+				padding: 0.5rem 2rem;
+				background-color: #00AF52;
+				font-size: 1.2rem;
+				border: 0;
+				border-radius: 30px;
+			}
+		}
+		&--total {
+			text-align: center;
+			padding: 0.7rem 0;
+			border-bottom: 1px solid rgb(210, 210, 210);
+			&__price {
+				font-weight: bold;
 			}
 		}
 	}

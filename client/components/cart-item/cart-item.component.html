@@ -13,19 +13,15 @@
 			</div>
 		</div>
 		<div class="cart-item__product--details--pickers">
-			<div class="cart-item__product--details--pickers__picker">
-				<div class="cart-item__product--details--pickers__picker--title">
-					צבע:
-				</div>
-				<div
-					:style="{ backgroundColor: item.color.value }"
-					class="cart-item__product--details--pickers__picker--box picker-button"
-				></div>
-				<div
-					class="cart-item__product--details--pickers__picker--button chevron"
-				></div>
-			</div>
-			<div class="cart-item__product--details--pickers__picker">
+			<select class="cart-item__product--details--pickers--picker">
+				<option v-for="size in item.variations.sizes">מידה: {{size}}</option>
+				<!-- <option>מידה: S</option> -->
+			</select>
+			<select class="cart-item__product--details--pickers--picker">
+					<!-- <option v-for="size in item.variations.sizes">מידה: {{size}}</option> -->
+					<option>כמות: {{item.quantity}}</option>
+				</select>
+			<!-- <div class="cart-item__product--details--pickers__picker">
 				<div class="cart-item__product--details--pickers__picker--title">
 					מידה:
 				</div>
@@ -34,9 +30,6 @@
 				>
 					{{ item.size }}
 				</div>
-				<div
-					class="cart-item__product--details--pickers__picker--button chevron"
-				></div>
 			</div>
 			<div class="cart-item__product--details--pickers__picker">
 				<div class="cart-item__product--details--pickers__picker--title">
@@ -47,13 +40,11 @@
 				>
 					{{ item.quantity }}
 				</div>
-				<div
-					class="cart-item__product--details--pickers__picker--button chevron"
-				></div>
-			</div>
+			</div> -->
 		</div>
 	</div>
 	<div @click="removeItem" :id="`remove_${itemIndex}`" class="cart-item__delete">
-		<div>מחק מוצר</div>
+		<div class="cart-item__delete--text">X</div>
+		<div class="cart-item__delete--text">הסר</div>
 	</div>
 </div>

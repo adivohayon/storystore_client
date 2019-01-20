@@ -92,6 +92,9 @@ export default {
 				renderBullet: (index, className) => {
 					const shelfContentType = this.variant.shelfContent[index].type;
 					let bullet = '';
+
+					// if you want to add text under pagination uncomment below.
+
 					// switch (shelfContentType) {
 					// 	case 'image':
 					// 		bullet = 'img';
