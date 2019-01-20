@@ -1,4 +1,336 @@
 export const shelves = [
+	// NAFTUL STORE
+	{
+		productId: 17,
+		productName: `חולצת טריקו`,
+		price: 120,
+		currency: '$',
+		slug: 'turtleneck_shirt',
+		categoryId: 0,
+		shelfSale: {
+			saleText: '25% discount on this product!',
+			saleComment: 'Discount will update in the cart.',
+		},
+		shelfInfo: [
+			{
+				tabLabel: 'פירוט',
+				tabContent: `The easy-going look of this knit Turtleneck shirt makes it a comfortable selection for your wardrobe. It features a
+				comfortable design and soft cotton fabric that will never go out of style. Turtleneck knitted shirt is always
+				perfect for a day at the office or a night out on the town. Pair this with a great accessory, and you will
+				look effortlessly stylish.
+				`,
+			},
+			{
+				tabLabel: 'מידות',
+				tabContent: `Size one: Sleeve length : 65cm / 25.5"
+				Total length : 62 cm / 24.4"
+				Bust : 100 cm / 39.3"
+
+				Size 2: Sleeve length : 65cm / 25.5"
+				Total length : 62 cm / 24.4"
+				Bust : 110 cm / 43.3"
+				`,
+			},
+			{
+				tabLabel: 'הרכב הבד',
+				tabContent: `100% פוליאסטר`,
+			},
+		],
+		variations: [
+			{
+				sku: 'NTNKSGSO',
+				color: { label: 'gold', value: '#B28152' },
+				size: 'S1',
+				shelfContent: [
+					{
+						type: 'image',
+						value: 'assets/naftul_shirt_tutule_1.jpg',
+					},
+					{
+						type: 'image',
+						value: 'assets/naftul_shirt_tutule_2.jpg',
+					},
+					{
+						type: 'image',
+						value: 'assets/naftul_shirt_tutule_3.jpg',
+					},
+				],
+			},
+			{
+				sku: 'NTNKSGST',
+				color: { label: 'gold', value: '#B28152' },
+				size: 'S2',
+				shelfContent: [
+					{
+						type: 'image',
+						value: 'assets/naftul_shirt_tutule_1.jpg',
+					},
+					{
+						type: 'image',
+						value: 'assets/naftul_shirt_tutule_2.jpg',
+					},
+					{
+						type: 'image',
+						value: 'assets/naftul_shirt_tutule_3.jpg',
+					},
+				],
+			},
+		],
+	},
+	{
+		productId: 16,
+		productName: `רוני ג'אמפ סויט`,
+		price: 163,
+		currency: '$',
+		slug: 'boho_dress',
+		categoryId: 0,
+		shelfSale: {
+			saleText: '50% discount on this product!',
+			saleComment: 'Discount will update in the cart.',
+		},
+		shelfInfo: [
+			{
+				tabLabel: 'פירוט',
+				tabContent: `Women's relax fit jumpsuit - goes great with a turtleneck shirt
+
+				+Sleeveless Straps 
+				+Side packets
+				+adjustable straps
+				+ wide leg
+				+Soft cotton Rayon fabric.
+				
+				`,
+			},
+			{
+				tabLabel: 'מידות',
+				tabContent: `ONE SIZE - 36-42
+
+				Bust: 94 cm / 37"
+				Leg Sweep: 108cm / 42.5"
+				Total length: 120 cm / 47.2"
+				Hips : 118 cm / 46.4"
+				`,
+			},
+			{
+				tabLabel: 'הרכב הבד',
+				tabContent: `100% פוליאסטר`,
+			},
+		],
+		variations: [
+			{
+				sku: 'NTRGJSOS',
+				color: { label: 'green', value: '#00595B' },
+				size: 'OS',
+				shelfContent: [
+					{
+						type: 'image',
+						value: 'assets/naftul_dress_boho_1.jpg',
+					},
+					{
+						type: 'image',
+						value: 'assets/naftul_dress_boho_2.jpg',
+					},
+					{
+						type: 'image',
+						value: 'assets/naftul_dress_boho_3.jpg',
+					},
+					{
+						type: 'image',
+						value: 'assets/naftul_dress_boho_4.jpg',
+					},
+				],
+			},
+		],
+	},
+	{
+		productId: 15,
+		productName: `שמלת כתף אחת`,
+		price: 161,
+		currency: '$',
+		slug: 'marisol_one_dress',
+		categoryId: 0,
+		shelfSale: {
+			saleText: 'No discount available.',
+			saleComment: '',
+		},
+		shelfInfo: [
+			{
+				tabLabel: 'פירוט',
+				tabContent: `Feel uber-feminine as you style one- shoulder Dress from Naftul. 
+				The Belted Facing Dress is a relaxed yet elegant bohemian-inspired dress made from cotton for easy care. 
+				The belted design adds ample form to flatter your figure. This free-flowing dress falls at the ankle. The Belted Facing Tier Dress will feel right at home on your holidays or a dinner date with friends.
+				this statement dress will carry you through the fall without a moment's hesitation!
+				`,
+			},
+			{
+				tabLabel: 'עיקרי המוצר',
+				tabContent: `• 97% cotton 3% silk
+				• Half sleeve 
+				• Falls at the ankle
+				• Belted design
+				• asymmetrical
+				• Navy BLUE
+				• Pull-on styling
+				• Pockets
+				`,
+			},
+			{
+				tabLabel: 'הרכב הבד',
+				tabContent: `100% פוליאסטר`,
+			},
+		],
+		variations: [
+			{
+				sku: 'NTMOSDL',
+				color: { label: 'green', value: '#009675' },
+				size: 'L',
+				shelfContent: [
+					{
+						type: 'image',
+						value: 'assets/naftul_dress_marisol_1.jpg',
+					},
+					{
+						type: 'image',
+						value: 'assets/naftul_dress_marisol_2.jpg',
+					},
+					{
+						type: 'image',
+						value: 'assets/naftul_dress_marisol_3.jpg',
+					},
+					{
+						type: 'image',
+						value: 'assets/naftul_dress_marisol_4.jpg',
+					},
+				],
+			},
+			{
+				sku: 'NTMOSDXL',
+				color: { label: 'green', value: '#009675' },
+				size: 'XL',
+				shelfContent: [
+					{
+						type: 'image',
+						value: 'assets/naftul_dress_marisol_1.jpg',
+					},
+					{
+						type: 'image',
+						value: 'assets/naftul_dress_marisol_2.jpg',
+					},
+					{
+						type: 'image',
+						value: 'assets/naftul_dress_marisol_3.jpg',
+					},
+					{
+						type: 'image',
+						value: 'assets/naftul_dress_marisol_4.jpg',
+					},
+				],
+			},
+		],
+	},
+	{
+		productId: 14,
+		productName: `מכנס הארפר`,
+		price: 161,
+		currency: '$',
+		slug: 'harper_pants',
+		categoryId: 0,
+		shelfSale: {
+			saleText: '25% off this purchase',
+			saleComment: 'Discount will update in the cart.',
+		},
+		shelfInfo: [
+			{
+				tabLabel: 'פירוט',
+				tabContent: `the elegant light-as-air "parashot" fabric bottoms will complement your every move. The silhouette is modern in its outlook. 
+				You can pair it with anything 
+				recommended with our crop top like a two piece.
+				`,
+			},
+			{
+				tabLabel: 'עיקרי המוצר',
+				tabContent: `• fabric: rayon nylon 
+				• ivory or black
+				• wrap
+				`,
+			},
+			{
+				tabLabel: 'הרכב הבד',
+				tabContent: `100% פוליאסטר`,
+			},
+		],
+		variations: [
+			{
+				sku: 'NTHPIS',
+				color: { label: 'ivory', value: '#B6B2AE' },
+				size: 'S',
+				shelfContent: [
+					{
+						type: 'image',
+						value: 'assets/naftul_pants_harper_1.jpg',
+					},
+					{
+						type: 'image',
+						value: 'assets/naftul_pants_harper_2.jpg',
+					},
+					{
+						type: 'image',
+						value: 'assets/naftul_pants_harper_3.jpg',
+					},
+					{
+						type: 'image',
+						value: 'assets/naftul_pants_harper_4.jpg',
+					},
+				],
+			},
+			{
+				sku: 'NTHPIM',
+				color: { label: 'ivory', value: '#B6B2AE' },
+				size: 'M',
+				shelfContent: [
+					{
+						type: 'image',
+						value: 'assets/naftul_pants_harper_1.jpg',
+					},
+					{
+						type: 'image',
+						value: 'assets/naftul_pants_harper_2.jpg',
+					},
+					{
+						type: 'image',
+						value: 'assets/naftul_pants_harper_3.jpg',
+					},
+					{
+						type: 'image',
+						value: 'assets/naftul_pants_harper_4.jpg',
+					},
+				],
+			},
+			{
+				sku: 'NTHPIL',
+				color: { label: 'ivory', value: '#B6B2AE' },
+				size: 'L',
+				shelfContent: [
+					{
+						type: 'image',
+						value: 'assets/naftul_pants_harper_1.jpg',
+					},
+					{
+						type: 'image',
+						value: 'assets/naftul_pants_harper_2.jpg',
+					},
+					{
+						type: 'image',
+						value: 'assets/naftul_pants_harper_3.jpg',
+					},
+					{
+						type: 'image',
+						value: 'assets/naftul_pants_harper_4.jpg',
+					},
+				],
+			},
+		],
+	},
 	// COSTI STORE
 	{
 		productId: 13,
