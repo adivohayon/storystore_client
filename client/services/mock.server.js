@@ -53,6 +53,18 @@ export const shelves = {
 							type: 'image',
 							value: 'assets/naftul_shirt_tutule_3.jpg',
 						},
+						{
+							type: 'image',
+							value: 'assets/naftul_shirt_tutule_4.jpg',
+						},
+						{
+							type: 'image',
+							value: 'assets/naftul_shirt_tutule_5.jpg',
+						},
+						{
+							type: 'image',
+							value: 'assets/naftul_shirt_tutule_6.jpg',
+						},
 					],
 				},
 				{
@@ -71,6 +83,18 @@ export const shelves = {
 						{
 							type: 'image',
 							value: 'assets/naftul_shirt_tutule_3.jpg',
+						},
+						{
+							type: 'image',
+							value: 'assets/naftul_shirt_tutule_4.jpg',
+						},
+						{
+							type: 'image',
+							value: 'assets/naftul_shirt_tutule_5.jpg',
+						},
+						{
+							type: 'image',
+							value: 'assets/naftul_shirt_tutule_6.jpg',
 						},
 					],
 				},
@@ -135,6 +159,10 @@ export const shelves = {
 							type: 'image',
 							value: 'assets/naftul_dress_boho_4.jpg',
 						},
+						{
+							type: 'image',
+							value: 'assets/naftul_dress_boho_5.jpg',
+						},
 					],
 				},
 			],
@@ -198,6 +226,14 @@ export const shelves = {
 							type: 'image',
 							value: 'assets/naftul_dress_marisol_4.jpg',
 						},
+						{
+							type: 'image',
+							value: 'assets/naftul_dress_marisol_5.jpg',
+						},
+						{
+							type: 'image',
+							value: 'assets/naftul_dress_marisol_6.jpg',
+						},
 					],
 				},
 				{
@@ -220,6 +256,14 @@ export const shelves = {
 						{
 							type: 'image',
 							value: 'assets/naftul_dress_marisol_4.jpg',
+						},
+						{
+							type: 'image',
+							value: 'assets/naftul_dress_marisol_5.jpg',
+						},
+						{
+							type: 'image',
+							value: 'assets/naftul_dress_marisol_6.jpg',
 						},
 					],
 				},
@@ -278,6 +322,14 @@ export const shelves = {
 							type: 'image',
 							value: 'assets/naftul_pants_harper_4.jpg',
 						},
+						{
+							type: 'image',
+							value: 'assets/naftul_pants_harper_5.jpg',
+						},
+						{
+							type: 'image',
+							value: 'assets/naftul_pants_harper_6.jpg',
+						},
 					],
 				},
 				{
@@ -301,6 +353,14 @@ export const shelves = {
 							type: 'image',
 							value: 'assets/naftul_pants_harper_4.jpg',
 						},
+						{
+							type: 'image',
+							value: 'assets/naftul_pants_harper_5.jpg',
+						},
+						{
+							type: 'image',
+							value: 'assets/naftul_pants_harper_6.jpg',
+						},
 					],
 				},
 				{
@@ -323,6 +383,14 @@ export const shelves = {
 						{
 							type: 'image',
 							value: 'assets/naftul_pants_harper_4.jpg',
+						},
+						{
+							type: 'image',
+							value: 'assets/naftul_pants_harper_5.jpg',
+						},
+						{
+							type: 'image',
+							value: 'assets/naftul_pants_harper_6.jpg',
 						},
 					],
 				},
