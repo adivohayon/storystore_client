@@ -1,0 +1,75 @@
+.profile-page {
+	&__header {
+		display: flex;
+		justify-content: flex-start;
+		position: relative;
+		padding: 2rem 1rem 1rem 1rem;
+		&--image {
+			border-radius: 50%;
+			border: solid 1px #818181;
+			width: 50px;
+			height: 50px;
+			// background-image: url('../../static/assets/logo--simplyfashion.png');
+			background-size: 40px;
+			background-repeat: no-repeat;
+			background-position: center;
+			color: #818181;
+			flex: 0 1 auto;
+			position: absolute;
+			left: 50%;
+			transform: translateX(-50%);
+			align-self: center;
+		}
+		&--back {
+			flex: 0 1 auto;
+			margin-left: auto;
+		}
+	}
+	&__store-details {
+		padding: 2rem 0;
+		margin: auto;
+		text-align: center;
+		&--title {
+			font-size: 1.3rem;
+			padding-bottom: 0.3rem;
+			font-weight: bold;
+		}
+		&--phrase {
+			color: #717171;
+			font-size: 1.1rem;
+		}
+	}
+	&__info {
+		display: flex;
+		flex-direction: column;
+		&--tabs {
+			&--tab-labels {
+				display: flex;
+				flex-direction: row;
+				&--label {
+					// margin: 1rem 0;
+					color: #818181;
+					flex: 1;
+					text-align: center;
+					font-size: 1.2rem;
+					border-top: 1px solid #818181;
+					border-bottom: 1px solid #818181;
+					padding: 0.5rem;
+					&.active {
+						color: black;
+						font-weight: bold;
+					}
+				}
+				.middle {
+					border: 1px solid #818181;
+				}
+			}
+			&--tab-content {
+				// margin: auto;
+
+				text-align: right;
+				padding: 1rem 1rem 0 1rem;
+			}
+		}
+	}
+}

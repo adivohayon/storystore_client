@@ -7,8 +7,19 @@ export const getCategories = storeId => {
 	});
 };
 
-export const getShelves = (storeId, categoryId = 0) => {
+export const getShelves = (storeId, categoryId = 0, storeSlug) => {
 	return new Promise(resolve => {
+		if (storeSlug) {
+			resolve(shelves[storeSlug]);
+		}
 		resolve(shelves);
 	});
+};
+
+export const contactStorystore = formData => {
+	console.log('formData', formData);
+	return axios.post('/api/mailer', { ...formData });
+	// return new Promise(resolve => {
+	// 	resolve();
+	// });
 };

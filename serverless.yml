@@ -1,4 +1,4 @@
-service: nuxt-product-pages 
+service: storystore
 package:
   individually: true
   # exclude:
@@ -29,7 +29,7 @@ provider:
 
 plugins:
   - serverless-apigw-binary
-  - serverless-domain-manager
+  # - serverless-domain-manager
   - serverless-offline
 
 
@@ -41,8 +41,8 @@ custom:
   apigwBinary:
     types:
       - '*/*'
-  customDomain:
-    domainName: ${self:custom.secrets.DOMAIN}
-    basePath: ''
-    stage: ${self:custom.secrets.NODE_ENV}
-    createRoute53Record: true
+  # customDomain:
+  #   domainName: ${self:custom.secrets.DOMAIN}
+  #   basePath: ''
+  #   stage: ${self:custom.secrets.NODE_ENV}
+  #   createRoute53Record: true

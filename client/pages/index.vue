@@ -8,33 +8,38 @@
 			</div>
 
 			<div class="demo-video">
-				<video muted="muted" autoplay src="/storystore_demo.mp4"></video>
+				<video :src="`${staticDir}storystore_demo.mp4`" muted="muted" autoplay ></video>
 			</div>
 			<div class="subtitle">
 				<div class="logo show-md">
-					<img src="/storystore_logo.png" alt="Storystore">
+					<img :src="`${staticDir}storystore_logo.png`" alt="Storystore">
 				</div>
 				<h2 class="show-md">הקם סטוריסטור לעסק שלך בקלות ובמהירות</h2>
 				<p>כל מה שאתה צריך זה מוצרים ותוכן סטוריסטור יעשו את השאר ותוכל להתחיל למכור !</p>
-				<button class="btn btn--round">פתח/י סטוריסטור</button>
+				<button v-scroll-to="'#footer'" class="btn btn--round">פתח/י סטוריסטור</button>
 			</div>
 		</section>
 
 		<!-- WHY STORYSTORE SECTION -->
-		<section id="why-storystore" class="section">
-			<h3>למה סטוריסטור?</h3>
-			<ul class="list">
-				<li
-					v-for="(feature, featureIndex) in features"
-					:key="featureIndex"
-					class="list__item"
-				>{{feature}}</li>
-			</ul>
+		<section id="why-storystore" class="section why-storystore">
+			<div class="title__container">
+				<h3>למה סטוריסטור?</h3>
+			</div>
+			<div class="why-storystore__container">
+				<ul class="list">
+					<li v-for="(feature, featureIndex) in features" :key="featureIndex" class="list__item">
+						<icon :orginal="true" class="icon icon--checkmark" name="checkmark"></icon>
+						<div class="feature">{{feature}}</div>
+					</li>
+				</ul>
+			</div>
 		</section>
 
 		<!-- PRICING SECTION -->
 		<section id="pricing" class="section pricing">
-			<h3>מסלולים ומחירים</h3>
+			<div class="title__container">
+				<h3>מסלולים ומחירים</h3>
+			</div>
 			<div class="pricing__container">
 				<table class="pricing-table">
 					<thead>
@@ -48,31 +53,62 @@
 					<tbody>
 						<tr class="pricing-table__row pricing-table__row--basic">
 							<td>בסיסי</td>
-							<td>100 מק״טים</td>
-							<td>5%</td>
-							<td>290 ש״ח</td>
+							<td>
+								100
+								<span class="small-text">מק״טים</span>
+							</td>
+							<td>
+								5
+								<span class="small-text">%</span>
+							</td>
+							<td>
+								290
+								<span class="small-text">ש״ח</span>
+							</td>
 						</tr>
 						<tr class="pricing-table__row pricing-table__row--standard">
-							<td>בסיסי</td>
-							<td>100 מק״טים</td>
-							<td>5%</td>
-							<td>290 ש״ח</td>
+							<td>מתקדם</td>
+							<td>
+								1,000
+								<span class="small-text">מק״טים</span>
+							</td>
+							<td>
+								3.5
+								<span class="small-text">%</span>
+							</td>
+							<td>
+								490
+								<span class="small-text">ש״ח</span>
+							</td>
 						</tr>
 						<tr class="pricing-table__row pricing-table__row--premium">
-							<td>בסיסי</td>
-							<td>100 מק״טים</td>
-							<td>5%</td>
-							<td>290 ש״ח</td>
+							<td>פרמיום</td>
+							<td>
+								5,000
+								<span class="small-text">מק״טים</span>
+							</td>
+							<td>
+								2
+								<span class="small-text">%</span>
+							</td>
+							<td>
+								2,900
+								<span class="small-text">ש״ח</span>
+							</td>
 						</tr>
 					</tbody>
 				</table>
-				<button class="btn btn--round">פתח/י סטוריסטור</button>
+				<!-- <a href="#footer"> -->
+				<button v-scroll-to="'#footer'" class="btn btn--round">פתח/י סטוריסטור</button>
+				<!-- </a> -->
 			</div>
 			<!-- <table> -->
 		</section>
 
 		<section id="studio" class="section studio">
-			<h3>שירותי סטודיו</h3>
+			<div class="title__container">
+				<h3>שירותי סטודיו</h3>
+			</div>
 			<div class="studio__container">
 				<p>
 					תוכן איכותי ומקורי מוכר יותר, לכן סטוריסטור מציעה גם שירותי הפקה שיעזרו לקדם את המוצרים שלך.
@@ -84,19 +120,78 @@
 						v-for="(studioFeature, studioFeatureIndex) in studioFeatures"
 						:key="studioFeatureIndex"
 						class="list__item"
-					>{{studioFeature}}</li>
+					>
+						<icon :orginal="true" class="icon icon--checkmark" name="checkmark"></icon>
+						{{studioFeature}}
+					</li>
 				</ul>
 			</div>
 		</section>
+		<footer id="footer" class="footer">
+			<div class="footer__wrapper">
+				<div class="logo">
+					<img :src="`${staticDir}storystore_logo--white.png`" alt="Storystore Logo">
+					<hr>
+				</div>
+				<div class="footer__container">
+					<p>כתובתנו היא רח' קינג ג׳ורג׳ 48, תל אביב.
+						<br>ניתן לפנות אלינו גם בטלפון 0504484517,
+						<br>במייל בכתובת hai@shop-together.io או בטופס הבא:
+					</p>
+					<div class="contact-form">
+						<div class="contact-form__row">
+							<input v-model="formData.companyName" type="text" placeholder="שם העסק">
+							<input v-model="formData.contactName" type="text" placeholder="שם איש קשר">
+						</div>
+						<div class="contact-form__row">
+							<input v-model="formData.contactPhone" type="phone" placeholder="טלפון">
+							<input
+								v-model="formData.contactEmail"
+								:class="{'validation-error': validationErrors.contactEmail}"
+								required
+								type="email"
+								placeholder="כתובת מייל"
+							>
+							<input v-model="formData.companyUrl" type="text" placeholder="אתר קיים">
+						</div>
+						<div
+							v-if="contactFormResp.text"
+							:class="contactFormResp.class"
+							class="contact-form__row contact-form__resp"
+						>{{contactFormResp.text}}</div>
+						<div class="contact-form__row contact-form__row--left">
+							<button class="btn btn--round btn--light" @click="submitForm">התחל למכור</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
 	</div>
 </template>
 
 <script>
+import '@/icons/checkmark';
+import { contactStorystore } from '@/services/api.service';
+import { validateEmail } from '@/helpers/validation.helpers';
 export default {
 	components: {},
 	async asyncData({ params }) {},
 	data() {
 		return {
+			contactFormResp: {
+				text: null,
+				class: null,
+			},
+			formData: {
+				companyName: null,
+				companyUrl: null,
+				contactName: null,
+				contactPhone: null,
+				contactEmail: null,
+			},
+			validationErrors: {
+				contactEmail: false,
+			},
 			features: [
 				'ללא עלות הקמה',
 				'ממשק קל ונוח לתפעול ולשליטה',
@@ -115,7 +210,63 @@ export default {
 			],
 		};
 	},
+	computed: {
+		staticDir() {
+			return process.env.staticDir || '/';
+		},
+		// email() {
+		// 	// return this.formData.contactEmail;
+		// 	return '';
+		// },
+	},
+	watch: {
+		// 'formData.contactEmail': (newEmail, oldVal) => {
+		// 	if (newEmail) {
+		// 		this.validationErrors.contactEmail = validateEmail(newEmail);
+		// 	}
+		// },
+	},
+
 	mounted() {},
+	methods: {
+		resetContactForm() {
+			this.formData = {
+				companyName: null,
+				companyUrl: null,
+				contactName: null,
+				contactPhone: null,
+				contactEmail: null,
+			};
+			this.validationErrors.contactEmail = false;
+		},
+		async submitForm() {
+			try {
+				// if (this.formData.email)
+				if (validateEmail(this.formData.contactEmail)) {
+					const resp = await contactStorystore(this.formData);
+					this.contactFormResp.text = 'ההודעה נשלחה. נחזור אליכם בהקדם!';
+					this.contactFormResp.class = 'contact-form__resp--success';
+					this.resetContactForm();
+					console.log('resp', resp);
+				} else {
+					this.validationErrors.contactEmail = true;
+					this.contactFormResp.text = 'כתובת המייל שהזנת לא תקין';
+					this.contactFormResp.class = 'contact-form__resp--error';
+					//throw new Error('Email not valid');
+				}
+				// const { res } = await axios.post('/api/nodemailer', {
+				// 	emailInfo,
+				// 	emailProvider,
+				// });
+				// alert('Message send successfully');
+			} catch (error) {
+				this.contactFormResp.text =
+					'הייתה שגיאה בלשלוח את ההודעה. נסו להתקשר אלינו בינתיים ונפתור את הבעיה בהקדם.';
+				this.contactFormResp.class = 'contact-form__resp--error';
+				console.error(error);
+			}
+		},
+	},
 };
 </script>
 

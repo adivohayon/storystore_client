@@ -1,0 +1,24 @@
+<div class="cart-page">
+	<div class="cart-page__container">
+		<div class="cart-page__container--header">
+			<nuxt-link to="/stores" class="cart-page__container--header--back">
+				<icon name="back" :original="true" width="26" height="26"></icon>
+			</nuxt-link>
+			<button class="cart-page__container--header--payment-button">
+				לתשלום
+			</button>
+		</div>
+		<div class="cart-page__container--total">
+			<span class="cart-page__container--total__text">
+				{{ itemsCount }} פריטים: סה"כ (כולל משלוח)</span
+			>
+			<span class="cart-page__container--total__price">{{ subtotal }} ש"ח</span>
+		</div>
+		<cart-item
+			v-for="(item, itemIndex) of items"
+			:key="itemIndex"
+			:item="item"
+			:itemIndex="itemIndex"
+		></cart-item>
+	</div>
+</div>

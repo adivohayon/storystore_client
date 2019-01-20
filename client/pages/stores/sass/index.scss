@@ -4,7 +4,9 @@
 @import 'shelf-layout';
 @import 'icons';
 
-
+* {
+	font-family: 'Simpler', 'system-ui', sans-serif;
+}
 .fp-enabled {
 	// overflow: unset !important;
 }
