@@ -4,9 +4,13 @@ export default {
 	components: { CartItem },
 	async asyncData({ params }) {},
 	data() {
-		return {};
+		return {
+			storeName: null,
+		};
 	},
-	mounted() {},
+	mounted() {
+		this.storeName = this.$route.params.storeName;
+	},
 	computed: {
 		items() {
 			return this.$store.getters['cart/items'];

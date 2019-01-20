@@ -36,6 +36,7 @@ export default {
 			selectedSize: null,
 			showShelfInfo: false,
 			showShelfSale: false,
+			storeName: null,
 		};
 	},
 	computed: {
@@ -81,6 +82,7 @@ export default {
 		this.selectedSize = this.shelf.variations[0].size || null;
 	},
 	mounted() {
+		this.storeName = this.$route.params.storeName;
 		this.swiper = new this.$Swiper(`#shelf-content-slider-${this.shelfIndex}`, {
 			// Optional parameters
 			direction: 'horizontal',
