@@ -7,7 +7,7 @@
 		<!-- <no-ssr> -->
 		<!-- <feed> -->
 		<no-ssr>
-			<full-page v-if="shelves.length > 0" id="fullpage" ref="fullpage" :options="feedOptions">
+			<full-page v-if="shelves && shelves.length > 0" id="fullpage" ref="fullpage" :options="feedOptions">
 				<shelf
 					v-for="(shelf, shelfIndex) in shelves"
 					:key="shelfIndex"
@@ -44,7 +44,7 @@ export default {
 	components: { Feed, Shelf, Navigation },
 	async fetch({ store, params }) {
 		if (params.storeSlug) {
-			await store.dispatch('feed/get', params.storeSlug);
+			await store.dispatch('store/get', params.storeSlug);
 		}
 	},
 	// async asyncData({ params }) {
@@ -88,8 +88,8 @@ export default {
 	},
 	computed: {
 		...mapState({
-			shelves: state => state.feed.shelves,
-			store: state => state.store,
+			shelves: state => state.store.shelves,
+			// slug: state => state.store,
 		}),
 	},
 	mounted() {

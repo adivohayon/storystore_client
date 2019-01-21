@@ -2,8 +2,14 @@ export default {
 	name: 'shelf-info',
 	components: {},
 	props: {
-		shelfInfo: {
-			type: Array,
+		description: {
+			type: String,
+		},
+		returns: {
+			type: String,
+		},
+		shipping: {
+			type: String,
 		},
 	},
 	data() {

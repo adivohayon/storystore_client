@@ -103,7 +103,9 @@
 	<transition name="shelf-overlay-bottom">
 		<shelf-info
 			v-if="showShelfInfo"
-			:shelf-info="shelf.shelfInfo"
+			:description="description"
+			:returns="returnsPolicy"
+			:shipping="shippingDetails"
 			v-on:close-info="showShelfInfo = false"
 		></shelf-info>
 	</transition>

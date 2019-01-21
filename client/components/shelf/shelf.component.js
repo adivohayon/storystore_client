@@ -1,3 +1,5 @@
+import { mapState } from 'vuex';
+
 import ShelfContent from './../shelf-content';
 import ColorPicker from './../color-picker';
 import SizePicker from './../size-picker';
@@ -31,7 +33,6 @@ export default {
 	data() {
 		return {
 			swiper: null,
-			selectedVariantIndex: 0,
 			selectedColor: null,
 			selectedSize: null,
 			showShelfInfo: false,
@@ -86,6 +87,14 @@ export default {
 		},
 		cartItemsCount() {
 			return this.$store.getters['cart/itemsCount'];
+		},
+		...mapState({
+			shippingDetails: state => state.store.shippingDetails,
+			returnsPolicy: state => state.store.returnsPolicy,
+			// slug: state => state.store,
+		}),
+		description() {
+			return this.shelf.description;
 		},
 	},
 	created() {
