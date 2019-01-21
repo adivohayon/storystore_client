@@ -1,0 +1,148 @@
+[
+	{
+		"shelfId": 1,
+		"name": "Talya Dress",
+		"price": "49.00",
+		"currency": "$",
+		"slug": "talya-dress",
+		"variations": [
+			{
+				"variationId": 1,
+				"sku": "ABCD",
+				"attributes": {
+					"color": {
+						"label": "שחור",
+						"value": "#000000"
+					},
+					"size": {
+						"label": "בינוני",
+						"value": "M"
+					}
+				},
+				"content": [
+					{
+						"type": "image",
+						"value": "assets/simplyfashion_dress_black_front.jpg"
+					},
+					{
+						"type": "image",
+						"value": "assets/simplyfashion_dress_black_back.jpg"
+					},
+					{
+						"type": "image",
+						"value": "assets/simplyfashion_dress_black_side.jpg"
+					},
+					{
+						"type": "image",
+						"value": "assets/simplyfashion_dress_black_closeup.jpg"
+					}
+				]
+			},
+			{
+				"variationId": 2,
+				"sku": "EFGH",
+				"attributes": {
+					"color": {
+						"label": "שחור",
+						"value": "#000000"
+					},
+					"size": {
+						"label": "גדול",
+						"value": "L"
+					}
+				},
+				"content": [
+					{
+						"type": "image",
+						"value": "assets/simplyfashion_dress_black_front.jpg"
+					},
+					{
+						"type": "image",
+						"value": "assets/simplyfashion_dress_black_back.jpg"
+					},
+					{
+						"type": "image",
+						"value": "assets/simplyfashion_dress_black_side.jpg"
+					},
+					{
+						"type": "image",
+						"value": "assets/simplyfashion_dress_black_closeup.jpg"
+					}
+				]
+			},
+			{
+				"variationId": 3,
+				"sku": "IJKL",
+				"attributes": {
+					"color": {
+						"label": "חרדל",
+						"value": "#B99557"
+					},
+					"size": {
+						"label": "בינוני",
+						"value": "M"
+					}
+				},
+				"content": [
+					{
+						"type": "image",
+						"value": "assets/simplyfashion_dress_mustard_front.jpg"
+					},
+					{
+						"type": "image",
+						"value": "assets/simplyfashion_dress_mustard_back.jpg"
+					},
+					{
+						"type": "image",
+						"value": "assets/simplyfashion_dress_mustard_side.jpg"
+					},
+					{
+						"type": "image",
+						"value": "assets/simplyfashion_dress_mustard_closeup.jpg"
+					}
+				]
+			}
+		]
+	},
+	{
+		"shelfId": 2,
+		"name": "Cool shirt",
+		"price": "29.00",
+		"currency": "$",
+		"slug": "cool-shirt",
+		"variations": [
+			{
+				"variationId": 4,
+				"sku": "MNOP",
+				"attributes": {
+					"color": {
+						"label": "חרדל",
+						"value": "#B99557"
+					},
+					"size": {
+						"label": "גדול",
+						"value": "L"
+					}
+				},
+				"content": [
+					{
+						"type": "image",
+						"value": "assets/simplyfashion_dress_mustard_front.jpg"
+					},
+					{
+						"type": "image",
+						"value": "assets/simplyfashion_dress_mustard_back.jpg"
+					},
+					{
+						"type": "image",
+						"value": "assets/simplyfashion_dress_mustard_side.jpg"
+					},
+					{
+						"type": "image",
+						"value": "assets/simplyfashion_dress_mustard_closeup.jpg"
+					}
+				]
+			}
+		]
+	}
+]

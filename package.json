@@ -20,6 +20,7 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.3.6",
     "cross-env": "^5.2.0",
+    "dotenv": "^6.2.0",
     "express": "^4.16.4",
     "googleapis": "^36.0.0",
     "mobile-detect": "^1.4.3",

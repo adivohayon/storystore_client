@@ -1,5 +1,9 @@
 const pkg = require('./package');
 const secrets = require('./server/secrets.json');
+
+if (process.env.NODE_ENV !== 'production') require('dotenv').config();
+
+const isProd = process.env.NODE_ENV === 'production';
 console.log('process.env.NODE_ENV ', process.env.NODE_ENV);
 module.exports = {
 	mode: 'universal',
@@ -71,9 +75,7 @@ module.exports = {
   */
 	env: {
 		staticDir:
-			process.env.NODE_ENV === 'development'
-				? '/'
-				: '//cdn.shop-together.io/',
+			process.env.NODE_ENV === 'development' ? '/' : '//cdn.shop-together.io/',
 	},
 
 	build: {

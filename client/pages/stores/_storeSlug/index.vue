@@ -38,28 +38,35 @@ import Shelf from '@/components/shelf';
 import Navigation from '@/components/navigation';
 import { getCategories, getShelves } from '@/services/api.service';
 import '@/icons';
+import { mapState } from 'vuex';
 
 export default {
 	components: { Feed, Shelf, Navigation },
-	async asyncData({ params }) {
-		try {
-			let shelves = [];
-			let categories = [];
-
-			if (params.storeName) {
-				shelves = await getShelves(null, null, params.storeName);
-			}
-
-			// const categories = await getCategories(0);
-
-			return {
-				categories,
-				shelves,
-			};
-		} catch (err) {
-			console.error(err);
+	async fetch({ store, params }) {
+		if (params.storeSlug) {
+			await store.dispatch('feed/get', params.storeSlug);
 		}
 	},
+	// async asyncData({ params }) {
+	// 	try {
+	// 		// let categories = [];
+	// 		// let shelves = [];
+
+	// 		// if (params.storeSlug) {
+	// 		// 	shelves = await getShelves(null, null, params.storeSlug);
+	// 		// }
+
+	// 		// // const categories = await getCategories(0);
+
+	// 		// return {
+	// 		// 	storeSlug: params.storeSlug,
+	// 		// 	categories,
+	// 		// 	shelves,
+	// 		// };
+	// 	} catch (err) {
+	// 		console.error(err);
+	// 	}
+	// },
 	data() {
 		return {
 			fixerClass: '',
@@ -78,6 +85,12 @@ export default {
 				},
 			},
 		};
+	},
+	computed: {
+		...mapState({
+			shelves: state => state.feed.shelves,
+			store: state => state.store,
+		}),
 	},
 	mounted() {
 		// this.$refs.fullpage.build();

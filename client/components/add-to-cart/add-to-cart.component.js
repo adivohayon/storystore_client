@@ -11,7 +11,7 @@ export default {
 			},
 		},
 		price: {
-			type: Number,
+			type: String,
 		},
 		currency: {
 			type: String,
@@ -33,9 +33,17 @@ export default {
 	data() {
 		return {};
 	},
-	computed: {},
+	computed: {
+		storeSlug() {
+			console.log('params', this.$route.params);
+			return this.$route.params.storeSlug || null;
+			// this.$route
+		},
+	},
 	created() {},
-	mounted() {},
+	mounted() {
+		console.log('params', this.$route.params);
+	},
 	methods: {
 		addToCart(sku) {
 			this.$store.commit('cart/add', {
@@ -47,6 +55,7 @@ export default {
 					colors: this.colors,
 					sizes: this.sizes,
 				},
+				storeSlug: this.storeSlug,
 			});
 			console.log('Add to cart', sku);
 		},

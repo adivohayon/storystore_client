@@ -37,6 +37,8 @@ export const getters = {
 		}, 0);
 	},
 	items(state) {
-		return state.added;
+		return state.added.filter(item => {
+			return item.storeSlug && item.storeSlug === storeSlug;
+		});
 	},
 };

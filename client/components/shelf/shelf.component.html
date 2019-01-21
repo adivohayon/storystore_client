@@ -15,13 +15,20 @@
 	>
 		<!-- Additional required wrapper -->
 		<div class="swiper-wrapper">
+			<!-- <div v-for="(content, contentIndex) in variant.content">
+				<img :src="content.value" alt="">
+			</div> -->
 			<!-- Slides -->
-			<shelf-content
-				v-if="variant.shelfContent.length"
-				v-for="(content, contentIndex) in variant.shelfContent"
+			<!-- <shelf-content
+				v-if="variant.content.length"
+				v-for="(content, contentIndex) in variant.content"
 				:key="contentIndex"
 				:content="content"
-			></shelf-content>
+			></shelf-content> -->
+
+		
+
+
 		</div>
 
 		<!-- If we need pagination -->

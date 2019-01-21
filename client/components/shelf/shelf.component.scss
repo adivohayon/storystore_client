@@ -30,6 +30,8 @@
 			// z-index: -1;
 			// overflow: unset;
 		}
+
+	
 	}
 
 	&-buttons {
@@ -126,5 +128,14 @@
 	.shelf-overlay-bottom-enter-to,
 	.shelf-overlay-bottom-leave {
 		height: 35rem;
+	}
+}
+
+
+.shelf-content {
+	background:red;
+	img {
+		width: 100%;
+		height: auto;
 	}
 }

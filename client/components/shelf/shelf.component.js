@@ -41,23 +41,30 @@ export default {
 	},
 	computed: {
 		variant() {
-			if (this.shelf.variations.length > 1) {
-				return this.shelf.variations.find(variant => {
+			if (this.shelf.variations.length) {
+				const variantIndex = this.shelf.variations.findIndex(variant => {
+					if (!variant.attributes) {
+						return false;
+					}
+
+					console.log('variant', variant.attributes);
+
 					return (
-						variant.size === this.selectedSize &&
-						variant.color.label === this.selectedColor.label
+						variant.attributes.size.value === this.selectedSize.value &&
+						variant.attributes.color.label === this.selectedColor.label
 					);
 				});
-			} else {
-				return this.shelf.variations[0];
+
+				console.log('variantIndex', variantIndex);
+				return this.shelf.variations[variantIndex > -1 ? variantIndex : 0];
 			}
 		},
 		colors() {
 			if (this.shelf.variations.length > 1) {
 				return removeDuplicates(
 					this.shelf.variations.map(variant => {
-						const color = { ...variant.color };
-						color.image = variant.shelfContent[0].value;
+						const color = { ...variant.attributes.color };
+						color.image = variant.content[0].value;
 						return color;
 					}),
 					'label'
@@ -68,7 +75,11 @@ export default {
 		},
 		sizes() {
 			if (this.shelf.variations.length > 1) {
-				return [...new Set(this.shelf.variations.map(variant => variant.size))];
+				return [
+					...new Set(
+						this.shelf.variations.map(variant => variant.attributes.size)
+					),
+				];
 			} else {
 				return [];
 			}
@@ -78,8 +89,8 @@ export default {
 		},
 	},
 	created() {
-		this.selectedColor = this.shelf.variations[0].color || null;
-		this.selectedSize = this.shelf.variations[0].size || null;
+		this.selectedColor = this.shelf.variations[0].attributes.color || null;
+		this.selectedSize = this.shelf.variations[0].attributes.size || null;
 	},
 	mounted() {
 		this.storeName = this.$route.params.storeName;
@@ -92,7 +103,7 @@ export default {
 				el: '.shelf-content__pagination',
 				clickable: true,
 				renderBullet: (index, className) => {
-					const shelfContentType = this.variant.shelfContent[index].type;
+					const shelfContentType = this.variant.content[index].type;
 					let bullet = '';
 
 					// if you want to add text under pagination uncomment below.
@@ -121,20 +132,66 @@ export default {
 				el: '.swiper-scrollbar',
 			},
 		});
+
+		this.updateSwiperSlides();
 		// const fullpageEl = document.getElementById('fullpage');
 		// fullpageEl.build();
 		// console.log('fullpage', fullpageEl);
 	},
 	methods: {
+		updateSwiperSlides() {
+			this.swiper.removeAllSlides();
+
+			let slides = [];
+			for (let content of this.variant.content) {
+				let slide;
+				if (content.type === 'image') {
+					slide = `
+						<div class="shelf-content swiper-slide">
+							<img src="${content.value}" />
+						</div>
+					`;
+				}
+
+				if (content.type === 'video') {
+					slide = `
+						<div class="shelf-content swiper-slide">
+							<img src="${content.value}" />
+						</div>
+					`;
+				}
+				// const slide = `
+				// 	<div class="shelf-content swiper-slide">
+				// 		<!-- Image -->
+				// 		<img v-if="content.type == 'image'" :src="content.value" />
+
+				// 		<!-- Video -->
+				// 		<video-player
+				// 			v-if="content.type == 'video'"
+				// 			:source="content.value"
+				// 		></video-player>
+				// 	</div>
+				// 	`;
+				if (slide) {
+					slides.push(slide);
+				}
+			}
+
+			console.log('slides', slides);
+			this.swiper.appendSlide(slides);
+			this.swiper.slideToLoop(0);
+		},
 		setSize(size) {
 			console.log('Shelf / setSize', size);
 			this.selectedSize = size;
+			// this.updateSwiperSlides();
 		},
 		async setColor(color) {
-			console.log('Shelf / setColor', color);
+			console.log('Shelf / setColor', color.label);
 			this.selectedColor = color;
-			await this.$nextTick();
-			this.swiper.update();
+			this.updateSwiperSlides();
+			// await this.$nextTick();
+			// this.swiper.update();
 		},
 	},
 };
