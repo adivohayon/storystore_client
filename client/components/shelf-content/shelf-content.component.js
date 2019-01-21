@@ -12,19 +12,7 @@ export default {
 	},
 	data() {
 		return {
-			playerOptions: {
-				// videojs options
-				muted: true,
-				language: 'en',
-				fluid: true,
-				sources: [
-					{
-						type: 'video/mp4',
-						src: '',
-					},
-				],
-			},
-		};
+		}
 	},
 	computed: {},
 	created() {},
