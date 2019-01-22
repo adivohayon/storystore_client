@@ -7,7 +7,12 @@
 		<!-- <no-ssr> -->
 		<!-- <feed> -->
 		<no-ssr>
-			<full-page v-if="shelves && shelves.length > 0" id="fullpage" ref="fullpage" :options="feedOptions">
+			<full-page
+				v-if="shelves && shelves.length > 0"
+				id="fullpage"
+				ref="fullpage"
+				:options="feedOptions"
+			>
 				<shelf
 					v-for="(shelf, shelfIndex) in shelves"
 					:key="shelfIndex"
@@ -72,7 +77,6 @@ export default {
 			fixerClass: '',
 			// shelves: [],
 			feedOptions: {
-				// dragAndMove: true,
 				sectionSelector: '.shelf',
 				// slideSelector: '.shelf-content',
 				licenseKey: '45154D42-6F8E4ACE-AB31A7B3-11A8CE75',
@@ -80,6 +84,8 @@ export default {
 				dragAndMove: true,
 				controlArrows: false,
 				slidesNavigation: true,
+				// normalScrollElement: null,
+				// normalScrollElements: '.normalScrollElement, #normalScrollElement',
 				afterRender: () => {
 					console.log('children', this.$refs.videoEl);
 				},
@@ -93,9 +99,18 @@ export default {
 		}),
 	},
 	mounted() {
+		// this.getNormalScrollElements();
 		// this.$refs.fullpage.build();
 		// const el = document.querySelector('#shelf-1');
 		// console.log('elll', el);
+	},
+	methods: {
+		// getNormalScrollElements() {
+		// 	this.normalScrollElement = document.getElementsByClassName(
+		// 		'normalScrollElement'
+		// 	);
+		// 	console.log('wiiii', this.normalScrollElement);
+		// },
 	},
 };
 </script>

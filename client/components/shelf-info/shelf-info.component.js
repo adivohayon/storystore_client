@@ -14,21 +14,20 @@ export default {
 	},
 	data() {
 		return {
-			// shelfInfo: [
-			// 	{
-			// 		tabLabel: 'תיאור',
-			// 		tabContent: 'תיאור תיאור תיאור',
-			// 	},
-			// 	{
-			// 		tabLabel: 'משלוחים',
-			// 		tabContent:
-			// 			'מהרגע שהזמנת-החבילה תצא אליך בתוך 1-2 ימי עסקים. במידה ולחצת על אופצייה של דואר רשום, לוקח בין יומיים לשבועיים להזמנה המהממת שלך להגיע! המשלוח ימתין לך בסניף הדואר הקרוב לביתך. בהזמנה שנכנס למעטפה רגילה, החבילה תישלח אלייך ישירות לבית! ',
-			// 	},
-			// 	{
-			// 		tabLabel: 'החזרות',
-			// 		tabContent: 'החזרות החזרות החזרות',
-			// 	},
-			// ],
+			shelfInfo: [
+				{
+					tabLabel: 'תיאור',
+					tabContent: this.description,
+				},
+				{
+					tabLabel: 'החזרות',
+					tabContent: this.returns,
+				},
+				{
+					tabLabel: 'משלוחים',
+					tabContent: this.shipping,
+				},
+			],
 			selectedTabIndex: 0,
 		};
 	},
