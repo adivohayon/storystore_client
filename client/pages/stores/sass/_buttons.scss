@@ -1,7 +1,7 @@
 .btn {
 	outline: none;
 	border: none;
-	
+
 	&--round {
 		border-radius: 50%;
 		height: 2.1rem;
@@ -20,4 +20,28 @@
 	transform: rotate(-45deg);
 	vertical-align: top;
 	width: 0.5rem;
+}
+.close {
+	width: 2rem;
+	height: 2rem;
+	position: relative;
+	border: none;
+	outline: none;
+	&:after {
+		content: '';
+		height: 25px;
+		border-left: 3px solid white;
+		position: absolute;
+		transform: rotate(45deg);
+		// left: 28px;
+	}
+
+	&:before {
+		content: '';
+		height: 25px;
+		border-left: 3px solid white;
+		position: absolute;
+		transform: rotate(-45deg);
+		// left: 28px;
+	}
 }

@@ -150,6 +150,15 @@
 	}
 	.shelf-overlay-bottom-enter-to,
 	.shelf-overlay-bottom-leave {
-		height: 35rem;
+		height: 80vh;
+	}
+}
+
+@media(max-height:600px) {
+	.shelf {
+		.shelf-overlay-bottom-enter-to,
+		.shelf-overlay-bottom-leave {
+			height: 99vh;
+		}
 	}
 }

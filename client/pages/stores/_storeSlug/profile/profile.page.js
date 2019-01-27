@@ -41,9 +41,5 @@ export default {
 		updateSelectedTabIndex(index) {
 			this.selectedTabIndex = index;
 		},
-		closeInfo() {
-			console.log('closeInfo');
-			this.$emit('close-info');
-		},
 	},
 };

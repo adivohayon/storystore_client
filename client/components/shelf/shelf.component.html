@@ -37,7 +37,7 @@
 					class="btn btn--round"
 					v-on:click="showShelfInfo = !showShelfInfo"
 				>
-					i
+				<icon name="info" :original="true" width="26" height="26"></icon>
 				</button>
 			</li>
 			<li>
@@ -54,7 +54,7 @@
 		<shelf-title
 			:price="shelf.price"
 			:currency="shelf.currency"
-			:title="shelf.productName"
+			:title="shelf.name"
 		></shelf-title>
 		<color-picker
 			v-if="colors.length"
