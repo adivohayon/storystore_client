@@ -1,6 +1,7 @@
 .video-player {
 	&__container {
 		position: relative;
+		z-index: 99999;
 	}
 	&__video {
 		width: 100%;
@@ -11,12 +12,16 @@
 		width: 100%;
 		height: 100%;
 		left: 0;
+		-webkit-transform: translate3d(0, 0, 0);
 
 		.btn--play {
 			position: absolute;
-			top: 50%;
+			top: 40%;
 			left: 50%;
 			transform: translate(-50%, -50%);
+			background: none;
+			border: none;
+			// -webkit-transform: translate3d(0, 0, 0);
 		}
 	}
 }

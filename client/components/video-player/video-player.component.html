@@ -1,10 +1,26 @@
 <div class="video-player">
 	<figure class="video-player__container" data-fullscreen="false">
-		<video class="video-player__video" muted="muted" autoplay data-autoplay preload="none" :src="source" loop ref="videoEl">
+		<video
+			class="video-player__video"
+			muted="muted"
+			autoplay
+			data-autoplay
+			preload="none"
+			:src="source"
+			loop
+			ref="videoEl"
+		>
 			<!-- <source type="video/mp4"> -->
 		</video>
-		<div  class="video-player__controls" data-state="hidden">
-			<button class="btn--play" @click="togglePlay" type="button" data-state="play">Play/Pause</button>
+		<div class="video-player__controls" data-state="hidden">
+			<button
+				class="btn--play"
+				@click="togglePlay"
+				type="button"
+				data-state="play"
+			>
+				<icon name="play" :original="true" width="50px" height="50px"></icon>
+			</button>
 			<!-- <div class="progress">
 				<progress id="progress" value="0" min="0">
 					<span id="progress-bar"></span>

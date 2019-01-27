@@ -45,7 +45,7 @@
 							"value": "assets/simplyfashion_dress_black_closeup.jpg"
 						},
 						{
-							"type": "image",
+							"type": "video",
 							"value": "assets/simplyfashion_dress_black_video.mp4"
 						},
 						{
@@ -85,7 +85,7 @@
 							"value": "assets/simplyfashion_dress_black_closeup.jpg"
 						},
 						{
-							"type": "image",
+							"type": "video",
 							"value": "assets/simplyfashion_dress_black_video.mp4"
 						},
 						{
@@ -110,6 +110,57 @@
 					"content": [
 						{
 							"type": "image",
+							"value": "assets/simplyfashion_dress_mustard_front.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/simplyfashion_dress_mustard_back.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/simplyfashion_dress_mustard_side.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/simplyfashion_dress_mustard_closeup.jpg"
+						},
+						{
+							"type": "video",
+							"value": "assets/simplyfashion_dress_mustard_video.mp4"
+						},
+						{
+							"type": "description",
+							"value": "שמלת מיני דקיקה בגזרה לוזית בשילוב קפוצ'ון אורך: 82 ס\"מ, היקף: 90 ס\"מ"
+						}
+					]
+				}
+			]
+		},
+		{
+			"shelfId": 1,
+			"name": "Talya Dress",
+			"price": "49.00",
+			"currency": "$",
+			"slug": "talya-dress",
+			"description": "שמלת פולו\n\t\t\t\tשמלת פולו מדוייקת לחורף של ישראל, מעוצבת בסגנון המחויט ששם אותך בדיוק  במראה האלגנטי\n\n\t\t\t\tשלא מתאמץ. תוספות הצווארון, השרוול והתחתית מעניקים מראה מתוחכם ומעניין שיכול להתאים\n\t\t\t\t\n\t\t\t\tלכל זמן ולכל יציאה. עם סניקרס למראה סטרייט סטייל מגניב או ליציאה עם עקב למראה אצילי.\n\t\t\t\t\n\t\t\t\tהשמלה תפורה מבד סריג וופל נעים ורך מאוד.\n\t\t\t\t\n\t\t\t\tקיימת בצבע כחול ובורדו.\n\t\t",
+			"sale": "{\"saleText\":\"מבצע קני היום 1+1 !\",\"saleComment\":\"ההנחה תתעדכן בסל הקניות\"}",
+			"variations": [
+				{
+					"variationId": 1,
+					"sku": "ABCD",
+					"attributes": {
+						"color": {
+							"label": "שחור",
+							"value": "#000000"
+						},
+						"size": {
+							"label": "בינוני",
+							"value": "M"
+						}
+					},
+					"content": [
+						{
+							"type": "image",
 							"value": "assets/simplyfashion_dress_black_front.jpg"
 						},
 						{
@@ -125,7 +176,7 @@
 							"value": "assets/simplyfashion_dress_black_closeup.jpg"
 						},
 						{
-							"type": "image",
+							"type": "video",
 							"value": "assets/simplyfashion_dress_black_video.mp4"
 						},
 						{
@@ -133,25 +184,14 @@
 							"value": "שמלת מיני דקיקה בגזרה לוזית בשילוב קפוצ'ון אורך: 82 ס\"מ, היקף: 90 ס\"מ"
 						}
 					]
-				}
-			]
-		},
-		{
-			"shelfId": 2,
-			"name": "Cool shirt",
-			"price": "29.00",
-			"currency": "$",
-			"slug": "cool-shirt",
-			"description": null,
-			"sale": null,
-			"variations": [
+				},
 				{
-					"variationId": 4,
-					"sku": "MNOP",
+					"variationId": 2,
+					"sku": "EFGH",
 					"attributes": {
 						"color": {
-							"label": "חרדל",
-							"value": "#B99557"
+							"label": "שחור",
+							"value": "#000000"
 						},
 						"size": {
 							"label": "גדול",
@@ -176,8 +216,179 @@
 							"value": "assets/simplyfashion_dress_black_closeup.jpg"
 						},
 						{
-							"type": "image",
+							"type": "video",
 							"value": "assets/simplyfashion_dress_black_video.mp4"
+						},
+						{
+							"type": "description",
+							"value": "שמלת מיני דקיקה בגזרה לוזית בשילוב קפוצ'ון אורך: 82 ס\"מ, היקף: 90 ס\"מ"
+						}
+					]
+				},
+				{
+					"variationId": 3,
+					"sku": "IJKL",
+					"attributes": {
+						"color": {
+							"label": "חרדל",
+							"value": "#B99557"
+						},
+						"size": {
+							"label": "בינוני",
+							"value": "M"
+						}
+					},
+					"content": [
+						{
+							"type": "image",
+							"value": "assets/simplyfashion_dress_mustard_front.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/simplyfashion_dress_mustard_back.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/simplyfashion_dress_mustard_side.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/simplyfashion_dress_mustard_closeup.jpg"
+						},
+						{
+							"type": "video",
+							"value": "assets/simplyfashion_dress_mustard_video.mp4"
+						},
+						{
+							"type": "description",
+							"value": "שמלת מיני דקיקה בגזרה לוזית בשילוב קפוצ'ון אורך: 82 ס\"מ, היקף: 90 ס\"מ"
+						}
+					]
+				}
+			]
+		},
+		{
+			"shelfId": 1,
+			"name": "Talya Dress",
+			"price": "49.00",
+			"currency": "$",
+			"slug": "talya-dress",
+			"description": "שמלת פולו\n\t\t\t\tשמלת פולו מדוייקת לחורף של ישראל, מעוצבת בסגנון המחויט ששם אותך בדיוק  במראה האלגנטי\n\n\t\t\t\tשלא מתאמץ. תוספות הצווארון, השרוול והתחתית מעניקים מראה מתוחכם ומעניין שיכול להתאים\n\t\t\t\t\n\t\t\t\tלכל זמן ולכל יציאה. עם סניקרס למראה סטרייט סטייל מגניב או ליציאה עם עקב למראה אצילי.\n\t\t\t\t\n\t\t\t\tהשמלה תפורה מבד סריג וופל נעים ורך מאוד.\n\t\t\t\t\n\t\t\t\tקיימת בצבע כחול ובורדו.\n\t\t",
+			"sale": "{\"saleText\":\"מבצע קני היום 1+1 !\",\"saleComment\":\"ההנחה תתעדכן בסל הקניות\"}",
+			"variations": [
+				{
+					"variationId": 1,
+					"sku": "ABCD",
+					"attributes": {
+						"color": {
+							"label": "שחור",
+							"value": "#000000"
+						},
+						"size": {
+							"label": "בינוני",
+							"value": "M"
+						}
+					},
+					"content": [
+						{
+							"type": "image",
+							"value": "assets/simplyfashion_dress_black_front.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/simplyfashion_dress_black_back.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/simplyfashion_dress_black_side.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/simplyfashion_dress_black_closeup.jpg"
+						},
+						{
+							"type": "video",
+							"value": "assets/simplyfashion_dress_black_video.mp4"
+						},
+						{
+							"type": "description",
+							"value": "שמלת מיני דקיקה בגזרה לוזית בשילוב קפוצ'ון אורך: 82 ס\"מ, היקף: 90 ס\"מ"
+						}
+					]
+				},
+				{
+					"variationId": 2,
+					"sku": "EFGH",
+					"attributes": {
+						"color": {
+							"label": "שחור",
+							"value": "#000000"
+						},
+						"size": {
+							"label": "גדול",
+							"value": "L"
+						}
+					},
+					"content": [
+						{
+							"type": "image",
+							"value": "assets/simplyfashion_dress_black_front.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/simplyfashion_dress_black_back.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/simplyfashion_dress_black_side.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/simplyfashion_dress_black_closeup.jpg"
+						},
+						{
+							"type": "video",
+							"value": "assets/simplyfashion_dress_black_video.mp4"
+						},
+						{
+							"type": "description",
+							"value": "שמלת מיני דקיקה בגזרה לוזית בשילוב קפוצ'ון אורך: 82 ס\"מ, היקף: 90 ס\"מ"
+						}
+					]
+				},
+				{
+					"variationId": 3,
+					"sku": "IJKL",
+					"attributes": {
+						"color": {
+							"label": "חרדל",
+							"value": "#B99557"
+						},
+						"size": {
+							"label": "בינוני",
+							"value": "M"
+						}
+					},
+					"content": [
+						{
+							"type": "image",
+							"value": "assets/simplyfashion_dress_mustard_front.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/simplyfashion_dress_mustard_back.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/simplyfashion_dress_mustard_side.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/simplyfashion_dress_mustard_closeup.jpg"
+						},
+						{
+							"type": "video",
+							"value": "assets/simplyfashion_dress_mustard_video.mp4"
 						},
 						{
 							"type": "description",
