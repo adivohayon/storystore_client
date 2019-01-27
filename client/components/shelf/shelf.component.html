@@ -11,7 +11,7 @@
 				:id="`video-${shelfIndex}`"
 			></video>
 		</div> -->
-		<div class="slide" :style="{position: 'relative'}">
+		<div v-if="variantVideo" class="slide" :style="{position: 'relative'}">
 			<video-player :source="variantVideo.value"></video-player>
 		</div>
 		<div
@@ -37,7 +37,7 @@
 					class="btn btn--round"
 					v-on:click="showShelfInfo = !showShelfInfo"
 				>
-				<icon name="info" :original="true" width="26" height="26"></icon>
+					<icon name="info" :original="true" width="26" height="26"></icon>
 				</button>
 			</li>
 			<li>
