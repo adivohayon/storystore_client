@@ -2,4 +2,5 @@
 import './back'
 import './cart'
 import './checkmark'
+import './info'
 import './play'
