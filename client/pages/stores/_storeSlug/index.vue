@@ -1,5 +1,6 @@
 <template>
 	<div id="page" :class="fixerClass">
+
 		<!-- <nav class="fixed-top">
 			<header class="top-header">storystore</header>
 			<navigation :categories="categories"></navigation>
@@ -89,7 +90,7 @@ export default {
 				controlArrows: false,
 				slidesNavigation: true,
 				afterRender: () => {
-					console.log('children', this.$refs.videoEl);
+					// console.log('children', this.$refs.videoEl);
 				},
 			},
 		};

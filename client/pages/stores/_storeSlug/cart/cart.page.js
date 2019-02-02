@@ -4,16 +4,11 @@ export default {
 	components: { CartItem },
 	async asyncData({ params }) {},
 	data() {
-		return {
-			storeName: null,
-		};
+		return {};
 	},
-	mounted() {
-		this.storeName = this.$route.params.storeName;
-	},
+	mounted() {},
 	computed: {
 		storeSlug() {
-			console.log('params', this.$route.params);
 			return this.$route.params.storeSlug || null;
 			// this.$route
 		},
@@ -21,10 +16,10 @@ export default {
 			return this.$store.getters['cart/items'](this.storeSlug);
 		},
 		subtotal() {
-			return this.$store.getters['cart/subtotal'].toFixed(2);
+			return this.$store.getters['cart/subtotal'](this.storeSlug);
 		},
 		itemsCount() {
-			return this.$store.getters['cart/itemsCount'];
+			return this.$store.getters['cart/itemsCount'](this.storeSlug);
 		},
 	},
 	methods: {},

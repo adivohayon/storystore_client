@@ -1,9 +1,10 @@
 import VuexPersistence from 'vuex-persist';
 
-// export default ({ store }) => {
-// 	window.onNuxtReady(() => {
-// 		new VuexPersistence({
-// 			/* your options */
-// 		}).plugin(store);
-// 	});
-// };
+export default ({ store }) => {
+	window.onNuxtReady(() => {
+		new VuexPersistence({
+			modules: ['cart'],
+			/* your options */
+		}).plugin(store);
+	});
+};

@@ -1,49 +1,45 @@
-<div v-if="item" class="cart-item" v-touch:swipe.right="swipeHandlerRight" v-touch:swipe.left="swipeHandlerLeft">
+<div
+	v-if="item"
+	class="cart-item"
+	v-touch:swipe.right="swipeHandlerRight"
+	v-touch:swipe.left="swipeHandlerLeft"
+>
 	<div class="cart-item__product">
 		<div class="cart-item__product--details">
 			<div
 				class="cart-item__product--details--image"
-				:style="{backgroundImage: `url(${itemImage}`}"
+				:style="{backgroundImage: `url(${item.image}`}"
 			></div>
 			<div class="cart-item__product--details--details">
 				<div class="cart-item__product--details--details--price">
 					{{ item.price }} {{ item.currency }}
 				</div>
-				<div class="cart-item__product--details--details--title">שמלת טליה</div>
+				<div class="cart-item__product--details--details--title">
+					{{ item.name }}
+				</div>
 			</div>
 		</div>
 		<div class="cart-item__product--details--pickers">
-			<select class="cart-item__product--details--pickers--picker">
-				<option v-for="size in item.variations.sizes">מידה: {{size}}</option>
-				<!-- <option>מידה: S</option> -->
+			<select class="cart-item__product--details--pickers--picker" v-model="item.attributes.size">
+				<option
+					v-for="(size, sizeIndex) in item.sizes"
+					:key="sizeIndex"
+					:value="size"
+				>
+					<span v-if="sizeIndex === 0"></span> {{ size.label }}</option
+				>
 			</select>
 			<select class="cart-item__product--details--pickers--picker">
-					<!-- <option v-for="size in item.variations.sizes">מידה: {{size}}</option> -->
-					<option>כמות: {{item.quantity}}</option>
-				</select>
-			<!-- <div class="cart-item__product--details--pickers__picker">
-				<div class="cart-item__product--details--pickers__picker--title">
-					מידה:
-				</div>
-				<div
-					class="cart-item__product--details--pickers__picker--box picker-button"
-				>
-					{{ item.size }}
-				</div>
-			</div>
-			<div class="cart-item__product--details--pickers__picker">
-				<div class="cart-item__product--details--pickers__picker--title">
-					כמות:
-				</div>
-				<div
-					class="cart-item__product--details--pickers__picker--box picker-button"
-				>
-					{{ item.quantity }}
-				</div>
-			</div> -->
+				<!-- <option v-for="size in item.variations.sizes">מידה: {{size}}</option> -->
+				<option>כמות: {{ item.quantity }}</option>
+			</select>
 		</div>
 	</div>
-	<div @click="removeItem" :id="`remove_${itemIndex}`" class="cart-item__delete">
+	<div
+		@click="removeItem"
+		:id="`remove_${itemIndex}`"
+		class="cart-item__delete"
+	>
 		<div class="cart-item__delete--text">X</div>
 		<div class="cart-item__delete--text">הסר</div>
 	</div>

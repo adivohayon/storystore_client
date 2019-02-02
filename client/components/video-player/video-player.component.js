@@ -13,13 +13,12 @@ export default {
 	computed: {},
 	created() {},
 	mounted() {
-		console.log('navigator', navigator);
+		// console.log('navigator', navigator);
 		// this.video = this.$refs.videoEl;
 		// this.video.play();
 		// this.video.src = this.source;
 		// this.video.load();
 		// const playPromise = this.video.play();
-
 		// if (playPromise !== undefined) {
 		// 	playPromise
 		// 		.then(_ => {

@@ -1,4 +1,6 @@
 const useMockData = process.env.USE_MOCK_DATA;
+import { removeDuplicates } from '@/helpers/collection.helpers';
+import _get from 'lodash/get';
 import Vue from 'vue';
 export const state = () => ({
 	shelves: [],
@@ -19,6 +21,30 @@ export const mutations = {
 		state.shippingDetails = store.shippingDetails;
 		state.returnsPolicy = store.returnsPolicy;
 	},
+};
+
+export const getters = {
+	shelfAttributes: () => (variations, attribute) => {
+		const atts = variations.map(variant => {
+			return _get(variant, ['attributes', attribute]);
+		});
+
+		return atts.length ? removeDuplicates(atts, 'value') : [];
+	},
+
+	// shelfSizes: () => variations => {
+	// 	const sizes = variations.map(variant => {
+	// 		if (variant.attributes.size) {
+	// 			return variant.attributes.size;
+	// 		}
+	// 	});
+
+	// 	return sizes.length ? removeDuplicates(sizes, 'value') : [];
+	// },
+
+	// shelfColors: () => variations => {
+
+	// }
 };
 
 export const actions = {
