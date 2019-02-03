@@ -133,11 +133,51 @@
 							"value": "שמלת מיני דקיקה בגזרה לוזית בשילוב קפוצ'ון אורך: 82 ס\"מ, היקף: 90 ס\"מ"
 						}
 					]
+				},
+				{
+					"variationId": 3,
+					"sku": "mnop",
+					"attributes": {
+						"color": {
+							"label": "חרדל",
+							"value": "#B99557"
+						},
+						"size": {
+							"label": "גדול",
+							"value": "L"
+						}
+					},
+					"content": [
+						{
+							"type": "image",
+							"value": "assets/simplyfashion_dress_mustard_front.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/simplyfashion_dress_mustard_back.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/simplyfashion_dress_mustard_side.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/simplyfashion_dress_mustard_closeup.jpg"
+						},
+						{
+							"type": "video",
+							"value": "assets/simplyfashion_dress_mustard_video.mp4"
+						},
+						{
+							"type": "description",
+							"value": "שמלת מיני דקיקה בגזרה לוזית בשילוב קפוצ'ון אורך: 82 ס\"מ, היקף: 90 ס\"מ"
+						}
+					]
 				}
 			]
 		},
 		{
-			"shelfId": 1,
+			"shelfId": 2,
 			"name": "Talya Dress",
 			"price": "49.00",
 			"currency": "$",
@@ -146,8 +186,8 @@
 			"sale": "{\"saleText\":\"מבצע קני היום 1+1 !\",\"saleComment\":\"ההנחה תתעדכן בסל הקניות\"}",
 			"variations": [
 				{
-					"variationId": 1,
-					"sku": "ABCD",
+					"variationId": 4,
+					"sku": "LMNO",
 					"attributes": {
 						"color": {
 							"label": "שחור",
@@ -186,8 +226,8 @@
 					]
 				},
 				{
-					"variationId": 2,
-					"sku": "EFGH",
+					"variationId": 5,
+					"sku": "PQRS",
 					"attributes": {
 						"color": {
 							"label": "שחור",
@@ -226,8 +266,8 @@
 					]
 				},
 				{
-					"variationId": 3,
-					"sku": "IJKL",
+					"variationId": 6,
+					"sku": "TUVW",
 					"attributes": {
 						"color": {
 							"label": "חרדל",
@@ -268,7 +308,7 @@
 			]
 		},
 		{
-			"shelfId": 1,
+			"shelfId": 3,
 			"name": "Talya Dress",
 			"price": "49.00",
 			"currency": "$",
@@ -277,8 +317,8 @@
 			"sale": "{\"saleText\":\"מבצע קני היום 1+1 !\",\"saleComment\":\"ההנחה תתעדכן בסל הקניות\"}",
 			"variations": [
 				{
-					"variationId": 1,
-					"sku": "ABCD",
+					"variationId": 7,
+					"sku": "XYZA",
 					"attributes": {
 						"color": {
 							"label": "שחור",
@@ -317,8 +357,8 @@
 					]
 				},
 				{
-					"variationId": 2,
-					"sku": "EFGH",
+					"variationId": 8,
+					"sku": "BCDE",
 					"attributes": {
 						"color": {
 							"label": "שחור",
@@ -357,8 +397,8 @@
 					]
 				},
 				{
-					"variationId": 3,
-					"sku": "IJKL",
+					"variationId": 9,
+					"sku": "FGHI",
 					"attributes": {
 						"color": {
 							"label": "חרדל",

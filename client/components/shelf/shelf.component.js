@@ -9,7 +9,6 @@ import ShelfInfo from './../shelf-info';
 import ShelfSale from './../shelf-sale';
 import VideoPlayer from './../video-player';
 import { removeDuplicates } from '@/helpers/collection.helpers';
-import { Z_FILTERED } from 'zlib';
 export default {
 	name: 'shelf',
 	components: {
@@ -51,25 +50,15 @@ export default {
 						return false;
 					}
 
-					console.log('variant', variant.attributes);
+					// console.log('variant', variant.attributes);
 
 					return (
 						variant.attributes.size.value === this.selectedSize.value &&
-						variant.attributes.color.label === this.selectedColor.label
+						variant.attributes.color.value === this.selectedColor.value
 					);
 				});
 
 				console.log('variantIndex', variantIndex);
-				// if (variantIndex) {
-				// 	// console.log('%%%', typeof variantIndex);
-				// 	console.log(
-				// 		'$$$ Selected Variant',
-				// 		this.shelf.variations[variantIndex]
-				// 	);
-				// 	return this.shelf.variations[variantIndex];
-				// } else {
-				// 	return this.shelf.variations[0];
-				// }
 				return this.shelf.variations[variantIndex > -1 ? variantIndex : 0];
 			}
 		},
@@ -82,39 +71,26 @@ export default {
 			const videoArray = this.variant.content.filter(video => {
 				return video.type === 'video';
 			});
-			console.log('videoArray', videoArray);
+			// console.log('videoArray', videoArray);
 			return videoArray[0];
 			// const a = videoArray[0];
 			// console.log('a', a);
 			// return a;
 		},
 		colors() {
-			if (this.shelf.variations.length > 1) {
-				return removeDuplicates(
-					this.shelf.variations.map(variant => {
-						const color = { ...variant.attributes.color };
-						color.image = variant.content[0].value;
-						return color;
-					}),
-					'label'
-				);
-			} else {
-				return [];
-			}
+			return this.$store.getters['store/shelfAttributes'](
+				this.shelf.variations,
+				'color'
+			);
 		},
 		sizes() {
-			if (this.shelf.variations.length > 1) {
-				return [
-					...new Set(
-						this.shelf.variations.map(variant => variant.attributes.size)
-					),
-				];
-			} else {
-				return [];
-			}
+			return this.$store.getters['store/shelfAttributes'](
+				this.shelf.variations,
+				'size'
+			);
 		},
 		cartItemsCount() {
-			return this.$store.getters['cart/itemsCount'];
+			return this.$store.getters['cart/itemsCount'](this.storeSlug);
 		},
 		...mapState({
 			shippingDetails: state => state.store.shippingDetails,
@@ -123,6 +99,9 @@ export default {
 		}),
 		description() {
 			return this.shelf.description;
+		},
+		storeSlug() {
+			return this.$route.params.storeSlug || null;
 		},
 	},
 	// watch: {

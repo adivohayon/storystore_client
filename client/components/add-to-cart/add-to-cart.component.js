@@ -1,32 +1,18 @@
-import { throws } from 'assert';
-
+import { removeDuplicates } from '@/helpers/collection.helpers';
 export default {
 	name: 'add-to-cart',
 	components: {},
 	props: {
-		sku: {
+		shelf: {
 			type: Object,
 			default() {
 				return {};
 			},
 		},
-		price: {
-			type: String,
-		},
-		currency: {
-			type: String,
-			default: '‎₪',
-		},
-		colors: {
-			type: Array,
+		variant: {
+			type: Object,
 			default() {
-				return [];
-			},
-		},
-		sizes: {
-			type: Array,
-			default() {
-				return [];
+				return {};
 			},
 		},
 	},
@@ -35,29 +21,41 @@ export default {
 	},
 	computed: {
 		storeSlug() {
-			console.log('params', this.$route.params);
+			// console.log('params', this.$route.params);
 			return this.$route.params.storeSlug || null;
 			// this.$route
 		},
 	},
 	created() {},
 	mounted() {
-		console.log('params', this.$route.params);
+		// console.log('params', this.$route.params);
 	},
 	methods: {
-		addToCart(sku) {
-			this.$store.commit('cart/add', {
-				...sku,
+		async addToCart(shelf) {
+			const sizes = shelf.variations.map(variant => {
+				if (variant.attributes.size) {
+					return variant.attributes.size;
+				}
+			});
+
+			const image = this.variant.content[0].value;
+
+			const item = {
+				...shelf,
+				...this.variant,
 				quantity: 1,
-				price: this.price,
-				currency: this.currency,
-				variations: {
-					colors: this.colors,
-					sizes: this.sizes,
-				},
+				image,
+				sizes: removeDuplicates(sizes, 'value'),
+			};
+			delete item.content;
+			delete item.variations;
+
+			console.log('ADD TO CART', item);
+
+			await this.$store.dispatch('cart/add', {
+				item,
 				storeSlug: this.storeSlug,
 			});
-			console.log('Add to cart', sku);
 		},
 	},
 };

@@ -59,7 +59,7 @@
 			"variations": [
 				{
 					"variationId": 1,
-					"sku": "ABCD",
+					"sku": "EFGH",
 					"attributes": {
 						"color": {
 							"label": "אפור",
@@ -98,7 +98,7 @@
 			"variations": [
 				{
 					"variationId": 1,
-					"sku": "ABCD",
+					"sku": "IJKL",
 					"attributes": {
 						"color": {
 							"label": "אפור",
