@@ -94,6 +94,7 @@
 		z-index: 30;
 		width: 100%;
 		opacity: 0.99;
+		font-size: 1.3rem;
 	}
 
 	&-scrims {
@@ -154,7 +155,7 @@
 	}
 }
 
-@media(max-height:600px) {
+@media (max-height: 600px) {
 	.shelf {
 		.shelf-overlay-bottom-enter-to,
 		.shelf-overlay-bottom-leave {

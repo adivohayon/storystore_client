@@ -1,0 +1,228 @@
+{
+	"storeId": 4,
+	"name": "MissGeisha",
+	"slug": "missgeisha",
+	"shippingDetails": "קימות אופציות לבחירה שליח עד הבית עד ארבעה ימי עסקים. אזור גוש דן ראשון לציון בדרום הרצליה בצפון סך של 35 ₪. בין עירוני וכל שאר הארץ סך של 46 ₪",
+	"returnsPolicy": "את/ה מעוניין/נת להחליף או להחזיר פריט שרכשת? החזרת הפריט מוטלת על הלקוחה ועליה לגשת לדואר ישראל ולשלוח את הפריט בדואר רשום לכתובת דיזנגוף 92 תל אביב מיקוד 6433264. למען הסר ספק, בעלת האתר לא תישא בעלות המשלוח. החלפה ו/או החזרה של פריט תתאפשר עד 14 ימים מיום קבלת הפריט, בכפוף לכך שתווית הבגד חייבת להיות עליו בשלמותה והפריט באריזתו המקורית שלם ו/או ללא פגע ו/או נזק ו/או קלקול מכל סוג שהוא, והכל בצרוף חשבונית העסקה. באריזת הפריט נמצאות הוראות על מנת לשלוח את הפריט בחזרה לאתר. עם קבלת הפריט אנו ניצור קשר באמצעות הדואר האלקטרוני על מנת לאשר ולקבל הנחיות לביצוע החזרה ו/או החלפה. החלפה תתאפשר רק במקרה שברצונך באותו פריט רק בצבע או מידה שונים. מדיניות ביטול העסקה הנ\"ל תחול על פריטים שנרכשו באמצעות האתר בלבד.",
+	"shelves": [
+		{
+			"shelfId": 1,
+			"name": "ווסט פרווה one size",
+			"price": "750.00",
+			"currency": "₪",
+			"slug": "fear-vest",
+			"description": "ווסט פרווה one size",
+			"sale": "{\"saleText\":\"מבצע קני היום 1+1 !\",\"saleComment\":\"ההנחה תתעדכן בסל הקניות\"}",
+			"variations": [
+				{
+					"variationId": 1,
+					"sku": "ABCD",
+					"attributes": {
+						"color": {
+							"label": "כחול",
+							"value": "#E6F5FF"
+						},
+						"size": {
+							"label": "OS",
+							"value": "OS"
+						}
+					},
+					"content": [
+						{
+							"type": "image",
+							"value": "assets/missgeisha-vest-1.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/missgeisha-vest-2.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/missgeisha-vest-3.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/missgeisha-vest-4.jpg"
+						}
+					]
+				}
+			]
+		},
+		{
+			"shelfId": 2,
+			"name": "מעיל בלשים",
+			"price": "1600",
+			"currency": "₪",
+			"slug": "detetctive-coat",
+			"description": "מעיל בלשים",
+			"sale": "{\"saleText\":\"מבצע קני היום 1+1 !\",\"saleComment\":\"ההנחה תתעדכן בסל הקניות\"}",
+			"variations": [
+				{
+					"variationId": 1,
+					"sku": "ABCD",
+					"attributes": {
+						"color": {
+							"label": "כחול",
+							"value": "#E6F5FF"
+						},
+						"size": {
+							"label": "OS",
+							"value": "OS"
+						}
+					},
+					"content": [
+						{
+							"type": "image",
+							"value": "assets/missgeisha-coat-1.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/missgeisha-coat-2.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/missgeisha-coat-3.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/missgeisha-coat-4.jpg"
+						}
+					]
+				}
+			]
+		},
+		{
+			"shelfId": 3,
+			"name": "שמלת הגר באביב שחורה",
+			"price": "790",
+			"currency": "₪",
+			"slug": "hagar-dress",
+			"description": "שמלת הגר באביב שחורה",
+			"sale": "{\"saleText\":\"מבצע קני היום 1+1 !\",\"saleComment\":\"ההנחה תתעדכן בסל הקניות\"}",
+			"variations": [
+				{
+					"variationId": 1,
+					"sku": "ABCD",
+					"attributes": {
+						"color": {
+							"label": "כחול",
+							"value": "#E6F5FF"
+						},
+						"size": {
+							"label": "OS",
+							"value": "OS"
+						}
+					},
+					"content": [
+						{
+							"type": "image",
+							"value": "assets/missgeisha-dress-1.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/missgeisha-dress-2.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/missgeisha-dress-3.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/missgeisha-dress-4.jpg"
+						}
+					]
+				}
+			]
+		},
+		{
+			"shelfId": 4,
+			"name": "חצאית קים פרנסיס שסע פרחוני",
+			"price": "550",
+			"currency": "₪",
+			"slug": "kim-skirt",
+			"description": "חצאית קים פרנסיס שסע פרחוני",
+			"sale": "{\"saleText\":\"מבצע קני היום 1+1 !\",\"saleComment\":\"ההנחה תתעדכן בסל הקניות\"}",
+			"variations": [
+				{
+					"variationId": 1,
+					"sku": "ABCD",
+					"attributes": {
+						"color": {
+							"label": "כחול",
+							"value": "#E6F5FF"
+						},
+						"size": {
+							"label": "OS",
+							"value": "OS"
+						}
+					},
+					"content": [
+						{
+							"type": "image",
+							"value": "assets/missgeisha-skirt-1.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/missgeisha-skirt-2.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/missgeisha-skirt-3.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/missgeisha-skirt-4.jpg"
+						}
+					]
+				}
+			]
+		},
+		{
+			"shelfId": 5,
+			"name": "אוברול פיקאסו",
+			"price": "299.00",
+			"currency": "₪",
+			"slug": "overall-picasso",
+			"description": "אוברול פיקאסו",
+			"sale": "{\"saleText\":\"מבצע קני היום 1+1 !\",\"saleComment\":\"ההנחה תתעדכן בסל הקניות\"}",
+			"variations": [
+				{
+					"variationId": 1,
+					"sku": "ABCD",
+					"attributes": {
+						"color": {
+							"label": "כחול",
+							"value": "#E6F5FF"
+						},
+						"size": {
+							"label": "OS",
+							"value": "OS"
+						}
+					},
+					"content": [
+						{
+							"type": "image",
+							"value": "assets/missgeisha-overall-1.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/missgeisha-overall-2.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/missgeisha-overall-3.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/missgeisha-overall-4.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/missgeisha-overall-5.jpg"
+						}
+					]
+				}
+			]
+		}
+	]
+}
