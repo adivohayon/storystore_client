@@ -4,16 +4,28 @@ export default {
 	data() {
 		return {
 			storeName: null,
+			checkoutForm: {
+				firstName: null,
+				lastName: null,
+				phone: null,
+				email: null,
+				city: null,
+				street: null,
+				houseNumber: null,
+				apptNumber: null,
+				floor: null,
+				zipCode: null,
+			},
 		};
 	},
 	mounted() {
-		this.storeName = this.$route.params.storeName;
+		this.storeName = this.$route.params.storeSlug;
 	},
 	computed: {
-		storeSlug() {
-			console.log('params', this.$route.params);
-			return this.$route.params.storeSlug || null;
-		},
+		// storeSlug() {
+		// 	console.log('params**', this.$route.params);
+		// 	return this.$route.params.storeSlug || null;
+		// },
 		// items() {
 		// 	return this.$store.getters['cart/items'](this.storeSlug);
 		// },

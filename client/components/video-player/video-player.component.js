@@ -10,7 +10,11 @@ export default {
 	data() {
 		return {};
 	},
-	computed: {},
+	computed: {
+		ios() {
+			return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+		},
+	},
 	created() {},
 	mounted() {
 		// console.log('navigator', navigator);

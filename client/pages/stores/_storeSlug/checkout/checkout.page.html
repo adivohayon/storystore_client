@@ -9,4 +9,48 @@
 		<div>הסל שלי</div>
 		<nuxt-link :to="`/stores/${storeName}/cart`"> לצפייה </nuxt-link>
 	</div>
+	<div class="checkout-page__form">
+		<div>פרטי קשר</div>
+		<input v-model="checkoutForm.firstName" placeholder="שם פרטי" />
+		<input v-model="checkoutForm.lastName" placeholder="שם משפחה" />
+		<input v-model="checkoutForm.phone" placeholder="טלפון" />
+		<input v-model="checkoutForm.email" placeholder="מייל" />
+		<div>פרטי משלוח</div>
+		<input v-model="checkoutForm.city" placeholder="עיר" />
+		<input v-model="checkoutForm.street" placeholder="רחוב" />
+		<input v-model="checkoutForm.houseNumber" placeholder="מספר בית" />
+		<input v-model="checkoutForm.apptNumber" placeholder="מספר דירה" />
+		<input v-model="checkoutForm.floor" placeholder="קומה" />
+		<input v-model="checkoutForm.zipCode" placeholder="מיקוד" />
+		<div>אפשרויות משלוח</div>
+		{{ checkoutForm.deliveryMethod }}
+		<input
+			type="radio"
+			id="israel-postoffice"
+			value="דואר ישראל"
+			v-model="checkoutForm.deliveryMethod"
+		/>
+		<label for="israel-postoffice">דואר ישראל</label>
+		<input
+			type="radio"
+			id="curier-service"
+			value="שליח עד אליך"
+			v-model="checkoutForm.deliveryMethod"
+		/>
+		<label for="israel-postoffice">שליח עד אליך</label>
+	</div>
+	<ul class="checkout-page__total">
+		<li>
+			<div>סה״כ ביניים</div>
+			<div>293</div>
+		</li>
+		<li>
+			<div>משלוח</div>
+			<div>8</div>
+		</li>
+		<li>
+			<div>סה״כ</div>
+			<div>301</div>
+		</li>
+	</ul>
 </div>
