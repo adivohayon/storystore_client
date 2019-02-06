@@ -30,11 +30,11 @@ import { mapState } from 'vuex';
 export default {
 	components: { Feed, Shelf, Navigation },
 
-	async fetch({ store, params }) {
-		if (params.storeSlug) {
-			await store.dispatch('store/get', params.storeSlug);
-		}
-	},
+	// async fetch({ store, params }) {
+	// 	if (params.storeSlug) {
+	// 		await store.dispatch('store/get', params.storeSlug);
+	// 	}
+	// },
 	// async asyncData({ params }) {
 	// 	try {
 	// 		// let categories = [];
