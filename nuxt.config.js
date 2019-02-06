@@ -12,23 +12,26 @@ module.exports = {
 		port: 3000, // default: 3000
 		host: '0.0.0.0', // default: localhost
 		https: {
-      key: fs.readFileSync(path.resolve(__dirname, 'server.key')),
-      cert: fs.readFileSync(path.resolve(__dirname, 'server.crt'))
-    }
+			key: fs.readFileSync(path.resolve(__dirname, 'server.key')),
+			cert: fs.readFileSync(path.resolve(__dirname, 'server.crt')),
+		},
 	},
 	head: {
 		title: pkg.name,
 		meta: [
 			{ charset: 'utf-8' },
-			{ name: 'viewport', content: 'width=device-width, initial-scale=1, minimal-ui' },
+			{
+				name: 'viewport',
+				content: 'width=device-width, initial-scale=1, minimal-ui',
+			},
 			{ hid: 'description', name: 'description', content: pkg.description },
 		],
 		//link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
 	},
 
 	/*
-  ** Customize the progress-bar color
-  */
+	 ** Customize the progress-bar color
+	 */
 	loading: { color: '#fff' },
 
 	router: {
@@ -37,8 +40,8 @@ module.exports = {
 	},
 	serverMiddleware: ['~/api/mailer.js'],
 	/*
-  ** Global CSS
-  */
+	 ** Global CSS
+	 */
 	css: [
 		// '@/sass/breakpoints.mixin.scss',
 		{ src: 'swiper/dist/css/swiper.min.css', lang: 'css' },
@@ -47,8 +50,8 @@ module.exports = {
 	],
 
 	/*
-  ** Plugins to load before mounting the App
-  */
+	 ** Plugins to load before mounting the App
+	 */
 	// plugins: [],
 	plugins: [
 		{ src: '~/plugins/swiper', ssr: false },
@@ -62,22 +65,22 @@ module.exports = {
 	],
 
 	/*
-  ** Nuxt.js modules
-  */
+	 ** Nuxt.js modules
+	 */
 	modules: [
 		// Doc: https://github.com/nuxt-community/axios-module#usage
 		'@nuxtjs/axios',
 	],
 	/*
-  ** Axios module configuration
-  */
+	 ** Axios module configuration
+	 */
 	axios: {
 		// See https://github.com/nuxt-community/axios-module#options
 	},
 
 	/*
-  ** Build configuration
-  */
+	 ** Build configuration
+	 */
 	env: {
 		staticDir:
 			process.env.NODE_ENV === 'development' ? '/' : '//cdn.shop-together.io/',
@@ -88,8 +91,8 @@ module.exports = {
 		publicPath: `/${secrets.NODE_ENV}/_nuxt/`,
 		// vendor: ['vue-glide-js'],
 		/*
-    ** You can extend webpack config here
-    */
+		 ** You can extend webpack config here
+		 */
 		extend(config, ctx) {
 			// Run ESLint on save
 			// const staticDir = ctx.isDev ? '/assets/' : 'cdn.shop-together.io/assets/',

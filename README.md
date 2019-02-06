@@ -25,8 +25,19 @@ For detailed explanation on how things work, checkout [Nuxt.js docs](https://nux
 ## Dev Setup
 
 1. `npm install`
-2. SSL certificate setup: `https://medium.freecodecamp.org/how-to-get-https-working-on-your-local-development-environment-in-5-minutes-7af615770eec`
-3. update /etc/hosts for subdomains
+2. SSL certificate setup:
+	* [Follow this tutorial](https://medium.freecodecamp.org/how-to-get-https-working-on-your-local-development-environment-in-5-minutes-7af615770eec)
+	* Add `server.crt` & `server.key` to project root
+3. Update `/etc/hosts` for subdomains:
+	```
+	127.0.0.1 storystore.dev
+	127.0.0.1 www.storystore.dev
+	127.0.0.1 simplyfashion.storystore.dev
+	127.0.0.1 nostore.storystore.dev
+	```
+4. `npm run dev`
+5. [https://simplyfashion.storystore.dev](https://simplyfashion.storystore.dev)
+
 
 ### Local SSL
 1. 
