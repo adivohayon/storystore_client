@@ -26,15 +26,15 @@
 					"content": [
 						{
 							"type": "image",
-							"value": "assets/brooks_gloves_1.jpg"
-						},
-						{
-							"type": "image",
 							"value": "assets/brooks_gloves_2.jpg"
 						},
 						{
 							"type": "image",
 							"value": "assets/brooks_gloves_3.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/brooks_gloves_1.jpg"
 						}
 					]
 				},
@@ -237,6 +237,336 @@
 						{
 							"type": "image",
 							"value": "assets/brooks_bra_white_3.jpg"
+						}
+					]
+				}
+			]
+		},
+		{
+			"shelfId": 3,
+			"name": "OOriginal Sport",
+			"price": "229.00",
+			"currency": "₪",
+			"slug": "oo-original-sport",
+			"description": "הרגליים שלך עבדו קשה היום, והן צפויות לעבוד קשה באימון נוסף גם מחר. | בגלל זה, כל זוג של Oofos תוכנן על מנת לעזור לרגליים שלך להתאושש בצורה שאף נעל אחרת לא מכירה. | הרגליים שלך הרוויחו את זה.",
+			"variations": [
+				{
+					"variationId": 1,
+					"sku": "1001-AQUA",
+					"attributes": {
+						"color": {
+							"label": "אקווה",
+							"value": "#54B3C6"
+						},
+						"size": {
+							"label": "36",
+							"value": "36"
+						}
+					},
+					"content": [
+						{
+							"type": "image",
+							"value": "assets/brooks_ofoos_blue_1.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/brooks_ofoos_blue_2.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/brooks_ofoos_blue_3.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/brooks_ofoos_blue_4.jpg"
+						}
+					]
+				},
+				{
+					"variationId": 2,
+					"sku": "1001-AQUA",
+					"attributes": {
+						"color": {
+							"label": "אקווה",
+							"value": "#54B3C6"
+						},
+						"size": {
+							"label": "37",
+							"value": "37"
+						}
+					},
+					"content": [
+						{
+							"type": "image",
+							"value": "assets/brooks_ofoos_blue_1.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/brooks_ofoos_blue_2.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/brooks_ofoos_blue_3.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/brooks_ofoos_blue_4.jpg"
+						}
+					]
+				},
+				{
+					"variationId": 3,
+					"sku": "1001-AQUA",
+					"attributes": {
+						"color": {
+							"label": "אקווה",
+							"value": "#54B3C6"
+						},
+						"size": {
+							"label": "41",
+							"value": "41"
+						}
+					},
+					"content": [
+						{
+							"type": "image",
+							"value": "assets/brooks_ofoos_blue_1.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/brooks_ofoos_blue_2.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/brooks_ofoos_blue_3.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/brooks_ofoos_blue_4.jpg"
+						}
+					]
+				},
+				{
+					"variationId": 4,
+					"sku": "1001-AQUA",
+					"attributes": {
+						"color": {
+							"label": "אקווה",
+							"value": "#54B3C6"
+						},
+						"size": {
+							"label": "42",
+							"value": "42"
+						}
+					},
+					"content": [
+						{
+							"type": "image",
+							"value": "assets/brooks_ofoos_blue_1.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/brooks_ofoos_blue_2.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/brooks_ofoos_blue_3.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/brooks_ofoos_blue_4.jpg"
+						}
+					]
+				},
+				{
+					"variationId": 5,
+					"sku": "1001-AQUA",
+					"attributes": {
+						"color": {
+							"label": "אקווה",
+							"value": "#54B3C6"
+						},
+						"size": {
+							"label": "43",
+							"value": "43"
+						}
+					},
+					"content": [
+						{
+							"type": "image",
+							"value": "assets/brooks_ofoos_blue_1.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/brooks_ofoos_blue_2.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/brooks_ofoos_blue_3.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/brooks_ofoos_blue_4.jpg"
+						}
+					]
+				},
+				{
+					"variationId": 6,
+					"sku": "1001-RED",
+					"attributes": {
+						"color": {
+							"label": "אדום",
+							"value": "#D7565F"
+						},
+						"size": {
+							"label": "36",
+							"value": "36"
+						}
+					},
+					"content": [
+						{
+							"type": "image",
+							"value": "assets/brooks_ofoos_red_1.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/brooks_ofoos_red_2.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/brooks_ofoos_red_3.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/brooks_ofoos_red_4.jpg"
+						}
+					]
+				},
+				{
+					"variationId": 7,
+					"sku": "1001-RED",
+					"attributes": {
+						"color": {
+							"label": "אדום",
+							"value": "#D7565F"
+						},
+						"size": {
+							"label": "37",
+							"value": "37"
+						}
+					},
+					"content": [
+						{
+							"type": "image",
+							"value": "assets/brooks_ofoos_red_1.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/brooks_ofoos_red_2.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/brooks_ofoos_red_3.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/brooks_ofoos_red_4.jpg"
+						}
+					]
+				},
+				{
+					"variationId": 8,
+					"sku": "1001-RED",
+					"attributes": {
+						"color": {
+							"label": "אדום",
+							"value": "#D7565F"
+						},
+						"size": {
+							"label": "41",
+							"value": "41"
+						}
+					},
+					"content": [
+						{
+							"type": "image",
+							"value": "assets/brooks_ofoos_red_1.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/brooks_ofoos_red_2.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/brooks_ofoos_red_3.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/brooks_ofoos_red_4.jpg"
+						}
+					]
+				},
+				{
+					"variationId": 9,
+					"sku": "1001-RED",
+					"attributes": {
+						"color": {
+							"label": "אקווה",
+							"value": "#54B3C6"
+						},
+						"size": {
+							"label": "42",
+							"value": "42"
+						}
+					},
+					"content": [
+						{
+							"type": "image",
+							"value": "assets/brooks_ofoos_red_1.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/brooks_ofoos_red_2.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/brooks_ofoos_red_3.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/brooks_ofoos_red_4.jpg"
+						}
+					]
+				},
+				{
+					"variationId": 10,
+					"sku": "1001-RED",
+					"attributes": {
+						"color": {
+							"label": "אדום",
+							"value": "#D7565F"
+						},
+						"size": {
+							"label": "43",
+							"value": "43"
+						}
+					},
+					"content": [
+						{
+							"type": "image",
+							"value": "assets/brooks_ofoos_red_1.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/brooks_ofoos_red_2.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/brooks_ofoos_red_3.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/brooks_ofoos_red_4.jpg"
 						}
 					]
 				}

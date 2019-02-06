@@ -19,6 +19,11 @@
 	}
 
 	.att {
+		
+		.btn {
+			border: 1px solid #ffffff;
+			text-transform: uppercase;
+		}
 		&--active {
 			border-bottom: 3px solid white;
 			padding-bottom: 6px;

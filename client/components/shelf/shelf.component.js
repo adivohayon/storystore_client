@@ -64,16 +64,13 @@ export default {
 					*/
 					let isVariant = false;
 
-					for (let attributeKey of this.attributesKeys) {
-						isVariant =
+					isVariant = this.attributesKeys.every(attributeKey => {
+						return (
 							_get(variant, ['attributes', attributeKey, 'value']) ===
-							_get(this.selectedAttributes, [attributeKey, 'value']);
-
-						console.log(attributeKey, isVariant);
-					}
-
+							_get(this.selectedAttributes, [attributeKey, 'value'])
+						);
+					});
 					return isVariant;
-
 					// return (
 					// 	_get(variant, 'attributes.size.value', false) ===
 					// 		this.selectedSize.value &&
