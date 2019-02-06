@@ -3,34 +3,15 @@ export default {
 	props: {},
 	data() {
 		return {
-			shelfInfo: [
-				{
-					tabLabel: 'על החנות',
-					tabContent: 'אודות אודות אודות',
-				},
-				{
-					tabLabel: 'תקנון',
-					tabContent: 'תקנון תקנון תקנון',
-				},
-				{
-					tabLabel: 'פרטיות',
-					tabContent: 'צור קשר צור קשר צור קשר',
-				},
-			],
+			profileTabs: ['על החנות', 'תקנון', 'שירות לקוחות'],
+			profileContent: ['1', '2', '3'],
 			selectedTabIndex: 0,
 			storeName: null,
 		};
 	},
 	computed: {
-		infoTabs() {
-			return this.shelfInfo.map(shelfInfoItem => {
-				return shelfInfoItem.tabLabel;
-			});
-		},
 		tabContent() {
-			if (this.shelfInfo[this.selectedTabIndex]) {
-				return this.shelfInfo[this.selectedTabIndex].tabContent;
-			}
+			return this.profileContent[this.selectedTabIndex];
 		},
 	},
 	created() {},

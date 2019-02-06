@@ -1,0 +1,27 @@
+.attribute-picker {
+	border-bottom: 1px solid rgba(203, 202, 202, 0.5);
+	padding: 0.7rem 1.4rem;
+	ul {
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-start;
+		list-style: none;
+		padding: 0;
+	}
+	li {
+		margin-left: 1rem;
+		background-color: inherit;
+		color: black;
+	}
+
+	.btn {
+		background-color: white;
+	}
+
+	.att {
+		&--active {
+			border-bottom: 3px solid white;
+			padding-bottom: 6px;
+		}
+	}
+}

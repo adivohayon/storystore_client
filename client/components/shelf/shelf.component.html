@@ -19,6 +19,7 @@
 			v-for="(slide, index) in variantImages"
 			:style="{ backgroundImage: 'url(' + slide.value + ')' }"
 		></div>
+		{{ variant }}
 	</section>
 	<aside class="shelf-buttons">
 		<ul>
@@ -56,7 +57,17 @@
 			:currency="shelf.currency"
 			:title="shelf.name"
 		></shelf-title>
-		<color-picker
+
+		<div class="shelf-attributes">
+			<attribute-picker
+				v-for="(attribute, attributeKey) in attributes"
+				:key="attributeKey"
+				:attribute="attribute"
+				:att-key="attributeKey"
+				@changed-att="setAtt"
+			></attribute-picker>
+		</div>
+		<!-- <color-picker
 			v-if="colors.length"
 			:colors="colors"
 			@changed-color="setColor"
@@ -65,7 +76,7 @@
 			v-if="sizes.length"
 			:sizes="sizes"
 			@changed-size="setSize"
-		></size-picker>
+		></size-picker> -->
 		<add-to-cart :variant="variant" :shelf="shelf"></add-to-cart>
 	</footer>
 	<transition name="shelf-overlay-bottom">

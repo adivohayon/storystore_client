@@ -1,0 +1,20 @@
+<div class="attribute-picker">
+	<ul>
+		<li
+			v-for="(att, attIndex) in attribute"
+			:key="attIndex"
+			:class="{'att--active': attIndex == selectedAttIndex}"
+			class="att"
+		>
+			<button
+				:style="[attKey === 'color' ? {backgroundColor: att.value} : {}]"
+				class="btn btn--round"
+				:title="att"
+				@click="setAtt(att, attIndex)"
+			>
+				{{ attKey !== 'color' ? att.value : '' }}
+			</button>
+			<!-- <div class="selected"></div> -->
+		</li>
+	</ul>
+</div>

@@ -1,0 +1,246 @@
+{
+	"storeId": 1,
+	"name": "Brooks",
+	"slug": "brooks",
+	"shippingDetails": " לרגל השקת האתר החדש, המשלוחים וההחזרות חינם!",
+	"returnsPolicy": "החזרת מוצר תוך 14 יום מתאריך הקניה בלבד, כאשר המוצר חדש ובאריזתו המקורית, בצירוף הוכחת קניה (חשבונית קנייה, סרט קופה וכיוצ\"ב)\n\nהחזר כספי יינתן רק אם עלות המוצר מעל ל- 50 ₪. משלוח חינם בקניה מי 99 ש\"ח.\n\nכל ביטול עסקה על פי התקנות מאפשר לעוסק לגבות מהצרכן דמי ביטול בשיעור של 5% ממחיר המוצר/השירות, או 100 ש\"ח, לפי הסכום הנמוך מבניהם.\n\nאם יבחר הלקוח לקבל שובר זיכוי במקום ההחזר הכספי, לא יהיה חיוב דמי ביטול..\n\nבהחזרת מוצר שעלותו פחות מ- 50 ₪ יינתן שובר זיכוי בלבד..\n\nהחזר כספי על בגדים והנעלה יתאפשר תוך שני ימים שאינם ימי מנוחה ובלבד שתווית המוצר והמחיר על המוצר לא הוסרה ושלא נעשה בו שימוש.",
+	"warranty": "החזרת התמורה בניכוי דמי הביטול תיעשה בסמוך למועד ביטול העסקה בכפוף להחזרת המוצר כאמור לעיל ולא יאוחר משבעה ימי עסקים ותיעשה בהתאם לאופן בו נעשה התשלום בגין הרכישה:\n\nאם נעשה התשלום במזומן או בשיק, השבת התמורה בניכוי דמי ביטול, תיעשה במזומן או בשיק מזומן תוך 5 ימי עסקים ממועד ביטול העסקה. היה התשלום בשיק – תוחזר התמורה בניכוי דמי ביטול ורק לאחר שנפרע השיק במלואו.\n\nדמי הביטול ישולמו על ידי הלקוח במזומן או בכרטיס אשראי במועד החזרת התמורה ללקוח. במידה ובוצע התשלום באמצעות כרטיס אשראי, יבוטל החיוב.  ",
+	"shelves": [
+		{
+			"shelfId": 1,
+			"name": "כפפות רכיבה ארוכות Early Winter S7",
+			"price": "349.00",
+			"currency": "₪",
+			"slug": "early-winter",
+			"description": "כפפות רכיבה early winter: | כפפות הרכיבה האלה מיומנות לשימוש בימי החורף. הן מעוצבות להגנה מקסימלית על הידיים תוך כדי שמירה על זריזות האצבעות. עם עיצוב המותאם אנטומית למירוצים, הן תוכננות לנפח מינימלי ולגמישות ",
+			"variations": [
+				{
+					"variationId": 1,
+					"sku": "ABCD",
+					"attributes": {
+						"size": {
+							"label": "xs",
+							"value": "xs"
+						}
+					},
+					"content": [
+						{
+							"type": "image",
+							"value": "assets/brooks_gloves_1.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/brooks_gloves_2.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/brooks_gloves_3.jpg"
+						}
+					]
+				},
+				{
+					"variationId": 2,
+					"sku": "BBCD",
+					"attributes": {
+						"size": {
+							"label": "m",
+							"value": "m"
+						}
+					},
+					"content": [
+						{
+							"type": "image",
+							"value": "assets/brooks_gloves_1.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/brooks_gloves_2.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/brooks_gloves_3.jpg"
+						}
+					]
+				},
+				{
+					"variationId": 3,
+					"sku": "BFCD",
+					"attributes": {
+						"size": {
+							"label": "l",
+							"value": "l"
+						}
+					},
+					"content": [
+						{
+							"type": "image",
+							"value": "assets/brooks_gloves_1.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/brooks_gloves_2.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/brooks_gloves_3.jpg"
+						}
+					]
+				},
+				{
+					"variationId": 4,
+					"sku": "BFHD",
+					"attributes": {
+						"size": {
+							"label": "xl",
+							"value": "xl"
+						}
+					},
+					"content": [
+						{
+							"type": "image",
+							"value": "assets/brooks_gloves_1.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/brooks_gloves_2.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/brooks_gloves_3.jpg"
+						}
+					]
+				}
+			]
+		},
+		{
+			"shelfId": 2,
+			"name": "חזיית ספורט Fiona Bra",
+			"price": "149.00",
+			"currency": "₪",
+			"slug": "fiona-bra",
+			"description": "Fiona היא חזיית הספורט האולטימטיבית המעניקה תמיכה בלתי מתפשרת. רצועות הכתפיים ניתנות לכיוונון מקדימה כדי להתאים את החזיה לגוף. הקאפ מרופד ובעל משקל נמוך במיוחד, נמתח קלות כדי להתאים את עצמו לגודל החזה",
+			"variations": [
+				{
+					"variationId": 1,
+					"sku": "ATCD",
+					"attributes": {
+						"color": {
+							"label": "כחול",
+							"value": "#18269C"
+						},
+						"size": {
+							"label": "32b",
+							"value": "32b"
+						}
+					},
+					"content": [
+						{
+							"type": "image",
+							"value": "assets/brooks_bra_blue_1.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/brooks_bra_blue_2.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/brooks_bra_blue_3.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/brooks_bra_blue_4.jpg"
+						}
+					]
+				},
+				{
+					"variationId": 2,
+					"sku": "NTCD",
+					"attributes": {
+						"color": {
+							"label": "לבן",
+							"value": "#ffffff"
+						},
+						"size": {
+							"label": "32b",
+							"value": "32b"
+						}
+					},
+					"content": [
+						{
+							"type": "image",
+							"value": "assets/brooks_bra_white_1.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/brooks_bra_white_2.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/brooks_bra_white_3.jpg"
+						}
+					]
+				},
+				{
+					"variationId": 3,
+					"sku": "ATLD",
+					"attributes": {
+						"color": {
+							"label": "כחול",
+							"value": "#18269C"
+						},
+						"size": {
+							"label": "34d",
+							"value": "34d"
+						}
+					},
+					"content": [
+						{
+							"type": "image",
+							"value": "assets/brooks_bra_blue_1.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/brooks_bra_blue_2.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/brooks_bra_blue_3.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/brooks_bra_blue_4.jpg"
+						}
+					]
+				},
+				{
+					"variationId": 4,
+					"sku": "ETLD",
+					"attributes": {
+						"color": {
+							"label": "לבן",
+							"value": "#ffffff"
+						},
+						"size": {
+							"label": "34d",
+							"value": "34d"
+						}
+					},
+					"content": [
+						{
+							"type": "image",
+							"value": "assets/brooks_bra_white_1.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/brooks_bra_white_2.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/brooks_bra_white_3.jpg"
+						}
+					]
+				}
+			]
+		}
+	]
+}

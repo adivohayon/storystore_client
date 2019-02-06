@@ -1,5 +1,6 @@
 import { mapState } from 'vuex';
 
+import _get from 'lodash/get';
 import ShelfContent from './../shelf-content';
 import ColorPicker from './../color-picker';
 import SizePicker from './../size-picker';
@@ -8,6 +9,7 @@ import ShelfTitle from './../shelf-title';
 import ShelfInfo from './../shelf-info';
 import ShelfSale from './../shelf-sale';
 import VideoPlayer from './../video-player';
+import AttributePicker from './../attribute-picker';
 import { removeDuplicates } from '@/helpers/collection.helpers';
 export default {
 	name: 'shelf',
@@ -20,6 +22,7 @@ export default {
 		ShelfInfo,
 		ShelfSale,
 		VideoPlayer,
+		AttributePicker,
 	},
 	props: {
 		shelf: {
@@ -35,8 +38,13 @@ export default {
 	data() {
 		return {
 			swiper: null,
-			selectedColor: null,
-			selectedSize: null,
+			selectedColor: {
+				value: '',
+			},
+			selectedSize: {
+				value: null,
+			},
+			selectedAttributes: {},
 			showShelfInfo: false,
 			showShelfSale: false,
 			storeName: null,
@@ -51,11 +59,27 @@ export default {
 					}
 
 					// console.log('variant', variant.attributes);
+					/*
+						return the variant in which ALL variant attributes are matched to the selected attributes
+					*/
+					let isVariant = false;
 
-					return (
-						variant.attributes.size.value === this.selectedSize.value &&
-						variant.attributes.color.value === this.selectedColor.value
-					);
+					for (let attributeKey of this.attributesKeys) {
+						isVariant =
+							_get(variant, ['attributes', attributeKey, 'value']) ===
+							_get(this.selectedAttributes, [attributeKey, 'value']);
+
+						console.log(attributeKey, isVariant);
+					}
+
+					return isVariant;
+
+					// return (
+					// 	_get(variant, 'attributes.size.value', false) ===
+					// 		this.selectedSize.value &&
+					// 	_get(variant, 'attributes.color.value', false) ===
+					// 		this.selectedColor.value
+					// );
 				});
 
 				console.log('variantIndex', variantIndex);
@@ -77,17 +101,26 @@ export default {
 			// console.log('a', a);
 			// return a;
 		},
-		colors() {
-			return this.$store.getters['store/shelfAttributes'](
-				this.shelf.variations,
-				'color'
-			);
+		attributesKeys() {
+			const attributes = _get(this.shelf, 'variations[0].attributes', {});
+			console.log('attributes', attributes);
+			const attributesKeys = Object.keys(attributes);
+
+			console.log('attributesKeys', attributesKeys);
+			return attributesKeys;
 		},
-		sizes() {
-			return this.$store.getters['store/shelfAttributes'](
-				this.shelf.variations,
-				'size'
-			);
+		attributes() {
+			const attributes = {};
+			for (let attributeKey of this.attributesKeys) {
+				attributes[attributeKey] = removeDuplicates(
+					this.shelf.variations.map(variant => {
+						return variant.attributes[attributeKey];
+					}),
+					'value'
+				);
+			}
+			console.log('attributes', attributes);
+			return attributes;
 		},
 		cartItemsCount() {
 			return this.$store.getters['cart/itemsCount'](this.storeSlug);
@@ -110,8 +143,7 @@ export default {
 	// 	}
 	// },
 	created() {
-		this.selectedColor = this.shelf.variations[0].attributes.color || null;
-		this.selectedSize = this.shelf.variations[0].attributes.size || null;
+		this.selectedAttributes = this.shelf.variations[0].attributes || null;
 	},
 	mounted() {
 		this.storeName = this.$route.params.storeName;
@@ -203,17 +235,9 @@ export default {
 			this.swiper.appendSlide(slides);
 			this.swiper.slideToLoop(0);
 		},
-		setSize(size) {
-			console.log('Shelf / setSize', size);
-			this.selectedSize = size;
-			// this.updateSwiperSlides();
-		},
-		async setColor(color) {
-			console.log('Shelf / setColor', color.label);
-			this.selectedColor = color;
-			// this.updateSwiperSlides();
-			// await this.$nextTick();
-			// this.swiper.update();
+		setAtt({ att, attKey }) {
+			console.log(attKey, att);
+			this.selectedAttributes[attKey] = att;
 		},
 		playVideo() {
 			const video = document.getElementById('video');

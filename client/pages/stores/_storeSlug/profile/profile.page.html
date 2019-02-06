@@ -16,7 +16,7 @@
 			<div class="profile-page__info--tabs--tab-labels">
 				<div
 					class="profile-page__info--tabs--tab-labels--label"
-					v-for="(tab, index) in infoTabs"
+					v-for="(tab, index) in profileTabs"
 					@click="updateSelectedTabIndex(index)"
 					:class="{active: selectedTabIndex == index, middle: index == 1}"
 				>
@@ -26,6 +26,6 @@
 		</div>
 	</div>
 	<div class="profile-page__info--tabs--tab-content">
-		{{ selectedTabIndex }} {{ tabContent }}
+		{{ tabContent }}
 	</div>
 </div>
