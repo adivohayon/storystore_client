@@ -24,14 +24,14 @@ https
 							.get({
 								TableName,
 								Key: { host },
-								AttributesToGet: ['cert', 'privkey'],
+								AttributesToGet: ['cert', 'privkey', 'privateKey'],
 								ReturnConsumedCapacity: 'NONE',
 							})
 							.promise();
 						if (!Item) throw new Error(`Missing certificate for ${host}`);
 
 						ctx = tls.createSecureContext({
-							key: Item.privkey,
+							key: Item.privateKey||Item.privkey,
 							cert: Item.cert,
 						});
 
