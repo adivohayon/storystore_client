@@ -1,3 +1,4 @@
+<!-- eslint-disable -->
 <template>
 	<div id="our-services">
 		<!-- HERO SECTION -->
@@ -8,7 +9,7 @@
 			</div>
 
 			<div class="demo-video">
-				<video :src="`${staticDir}storystore_demo.mp4`" muted="muted" autoplay ></video>
+				<video :src="`${staticDir}storystore_demo.mp4`" muted="muted" autoplay></video>
 			</div>
 			<div class="subtitle">
 				<div class="logo show-md">
@@ -270,5 +271,4 @@ export default {
 };
 </script>
 
-<style src="./our-services.page.scss" lang="scss">
-</style>
+<style src="./our-services.page.scss" lang="scss"></style>
