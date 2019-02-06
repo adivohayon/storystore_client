@@ -279,6 +279,10 @@
 						{
 							"type": "image",
 							"value": "assets/brooks_ofoos_blue_4.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/brooks_ofoos_foam.jpg"
 						}
 					]
 				},
@@ -311,6 +315,10 @@
 						{
 							"type": "image",
 							"value": "assets/brooks_ofoos_blue_4.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/brooks_ofoos_foam.jpg"
 						}
 					]
 				},
@@ -343,6 +351,10 @@
 						{
 							"type": "image",
 							"value": "assets/brooks_ofoos_blue_4.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/brooks_ofoos_foam.jpg"
 						}
 					]
 				},
@@ -375,6 +387,10 @@
 						{
 							"type": "image",
 							"value": "assets/brooks_ofoos_blue_4.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/brooks_ofoos_foam.jpg"
 						}
 					]
 				},
@@ -407,6 +423,10 @@
 						{
 							"type": "image",
 							"value": "assets/brooks_ofoos_blue_4.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/brooks_ofoos_foam.jpg"
 						}
 					]
 				},
@@ -439,6 +459,10 @@
 						{
 							"type": "image",
 							"value": "assets/brooks_ofoos_red_4.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/brooks_ofoos_foam.jpg"
 						}
 					]
 				},
@@ -471,6 +495,10 @@
 						{
 							"type": "image",
 							"value": "assets/brooks_ofoos_red_4.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/brooks_ofoos_foam.jpg"
 						}
 					]
 				},
@@ -503,6 +531,10 @@
 						{
 							"type": "image",
 							"value": "assets/brooks_ofoos_red_4.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/brooks_ofoos_foam.jpg"
 						}
 					]
 				},
@@ -511,8 +543,8 @@
 					"sku": "1001-RED",
 					"attributes": {
 						"color": {
-							"label": "אקווה",
-							"value": "#54B3C6"
+							"label": "אדום",
+							"value": "#D7565F"
 						},
 						"size": {
 							"label": "42",
@@ -535,6 +567,10 @@
 						{
 							"type": "image",
 							"value": "assets/brooks_ofoos_red_4.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/brooks_ofoos_foam.jpg"
 						}
 					]
 				},
@@ -567,6 +603,10 @@
 						{
 							"type": "image",
 							"value": "assets/brooks_ofoos_red_4.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/brooks_ofoos_foam.jpg"
 						}
 					]
 				}
