@@ -2,6 +2,10 @@ const useMockData = process.env.USE_MOCK_DATA;
 import { removeDuplicates } from '@/helpers/collection.helpers';
 import _get from 'lodash/get';
 import Vue from 'vue';
+import Vuex from 'vuex';
+
+Vue.use(Vuex);
+
 export const state = () => ({
 	shelves: [],
 	// slug: null,
@@ -58,10 +62,13 @@ export const actions = {
 			if (store) {
 				commit('populateShelves', store.shelves);
 				commit('populateStore', store);
+				return true;
 			}
+			return false;
 			// console.log('resp', resp.data);
 		} catch (err) {
 			console.error('State / Store / Dispatch get / Error', err);
+			return false;
 		}
 	},
 

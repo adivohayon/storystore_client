@@ -1,0 +1,21 @@
+[
+	{ "type": "image", "value": "assets/simplyfashion/.jpg" },
+	{ "type": "image", "value": "assets/simplyfashion_dress_black_back.jpg" },
+	{ "type": "image", "value": "assets/simplyfashion_dress_black_side.jpg" },
+	{ "type": "image", "value": "assets/simplyfashion_dress_black_closeup.jpg" },
+	{ "type": "image", "value": "assets/simplyfashion_dress_black_video.mp4" }
+]
+
+
+/*
+	-assets-simplyfashion
+		-simplyfashion/								(storeId: 5, storeSlug: 'simplyfashion')
+			-simplyfashion_logo.jpg
+			-simplyfashion_info_table.xls
+			-products/
+				17/ 												(shelfId: 17)
+					5_17_1_1.jpg 							(storeId_shelfId_variationId_1)
+					5_17_1_2.jpg 							(storeId_shelfId_variationId_1)
+					5_17_2_1.jpg 							(storeId_shelfId_variationId_1)
+					5_17_2_2.jpg 							(storeId_shelfId_variationId_1)
+*/
