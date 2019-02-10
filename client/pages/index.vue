@@ -29,32 +29,6 @@ import { mapState } from 'vuex';
 
 export default {
 	components: { Feed, Shelf, Navigation },
-
-	// async fetch({ store, params }) {
-	// 	if (params.storeSlug) {
-	// 		await store.dispatch('store/get', params.storeSlug);
-	// 	}
-	// },
-	// async asyncData({ params }) {
-	// 	try {
-	// 		// let categories = [];
-	// 		// let shelves = [];
-
-	// 		// if (params.storeSlug) {
-	// 		// 	shelves = await getShelves(null, null, params.storeSlug);
-	// 		// }
-
-	// 		// // const categories = await getCategories(0);
-
-	// 		// return {
-	// 		// 	storeSlug: params.storeSlug,
-	// 		// 	categories,
-	// 		// 	shelves,
-	// 		// };
-	// 	} catch (err) {
-	// 		console.error(err);
-	// 	}
-	// },
 	data() {
 		return {
 			fixerClass: '',
@@ -81,25 +55,7 @@ export default {
 		}),
 	},
 	created() {},
-	mounted() {
-		// let a = setInterval(function() {
-		// 	$(window).scrollTop(-1);
-		// 	resize();
-		// }, 500);
-		// $(window).on('resize', function() {
-		// 	resize();
-		// });
-		// const resize = function() {
-		// 	if (window.innerHeight != height) {
-		// 		height = window.innerHeight;
-		// 		$('.shelf').css('height', height + 'px');
-		// 	}
-		// };
-		// console.log('innerHeight', window.innerHeight);
-		// this.$refs.fullpage.build();
-		// const el = document.querySelector('#shelf-1');
-		// console.log('elll', el);
-	},
+	mounted() {},
 };
 </script>
 

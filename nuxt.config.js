@@ -11,10 +11,10 @@ module.exports = {
 	server: {
 		port: 3000, // default: 3000
 		host: '0.0.0.0', // default: localhost
-		https: {
-			key: fs.readFileSync(path.resolve(__dirname, 'server.key')),
-			cert: fs.readFileSync(path.resolve(__dirname, 'server.crt')),
-		},
+		// https: {
+		// 	key: fs.readFileSync(path.resolve(__dirname, 'server.key')),
+		// 	cert: fs.readFileSync(path.resolve(__dirname, 'server.crt')),
+		// },
 	},
 	head: {
 		title: pkg.name,
@@ -70,6 +70,7 @@ module.exports = {
 	modules: [
 		// Doc: https://github.com/nuxt-community/axios-module#usage
 		'@nuxtjs/axios',
+		'nuxt-custom-headers',
 	],
 	/*
 	 ** Axios module configuration
