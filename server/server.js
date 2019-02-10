@@ -31,7 +31,7 @@ https
 						if (!Item) throw new Error(`Missing certificate for ${host}`);
 
 						ctx = tls.createSecureContext({
-							key: Item.privateKey||Item.privkey,
+							key: Item.privateKey || Item.privkey,
 							cert: Item.cert,
 						});
 

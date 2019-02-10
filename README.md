@@ -37,6 +37,9 @@ For detailed explanation on how things work, checkout [Nuxt.js docs](https://nux
 	```
 4. `npm run dev`
 5. [https://simplyfashion.storystore.dev](https://simplyfashion.storystore.dev)
+6. To run on mobile:
+	* `openssl x509 -inform PEM -in rootCA.pem -outform DER -out storystore.cer`
+	* Send to phone
 
 
 ### Local SSL

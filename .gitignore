@@ -84,3 +84,5 @@ dist
 
 server.crt
 server.key
+
+certs/
