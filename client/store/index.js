@@ -1,7 +1,10 @@
 export const actions = {
 	async nuxtServerInit({ dispatch }, { req, redirect, error, route }) {
-		const param = req.headers.host.split('.')[0];
-		const isWebsiteRoot = param === 'storystore' || param === 'www';
+		const hostsParts = req.headers.host.split('.');
+		const isDomain = hostsParts.findIndex(item => item === 'storystore') > -1;
+
+		const storeSlug = isDomain ? hostsParts[0] : process.env.DEV_STORE;
+		const isWebsiteRoot = storeSlug === 'storystore' || storeSlug === 'www';
 
 		if (isWebsiteRoot) {
 			console.log('Website root | Route:', route.name);
@@ -20,9 +23,9 @@ export const actions = {
 			}
 
 			// Not website root let's check for store
-			const fetchStoreResp = await dispatch('store/get', param);
+			const fetchStoreResp = await dispatch('store/get', storeSlug);
 			if (!fetchStoreResp) {
-				console.log(`'${param}' store was not found`);
+				console.log(`'${storeSlug}' store was not found`);
 				return error('החנות לא נמצאה');
 			}
 			// console.log('fetchStoreResp', fetchStoreResp);
