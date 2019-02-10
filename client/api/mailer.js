@@ -14,7 +14,6 @@ const oauth2Client = new OAuth2(
 const app = express();
 app.use(express.json());
 
-
 // MAILER FUNCTION
 const sendMail = async (sendTo, subject, html) => {
 	try {

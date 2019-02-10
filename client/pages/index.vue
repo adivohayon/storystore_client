@@ -271,4 +271,5 @@ export default {
 };
 </script>
 
-<style src="./our-services.page.scss" lang="scss"></style>
+<style src="./our-services.page.scss" lang="scss">
+</style>

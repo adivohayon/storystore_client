@@ -1,0 +1,722 @@
+{
+	"storeId": 9,
+	"name": "Shoofra",
+	"slug": "shoofra",
+	"shippingDetails": "שמחה וששון, המשלוחים שלנו הם בחינם!\nהמשלוח תוך 7 ימי עסקים עם שליח עד הבית (במבצעים ובחגים זמן האספקה עלול להתארך מעט).\nאפשר גם לעשות איסוף עצמי מאחד הסניפים שלנו (ההזמנה תגיע תוך 7 ימי עסקים, נשתדל למהר).\nהחזרות והחלפות יתאפשרו תוך 14 יום ממועד קבלת המוצר (בסייל - 7 ימים).\nלפרטים המלאים בקרו בעמוד משלוחים והחזרות.",
+	"returnsPolicy": "ניתן להחזיר או להחליף מוצר שרכשת באתר, תוך 14 ימים ממועד קבלת המשלוח. במידה ומדובר בפריט בסייל (בהנחה) ניתן להחזיר או להחליף את המוצר תוך 7 ימים בלבד.\nניתן להחזיר או להחליף מוצרים שלא נעשה בהם כל שימוש, בקופסה המקורית שלהם ובצירוף חשבונית הקנייה.",
+	"warranty": "החזרת התמורה בניכוי דמי הביטול תיעשה בסמוך למועד ביטול העסקה בכפוף להחזרת המוצר כאמור לעיל ולא יאוחר משבעה ימי עסקים ותיעשה בהתאם לאופן בו נעשה התשלום בגין הרכישה:\n\nאם נעשה התשלום במזומן או בשיק, השבת התמורה בניכוי דמי ביטול, תיעשה במזומן או בשיק מזומן תוך 5 ימי עסקים ממועד ביטול העסקה. היה התשלום בשיק – תוחזר התמורה בניכוי דמי ביטול ורק לאחר שנפרע השיק במלואו.\n\nדמי הביטול ישולמו על ידי הלקוח במזומן או בכרטיס אשראי במועד החזרת התמורה ללקוח. במידה ובוצע התשלום באמצעות כרטיס אשראי, יבוטל החיוב.  ",
+	"shelves": [
+		{
+			"shelfId": 1,
+			"name": "SHOEMAKER\n/\nמגפון ZOHAR B",
+			"price": "474.00",
+			"currency": "₪",
+			"slug": "zohar-b",
+			"description": "יופי של מגפוני ערב: עדינים, מחמיאים ועשויים עור בטקסטורה מיוחדת.\n\nמק\"ט: 40w-zoha-b",
+			"variations": [
+				{
+					"variationId": 1,
+					"sku": "ABCD",
+					"attributes": {
+						"color": {
+							"label": "שחור",
+							"value": "#000000"
+						},
+						"size": {
+							"label": "36",
+							"value": "36"
+						}
+					},
+					"content": [
+						{
+							"type": "image",
+							"value": "assets/shoofra_zohar_black_1.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/shoofra_zohar_black_2.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/shoofra_zohar_black_3.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/shoofra_zohar_black_4.jpg"
+						}
+					]
+				},
+				{
+					"variationId": 2,
+					"sku": "BBCD",
+					"attributes": {
+						"color": {
+							"label": "שחור",
+							"value": "#000000"
+						},
+						"size": {
+							"label": "37",
+							"value": "37"
+						}
+					},
+					"content": [
+						{
+							"type": "image",
+							"value": "assets/shoofra_zohar_black_1.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/shoofra_zohar_black_2.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/shoofra_zohar_black_3.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/shoofra_zohar_black_4.jpg"
+						}
+					]
+				},
+				{
+					"variationId": 3,
+					"sku": "BFCD",
+					"attributes": {
+						"color": {
+							"label": "ירוק",
+							"value": "#2b4f53"
+						},
+						"size": {
+							"label": "36",
+							"value": "36"
+						}
+					},
+					"content": [
+						{
+							"type": "image",
+							"value": "assets/shoofra_zohar_green_1.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/shoofra_zohar_green_2.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/shoofra_zohar_green_3.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/shoofra_zohar_green_4.jpg"
+						}
+					]
+				},
+				{
+					"variationId": 4,
+					"sku": "BFHD",
+					"attributes": {
+						"color": {
+							"label": "ירוק",
+							"value": "#2b4f53"
+						},
+						"size": {
+							"label": "37",
+							"value": "37"
+						}
+					},
+					"content": [
+						{
+							"type": "image",
+							"value": "assets/shoofra_zohar_green_1.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/shoofra_zohar_green_2.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/shoofra_zohar_green_3.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/shoofra_zohar_green_4.jpg"
+						}
+					]
+				}
+			]
+		},
+		{
+			"shelfId": 2,
+			"name": "WODEN\n/\nסניקרס YDUN MESH",
+			"price": "365.00",
+			"currency": "₪",
+			"slug": "ydun-mesh",
+			"description": "נפלנו ברשת של הזוג הזה: סניקרס קלילות ומאד נוחות, מאובזרות ברשת בדוגמה מנוקדת.\n\nהנעליים בגודל התואם למידה סטנדרטית.\n\nמק\"ט: 42w-ydun-m3",
+			"variations": [
+				{
+					"variationId": 1,
+					"sku": "ATCD",
+					"attributes": {
+						"color": {
+							"label": "חאקי",
+							"value": "#727563"
+						},
+						"size": {
+							"label": "36",
+							"value": "36"
+						}
+					},
+					"content": [
+						{
+							"type": "image",
+							"value": "assets/shoofra_ydun_haki_1.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/shoofra_ydun_haki_2.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/shoofra_ydun_haki_3.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/shoofra_ydun_haki_4.jpg"
+						}
+					]
+				},
+				{
+					"variationId": 2,
+					"sku": "ATUD",
+					"attributes": {
+						"color": {
+							"label": "חאקי",
+							"value": "#727563"
+						},
+						"size": {
+							"label": "37",
+							"value": "37"
+						}
+					},
+					"content": [
+						{
+							"type": "image",
+							"value": "assets/shoofra_ydun_haki_1.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/shoofra_ydun_haki_2.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/shoofra_ydun_haki_3.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/shoofra_ydun_haki_4.jpg"
+						}
+					]
+				},
+				{
+					"variationId": 3,
+					"sku": "NQCD",
+					"attributes": {
+						"color": {
+							"label": "תכלת",
+							"value": "#dde8f1"
+						},
+						"size": {
+							"label": "36",
+							"value": "36"
+						}
+					},
+					"content": [
+						{
+							"type": "image",
+							"value": "assets/shoofra_ydun_thelet_1.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/shoofra_ydun_thelet_2.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/shoofra_ydun_thelet_3.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/shoofra_ydun_thelet_4.jpg"
+						}
+					]
+				},
+				{
+					"variationId": 4,
+					"sku": "NQVD",
+					"attributes": {
+						"color": {
+							"label": "תכלת",
+							"value": "#dde8f1"
+						},
+						"size": {
+							"label": "37",
+							"value": "37"
+						}
+					},
+					"content": [
+						{
+							"type": "image",
+							"value": "assets/shoofra_ydun_thelet_1.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/shoofra_ydun_thelet_2.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/shoofra_ydun_thelet_3.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/shoofra_ydun_thelet_4.jpg"
+						}
+					]
+				},
+				{
+					"variationId": 5,
+					"sku": "NQVD",
+					"attributes": {
+						"color": {
+							"label": "אפרסק",
+							"value": "#eacbb7"
+						},
+						"size": {
+							"label": "36",
+							"value": "36"
+						}
+					},
+					"content": [
+						{
+							"type": "image",
+							"value": "assets/shoofra_ydun_peach_1.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/shoofra_ydun_peach_2.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/shoofra_ydun_peach_3.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/shoofra_ydun_peach_4.jpg"
+						}
+					]
+				},
+				{
+					"variationId": 6,
+					"sku": "NQPD",
+					"attributes": {
+						"color": {
+							"label": "אפרסק",
+							"value": "#eacbb7"
+						},
+						"size": {
+							"label": "37",
+							"value": "37"
+						}
+					},
+					"content": [
+						{
+							"type": "image",
+							"value": "assets/shoofra_ydun_peach_1.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/shoofra_ydun_peach_2.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/shoofra_ydun_peach_3.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/shoofra_ydun_peach_4.jpg"
+						}
+					]
+				},
+				{
+					"variationId": 7,
+					"sku": "NQWD",
+					"attributes": {
+						"color": {
+							"label": "אפור",
+							"value": "#d8dbdd"
+						},
+						"size": {
+							"label": "36",
+							"value": "36"
+						}
+					},
+					"content": [
+						{
+							"type": "image",
+							"value": "assets/shoofra_ydun_grey_1.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/shoofra_ydun_grey_2.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/shoofra_ydun_grey_3.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/shoofra_ydun_grey_4.jpg"
+						}
+					]
+				},
+				{
+					"variationId": 8,
+					"sku": "NQWD",
+					"attributes": {
+						"color": {
+							"label": "אפור",
+							"value": "#d8dbdd"
+						},
+						"size": {
+							"label": "37",
+							"value": "37"
+						}
+					},
+					"content": [
+						{
+							"type": "image",
+							"value": "assets/shoofra_ydun_grey_1.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/shoofra_ydun_grey_2.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/shoofra_ydun_grey_3.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/shoofra_ydun_grey_4.jpg"
+						}
+					]
+				},
+				{
+					"variationId": 9,
+					"sku": "NQSD",
+					"attributes": {
+						"color": {
+							"label": "מנטה",
+							"value": "#90bdb6"
+						},
+						"size": {
+							"label": "36",
+							"value": "36"
+						}
+					},
+					"content": [
+						{
+							"type": "image",
+							"value": "assets/shoofra_ydun_mint_1.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/shoofra_ydun_mint_2.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/shoofra_ydun_mint_3.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/shoofra_ydun_mint_4.jpg"
+						}
+					]
+				},
+				{
+					"variationId": 9,
+					"sku": "NWSD",
+					"attributes": {
+						"color": {
+							"label": "מנטה",
+							"value": "#90bdb6"
+						},
+						"size": {
+							"label": "37",
+							"value": "37"
+						}
+					},
+					"content": [
+						{
+							"type": "image",
+							"value": "assets/shoofra_ydun_mint_1.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/shoofra_ydun_mint_2.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/shoofra_ydun_mint_3.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/shoofra_ydun_mint_4.jpg"
+						}
+					]
+				}
+			]
+		},
+		{
+			"shelfId": 3,
+			"name": "A.S.\n98\n/\nנעל BRIKLANE",
+			"price": "623.00",
+			"currency": "₪",
+			"slug": "briklane",
+			"description": "נעלי דרבי נמוכות בעיצוב קלאסי, מיוצרות באיטליה מעור משובח.\n\nמק\"ט: 60m490101",
+			"variations": [
+				{
+					"variationId": 1,
+					"sku": "ATCD",
+					"attributes": {
+						"color": {
+							"label": "שחור",
+							"value": "#000000"
+						},
+						"size": {
+							"label": "41",
+							"value": "41"
+						}
+					},
+					"content": [
+						{
+							"type": "image",
+							"value": "assets/shoofra_briklane_black_1.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/shoofra_briklane_black_2.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/shoofra_briklane_black_3.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/shoofra_briklane_black_4.jpg"
+						}
+					]
+				},
+				{
+					"variationId": 2,
+					"sku": "ATCD",
+					"attributes": {
+						"color": {
+							"label": "שחור",
+							"value": "#000000"
+						},
+						"size": {
+							"label": "42",
+							"value": "42"
+						}
+					},
+					"content": [
+						{
+							"type": "image",
+							"value": "assets/shoofra_briklane_black_1.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/shoofra_briklane_black_2.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/shoofra_briklane_black_3.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/shoofra_briklane_black_4.jpg"
+						}
+					]
+				},
+				{
+					"variationId": 3,
+					"sku": "ATCD",
+					"attributes": {
+						"color": {
+							"label": "חום",
+							"value": "#2d211f"
+						},
+						"size": {
+							"label": "41",
+							"value": "41"
+						}
+					},
+					"content": [
+						{
+							"type": "image",
+							"value": "assets/shoofra_briklane_brown_1.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/shoofra_briklane_brown_2.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/shoofra_briklane_brown_3.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/shoofra_briklane_brown_4.jpg"
+						}
+					]
+				},
+				{
+					"variationId": 4,
+					"sku": "ATCD",
+					"attributes": {
+						"color": {
+							"label": "חום",
+							"value": "#2d211f"
+						},
+						"size": {
+							"label": "42",
+							"value": "42"
+						}
+					},
+					"content": [
+						{
+							"type": "image",
+							"value": "assets/shoofra_briklane_brown_1.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/shoofra_briklane_brown_2.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/shoofra_briklane_brown_3.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/shoofra_briklane_brown_4.jpg"
+						}
+					]
+				}
+			]
+		},
+		{
+			"shelfId": 4,
+			"name": "TEDDYFISH\n/\nתיק גב רוכסן צד\n",
+			"price": "237.00",
+			"currency": "₪",
+			"slug": "teddyfish",
+			"description": "תיק גב מבד איכותי ודוחה מים, מאובזר ברוכסן צדדי נסתר ובכיס חיצוני נוסף.\n\nמידות: גובה: 43 ס\"מ, רוחב: 32 ס\"מ, עומק: 10 ס\"מ, משקל: 550 גרם.\n\nמק\"ט: 58b26874one",
+			"variations": [
+				{
+					"variationId": 1,
+					"sku": "ATCD",
+					"attributes": {
+						"color": {
+							"label": "חאקי",
+							"value": "#565947"
+						},
+						"size": {
+							"label": "OS",
+							"value": "OS"
+						}
+					},
+					"content": [
+						{
+							"type": "image",
+							"value": "assets/shoofra_teddyfish_haki_1.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/shoofra_teddyfish_haki_2.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/shoofra_teddyfish_haki_3.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/shoofra_teddyfish_haki_4.jpg"
+						}
+					]
+				},
+				{
+					"variationId": 2,
+					"sku": "ATCD",
+					"attributes": {
+						"color": {
+							"label": "שחור",
+							"value": "#000000"
+						},
+						"size": {
+							"label": "OS",
+							"value": "OS"
+						}
+					},
+					"content": [
+						{
+							"type": "image",
+							"value": "assets/shoofra_teddyfish_black_1.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/shoofra_teddyfish_black_2.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/shoofra_teddyfish_black_3.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/shoofra_teddyfish_black_4.jpg"
+						}
+					]
+				},
+				{
+					"variationId": 3,
+					"sku": "ATCD",
+					"attributes": {
+						"color": {
+							"label": "כחול",
+							"value": "#292e42"
+						},
+						"size": {
+							"label": "OS",
+							"value": "OS"
+						}
+					},
+					"content": [
+						{
+							"type": "image",
+							"value": "assets/shoofra_teddyfish_blue_1.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/shoofra_teddyfish_blue_2.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/shoofra_teddyfish_blue_3.jpg"
+						},
+						{
+							"type": "image",
+							"value": "assets/shoofra_teddyfish_blue_4.jpg"
+						}
+					]
+				}
+			]
+		}
+	]
+}

@@ -13,4 +13,5 @@ export default {
 };
 </script>
 
-<style src="./sass/index.scss" lang="scss"></style>
+<style src="./sass/index.scss" lang="scss">
+</style>
