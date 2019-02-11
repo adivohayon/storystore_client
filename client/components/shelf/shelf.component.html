@@ -77,7 +77,7 @@
 			:sizes="sizes"
 			@changed-size="setSize"
 		></size-picker> -->
-		<add-to-cart :variant="variant" :shelf="shelf"></add-to-cart>
+		<add-to-cart :variant="variant" :attributes="attributes" :shelf="shelf"></add-to-cart>
 	</footer>
 	<transition name="shelf-overlay-bottom">
 		<shelf-info

@@ -1,13 +1,14 @@
 import _get from 'lodash/get';
+import Vue from 'vue';
 import { removeDuplicates } from '@/helpers/collection.helpers';
 export const state = () => ({
 	// added: {},
 });
 
 export const mutations = {
-	remove(state, itemIndex) {
+	removeItem(state, { itemIndex, storeSlug }) {
 		console.log('removed item number', itemIndex);
-		state.added.splice(itemIndex, 1);
+		state[storeSlug].added.splice(itemIndex, 1);
 	},
 
 	addItem(state, { item, storeSlug }) {
@@ -18,9 +19,26 @@ export const mutations = {
 		console.log('addedIndex', addedIndex);
 
 		if (addedIndex > -1) {
-			state[storeSlug].added[addedIndex].quantity += item.quantity;
+			const prevQty = state[storeSlug].added[addedIndex].quantity;
+			Vue.set(
+				state[storeSlug].added[addedIndex],
+				'quantity',
+				prevQty + item.quantity
+			);
+			// state[storeSlug].added[addedIndex].quantity += item.quantity;
 		} else {
-			state[storeSlug].added.push(item);
+			const items = state[storeSlug].added;
+			items.push(item);
+			Vue.set(state[storeSlug], 'added', items);
+		}
+	},
+
+	setItemQuantity(state, { qty, itemId, storeSlug }) {
+		const addedIndex = state[storeSlug].added.findIndex(
+			addedItem => addedItem.id === itemId
+		);
+		if (addedIndex > -1) {
+			Vue.set(state[storeSlug].added[addedIndex], 'quantity', qty);
 		}
 	},
 
@@ -29,7 +47,9 @@ export const mutations = {
 	},
 
 	addStore(state, storeSlug) {
-		state[storeSlug] = { added: [] };
+		// state[storeSlug] = { added: [] };
+		Vue.set(state, storeSlug, {});
+		Vue.set(state[storeSlug], 'added', []);
 	},
 };
 

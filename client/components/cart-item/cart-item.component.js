@@ -16,30 +16,28 @@ export default {
 		storeSlug() {
 			return this.$store.state.store.slug;
 		},
-		itemSize: {
+		itemQuantity: {
 			get() {
-				return this.item.attributes.size;
+				return this.item.quantity;
 			},
-			set(size) {
-				this.$store.commit('cart/updateItemSize', this.itemIndex, size);
+			set(qty) {
+				this.$store.commit('cart/setItemQuantity', {
+					qty,
+					itemId: this.item.id,
+					storeSlug: this.storeSlug,
+				});
 			},
 		},
 	},
 	methods: {
-		swipeHandlerRight() {
-			document.getElementById(`remove_${this.itemIndex}`).style.display =
-				'flex';
-			console.log('detected swipe right on element number:' + this.itemIndex);
-		},
-		swipeHandlerLeft() {
-			document.getElementById(`remove_${this.itemIndex}`).style.display =
-				'none';
-			console.log('detected swipe left on element number:' + this.itemIndex);
-		},
 		removeItem() {
-			this.$store.commit('cart/remove', this.itemIndex);
-			document.getElementById(`remove_${this.itemIndex}`).style.display =
-				'none';
+			console.log('removeItem');
+			this.$store.commit('cart/removeItem', {
+				itemIndex: this.itemIndex,
+				storeSlug: this.storeSlug,
+			});
+			// document.getElementById(`remove_${this.itemIndex}`).style.display =
+			// 	'none';
 		},
 	},
 };

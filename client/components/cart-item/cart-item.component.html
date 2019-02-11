@@ -11,26 +11,46 @@
 		</div>
 	</div>
 	<div class="cart-item__pickers">
-		<div class="cart-item__pickers--picker">
+		<!-- <div v-if="item.attributes.size" class="cart-item__pickers--picker">
 			<div class="picker-title">מידה:</div>
 			<select v-model="itemSize">
 				<option
-					v-for="(size, sizeIndex) in item.sizes"
+					v-for="(size, sizeIndex) in item.attributes.size"
 					:key="sizeIndex"
 					:value="size"
 				>
-					<span v-if="sizeIndex === 0"></span> {{ size.label }}</option
+					{{ size.label }}</option
 				>
 			</select>
-		</div>
+		</div> -->
+
+		<!-- AXIS -->
+		<!-- <div v-if="item.attributes.axis" class="cart-item__pickers--picker">
+			<div class="picker-title">ציר:</div>
+			<select v-model="selectedAttribute">
+				<option
+					v-for="(axis, axisIndex) in item.axis"
+					:key="axisIndex"
+					:value="axis.value"
+				>
+					<span v-if="axisIndex === 0"></span> {{ axis.label }}</option
+				>
+			</select>
+		</div> -->
+
 		<div class="cart-item__pickers--picker">
 			<div class="picker-label">כמות:</div>
-			<select v-model="item.quantity">
+			<select v-model="itemQuantity">
 				<!-- <option v-for="size in item.variations.sizes">מידה: {{size}}</option> -->
 				<option v-for="(i, index) in 10" :key="index" :value="i"
 					>{{ i }}
 				</option>
 			</select>
 		</div>
+	</div>
+	<div class="cart-item__remove">
+		<button @click="removeItem">
+			<icon name="close" :original="true" width="12" height="12"></icon>
+		</button>
 	</div>
 </div>
