@@ -16,8 +16,8 @@
 		</div>
 		<div
 			class="slide"
-			v-for="(slide, index) in variantImages"
-			:style="{ backgroundImage: 'url(' + slide.value + ')' }"
+			v-for="(image, index) in variantImages"
+			:style="{ backgroundImage: 'url(' + image + ')' }"
 		></div>
 		{{ variant }}
 	</section>
@@ -53,8 +53,8 @@
 	</aside>
 	<footer class="shelf-footer">
 		<shelf-title
-			:price="shelf.price"
-			:currency="shelf.currency"
+			:price="variant.price"
+			:currency="variant.currency"
 			:title="shelf.name"
 		></shelf-title>
 

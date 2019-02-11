@@ -54,7 +54,7 @@ export default {
 		variant() {
 			if (this.shelf.variations.length) {
 				const variantIndex = this.shelf.variations.findIndex(variant => {
-					if (!variant.attributes) {
+					if (!variant.attrs) {
 						return false;
 					}
 
@@ -66,7 +66,7 @@ export default {
 
 					isVariant = this.attributesKeys.every(attributeKey => {
 						return (
-							_get(variant, ['attributes', attributeKey, 'value']) ===
+							_get(variant, ['attrs', attributeKey, 'value']) ===
 							_get(this.selectedAttributes, [attributeKey, 'value'])
 						);
 					});
@@ -84,24 +84,25 @@ export default {
 			}
 		},
 		variantImages() {
-			return this.variant.assets.filter(asset => {
-				return asset.type === 'image';
+			const images = _get(this.variant, 'assets.images', []);
+			return images.map(imageName => {
+				return `https://assets.storystore.co.il/${this.storeSlug}/${
+					this.shelf.slug
+				}/${this.variant.slug}/${imageName}`;
 			});
 		},
 		variantVideo() {
-			if (this.variant.assets) {
-				const videoArray = this.variant.assets.filter(video => {
-					return video.type === 'video';
-				});
-				// console.log('videoArray', videoArray);
-				return videoArray[0];
-			}
-			// const a = videoArray[0];
-			// console.log('a', a);
-			// return a;
+			// return _get(this.variant, 'assets.images', []);
+			// if (this.variant.assets) {
+			// 	const videoArray = this.variant.assets.filter(video => {
+			// 		return video.type === 'video';
+			// 	});
+			// 	// console.log('videoArray', videoArray);
+			// 	return videoArray[0];
+			// }
 		},
 		attributesKeys() {
-			const attributes = _get(this.shelf, 'variations[0].attributes', {});
+			const attributes = _get(this.shelf, 'variations[0].attrs', {});
 			console.log('attributes', attributes);
 			const attributesKeys = Object.keys(attributes);
 
@@ -110,13 +111,39 @@ export default {
 		},
 		attributes() {
 			const attributes = {};
+			// Loop through the different attribute keys
 			for (let attributeKey of this.attributesKeys) {
-				attributes[attributeKey] = removeDuplicates(
-					this.shelf.variations.map(variant => {
-						return variant.attributes[attributeKey];
-					}),
-					'value'
-				);
+				const withDuplicates = [];
+				// Loop through variations
+				for (let variant of this.shelf.variations) {
+					const hasValue = _get(
+						variant,
+						['attrs', attributeKey, 'value'],
+						false
+					);
+					if (hasValue && hasValue.length > 0) {
+						withDuplicates.push(variant.attrs[attributeKey]);
+					}
+				}
+
+				const noDuplicates = removeDuplicates(withDuplicates, 'value');
+				if (noDuplicates.length > 0) {
+					attributes[attributeKey] = noDuplicates;
+				}
+
+				// // Remove duplicates
+				// const withDuplicates = this.shelf.variations.map(variant => {
+				// 	// Make sure there is a value for that attribute
+				// 	const attrs = _get(variant, ['attrs', attributeKey, 'value'], '');
+				// 	console.log('attrs', attrs);
+				// 	if (attrs.length > 0) {
+				// 		return variant.attrs[attributeKey];
+				// 	}
+				// });
+				// console.log('withDuplicates', withDuplicates);
+				// if (withDuplicates.length > 0) {
+				// 	attributes[attributeKey] = removeDuplicates(withDuplicates, 'value');
+				// }
 			}
 			console.log('attributes', attributes);
 			return attributes;
@@ -133,7 +160,7 @@ export default {
 			return this.shelf.description;
 		},
 		storeSlug() {
-			return this.$route.params.storeSlug || null;
+			return this.$store.state.store.slug;
 		},
 	},
 	// watch: {
@@ -142,7 +169,7 @@ export default {
 	// 	}
 	// },
 	created() {
-		this.selectedAttributes = this.shelf.variations[0].attributes || null;
+		this.selectedAttributes = this.shelf.variations[0].attrs || null;
 	},
 	mounted() {
 		this.storeName = this.$route.params.storeName;
