@@ -16,6 +16,14 @@ export default {
 		storeSlug() {
 			return this.$store.state.store.slug;
 		},
+		itemSize: {
+			get() {
+				return this.item.attributes.size;
+			},
+			set(size) {
+				this.$store.commit('cart/updateItemSize', this.itemIndex, size);
+			},
+		},
 	},
 	methods: {
 		swipeHandlerRight() {

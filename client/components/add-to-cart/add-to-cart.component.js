@@ -36,7 +36,7 @@ export default {
 				}
 			});
 
-			const image = this.variant.content[0].value;
+			const image = this.variant.assets[0].value;
 
 			const item = {
 				...shelf,
@@ -45,7 +45,7 @@ export default {
 				image,
 				sizes: removeDuplicates(sizes, 'value'),
 			};
-			delete item.content;
+			delete item.assets;
 			delete item.variations;
 
 			console.log('ADD TO CART', item);

@@ -13,7 +13,7 @@
 	<div class="cart-item__pickers">
 		<div class="cart-item__pickers--picker">
 			<div class="picker-title">מידה:</div>
-			<select v-model="item.attributes.size">
+			<select v-model="itemSize">
 				<option
 					v-for="(size, sizeIndex) in item.sizes"
 					:key="sizeIndex"

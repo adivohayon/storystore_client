@@ -24,6 +24,10 @@ export const mutations = {
 		}
 	},
 
+	updateItemSize(state, itemIndex, size) {
+		state[storeSlug].added[itemIndex].size = size;
+	},
+
 	addStore(state, storeSlug) {
 		state[storeSlug] = { added: [] };
 	},
