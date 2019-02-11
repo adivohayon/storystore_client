@@ -28,7 +28,7 @@
 							"value": "M"
 						}
 					},
-					"content": [
+					"assets": [
 						{
 							"type": "image",
 							"value": "assets/test/02.jpg"
@@ -136,7 +136,7 @@
 							"value": "L"
 						}
 					},
-					"content": [
+					"assets": [
 						{
 							"type": "image",
 							"value": "assets/simplyfashion_dress_black_front.jpg"
@@ -176,7 +176,7 @@
 							"value": "M"
 						}
 					},
-					"content": [
+					"assets": [
 						{
 							"type": "image",
 							"value": "assets/simplyfashion_dress_mustard_front.jpg"
@@ -216,7 +216,7 @@
 							"value": "L"
 						}
 					},
-					"content": [
+					"assets": [
 						{
 							"type": "image",
 							"value": "assets/simplyfashion_dress_mustard_front.jpg"
@@ -267,7 +267,7 @@
 							"value": "M"
 						}
 					},
-					"content": [
+					"assets": [
 						{
 							"type": "image",
 							"value": "assets/simplyfashion_dress_black_front.jpg"
@@ -307,7 +307,7 @@
 							"value": "L"
 						}
 					},
-					"content": [
+					"assets": [
 						{
 							"type": "image",
 							"value": "assets/simplyfashion_dress_black_front.jpg"
@@ -347,7 +347,7 @@
 							"value": "M"
 						}
 					},
-					"content": [
+					"assets": [
 						{
 							"type": "image",
 							"value": "assets/simplyfashion_dress_mustard_front.jpg"
@@ -398,7 +398,7 @@
 							"value": "M"
 						}
 					},
-					"content": [
+					"assets": [
 						{
 							"type": "image",
 							"value": "assets/simplyfashion_dress_black_front.jpg"
@@ -438,7 +438,7 @@
 							"value": "L"
 						}
 					},
-					"content": [
+					"assets": [
 						{
 							"type": "image",
 							"value": "assets/simplyfashion_dress_black_front.jpg"
@@ -478,7 +478,7 @@
 							"value": "M"
 						}
 					},
-					"content": [
+					"assets": [
 						{
 							"type": "image",
 							"value": "assets/simplyfashion_dress_mustard_front.jpg"

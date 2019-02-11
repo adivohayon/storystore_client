@@ -23,7 +23,7 @@
 							"value": "xs"
 						}
 					},
-					"content": [
+					"assets": [
 						{
 							"type": "image",
 							"value": "assets/brooks_gloves_2.jpg"
@@ -47,7 +47,7 @@
 							"value": "m"
 						}
 					},
-					"content": [
+					"assets": [
 						{
 							"type": "image",
 							"value": "assets/brooks_gloves_1.jpg"
@@ -71,7 +71,7 @@
 							"value": "l"
 						}
 					},
-					"content": [
+					"assets": [
 						{
 							"type": "image",
 							"value": "assets/brooks_gloves_1.jpg"
@@ -95,7 +95,7 @@
 							"value": "xl"
 						}
 					},
-					"content": [
+					"assets": [
 						{
 							"type": "image",
 							"value": "assets/brooks_gloves_1.jpg"
@@ -133,7 +133,7 @@
 							"value": "32b"
 						}
 					},
-					"content": [
+					"assets": [
 						{
 							"type": "image",
 							"value": "assets/brooks_bra_blue_1.jpg"
@@ -165,7 +165,7 @@
 							"value": "32b"
 						}
 					},
-					"content": [
+					"assets": [
 						{
 							"type": "image",
 							"value": "assets/brooks_bra_white_1.jpg"
@@ -193,7 +193,7 @@
 							"value": "34d"
 						}
 					},
-					"content": [
+					"assets": [
 						{
 							"type": "image",
 							"value": "assets/brooks_bra_blue_1.jpg"
@@ -225,7 +225,7 @@
 							"value": "34d"
 						}
 					},
-					"content": [
+					"assets": [
 						{
 							"type": "image",
 							"value": "assets/brooks_bra_white_1.jpg"
@@ -263,7 +263,7 @@
 							"value": "36"
 						}
 					},
-					"content": [
+					"assets": [
 						{
 							"type": "image",
 							"value": "assets/brooks_ofoos_blue_1.jpg"
@@ -299,7 +299,7 @@
 							"value": "37"
 						}
 					},
-					"content": [
+					"assets": [
 						{
 							"type": "image",
 							"value": "assets/brooks_ofoos_blue_1.jpg"
@@ -335,7 +335,7 @@
 							"value": "41"
 						}
 					},
-					"content": [
+					"assets": [
 						{
 							"type": "image",
 							"value": "assets/brooks_ofoos_blue_1.jpg"
@@ -371,7 +371,7 @@
 							"value": "42"
 						}
 					},
-					"content": [
+					"assets": [
 						{
 							"type": "image",
 							"value": "assets/brooks_ofoos_blue_1.jpg"
@@ -407,7 +407,7 @@
 							"value": "43"
 						}
 					},
-					"content": [
+					"assets": [
 						{
 							"type": "image",
 							"value": "assets/brooks_ofoos_blue_1.jpg"
@@ -443,7 +443,7 @@
 							"value": "36"
 						}
 					},
-					"content": [
+					"assets": [
 						{
 							"type": "image",
 							"value": "assets/brooks_ofoos_red_1.jpg"
@@ -479,7 +479,7 @@
 							"value": "37"
 						}
 					},
-					"content": [
+					"assets": [
 						{
 							"type": "image",
 							"value": "assets/brooks_ofoos_red_1.jpg"
@@ -515,7 +515,7 @@
 							"value": "41"
 						}
 					},
-					"content": [
+					"assets": [
 						{
 							"type": "image",
 							"value": "assets/brooks_ofoos_red_1.jpg"
@@ -551,7 +551,7 @@
 							"value": "42"
 						}
 					},
-					"content": [
+					"assets": [
 						{
 							"type": "image",
 							"value": "assets/brooks_ofoos_red_1.jpg"
@@ -587,7 +587,7 @@
 							"value": "43"
 						}
 					},
-					"content": [
+					"assets": [
 						{
 							"type": "image",
 							"value": "assets/brooks_ofoos_red_1.jpg"

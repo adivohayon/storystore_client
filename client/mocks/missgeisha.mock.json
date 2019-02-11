@@ -27,7 +27,7 @@
 							"value": "OS"
 						}
 					},
-					"content": [
+					"assets": [
 						{
 							"type": "image",
 							"value": "assets/missgeisha-vest-1.jpg"
@@ -70,7 +70,7 @@
 							"value": "OS"
 						}
 					},
-					"content": [
+					"assets": [
 						{
 							"type": "image",
 							"value": "assets/missgeisha-coat-1.jpg"
@@ -113,7 +113,7 @@
 							"value": "OS"
 						}
 					},
-					"content": [
+					"assets": [
 						{
 							"type": "image",
 							"value": "assets/missgeisha-dress-1.jpg"
@@ -156,7 +156,7 @@
 							"value": "OS"
 						}
 					},
-					"content": [
+					"assets": [
 						{
 							"type": "image",
 							"value": "assets/missgeisha-skirt-1.jpg"
@@ -199,7 +199,7 @@
 							"value": "OS"
 						}
 					},
-					"content": [
+					"assets": [
 						{
 							"type": "image",
 							"value": "assets/missgeisha-overall-1.jpg"

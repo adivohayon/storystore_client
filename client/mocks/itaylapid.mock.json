@@ -27,7 +27,7 @@
 							"value": "OS"
 						}
 					},
-					"content": [
+					"assets": [
 						{
 							"type": "image",
 							"value": "assets/itaylapid-corduroy-coat-1.jpg"
@@ -70,7 +70,7 @@
 							"value": "OS"
 						}
 					},
-					"content": [
+					"assets": [
 						{
 							"type": "image",
 							"value": "assets/itaylapid-blake-overall-1.jpg"
@@ -109,7 +109,7 @@
 							"value": "OS"
 						}
 					},
-					"content": [
+					"assets": [
 						{
 							"type": "image",
 							"value": "assets/itaylapid-roni-bracelet-1.jpg"

@@ -27,7 +27,7 @@
 							"value": "OS"
 						}
 					},
-					"content": [
+					"assets": [
 						{
 							"type": "image",
 							"value": "assets/yehuda-devir-vol-1-1.jpg"
@@ -66,7 +66,7 @@
 							"value": "OS"
 						}
 					},
-					"content": [
+					"assets": [
 						{
 							"type": "image",
 							"value": "assets/yehuda-devir-vol-2-1.jpg"
@@ -105,7 +105,7 @@
 							"value": "OS"
 						}
 					},
-					"content": [
+					"assets": [
 						{
 							"type": "image",
 							"value": "assets/yehuda-devir-vol-1+2.jpg"
@@ -144,7 +144,7 @@
 							"value": "OS"
 						}
 					},
-					"content": [
+					"assets": [
 						{
 							"type": "image",
 							"value": "assets/yehuda-devir-calendar-1.jpg"
@@ -195,7 +195,7 @@
 							"value": "OS"
 						}
 					},
-					"content": [
+					"assets": [
 						{
 							"type": "image",
 							"value": "assets/yehuda-devir-mystery-box-1.jpg"

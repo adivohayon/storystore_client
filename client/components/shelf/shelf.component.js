@@ -84,16 +84,18 @@ export default {
 			}
 		},
 		variantImages() {
-			return this.variant.content.filter(contentItem => {
-				return contentItem.type === 'image';
+			return this.variant.assets.filter(asset => {
+				return asset.type === 'image';
 			});
 		},
 		variantVideo() {
-			const videoArray = this.variant.content.filter(video => {
-				return video.type === 'video';
-			});
-			// console.log('videoArray', videoArray);
-			return videoArray[0];
+			if (this.variant.assets) {
+				const videoArray = this.variant.assets.filter(video => {
+					return video.type === 'video';
+				});
+				// console.log('videoArray', videoArray);
+				return videoArray[0];
+			}
 			// const a = videoArray[0];
 			// console.log('a', a);
 			// return a;

@@ -27,7 +27,7 @@
 							"value": "XS"
 						}
 					},
-					"content": [
+					"assets": [
 						{
 							"type": "image",
 							"value": "assets/LC_K_2985.jpg"
@@ -59,7 +59,7 @@
 							"value": "XS"
 						}
 					},
-					"content": [
+					"assets": [
 						{
 							"type": "image",
 							"value": "assets/LC_K_2853.jpg"
@@ -95,7 +95,7 @@
 							"value": "M"
 						}
 					},
-					"content": [
+					"assets": [
 						{
 							"type": "image",
 							"value": "assets/LC_K_2985.jpg"
@@ -127,7 +127,7 @@
 							"value": "XS"
 						}
 					},
-					"content": [
+					"assets": [
 						{
 							"type": "image",
 							"value": "assets/LC_K_2703.jpg"
