@@ -9,8 +9,7 @@ export default {
 	mounted() {},
 	computed: {
 		storeSlug() {
-			return this.$route.params.storeSlug || null;
-			// this.$route
+			return this.$store.state.store.slug;
 		},
 		items() {
 			return this.$store.getters['cart/items'](this.storeSlug);

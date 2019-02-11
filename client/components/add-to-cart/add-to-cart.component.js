@@ -21,9 +21,7 @@ export default {
 	},
 	computed: {
 		storeSlug() {
-			// console.log('params', this.$route.params);
-			return this.$route.params.storeSlug || null;
-			// this.$route
+			return this.$store.state.store.slug;
 		},
 	},
 	created() {},

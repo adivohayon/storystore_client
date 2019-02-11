@@ -1,26 +1,19 @@
-<div
-	v-if="item"
-	class="cart-item"
-	v-touch:swipe.right="swipeHandlerRight"
-	v-touch:swipe.left="swipeHandlerLeft"
->
-	<div class="cart-item__product">
-		<div class="cart-item__product--details">
-			<div
-				class="cart-item__product--details--image"
-				:style="{backgroundImage: `url(${item.image}`}"
-			></div>
-			<div class="cart-item__product--details--details">
-				<div class="cart-item__product--details--details--price">
-					{{ item.price }} {{ item.currency }}
-				</div>
-				<div class="cart-item__product--details--details--title">
-					{{ item.name }}
-				</div>
-			</div>
+<div v-if="item" class="cart-item">
+	<!-- {{ item }} -->
+	<img class="cart-item__image" :src="item.image" />
+	<div class="cart-item__content">
+		<div class="cart-item__content--price">
+			{{ item.price }} {{ item.currency }}
 		</div>
-		<div class="cart-item__product--details--pickers">
-			<select class="cart-item__product--details--pickers--picker" v-model="item.attributes.size">
+		<div class="cart-item__content--name">{{ item.name }}</div>
+		<div v-if="item.attributes.color" class="cart-item__content--color">
+			{{ item.attributes.color.label }}
+		</div>
+	</div>
+	<div class="cart-item__pickers">
+		<div class="cart-item__pickers--picker">
+			<div class="picker-title">מידה:</div>
+			<select v-model="item.attributes.size">
 				<option
 					v-for="(size, sizeIndex) in item.sizes"
 					:key="sizeIndex"
@@ -29,18 +22,15 @@
 					<span v-if="sizeIndex === 0"></span> {{ size.label }}</option
 				>
 			</select>
-			<select class="cart-item__product--details--pickers--picker">
+		</div>
+		<div class="cart-item__pickers--picker">
+			<div class="picker-label">כמות:</div>
+			<select v-model="item.quantity">
 				<!-- <option v-for="size in item.variations.sizes">מידה: {{size}}</option> -->
-				<option>כמות: {{ item.quantity }}</option>
+				<option v-for="(i, index) in 10" :key="index" :value="i"
+					>{{ i }}
+				</option>
 			</select>
 		</div>
-	</div>
-	<div
-		@click="removeItem"
-		:id="`remove_${itemIndex}`"
-		class="cart-item__delete"
-	>
-		<div class="cart-item__delete--text">X</div>
-		<div class="cart-item__delete--text">הסר</div>
 	</div>
 </div>

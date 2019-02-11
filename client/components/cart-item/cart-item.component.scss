@@ -1,81 +1,51 @@
 .cart-item {
-	.picker-button {
-		width: 4rem;
-		height: 1.44rem;
-		border-radius: 30px;
-		border: 1px solid black;
-		color: black;
-		text-align: center;
-		line-height: 1.44rem;
-	}
 	display: flex;
-	flex-direction: row;
-	border-bottom: 1px solid rgba(229, 229, 229, 0.4);
-	&__product {
-		padding: 1rem 1rem;
-		flex: 4;
+	padding: 1rem;
+	color: #717171;
+	&__image {
+		width: 4.28rem;
+		height: 7.64rem;
+		border-color: #d6d6d6;
+		border-width: thin;
+	}
+	&__content {
+		flex: 1;
+		margin-right: 0.5rem;
 		display: flex;
-		flex-direction: row;
-		justify-content: space-around;
-		&--details {
-			display: flex;
-			flex-direction: row;
-			&--image {
-				// background-image: url('../../static/assets/simplyfashion_dress_black_closeup.jpg');
-				background-size: cover;
-				width: 4.5rem;
-				height: 7rem;
-			}
-			&--details {
-				display: flex;
-				flex-direction: column;
-				justify-content: flex-end;
-				padding-right: 1rem;
-				color: #494949;
-				font-size: 1.1rem;
-				&--price {
-					font-weight: bold;
-				}
-			}
-			&--pickers {
-				& select {
-					-webkit-appearance: none;
-					text-indent: 1px;
-					background-color: transparent;
-					border: none;
-				}
-				display: flex;
-				flex-direction: column;
-				justify-content: flex-end;
-				font-size: 0.9rem;
-				color: #494949;
-				&--picker {
-					margin-top: 0.2rem;
-				}
-				& select {
-					width: 7rem;
-					height: 2rem;
-					border: 1px solid rgba(0, 0, 0, 0.4);
-					padding-right: 0.3rem;
-					font-weight: bold;
-				}
-			}
+		flex-direction: column;
+		&--price {
+			color: #000000;
+			font-size: 1.1rem;
+			font-weight: bold;
+			flex: 1;
+			letter-spacing: 2px;
+		}
+		&--name {
+			margin-bottom: 0.5rem;
 		}
 	}
-	&__delete {
-		background-color: red;
-		color: white;
-		display: none;
-		flex: 1;
-		font-weight: bold;
-		max-width: 30%;
-		margin-right: 0.5rem;
-		margin-left: -5.5%;
+	&__pickers {
+		display: flex;
 		flex-direction: column;
-		justify-content: center;
-		text-align: center;
-		&--text {
-			padding: 0.5rem 0;
+		justify-content: flex-end;
+		&--picker {
+			display: flex;
+			margin-top: 0.5rem;
+			line-height: 2rem;
+			select {
+				width: 5.07rem;
+				height: 1.85rem;
+				margin-right: 0.5rem;
+				background-color: #ffffff;
+				border-color: #d6d6d6;
+				border-radius: 0;
+				background: transparent url('~assets/icons/chevron-down.svg') no-repeat
+					6px center;
+				font-weight: bold;
+				&:focus {
+					outline: none;
+				}
+			}
 		}
 	}
 }

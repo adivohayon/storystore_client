@@ -1,17 +1,17 @@
 <div class="cart-page">
 	<div class="cart-page__container">
 		<div class="cart-page__container--header">
-		<nuxt-link :to="`/stores/${storeSlug}`" class="cart-page__container--header--back">
-				<icon name="back" :original="true" width="26" height="26"></icon>
-			</nuxt-link>
 			<button class="cart-page__container--header--payment-button">
 				לתשלום
 			</button>
+			<nuxt-link :to="`/`" class="cart-page__container--header--close">
+				<icon name="close" :original="true" width="17" height="26"></icon>
+			</nuxt-link>
 		</div>
 		<div class="cart-page__container--total">
 			<span class="cart-page__container--total__text">
-				{{ itemsCount }} פריטים: סה"כ (כולל משלוח)</span
-			>
+				{{ itemsCount }} פריטים: סה"כ
+			</span>
 			<span class="cart-page__container--total__price">{{ subtotal }} ש"ח</span>
 		</div>
 		<cart-item
