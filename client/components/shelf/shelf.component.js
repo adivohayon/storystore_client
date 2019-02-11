@@ -83,12 +83,18 @@ export default {
 				return this.shelf.variations[variantIndex > -1 ? variantIndex : 0];
 			}
 		},
+		assetsPath() {
+			let path = process.env.staticDir ? process.env.staticDir : '/';
+			if (process.env.staticDir) {
+				path += `${this.storeSlug}/${this.shelf.slug}/${this.variant.slug}/`;
+			}
+
+			return path;
+		},
 		variantImages() {
 			const images = _get(this.variant, 'assets.images', []);
 			return images.map(imageName => {
-				return `https://assets.storystore.co.il/${this.storeSlug}/${
-					this.shelf.slug
-				}/${this.variant.slug}/${imageName}`;
+				return this.assetsPath + imageName;
 			});
 		},
 		variantVideo() {
@@ -130,20 +136,6 @@ export default {
 				if (noDuplicates.length > 0) {
 					attributes[attributeKey] = noDuplicates;
 				}
-
-				// // Remove duplicates
-				// const withDuplicates = this.shelf.variations.map(variant => {
-				// 	// Make sure there is a value for that attribute
-				// 	const attrs = _get(variant, ['attrs', attributeKey, 'value'], '');
-				// 	console.log('attrs', attrs);
-				// 	if (attrs.length > 0) {
-				// 		return variant.attrs[attributeKey];
-				// 	}
-				// });
-				// console.log('withDuplicates', withDuplicates);
-				// if (withDuplicates.length > 0) {
-				// 	attributes[attributeKey] = removeDuplicates(withDuplicates, 'value');
-				// }
 			}
 			console.log('attributes', attributes);
 			return attributes;
@@ -173,51 +165,16 @@ export default {
 	},
 	mounted() {
 		this.storeName = this.$route.params.storeName;
-		// this.swiper = new this.$Swiper(`#shelf-content-slider-${this.shelfIndex}`, {
-		// 	// Optional parameters
-		// 	direction: 'horizontal',
-		// 	loop: true,
-		// 	// If we need pagination
-		// 	pagination: {
-		// 		el: '.shelf-content__pagination',
-		// 		clickable: true,
-		// 		renderBullet: (index, className) => {
-		// 			const shelfContentType = this.variant.content[index].type;
-		// 			let bullet = '';
-
-		// 			// if you want to add text under pagination uncomment below.
-
-		// 			// switch (shelfContentType) {
-		// 			// 	case 'image':
-		// 			// 		bullet = 'img';
-		// 			// 		break;
-		// 			// 	case 'video':
-		// 			// 		bullet = 'vid';
-		// 			// 		break;
-		// 			// 	case 'description':
-		// 			// 		bullet = 'פרטים';
-		// 			// 		break;
-		// 			// }
-		// 			return '<span class="' + className + '">' + bullet + '</span>';
-		// 		},
-		// 	},
-		// 	// Navigation arrows
-		// 	navigation: {
-		// 		nextEl: '.swiper-button-next',
-		// 		prevEl: '.swiper-button-prev',
-		// 	},
-		// 	// And if we need scrollbar
-		// 	scrollbar: {
-		// 		el: '.swiper-scrollbar',
-		// 	},
-		// });
-
-		// this.updateSwiperSlides();
-		// const fullpageEl = document.getElementById('fullpage');
-		// fullpageEl.build();
-		// console.log('fullpage', fullpageEl);
 	},
 	methods: {
+		getAssetsPath(storeSlug, shelfSlug, variantSlug) {
+			let path = process.env.staticDir ? process.env.staticDir : '/';
+			if (process.env.staticDir) {
+				path += `${storeSlug}/${shelfSlug}/${variantSlug}/`;
+			}
+
+			return path;
+		},
 		updateSwiperSlides() {
 			// this.swiper.removeAllSlides();
 

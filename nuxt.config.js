@@ -86,7 +86,7 @@ module.exports = {
 	 */
 	env: {
 		staticDir:
-			process.env.NODE_ENV === 'development' ? '/' : '//cdn.shop-together.io/',
+			process.env.NODE_ENV === 'development' ? '/' : '//assets.storystore.co.il/',
 	},
 
 	build: {

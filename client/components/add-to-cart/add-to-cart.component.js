@@ -29,6 +29,14 @@ export default {
 		storeSlug() {
 			return this.$store.state.store.slug;
 		},
+		assetsPath() {
+			let path = process.env.staticDir ? process.env.staticDir : '/';
+			if (process.env.staticDir) {
+				path += `${this.storeSlug}/${this.shelf.slug}/${this.variant.slug}/`;
+			}
+
+			return path;
+		},
 	},
 	created() {},
 	mounted() {
@@ -42,9 +50,10 @@ export default {
 			// 	}
 			// });
 			const imageName = this.variant.assets.images[0];
-			const image = `https://assets.storystore.co.il/${this.storeSlug}/${
-				this.shelf.slug
-			}/${this.variant.slug}/${imageName}`;
+			const image = this.assetsPath + imageName;
+			// const image = `https://assets.storystore.co.il/${this.storeSlug}/${
+			// 	this.shelf.slug
+			// }/${this.variant.slug}/${imageName}`;
 
 			const item = {
 				...shelf,
