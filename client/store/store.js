@@ -30,7 +30,7 @@ export const mutations = {
 export const getters = {
 	shelfAttributes: () => (variations, attribute) => {
 		const atts = variations.map(variant => {
-			return _get(variant, ['attributes', attribute]);
+			return _get(variant, ['attrs', attribute]);
 		});
 
 		return atts.length ? removeDuplicates(atts, 'value') : [];
