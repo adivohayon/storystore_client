@@ -67,8 +67,8 @@ export const getters = {
 		);
 
 		const sizes = variations.map(variant => {
-			if (variant.attributes.size) {
-				return variant.attributes.size;
+			if (variant.attrs.size) {
+				return variant.attrs.size;
 			}
 		});
 
