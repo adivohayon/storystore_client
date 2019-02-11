@@ -22,6 +22,7 @@ export const actions = {
 				return error('404');
 			}
 
+			console.log('storeSlug', storeSlug);
 			// Not website root let's check for store
 			const fetchStoreResp = await dispatch('store/get', storeSlug);
 			if (!fetchStoreResp) {

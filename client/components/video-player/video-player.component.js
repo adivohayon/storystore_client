@@ -12,7 +12,12 @@ export default {
 	},
 	computed: {
 		ios() {
-			return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+			// return (
+			// 	window &&
+			// 	window.navigator &&
+			// 	navigator.userAgent.match(/iPhone|iPad|iPod/i)
+			// );
+			return false;
 		},
 	},
 	created() {},

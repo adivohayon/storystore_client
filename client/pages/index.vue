@@ -1,21 +1,19 @@
 <template>
 	<div id="page" :class="fixerClass">
-		<no-ssr>
-			<full-page
+		<!-- <full-page
 				v-if="shelves && shelves.length > 0"
 				id="fullpage"
 				ref="fullpage"
 				:options="feedOptions"
-			>
-				<shelf
-					v-for="(shelf, shelfIndex) in shelves"
-					:key="shelfIndex"
-					:shelf="shelf"
-					:shelf-index="shelfIndex"
-				></shelf>
-			</full-page>
-			<div v-else>No shelves available or store not available</div>
-		</no-ssr>
+		>-->
+		<shelf
+			v-for="(shelf, shelfIndex) in shelves"
+			:key="shelfIndex"
+			:shelf="shelf"
+			:shelf-index="shelfIndex"
+		></shelf>
+		<!-- </full-page> -->
+		<!-- <div v-else>No shelves available or store not available</div> -->
 	</div>
 </template>
 
@@ -29,23 +27,13 @@ import { mapState } from 'vuex';
 
 export default {
 	components: { Feed, Shelf, Navigation },
+	layout(ctx) {
+		return ctx.app.isMobile ? 'mobile' : 'desktop';
+	},
 	data() {
 		return {
+			isMobile: true,
 			fixerClass: '',
-			// shelves: [],
-			feedOptions: {
-				sectionSelector: '.shelf',
-				// slideSelector: '.shelf-content',
-				autoScrolling: true,
-				licenseKey: '45154D42-6F8E4ACE-AB31A7B3-11A8CE75',
-				dragAndMoveKey: 'F5E0D91E-52F94E24-98489795-9E741DA2',
-				dragAndMove: true,
-				controlArrows: false,
-				slidesNavigation: true,
-				afterRender: () => {
-					// console.log('children', this.$refs.videoEl);
-				},
-			},
 		};
 	},
 	computed: {
@@ -56,6 +44,7 @@ export default {
 	},
 	created() {},
 	mounted() {},
+	methods: {},
 };
 </script>
 

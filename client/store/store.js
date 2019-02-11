@@ -54,11 +54,16 @@ export const getters = {
 export const actions = {
 	async get({ commit }, storeSlug) {
 		try {
-			const store = useMockData
-				? (await import(`@/mocks/${storeSlug}.mock.json`)).default
-				: await this.$axios.$get(`stores/${storeSlug}`);
+			let store;
+			if (useMockData == 'true') {
+				store = (await import(`@/mocks/${storeSlug}.mock.json`)).default;
+			} else {
+				store = await this.$axios.$get(`stores/${storeSlug}`);
+			}
 
-			console.log('store', store.slug);
+			console.log(useMockData, store.shelves);
+			// const store = await this.$axios.$get(`stores/${storeSlug}`);
+			// console.log('store - usemocks: ' + useMockData, store);
 			if (store) {
 				commit('populateShelves', store.shelves);
 				commit('populateStore', store);

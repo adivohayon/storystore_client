@@ -79,7 +79,7 @@ export default {
 					// );
 				});
 
-				console.log('variantIndex', variantIndex);
+				// console.log('variantIndex', variantIndex);
 				return this.shelf.variations[variantIndex > -1 ? variantIndex : 0];
 			}
 		},

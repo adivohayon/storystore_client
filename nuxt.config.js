@@ -54,6 +54,7 @@ module.exports = {
 	 */
 	// plugins: [],
 	plugins: [
+		{ src: '~/plugins/is-mobile', ssr: true },
 		{ src: '~/plugins/swiper', ssr: false },
 		{ src: '~/plugins/vuex-persist', ssr: false },
 		{ src: '~/plugins/fullpage', ssr: false },
@@ -75,6 +76,8 @@ module.exports = {
 	 ** Axios module configuration
 	 */
 	axios: {
+		https: true,
+		baseURL: 'https://api.storystore.co.il/',
 		// See https://github.com/nuxt-community/axios-module#options
 	},
 
