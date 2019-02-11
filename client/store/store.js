@@ -19,10 +19,14 @@ export const mutations = {
 		state.shelves = shelves;
 	},
 	populateStore(state, store) {
+		console.log('tagline', store.tagline);
 		state.storeId = store.id;
 		state.slug = store.slug;
 		state.name = store.name;
-		state.shippingDetails = store.shippingDetails;
+		state.shippingDetails = store.shipping_detail;
+		state.info = store.info;
+		state.about = store.about;
+		state.tagline = store.tagline;
 		state.returnsPolicy = store.returnsPolicy;
 	},
 };

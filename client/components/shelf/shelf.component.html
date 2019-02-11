@@ -1,5 +1,8 @@
 <div class="shelf">
 	<section>
+		<div class="shelf-logo">
+			<img :src="logoSrc" :alt="`${storeSlug} Logo`" />
+		</div>
 		<!-- <div class="slide slide--video">
 			<div id="video-controls">
 				<button id="playpause" title="play" v-on:click="playVideo">Play</button>
@@ -77,7 +80,11 @@
 			:sizes="sizes"
 			@changed-size="setSize"
 		></size-picker> -->
-		<add-to-cart :variant="variant" :attributes="attributes" :shelf="shelf"></add-to-cart>
+		<add-to-cart
+			:variant="variant"
+			:attributes="attributes"
+			:shelf="shelf"
+		></add-to-cart>
 	</footer>
 	<transition name="shelf-overlay-bottom">
 		<shelf-info

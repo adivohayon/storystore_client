@@ -76,8 +76,8 @@ module.exports = {
 	 ** Axios module configuration
 	 */
 	axios: {
-		https: true,
-		baseURL: 'https://api.storystore.co.il/',
+		https: process.env.API_HOST === '127.0.0.1' ? false : true,
+		baseURL: process.env.API_HOST === '127.0.0.1' ? 'http://127.0.0.1:4000/' : 'https://api.storystore.co.il/',
 		// See https://github.com/nuxt-community/axios-module#options
 	},
 

@@ -85,10 +85,12 @@ export default {
 		},
 		assetsPath() {
 			let path = process.env.staticDir ? process.env.staticDir : '/';
-			if (process.env.staticDir) {
-				path += `${this.storeSlug}/${this.shelf.slug}/${this.variant.slug}/`;
-			}
-
+			path += `${this.storeSlug}/${this.shelf.slug}/${this.variant.slug}/`;
+			return path;
+		},
+		logoSrc() {
+			let path = process.env.staticDir ? process.env.staticDir : '/';
+			path += `${this.storeSlug}/logo_${this.storeSlug}_white.png`;
 			return path;
 		},
 		variantImages() {
