@@ -19,7 +19,7 @@ export const mutations = {
 		state.shelves = shelves;
 	},
 	populateStore(state, store) {
-		state.storeId = store.storeId;
+		state.storeId = store.id;
 		state.slug = store.slug;
 		state.name = store.name;
 		state.shippingDetails = store.shippingDetails;
