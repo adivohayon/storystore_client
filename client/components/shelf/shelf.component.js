@@ -86,6 +86,7 @@ export default {
 		assetsPath() {
 			let path = process.env.staticDir ? process.env.staticDir : '/';
 			path += `${this.storeSlug}/${this.shelf.slug}/${this.variant.slug}/`;
+
 			return path;
 		},
 		logoSrc() {

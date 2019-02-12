@@ -1,40 +1,39 @@
 .profile-page {
-	&__header {
-		display: flex;
-		justify-content: flex-start;
+	.header {
 		position: relative;
-		padding: 2rem 1rem 1rem 1rem;
-		&--image {
-			border-radius: 50%;
-			border: solid 1px #818181;
-			width: 50px;
-			height: 50px;
-			// background-image: url('../../static/assets/logo--simplyfashion.png');
-			background-size: 40px;
-			background-repeat: no-repeat;
-			background-position: center;
-			color: #818181;
-			flex: 0 1 auto;
+		padding: 1rem;
+		text-align: center;
+		.back {
 			position: absolute;
-			left: 50%;
-			transform: translateX(-50%);
-			align-self: center;
+			right:1rem;
+			top:1rem;
+		}
+
+		&__logo {
+			width:4rem;
+			margin: auto;
+			img {
+				width:100%;
+				height:auto;
+			}
 		}
 		&--back {
 			flex: 0 1 auto;
 			margin-left: auto;
 		}
 	}
-	&__store-details {
-		padding: 2rem 0;
+
+	.store-details {
+		padding: 1rem 0;
 		margin: auto;
 		text-align: center;
-		&--title {
+		&__name {
 			font-size: 1.3rem;
 			padding-bottom: 0.3rem;
 			font-weight: bold;
+			color: #292828;
 		}
-		&--phrase {
+		&__tagline {
 			color: #717171;
 			font-size: 1.1rem;
 		}

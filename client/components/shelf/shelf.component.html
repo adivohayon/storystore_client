@@ -1,7 +1,11 @@
 <div class="shelf">
 	<section>
+			
+				
 		<div class="shelf-logo">
-			<img :src="logoSrc" :alt="`${storeSlug} Logo`" />
+			<nuxt-link :to="`/profile`">
+				<img :src="logoSrc" :alt="`${storeSlug} Logo`" />
+			</nuxt-link>
 		</div>
 		<!-- <div class="slide slide--video">
 			<div id="video-controls">
