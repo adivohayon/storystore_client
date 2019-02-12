@@ -15,5 +15,12 @@
 		display: block;
 		width: 100%;
 		font-weight: bold;
+		transition: 0.5s all;
+		-webkit-transition: 0.5s all;
+		&:active {
+			transform: translateY(10px);
+			background-color: #51a152;
+			color: white;
+		}
 	}
 }

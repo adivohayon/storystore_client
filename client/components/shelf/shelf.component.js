@@ -7,7 +7,6 @@ import SizePicker from './../size-picker';
 import AddToCart from './../add-to-cart';
 import ShelfTitle from './../shelf-title';
 import ShelfInfo from './../shelf-info';
-import ShelfSale from './../shelf-sale';
 import VideoPlayer from './../video-player';
 import AttributePicker from './../attribute-picker';
 import { removeDuplicates } from '@/helpers/collection.helpers';
@@ -20,7 +19,6 @@ export default {
 		AddToCart,
 		ShelfTitle,
 		ShelfInfo,
-		ShelfSale,
 		VideoPlayer,
 		AttributePicker,
 	},

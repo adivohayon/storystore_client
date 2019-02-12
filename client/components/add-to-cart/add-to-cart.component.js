@@ -44,6 +44,10 @@ export default {
 	},
 	methods: {
 		async addToCart(shelf, attributes) {
+			setTimeout(function() {
+				let el = document.querySelector(':focus');
+				if (el) el.blur();
+			}, 300);
 			// const sizes = shelf.variations.map(variant => {
 			// 	if (variant.attributes.size) {
 			// 		return variant.attributes.size;

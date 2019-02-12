@@ -26,7 +26,7 @@
 			<li>
 				<nuxt-link :to="`/cart`">
 					<button class="btn btn--round">
-						<icon name="cart" :original="true" width="26" height="26"></icon>
+						<icon name="cart" :original="true" width="20" height="20"></icon>
 						<div v-if="cartItemsCount != 0" class="counter">
 							{{ cartItemsCount }}
 						</div>
@@ -38,7 +38,7 @@
 					class="btn btn--round"
 					v-on:click="showShelfInfo = !showShelfInfo"
 				>
-					<icon name="info" :original="true" width="24" height="24"></icon>
+					<icon name="info" :original="true" width="18" height="18"></icon>
 				</button>
 			</li>
 			<!-- <li>
@@ -88,13 +88,13 @@
 			v-on:close-info="showShelfInfo = false"
 		></shelf-info>
 	</transition>
-	<transition name="shelf-overlay-bottom">
+	<!-- <transition name="shelf-overlay-bottom">
 		<shelf-sale
 			v-if="showShelfSale"
 			:shelf-sale="shelf.shelfSale"
 			v-on:close-sale="showShelfSale = false"
 		></shelf-sale>
-	</transition>
+	</transition> -->
 	<div class="shelf-scrims">
 		<div class="shelf-scrims--top"></div>
 		<div class="shelf-scrims--bottom"></div>
