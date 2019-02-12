@@ -34,6 +34,7 @@ export default {
 					// console.log('children', this.$refs.videoEl);
 				},
 			},
+			orderQuery: null,
 		};
 	},
 	computed: {
@@ -45,7 +46,10 @@ export default {
 		},
 	},
 	created() {},
-	mounted() {},
+	mounted() {
+		console.log('$$$orderQuery', this.$route.query.order);
+		this.orderQuery = this.$route.query.order;
+	},
 	methods: {},
 };
 </script>
