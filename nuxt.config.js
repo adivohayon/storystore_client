@@ -63,6 +63,7 @@ module.exports = {
 		{ src: '~/plugins/v-touch', ssr: false },
 		{ src: '~/plugins/vue-video-player', ssr: true },
 		{ src: '~/plugins/vue-scrollto', ssr: true },
+		{ src: '~/plugins/vuelidate', ssr: true },
 	],
 
 	/*

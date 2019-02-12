@@ -1,9 +1,11 @@
 <div class="cart-page">
 	<div class="cart-page__container">
 		<div class="cart-page__container--header">
-			<button class="cart-page__container--header--payment-button">
-				לתשלום
-			</button>
+			<nuxt-link :to="`/checkout`">
+				<button class="cart-page__container--header--payment-button">
+					לתשלום
+				</button>
+			</nuxt-link>
 			<nuxt-link :to="`/`" class="cart-page__container--header--close">
 				<icon name="close" :original="true" width="17" height="26"></icon>
 			</nuxt-link>

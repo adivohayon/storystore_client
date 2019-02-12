@@ -1,56 +1,217 @@
 <div class="checkout-page">
 	<div class="checkout-page__header">
-		<h3>תשלום מאובטח</h3>
-		<button class="checkout-page__close">
-			<icon name="close" :original="true" width="26" height="26"></icon>
-		</button>
+		<h3>קופה</h3>
+		<nuxt-link :to="`/`">
+			<button class="checkout-page__close">
+				<icon name="close" :original="true" width="14" height="14"></icon>
+			</button>
+		</nuxt-link>
 	</div>
 	<div class="checkout-page__cart">
-		<div>הסל שלי</div>
-		<nuxt-link :to="`/stores/${storeName}/cart`"> לצפייה </nuxt-link>
+		<div class="checkout-page__cart--header">
+			<h4>הסל שלי</h4>
+			<nuxt-link :to="`/cart`" class="checkout-page__cart--link">
+				לצפייה
+			</nuxt-link>
+		</div>
+		<div class="checkout-page__cart--images">
+			<img
+				v-for="(img, index) in itemsImages"
+				:src="img"
+				width="60px"
+				height="107px"
+			/>
+		</div>
+		<!-- <div>{{ itemsImages }}</div> -->
 	</div>
-	<div class="checkout-page__form">
-		<div>פרטי קשר</div>
-		<input v-model="checkoutForm.firstName" placeholder="שם פרטי" />
-		<input v-model="checkoutForm.lastName" placeholder="שם משפחה" />
-		<input v-model="checkoutForm.phone" placeholder="טלפון" />
-		<input v-model="checkoutForm.email" placeholder="מייל" />
-		<div>פרטי משלוח</div>
-		<input v-model="checkoutForm.city" placeholder="עיר" />
-		<input v-model="checkoutForm.street" placeholder="רחוב" />
-		<input v-model="checkoutForm.houseNumber" placeholder="מספר בית" />
-		<input v-model="checkoutForm.apptNumber" placeholder="מספר דירה" />
-		<input v-model="checkoutForm.floor" placeholder="קומה" />
-		<input v-model="checkoutForm.zipCode" placeholder="מיקוד" />
-		<div>אפשרויות משלוח</div>
-		{{ checkoutForm.deliveryMethod }}
-		<input
-			type="radio"
-			id="israel-postoffice"
-			value="דואר ישראל"
-			v-model="checkoutForm.deliveryMethod"
-		/>
-		<label for="israel-postoffice">דואר ישראל</label>
-		<input
-			type="radio"
-			id="curier-service"
-			value="שליח עד אליך"
-			v-model="checkoutForm.deliveryMethod"
-		/>
-		<label for="israel-postoffice">שליח עד אליך</label>
+	<div class="checkout-page__order">
+		<h4>פרטי קשר</h4>
+		<div class="checkout-page__order--container">
+			<form
+				@submit.prevent="submit"
+				class="checkout-page__form"
+				:class="{ 'form-group--error': $v.order.firstName.$error }"
+			>
+				<div class="checkout-page__form--item">
+					<label class="checkout-page__form--label">שם פרטי</label>
+					<input
+						class="checkout-page__form--input"
+						:class="{'error': !$v.order.firstName.required && this.order.submitStatus}"
+						v-model.trim="$v.order.firstName.$model"
+					/>
+					<div
+						class="error"
+						v-if="!$v.order.firstName.required && this.order.submitStatus"
+					>
+						אנא הכנס שם פרטי
+					</div>
+				</div>
+				<div class="checkout-page__form--item">
+					<label class="checkout-page__form--label">שם משפחה</label>
+					<input
+						class="checkout-page__form--input"
+						:class="{'error': !$v.order.lastName.required && this.order.submitStatus}"
+						v-model.trim="$v.order.lastName.$model"
+					/>
+					<div
+						class="error"
+						v-if="!$v.order.lastName.required && this.order.submitStatus"
+					>
+						אנא הכנס שם משפחה
+					</div>
+				</div>
+				<div class="checkout-page__form--item">
+					<label class="checkout-page__form--label">טלפון</label>
+					<input
+						class="checkout-page__form--input"
+						:class="{'error': (!$v.order.phone.required || !$v.order.phone.numeric) && this.order.submitStatus}"
+						v-model.trim="$v.order.phone.$model"
+					/>
+					<div
+						class="error"
+						v-if="(!$v.order.phone.required || !$v.order.phone.numeric)  && this.order.submitStatus"
+					>
+						אנא הכנס טלפון
+					</div>
+				</div>
+				<div class="checkout-page__form--item">
+					<label class="checkout-page__form--label">מייל</label>
+					<input
+						class="checkout-page__form--input"
+						:class="{'error': (!$v.order.email.required || !$v.order.email.email) && this.order.submitStatus}"
+						v-model.trim="$v.order.email.$model"
+					/>
+					<div
+						class="error"
+						v-if="(!$v.order.email.required || !$v.order.email.email) && this.order.submitStatus"
+					>
+						אנא הכנס כתובת מייל
+					</div>
+				</div>
+				<h4>פרטי משלוח</h4>
+				<div class="checkout-page__form--item">
+					<label class="checkout-page__form--label">עיר</label>
+					<input
+						class="checkout-page__form--input"
+						:class="{'error': !$v.order.city.required && this.order.submitStatus}"
+						v-model.trim="$v.order.city.$model"
+					/>
+					<div
+						class="error"
+						v-if="!$v.order.city.required && this.order.submitStatus"
+					>
+						אנא הכנס עיר
+					</div>
+				</div>
+				<div class="checkout-page__form--item">
+					<label class="checkout-page__form--label">רחוב</label>
+					<input
+						class="checkout-page__form--input"
+						:class="{'error': !$v.order.street.required && this.order.submitStatus}"
+						v-model.trim="$v.order.street.$model"
+					/>
+					<div
+						class="error"
+						v-if="!$v.order.street.required && this.order.submitStatus"
+					>
+						אנא הכנס רחוב
+					</div>
+				</div>
+				<div class="checkout-page__form--item">
+					<label class="checkout-page__form--label">מספר בית</label>
+					<input
+						class="checkout-page__form--input"
+						:class="{'error': (!$v.order.houseNumber.required || !$v.order.houseNumber.numeric) && this.order.submitStatus}"
+						v-model.trim="$v.order.houseNumber.$model"
+					/>
+					<div
+						class="error"
+						v-if="(!$v.order.houseNumber.required || !$v.order.houseNumber.numeric) && this.order.submitStatus"
+					>
+						אנא הכנס מספר בית
+					</div>
+				</div>
+				<div class="checkout-page__form--item">
+					<label class="checkout-page__form--label">מספר דירה</label>
+					<input
+						class="checkout-page__form--input"
+						:class="{'error': (!$v.order.apptNumber.required || !$v.order.apptNumber.numeric) && this.order.submitStatus}"
+						v-model.trim="$v.order.apptNumber.$model"
+					/>
+					<div
+						class="error"
+						v-if="(!$v.order.apptNumber.required || !$v.order.apptNumber.numeric) && this.order.submitStatus"
+					>
+						אנא הכנס מספר דירה
+					</div>
+				</div>
+				<div class="checkout-page__form--item">
+					<label class="checkout-page__form--label">קומה</label>
+					<input
+						class="checkout-page__form--input"
+						:class="{'error': (!$v.order.floor.required || !$v.order.floor.numeric) && this.order.submitStatus}"
+						v-model.trim="$v.order.floor.$model"
+					/>
+					<div
+						class="error"
+						v-if="(!$v.order.floor.required || !$v.order.floor.numeric) && this.order.submitStatus"
+					>
+						אנא הכנס קומה
+					</div>
+				</div>
+				<div class="checkout-page__form--item">
+					<label class="checkout-page__form--label">מיקוד</label>
+					<input
+						class="checkout-page__form--input"
+						:class="{'error': (!$v.order.zipCode.required || !$v.order.zipCode.numeric) && this.order.submitStatus}"
+						v-model.trim="$v.order.zipCode.$model"
+					/>
+					<div
+						class="error"
+						v-if="(!$v.order.zipCode.required || !$v.order.zipCode.numeric) && this.order.submitStatus"
+					>
+						אנא הכנס מיקוד
+					</div>
+				</div>
+				<button type="submit">submit</button>
+			</form>
+		</div>
+	</div>
+	<div class="checkout-page__shipping">
+		<h4>אפשרויות משלוח</h4>
+		<div
+			v-if="storeSlug === 'kookint'"
+			class="checkout-page__shipping--container"
+		>
+			<h5>
+				{{
+					kookintShippingOption.price < 1
+						? 'חינם'
+						: kookintShippingOption.price + ' ' + kookintShippingOption.currency
+				}}
+				- {{ kookintShippingOption.label }}
+			</h5>
+			<div class="checkout-page__shipping--time">
+				{{ kookintShippingOption.time }}
+			</div>
+		</div>
 	</div>
 	<ul class="checkout-page__total">
 		<li>
-			<div>סה״כ ביניים</div>
-			<div>293</div>
+			<div class="checkout-page__total--key">סה״כ ביניים</div>
+			<div class="checkout-page__total--value">
+				{{ subtotal }} {{ currency }}
+			</div>
 		</li>
 		<li>
-			<div>משלוח</div>
-			<div>8</div>
+			<div class="checkout-page__total--key">משלוח</div>
+			<div class="checkout-page__total--value">
+				{{ kookintShippingOption.price }} {{ kookintShippingOption.currency }}
+			</div>
 		</li>
 		<li>
-			<div>סה״כ</div>
-			<div>301</div>
+			<div class="checkout-page__total--key">סה״כ</div>
+			<div class="checkout-page__total--value">{{ total }} {{ currency }}</div>
 		</li>
 	</ul>
 </div>
