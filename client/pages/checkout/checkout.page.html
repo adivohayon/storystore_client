@@ -63,6 +63,7 @@
 				<div class="checkout-page__form--item">
 					<label class="checkout-page__form--label">טלפון</label>
 					<input
+						type="tel"
 						class="checkout-page__form--input"
 						:class="{'error': (!$v.order.phone.required || !$v.order.phone.numeric) && this.order.submitStatus}"
 						v-model.trim="$v.order.phone.$model"
@@ -77,6 +78,7 @@
 				<div class="checkout-page__form--item">
 					<label class="checkout-page__form--label">מייל</label>
 					<input
+						type="email"
 						class="checkout-page__form--input"
 						:class="{'error': (!$v.order.email.required || !$v.order.email.email) && this.order.submitStatus}"
 						v-model.trim="$v.order.email.$model"
@@ -120,6 +122,7 @@
 				<div class="checkout-page__form--item">
 					<label class="checkout-page__form--label">מספר בית</label>
 					<input
+						type="number"
 						class="checkout-page__form--input"
 						:class="{'error': (!$v.order.houseNumber.required || !$v.order.houseNumber.numeric) && this.order.submitStatus}"
 						v-model.trim="$v.order.houseNumber.$model"
@@ -134,6 +137,7 @@
 				<div class="checkout-page__form--item">
 					<label class="checkout-page__form--label">מספר דירה</label>
 					<input
+						type="number"
 						class="checkout-page__form--input"
 						:class="{'error': (!$v.order.apptNumber.required || !$v.order.apptNumber.numeric) && this.order.submitStatus}"
 						v-model.trim="$v.order.apptNumber.$model"
@@ -148,6 +152,7 @@
 				<div class="checkout-page__form--item">
 					<label class="checkout-page__form--label">קומה</label>
 					<input
+						type="number"
 						class="checkout-page__form--input"
 						:class="{'error': (!$v.order.floor.required || !$v.order.floor.numeric) && this.order.submitStatus}"
 						v-model.trim="$v.order.floor.$model"
@@ -162,6 +167,7 @@
 				<div class="checkout-page__form--item">
 					<label class="checkout-page__form--label">מיקוד</label>
 					<input
+						type="number"
 						class="checkout-page__form--input"
 						:class="{'error': (!$v.order.zipCode.required || !$v.order.zipCode.numeric) && this.order.submitStatus}"
 						v-model.trim="$v.order.zipCode.$model"

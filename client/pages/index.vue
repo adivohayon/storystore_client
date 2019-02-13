@@ -1,19 +1,21 @@
 <template>
 	<div id="page" :class="fixerClass">
-		<full-page
-			v-if="shelves && shelves.length > 0"
-			id="fullpage"
-			ref="fullpage"
-			:options="feedOptions"
-		>
-			<shelf
-				v-for="(shelf, shelfIndex) in shelves"
-				:key="shelfIndex"
-				:shelf="shelf"
-				:shelf-index="shelfIndex"
-			></shelf>
-		</full-page>
-		<div v-else>No shelves available or store not available</div>
+		<no-ssr>
+			<full-page
+				v-if="shelves && shelves.length > 0"
+				id="fullpage"
+				ref="fullpage"
+				:options="feedOptions"
+			>
+				<shelf
+					v-for="(shelf, shelfIndex) in shelves"
+					:key="shelfIndex"
+					:shelf="shelf"
+					:shelf-index="shelfIndex"
+				></shelf>
+			</full-page>
+			<div v-else>No shelves available or store not available</div>
+		</no-ssr>
 	</div>
 </template>
 
@@ -64,8 +66,12 @@ export default {
 	},
 	created() {},
 	mounted() {},
+	beforeDestroy() {
+		this.feedOptions.dragAndMove = false;
+	},
 	destroyed() {
 		console.log('destroy', fullpage_api);
+
 		fullpage_api.destroy('all');
 	},
 	methods: {},
