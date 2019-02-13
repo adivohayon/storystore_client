@@ -1,7 +1,18 @@
 import { required, numeric, email } from 'vuelidate/lib/validators';
 export default {
 	components: {},
-	async asyncData({ params }) {},
+	async asyncData({ req }) {
+		const hostsParts = req
+			? req.headers.host.split('.')
+			: window.location.hostname.split('.');
+		const isDomain = hostsParts.findIndex(item => item === 'storystore') > -1;
+
+		const storeSlug = isDomain ? hostsParts[0] : process.env.DEV_STORE;
+
+		return {
+			storeSlug,
+		};
+	},
 	data() {
 		return {
 			order: {
@@ -75,9 +86,6 @@ export default {
 	},
 	mounted() {},
 	computed: {
-		storeSlug() {
-			return this.$store.state.store.slug;
-		},
 		items() {
 			return this.$store.getters['cart/items'](this.storeSlug);
 		},
@@ -105,43 +113,54 @@ export default {
 		},
 	},
 	methods: {
-		submit() {
-			console.log('submit!');
-			this.$v.$touch();
-			if (this.$v.$invalid) {
-				this.order.submitStatus = 'ERROR';
-			} else {
-				// do your submit logic here
-				this.submitStatus = 'PENDING';
-				setTimeout(() => {
-					this.submitStatus = 'OK';
-				}, 500);
-			}
-			const personal = {
-				firstName: this.order.firstName,
-				lastName: this.order.lastName,
-				phone: this.order.phone,
-				email: this.order.email,
-			};
-			const address = {
-				street:
-					this.order.street +
-					' ' +
-					this.order.houseNumber +
-					' ' +
-					this.order.apptNumber +
-					' ' +
-					this.order.floor,
-				city: this.order.city,
-				zipCode: this.order.zipCode,
-			};
-			const items = this.items.map(item => {
-				return {
-					id: item.id,
-					qty: item.quantity,
+		async submit() {
+			try {
+				console.log('submit!');
+				this.$v.$touch();
+				if (this.$v.$invalid) {
+					this.order.submitStatus = 'ERROR';
+				} else {
+					// do your submit logic here
+					this.submitStatus = 'PENDING';
+					setTimeout(() => {
+						this.submitStatus = 'OK';
+					}, 500);
+				}
+				const personal = {
+					firstName: this.order.firstName,
+					lastName: this.order.lastName,
+					phone: this.order.phone,
+					email: this.order.email,
 				};
-			});
-			console.log('***', personal, address, items);
+				const address = {
+					street:
+						this.order.street +
+						' ' +
+						this.order.houseNumber +
+						' ' +
+						this.order.apptNumber +
+						' ' +
+						this.order.floor,
+					city: this.order.city,
+					zipCode: this.order.zipCode,
+				};
+				const items = this.items.map(item => {
+					return {
+						id: item.id,
+						qty: item.quantity,
+					};
+				});
+				const resp = await this.$axios.$post(`order/${this.storeSlug}`, {
+					personal,
+					address,
+					items,
+				});
+
+				console.log('***', resp);
+				window.location.href = resp.url;
+			} catch (err) {
+				console.error('err', err);
+			}
 		},
 	},
 };
