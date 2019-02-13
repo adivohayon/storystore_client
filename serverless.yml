@@ -23,8 +23,8 @@ provider:
   name: aws
   runtime: nodejs8.10
   stage: ${self:custom.secrets.NODE_ENV}
-  region: eu-central-1
-  environment: 
+  region: us-east-1
+  environment:
     NODE_ENV: ${self:custom.secrets.NODE_ENV}
 
 plugins:
