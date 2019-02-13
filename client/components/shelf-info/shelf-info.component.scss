@@ -16,7 +16,7 @@
 		font-weight: bold;
 		color: #fff;
 		left: 13px;
-		top: 0px;
+		top: -1px;
 		font-size: 1.2rem;
 	}
 	&__tabs {
@@ -28,11 +28,13 @@
 			letter-spacing: 1px;
 		}
 		&--label {
-			font-size: 1.3rem;
-			padding: 0.8rem 0.8rem 0.5rem 0.8rem;
+			font-size: 1.1rem;
+			width: 6rem;
+			text-align: center;
+			padding: 0.6rem 0rem 0.4rem 0rem;
 			font-weight: bold;
 			&.active {
-				border-bottom: 2px solid #fff;
+				border-bottom: 1px solid #fff;
 			}
 		}
 		&--content {

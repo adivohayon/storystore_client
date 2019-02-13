@@ -3,54 +3,71 @@
 	min-height: 100vh;
 	color: #000000;
 	font-family: 'Simpler', 'system-ui', sans-serif;
-	.chevron {
-		margin-right: 0.5rem;
-		border-color: #979797;
-		border-style: solid;
-		border-width: 0.2em 0.2em 0 0;
-		content: '';
-		display: inline-block;
-		height: 1rem;
-		align-self: center;
-		transform: rotate(45deg);
-		width: 1rem;
-		background-color: transparent;
-	}
+	// .chevron {
+	// 	margin-right: 0.5rem;
+	// 	border-color: #979797;
+	// 	border-style: solid;
+	// 	border-width: 0.2em 0.2em 0 0;
+	// 	content: '';
+	// 	display: inline-block;
+	// 	height: 1rem;
+	// 	align-self: center;
+	// 	transform: rotate(45deg);
+	// 	width: 1rem;
+	// 	background-color: transparent;
+	// }
 	&__container {
 		background-color: white;
 		&--header {
-			padding: 1.2rem 1rem;
-			border-bottom: 1px solid rgb(210, 210, 210);
 			display: flex;
-			flex-direction: row;
-			justify-content: space-between;
-
-			&--close {
+			flex-direction: column;
+			background-color: white;
+			position: fixed;
+			width: 100vw;
+			z-index: 10;
+			&--payment {
+				padding: 1.2rem 1.7rem;
+				border-bottom: 1px solid rgb(210, 210, 210);
 				display: flex;
-				justify-content: center;
-				align-items: center;
-				padding: 0.4rem 0.5rem;
+				flex-direction: row;
+				background-color: white;
+				justify-content: space-between;
+				&-close {
+					// display: flex;
+					// justify-content: center;
+					// align-items: center;
+					margin-top: 3px;
+					margin-left: 0.65rem;
+				}
+				&-button {
+					color: white;
+					letter-spacing: 1px;
+					padding: 0.5rem 1.8rem;
+					background-color: #51a152;
+					font-size: 1.2rem;
+					border: 0;
+					border-radius: 30px;
+					font-weight: bold;
+					outline: none;
+				}
 			}
-			&--payment-button {
-				color: white;
-				padding: 0.5rem 2rem;
-				background-color: #51a152;
-				font-size: 1.1rem;
-				border: 0;
-				border-radius: 30px;
-				font-weight: bold;
+			&--total {
+				font-size: 1rem;
+				letter-spacing: 1px;
+				text-align: right;
+				color: #383838;
+				background-color: white;
+				padding: 1.23rem 2.1rem;
+				border-bottom: 2.5px solid rgb(190, 190, 190);
+				&__price {
+					font-weight: bold;
+				}
 			}
 		}
-		&--total {
-			font-size: 0.86rem;
-			letter-spacing: 1px;
-			text-align: right;
-			color: #383838;
-			padding: 1.23rem 0.9rem;
-			border-bottom: 1px solid rgb(210, 210, 210);
-			&__price {
-				font-weight: bold;
-			}
+		&--items {
+			z-index: 5;
+			padding-top: 123px;
+			// padding-bottom: 5px;
 		}
 	}
 }
