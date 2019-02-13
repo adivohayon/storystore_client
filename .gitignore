@@ -87,3 +87,4 @@ server.key
 
 certs/
 client/static
+package-lock.json
