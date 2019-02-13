@@ -1,5 +1,6 @@
 <template>
 	<div id="page" :class="fixerClass">
+		<h1>HELLO</h1>
 		<no-ssr>
 			<full-page
 				v-if="shelves && shelves.length > 0"
