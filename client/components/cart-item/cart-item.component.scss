@@ -1,7 +1,11 @@
 .cart-item {
 	display: flex;
-	padding: 1rem;
+	padding: 1.3rem 2rem;
 	color: #717171;
+	border-bottom: 1px solid #dbdbdb;
+	& img {
+		border: 1px solid #dbdbdb;
+	}
 	&__image {
 		width: 4.28rem;
 		height: 7.64rem;
@@ -10,42 +14,82 @@
 	}
 	&__content {
 		flex: 1;
-		margin-right: 0.5rem;
+		margin-right: 0.5rem;	
 		display: flex;
 		flex-direction: column;
+		font-weight: bold;
+		color: #8a8a8a;
 		&--price {
-			color: #000000;
+			color: black;
 			font-size: 1.1rem;
-			font-weight: bold;
 			flex: 1;
-			letter-spacing: 2px;
+			letter-spacing: 1px;
 		}
 		&--name {
-			margin-bottom: 0.5rem;
+			// margin-top: 1rem;
+			line-height: 1;
+		}
+		&--axis {
+			margin-top: 0.4rem;
+			line-height: 1;
+		}
+		&--color {
+			margin-top: 0.4rem;
+			line-height: 1;
 		}
 	}
-	&__pickers {
+	&__flexbox {
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-end;
-		&--picker {
+		&--remove {
+			margin-bottom: auto;
+			margin-right: auto;
+		}
+		&--pickers {
 			display: flex;
-			margin-top: 0.5rem;
-			line-height: 2rem;
-			select {
-				width: 5.07rem;
-				height: 1.85rem;
-				margin-right: 0.5rem;
-				background-color: #ffffff;
-				border-color: #d6d6d6;
-				border-radius: 0;
-				background: transparent url('~assets/icons/chevron-down.svg') no-repeat
-					6px center;
+			flex-direction: column;
+			justify-content: flex-end;
+			transform: translateY(7px);
+			&--picker {
+				font-size: 1.05rem;
 				font-weight: bold;
-				&:focus {
-					outline: none;
+				color: black;
+				display: flex;
+				margin-top: 0.5rem;
+				line-height: 2.4rem;
+				select {
+					width: 5.07rem;
+					height: 1.85rem;
+					margin-right: 0.5rem;
+					background-color: #ffffff;
+					border-color: #d6d6d6;
+					border-radius: 0;
+					background: transparent url('~assets/icons/chevron-down.svg')
+						no-repeat 10px center;
+					-webkit-appearance: none;
+					-moz-appearance: none;
+					text-indent: 1px;
+					text-overflow: '';
+					font-weight: bold;
+					padding: 0 0.8rem 0.05rem 0.8rem;
+					&:focus {
+						outline: none;
+					}
 				}
 			}
 		}
 	}
+	.close {
+		-webkit-appearance: none;
+		background-color: transparent;
+		border: none;
+		outline: none;
+	}
+}
+button::before {
+	content: none;
+}
+button::after {
+	content: none;
 }

@@ -63,25 +63,29 @@
 		transform: translate3d(0, 0, 0);
 		position: absolute;
 		right: 1rem;
-		top: 40%;
+		top: 35%;
 		z-index: 20;
 		ul {
 			list-style-type: none;
 			padding: 0;
 			li {
-				margin-bottom: 0.8rem;
+				margin-bottom: 1.6rem;
+				a {
+					box-shadow: 0px 0px 20px -7px rgba(0, 0, 0, 0.75);
+				}
 			}
 		}
 		.btn {
-			background-color: #ffffff;
+			box-shadow: 0px 0px 20px -7px rgba(0, 0, 0, 0.75);
+			background-color: #efefef;
 			position: relative;
-			width: 2.8rem;
-			height: 2.8rem;
+			width: 3rem;
+			height: 3rem;
 		}
 		.counter {
 			position: absolute;
-			bottom: 3px;
-			left: 4px;
+			bottom: -1px;
+			left: -1px;
 		}
 	}
 
@@ -125,17 +129,24 @@
 		}
 		&--bottom {
 			// background-color: black;
-			height: 70%;
+			// height: 70%;
+			height: 60%;
 			display: block;
 			width: 100%;
 			position: absolute;
 			bottom: 0;
 			z-index: 9;
+			// background-image: linear-gradient(
+			// 	-180deg,
+			// 	rgba(238, 238, 238, 0) 2%,
+			// 	rgba(95, 95, 95, 0.2) 37%,
+			// 	rgba(0, 0, 0, 0.8) 99%
+			// );
 			background-image: linear-gradient(
 				-180deg,
-				rgba(238, 238, 238, 0) 2%,
-				rgba(95, 95, 95, 0.2) 37%,
-				rgba(0, 0, 0, 0.8) 99%
+				rgba(238, 238, 238, 0) 10%,
+				rgba(95, 95, 95, 0.3) 40%,
+				rgba(5, 5, 5, 0.6) 99%
 			);
 		}
 	}
@@ -155,11 +166,11 @@
 }
 @media (max-height: 500px) {
 	.shelf-buttons {
-		top: 23%;	
+		top: 16%;
 	}
 }
 @media (max-height: 600px) and (min-height: 501px) {
 	.shelf-buttons {
-		top:30%;
+		top: 21%;
 	}
 }

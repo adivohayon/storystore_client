@@ -1,24 +1,33 @@
 <div class="cart-page">
 	<div class="cart-page__container">
 		<div class="cart-page__container--header">
-			<button class="cart-page__container--header--payment-button">
-				לתשלום
-			</button>
-			<nuxt-link :to="`/`" class="cart-page__container--header--close">
-				<icon name="close" :original="true" width="17" height="26"></icon>
-			</nuxt-link>
+			<div class="cart-page__container--header--payment">
+				<button class="cart-page__container--header--payment-button">
+					לתשלום
+				</button>
+				<nuxt-link
+					:to="`/`"
+					class="cart-page__container--header--payment-close"
+				>
+					<icon name="close" :original="true" width="17" height="26"></icon>
+				</nuxt-link>
+			</div>
+			<div class="cart-page__container--header--total">
+				<span class="cart-page__container--header--total__text">
+					{{ itemsCount }} פריטים: סה"כ
+				</span>
+				<span class="cart-page__container--header--total__price"
+					>{{ subtotal }} ש"ח</span
+				>
+			</div>
 		</div>
-		<div class="cart-page__container--total">
-			<span class="cart-page__container--total__text">
-				{{ itemsCount }} פריטים: סה"כ
-			</span>
-			<span class="cart-page__container--total__price">{{ subtotal }} ש"ח</span>
+		<div class="cart-page__container--items">
+			<cart-item
+				v-for="(item, itemIndex) of items"
+				:key="itemIndex"
+				:item="item"
+				:itemIndex="itemIndex"
+			></cart-item>
 		</div>
-		<cart-item
-			v-for="(item, itemIndex) of items"
-			:key="itemIndex"
-			:item="item"
-			:itemIndex="itemIndex"
-		></cart-item>
 	</div>
 </div>
