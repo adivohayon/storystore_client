@@ -17,6 +17,14 @@
 	// overflow: hidden;
 }
 
+.fp-slidesNav{
+	position: absolute;
+    left:50%;
+    top:10px;
+    margin-left: 5px !important;
+    text-align: center;
+	}
+
 .fixer-class {
 	/deep/ .swiper-container {
 		z-index: 1 !important;
@@ -45,16 +53,15 @@
 }
 
 .counter {
-	height: 1.5em;
-	width: 1.5em;
-	border-radius: 50%;
-	background-color: #f6402b;
-	color: #ffffff;
-	line-height: 1;
-	font-size: 14px;
-	font-weight: bold;
-	line-height: 1.5em;
-	position: absolute;
+	height: 1.6em;
+    width: 1.6em;
+    border-radius: 50%;
+    color: #ffffff;
+		background-color: #51A152;
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 1.8em;
+    position: absolute;
 }
 
 

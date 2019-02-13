@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="17px" height="20px" viewBox="0 0 17 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 52.3 (67297) - http://www.bohemiancoding.com/sketch -->
-    <title>Group 14</title>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.1 (57501) - http://www.bohemiancoding.com/sketch -->
+    <title>Buttons/MyBagshape</title>
     <desc>Created with Sketch.</desc>
-    <g id="Simply-Fashion" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="iPhone-8-Copy-4" transform="translate(-24.000000, -267.000000)" stroke="#636363">
-            <g id="Group-15" transform="translate(15.000000, 262.000000)">
-                <g id="Group-5" transform="translate(10.000000, 6.000000)">
-                    <g id="Group-14">
-                        <polygon id="Stroke-1" fill="#636363" points="15 18 0 18 1.97156317 5.68421053 12.9407218 5.68421053"></polygon>
-                        <path d="M10.3125,5.68421053 C10.3125,2.54486216 8.84341937,0 7.03120212,0 C5.21908063,0 3.75,2.54486216 3.75,5.68421053" id="Stroke-3"></path>
-                    </g>
-                </g>
-            </g>
-        </g>
+    <defs></defs>
+    <g id="Buttons/MyBagshape" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <polygon id="Stroke-1" stroke="#636363" stroke-width="1.7" points="17 17 1 17 1 6 17 6"></polygon>
+        <path d="M14,6 C14,3.23853616 11.7614009,1 8.99992703,1 C6.23859905,1 4,3.23853616 4,6" id="Stroke-3" stroke="#636363" stroke-width="1.7"></path>
     </g>
 </svg>

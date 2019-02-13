@@ -16,7 +16,14 @@ export default {
 	data() {
 		return {};
 	},
-	computed: {},
+	computed: {
+		formatedCurrency() {
+			if (this.currency == 'ILS') return '₪';
+			if (this.currency == 'USD') return '$';
+			if (this.currency == 'EUR') return '€';
+			return this.currency;
+		},
+	},
 	created() {},
 	mounted() {},
 	methods: {},

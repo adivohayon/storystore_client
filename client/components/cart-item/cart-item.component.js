@@ -13,6 +13,12 @@ export default {
 		this.test = this.sizes;
 	},
 	computed: {
+		formatedCurrency() {
+			if (this.item.currency == 'ILS') return '₪';
+			if (this.item.currency == 'USD') return '$';
+			if (this.item.currency == 'EUR') return '€';
+			return this.item.currency;
+		},
 		storeSlug() {
 			return this.$store.state.store.slug;
 		},

@@ -61,7 +61,7 @@ export const actions = {
 				store = await this.$axios.$get(`stores/${storeSlug}`);
 			}
 
-			console.log(useMockData, store.shelves);
+			// console.log(useMockData, store.shelves);
 			// const store = await this.$axios.$get(`stores/${storeSlug}`);
 			// console.log('store - usemocks: ' + useMockData, store);
 			if (store) {
