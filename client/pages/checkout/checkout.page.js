@@ -117,43 +117,43 @@ export default {
 					this.order.submitStatus = 'ERROR';
 				} else {
 					// do your submit logic here
+					const personal = {
+						firstName: this.order.firstName,
+						lastName: this.order.lastName,
+						phone: this.order.phone,
+						email: this.order.email,
+					};
+					const address = {
+						street:
+							this.order.street +
+							' ' +
+							this.order.houseNumber +
+							' ' +
+							this.order.apptNumber +
+							' ' +
+							this.order.floor,
+						city: this.order.city,
+						zipCode: this.order.zipCode,
+					};
+					const items = this.items.map(item => {
+						return {
+							id: item.id,
+							qty: item.quantity,
+						};
+					});
+					const resp = await this.$axios.$post(`order/${this.storeSlug}`, {
+						personal,
+						address,
+						items,
+					});
+
+					console.log('***', resp);
+					window.location.href = resp.url;
 					this.submitStatus = 'PENDING';
 					setTimeout(() => {
 						this.submitStatus = 'OK';
 					}, 500);
 				}
-				const personal = {
-					firstName: this.order.firstName,
-					lastName: this.order.lastName,
-					phone: this.order.phone,
-					email: this.order.email,
-				};
-				const address = {
-					street:
-						this.order.street +
-						' ' +
-						this.order.houseNumber +
-						' ' +
-						this.order.apptNumber +
-						' ' +
-						this.order.floor,
-					city: this.order.city,
-					zipCode: this.order.zipCode,
-				};
-				const items = this.items.map(item => {
-					return {
-						id: item.id,
-						qty: item.quantity,
-					};
-				});
-				const resp = await this.$axios.$post(`order/${this.storeSlug}`, {
-					personal,
-					address,
-					items,
-				});
-
-				console.log('***', resp);
-				window.location.href = resp.url;
 			} catch (err) {
 				console.error('err', err);
 			}

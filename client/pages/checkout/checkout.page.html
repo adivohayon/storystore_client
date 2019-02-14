@@ -66,12 +66,12 @@
 					<input
 						type="tel"
 						class="checkout-page__form--input"
-						:class="{'error': (!$v.order.phone.required || !$v.order.phone.numeric) && this.order.submitStatus}"
+						:class="{'error': (!$v.order.phone.required) && this.order.submitStatus}"
 						v-model.trim="$v.order.phone.$model"
 					/>
 					<div
 						class="error"
-						v-if="(!$v.order.phone.required || !$v.order.phone.numeric)  && this.order.submitStatus"
+						v-if="(!$v.order.phone.required)  && this.order.submitStatus"
 					>
 						אנא הכנס טלפון
 					</div>
