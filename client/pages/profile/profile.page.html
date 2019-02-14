@@ -1,14 +1,16 @@
 <div class="profile-page">
-	<div class="profile-page__header">
-		<nuxt-link :to="`/stores/${storeName}`">
+	<div class="header">
+		<nuxt-link :to="`/`" class="back">
 			<icon name="back" :original="true" width="26" height="26"></icon>
 		</nuxt-link>
-		<div class="profile-page__header--image"></div>
+		<div class="header__logo">
+				<img :src="logoSrc" :alt="`${storeSlug} Logo`" />
+		</div>
 	</div>
-	<div class="profile-page__store-details">
-		<div class="profile-page__store-details--title">Simply fashion</div>
-		<div class="profile-page__store-details--phrase">
-			אופנה פשוטה לנשים מתוחכמות
+	<div class="store-details">
+		<div class="store-details__name">{{storeName}}</div>
+		<div class="store-details__tagline">
+			{{tagline}}
 		</div>
 	</div>
 	<div class="profile-page__info">
@@ -25,7 +27,6 @@
 			</div>
 		</div>
 	</div>
-	<div class="profile-page__info--tabs--tab-content">
-		{{ tabContent }}
+	<div class="profile-page__info--tabs--tab-content" v-html="tabContent">
 	</div>
 </div>
