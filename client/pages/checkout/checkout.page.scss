@@ -13,7 +13,7 @@
 	&__cart {
 		background: #ffffff;
 		margin-top: 0.6rem;
-		padding: 0.8rem;
+		padding: 1.8rem;
 		&--header {
 			display: flex;
 			h4 {
@@ -29,12 +29,11 @@
 			letter-spacing: 1px;
 		}
 		&--images {
+			margin-top: 1rem;
 			img {
 				margin-top: 0.5rem;
 				border: 1px solid #d6d6d6;
-				&:nth-child(2) {
-					margin-right: 0.5rem;
-				}
+				margin-left: 0.7rem;
 			}
 		}
 	}
@@ -43,11 +42,11 @@
 			font-size: 1.1rem;
 			font-weight: bold;
 			flex: 1;
-			padding: 0.6rem;
+			padding: 1rem 1.8rem;
 		}
 		&--container {
-			background: #ffffff;
-			padding: 0.5rem 0.8rem;
+			// background: #ffffff;
+			// padding: 0.5rem 0.8rem;
 		}
 	}
 	&__form {
@@ -56,6 +55,8 @@
 		&--item {
 			display: flex;
 			flex-direction: column;
+			background: #ffffff;
+			padding: 1rem 1.8rem;
 			.error {
 				font-size: 0.7rem;
 				font-weight: bold;
@@ -85,10 +86,10 @@
 			font-size: 1.1rem;
 			font-weight: bold;
 			flex: 1;
-			padding: 0.6rem;
+			padding: 1rem 1.8rem;
 		}
 		&--container {
-			padding: 0.7rem;
+			padding: 1rem 1.8rem;
 			background: #ffffff;
 			h5 {
 				font-size: 0.93rem;
@@ -99,7 +100,7 @@
 		list-style: none;
 		padding: 0;
 		font-size: 0.93rem;
-		padding: 0.7rem;
+		padding: 1rem 1.8rem;
 		li {
 			display: flex;
 			margin-top: 0.5rem;
@@ -109,6 +110,29 @@
 		}
 		&--value {
 			font-weight: bold;
+		}
+		#checkout-submit {
+			margin: auto;
+			background: #51a152;
+			display: block;
+			border: none;
+			outline: none;
+			border-radius: 40px;
+			color: #fff;
+			font-size: 1.2rem;
+			font-weight: bold;
+			padding: 0.5rem 1rem;
+			margin-top: 1rem;
+			width: 100%;
+			min-height: 3rem;
+		}
+		&--terms {
+			font-size: 0.6rem;
+			letter-spacing: 1px;
+			width: 100%;
+			margin: auto;
+			text-align: center;
+			margin-top: 0.5rem;
 		}
 	}
 }

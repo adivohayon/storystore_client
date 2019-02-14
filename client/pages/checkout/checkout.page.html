@@ -25,13 +25,14 @@
 		<!-- <div>{{ itemsImages }}</div> -->
 	</div>
 	<div class="checkout-page__order">
-		<h4>פרטי קשר</h4>
 		<div class="checkout-page__order--container">
 			<form
 				@submit.prevent="submit"
 				class="checkout-page__form"
+				id="checkoutForm"
 				:class="{ 'form-group--error': $v.order.firstName.$error }"
 			>
+				<h4>פרטי קשר</h4>
 				<div class="checkout-page__form--item">
 					<label class="checkout-page__form--label">שם פרטי</label>
 					<input
@@ -179,12 +180,12 @@
 						אנא הכנס מיקוד
 					</div>
 				</div>
-				<button type="submit">submit</button>
+				<!-- <button type="submit">submit</button> -->
 			</form>
 		</div>
 	</div>
 	<div class="checkout-page__shipping">
-		<h4>אפשרויות משלוח</h4>
+		<h4>פרטי משלוח</h4>
 		<div
 			v-if="storeSlug === 'kookint'"
 			class="checkout-page__shipping--container"
@@ -219,5 +220,11 @@
 			<div class="checkout-page__total--key">סה״כ</div>
 			<div class="checkout-page__total--value">{{ total }} {{ currency }}</div>
 		</li>
+		<button id="checkout-submit" type="submit" @click="submit">
+			המשך לתשלום מאובטח
+		</button>
+		<div class="checkout-page__total--terms">
+			ע״י לחיצה על המשך לתשלום מאובטח את/ה מסכים/ה לתקנון המופיע בפרופיל החנות
+		</div>
 	</ul>
 </div>
