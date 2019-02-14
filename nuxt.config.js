@@ -78,7 +78,10 @@ module.exports = {
 	 */
 	axios: {
 		https: process.env.API_HOST === '127.0.0.1' ? false : true,
-		baseURL: process.env.API_HOST === '127.0.0.1' ? 'http://127.0.0.1:4000/' : 'https://api.storystore.co.il/',
+		baseURL:
+			process.env.API_HOST === '127.0.0.1'
+				? 'http://127.0.0.1:4000/'
+				: 'https://api.storystore.co.il/',
 		// See https://github.com/nuxt-community/axios-module#options
 	},
 
@@ -87,7 +90,9 @@ module.exports = {
 	 */
 	env: {
 		staticDir:
-			process.env.NODE_ENV === 'development' ? '/' : '//assets.storystore.co.il/',
+			process.env.NODE_ENV === 'development'
+				? '/'
+				: '//assets.storystore.co.il/',
 		devStore: process.env.DEV_STORE,
 	},
 
