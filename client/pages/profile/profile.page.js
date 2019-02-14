@@ -43,15 +43,15 @@ export default {
 		shippingDetails() {
 			return this.$store.state.store.shippingDetails;
 		},
-		returnsPolicy() {
-			return this.$store.state.store.returnsPolicy;
+		returns() {
+			return this.$store.state.store.returns;
 		},
 		profileContent() {
 			return [this.about, this.policy, this.customerService];
 		},
 		...mapState({
 			storeName: state => state.store.name,
-			returnsPolicy: state => state.store.returnsPolicy,
+			returns: state => state.store.returns,
 			tagline: state => state.store.tagline,
 			about: state => state.store.about,
 			// slug: state => state.store,

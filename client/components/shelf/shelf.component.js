@@ -146,7 +146,7 @@ export default {
 		},
 		...mapState({
 			shippingDetails: state => state.store.shippingDetails,
-			returnsPolicy: state => state.store.returnsPolicy,
+			returns: state => state.store.returns,
 			// slug: state => state.store,
 		}),
 		description() {
