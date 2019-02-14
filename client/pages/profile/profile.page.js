@@ -1,20 +1,23 @@
 import '@/icons';
 import { mapState } from 'vuex';
 // import axios from 'axios';
+import { getSlugFromHost } from '@/helpers/async-data.helpers';
 export default {
 	async asyncData({ req, $axios }) {
-		const hostsParts = req.headers.host.split('.');
-		const isDomain = hostsParts.findIndex(item => item === 'storystore') > -1;
+		const host = process.server ? req.headers.host : window.location.hostname;
+		const storeSlug = getSlugFromHost(host);
+		let url = 'stores/' + storeSlug + `/texts`;
 
-		const storeSlug = isDomain ? hostsParts[0] : process.env.DEV_STORE;
-
+		// this.$axios.setHeader('Access-Control-Allow-Origins', '*');
 		// let path = '//assets.storystore.co.il/';
-		let url = '/cdn/' + storeSlug + `/${storeSlug}_policy.txt`;
-		console.log('url', url);
-		const policy = await $axios.$get(url);
 
+		const { policy, customerService } = await $axios.$get(url);
+		// const policy = 'a';
+		// console.log('policy', policy);
 		return {
+			storeSlug,
 			policy,
+			customerService,
 		};
 	},
 	props: {},
@@ -23,12 +26,10 @@ export default {
 			profileTabs: ['אודות', 'תקנון', 'שירות לקוחות'],
 			// profileContent: ['1', '2', '3'],
 			selectedTabIndex: 0,
+			policy: '',
 		};
 	},
 	computed: {
-		storeSlug() {
-			return this.$store.state.store.slug;
-		},
 		logoSrc() {
 			let path = process.env.staticDir ? process.env.staticDir : '/';
 			path += `${this.storeSlug}/logo_${this.storeSlug}_dark.png`;
@@ -44,7 +45,7 @@ export default {
 			return this.$store.state.store.returnsPolicy;
 		},
 		profileContent() {
-			return [this.about, 'aaaa', 'bbbb'];
+			return [this.about, this.policy, this.customerService];
 		},
 		...mapState({
 			storeName: state => state.store.name,

@@ -112,10 +112,10 @@ export default {
 		},
 		attributesKeys() {
 			const attributes = _get(this.shelf, 'variations[0].attrs', {});
-			console.log('attributes', attributes);
+			// console.log('attributes', attributes);
 			const attributesKeys = Object.keys(attributes);
 
-			console.log('attributesKeys', attributesKeys);
+			// console.log('attributesKeys', attributesKeys);
 			return attributesKeys;
 		},
 		attributes() {
@@ -140,7 +140,7 @@ export default {
 					attributes[attributeKey] = noDuplicates;
 				}
 			}
-			console.log('attributes', attributes);
+			// console.log('attributes', attributes);
 			return attributes;
 		},
 		cartItemsCount() {
