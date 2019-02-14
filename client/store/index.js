@@ -1,9 +1,14 @@
+import { getSlugFromHost } from '@/helpers/async-data.helpers';
+
 export const actions = {
 	async nuxtServerInit({ dispatch }, { req, redirect, error, route }) {
-		const hostsParts = req.headers.host.split('.');
-		const isDomain = hostsParts.findIndex(item => item === 'storystore') > -1;
+		const host = process.server ? req.headers.host : window.location.hostname;
+		const storeSlug = getSlugFromHost(host);
 
-		const storeSlug = isDomain ? hostsParts[0] : process.env.DEV_STORE;
+		// const hostsParts = req.headers.host.split('.');
+		// const isDomain = hostsParts.findIndex(item => item === 'storystore') > -1;
+
+		// const storeSlug = isDomain ? hostsParts[0] : process.env.DEV_STORE;
 		const isWebsiteRoot = storeSlug === 'storystore' || storeSlug === 'www';
 
 		if (isWebsiteRoot) {

@@ -165,7 +165,8 @@ export default {
 	// 	}
 	// },
 	created() {
-		this.selectedAttributes = this.shelf.variations[0].attrs || null;
+		this.selectedAttributes =
+			Object.assign({}, this.shelf.variations[0].attrs) || null;
 	},
 	mounted() {
 		this.storeName = this.$route.params.storeName;
