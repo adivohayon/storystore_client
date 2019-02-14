@@ -1,7 +1,18 @@
 .checkout-page {
 	background: #f5f5f5;
 	color: #383838;
+	&__close {
+		position: absolute;
+		left: 1rem;
+		top: 1rem;
+		button {
+			border: none;
+			background: none;
+			padding: 0;
+		}
+	}
 	&__header {
+		position: relative;
 		display: flex;
 		background: #ffffff;
 		padding: 0.7rem;
@@ -65,12 +76,14 @@
 		}
 		&--label {
 			color: #535353;
-			font-size: 0.92rem;
+			font-size: 1rem;
 			font-weight: bold;
 			margin-top: 0.5rem;
 		}
 		&--input {
 			color: #535353;
+			font-size: 1rem;
+			border-radius: 0;
 			border: 0;
 			outline: 0;
 			background: transparent;
@@ -88,22 +101,27 @@
 			flex: 1;
 			padding: 1rem 1.8rem;
 		}
+		&--time {
+			margin-top: 0.5rem;
+			font-size: 1rem;
+		}
 		&--container {
 			padding: 1rem 1.8rem;
 			background: #ffffff;
 			h5 {
-				font-size: 0.93rem;
+				font-size: 1rem;
 			}
 		}
 	}
 	&__total {
 		list-style: none;
 		padding: 0;
-		font-size: 0.93rem;
+		font-size: 1rem;
 		padding: 1rem 1.8rem;
+		min-height: 18rem;
 		li {
 			display: flex;
-			margin-top: 0.5rem;
+			margin-top: 0.6rem;
 		}
 		&--key {
 			flex: 1;
@@ -112,7 +130,8 @@
 			font-weight: bold;
 		}
 		#checkout-submit {
-			margin: auto;
+			// margin: 2rem auto;
+			margin-top: 2rem;
 			background: #51a152;
 			display: block;
 			border: none;
@@ -122,17 +141,16 @@
 			font-size: 1.2rem;
 			font-weight: bold;
 			padding: 0.5rem 1rem;
-			margin-top: 1rem;
 			width: 100%;
 			min-height: 3rem;
 		}
 		&--terms {
-			font-size: 0.6rem;
+			font-size: 0.8rem;
 			letter-spacing: 1px;
 			width: 100%;
 			margin: auto;
 			text-align: center;
-			margin-top: 0.5rem;
+			margin-top: 1.5rem;
 		}
 	}
 }
