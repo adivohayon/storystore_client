@@ -1,13 +1,10 @@
 import { required, numeric, email } from 'vuelidate/lib/validators';
+import { getSlugFromHost } from '@/helpers/async-data.helpers';
 export default {
 	components: {},
 	async asyncData({ req }) {
-		const hostsParts = req
-			? req.headers.host.split('.')
-			: window.location.hostname.split('.');
-		const isDomain = hostsParts.findIndex(item => item === 'storystore') > -1;
-
-		const storeSlug = isDomain ? hostsParts[0] : process.env.DEV_STORE;
+		const host = process.server ? req.headers.host : window.location.hostname;
+		const storeSlug = getSlugFromHost(host);
 
 		return {
 			storeSlug,

@@ -3,9 +3,9 @@
 			
 				
 		<div class="shelf-logo">
-			<nuxt-link :to="`/profile`">
+			<a href="/profile">
 				<img :src="logoSrc" :alt="`${storeSlug} Logo`" />
-			</nuxt-link>
+			</a>
 		</div>
 		<!-- <div class="slide slide--video">
 			<div id="video-controls">
@@ -31,7 +31,6 @@
 	<aside class="shelf-buttons">
 		<ul>
 			<li>
-				<!-- <nuxt-link :to="`/cart`" no-prefetch> -->
 				<a href="/cart">
 					<button class="btn btn--round">
 						<icon name="cart" :original="true" width="20" height="20"></icon>
@@ -40,7 +39,6 @@
 						</div>
 					</button>
 				</a>
-				<!-- </nuxt-link> -->
 			</li>
 			<li>
 				<button

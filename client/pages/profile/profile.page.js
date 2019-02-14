@@ -5,9 +5,11 @@ import { getSlugFromHost } from '@/helpers/async-data.helpers';
 export default {
 	async asyncData({ req, $axios }) {
 		const host = process.server ? req.headers.host : window.location.hostname;
+		console.log('host', host);
 		const storeSlug = getSlugFromHost(host);
 		let url = 'stores/' + storeSlug + `/texts`;
 
+		console.log('storeSlug', storeSlug);
 		// this.$axios.setHeader('Access-Control-Allow-Origins', '*');
 		// let path = '//assets.storystore.co.il/';
 

@@ -88,6 +88,7 @@ module.exports = {
 	env: {
 		staticDir:
 			process.env.NODE_ENV === 'development' ? '/' : '//assets.storystore.co.il/',
+		devStore: process.env.DEV_STORE,
 	},
 
 	build: {
