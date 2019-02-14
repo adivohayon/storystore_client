@@ -41,7 +41,7 @@ export default {
 				// slideSelector: '.shelf-content',
 				autoScrolling: true,
 				licenseKey: '45154D42-6F8E4ACE-AB31A7B3-11A8CE75',
-				dragAndMoveKey: 'F5E0D91E-52F94E24-98489795-9E741DA2',
+				dragAndMoveKey: 'c3RvcnlzdG9yZS5jby5pbF9ZSTBaSEpoWjBGdVpFMXZkbVU9YjYy',
 				dragAndMove: true,
 				controlArrows: false,
 				slidesNavigation: true,
