@@ -5,7 +5,6 @@
 @import 'icons';
 @import 'desktop';
 
-
 .fp-enabled {
 	// overflow: unset !important;
 }
@@ -15,13 +14,13 @@
 	// overflow: hidden;
 }
 
-.fp-slidesNav{
+.fp-slidesNav {
 	position: absolute;
-    left:50%;
-    top:10px;
-    margin-left: 5px !important;
-    text-align: center;
-	}
+	left: 50%;
+	top: 10px;
+	margin-left: 5px !important;
+	text-align: center;
+}
 
 .fixer-class {
 	/deep/ .swiper-container {
@@ -52,21 +51,44 @@
 
 .counter {
 	height: 1.6em;
-    width: 1.6em;
-    border-radius: 50%;
-    color: #ffffff;
-		background-color: #51A152;
-    font-size: 13px;
-    font-weight: bold;
-    line-height: 1.8em;
-    position: absolute;
+	width: 1.6em;
+	border-radius: 50%;
+	color: #ffffff;
+	background-color: #51a152;
+	font-size: 13px;
+	font-weight: bold;
+	line-height: 1.8em;
+	position: absolute;
 }
-
-
 
 .shelf-content {
 	img {
 		width: 100%;
 		height: auto;
 	}
+}
+
+.fp-slidesNav {
+	z-index: 10;
+	direction: ltr;
+	ul li a.active {
+		span {
+			height: 8px;
+			width: 8px;
+			background-color: #383838;
+			margin: -4px 0 0 -4px;
+			// border: 1px solid #F5F5F5;
+		}
+	}
+
+	ul li a span {
+		height: 7px;
+		width: 7px;
+		background-color: #F5F5F5;
+		    // margin: -4px 0 0 0px;
+	}
+}
+#fp-nav ul li a span,
+.fp-slidesNav ul li a span {
+	background: #fff;
 }
