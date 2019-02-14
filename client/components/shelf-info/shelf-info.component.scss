@@ -28,7 +28,8 @@
 			letter-spacing: 1px;
 		}
 		&--label {
-			font-size: 1.1rem;
+			// font-size: 1.1rem;
+			font-size: 2.2vh;
 			width: 6rem;
 			text-align: center;
 			padding: 0.6rem 0rem 0.4rem 0rem;
@@ -38,9 +39,10 @@
 			}
 		}
 		&--content {
-			font-size: 1.1rem;
+			// font-size: 1.1rem;
+			font-size: 2.2vh;
 			padding: 0.5rem 1.1rem;
-			max-height: 17rem;
+			max-height: 40vh;
 			overflow-y: scroll;
 			// max-height: calc(100% - 52.26px);
 			// overflow: hidden;
