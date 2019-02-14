@@ -225,7 +225,9 @@ export default {
 		},
 		setAtt({ att, attKey }) {
 			console.log(attKey, att);
+			console.log('setAtt fullpage', this.shelfIndex, fullpage_api);
 			this.selectedAttributes[attKey] = att;
+			fullpage_api.moveTo(this.shelfIndex + 1, 0);
 		},
 		playVideo() {
 			const video = document.getElementById('video');
