@@ -152,6 +152,9 @@ export default {
 		description() {
 			return this.shelf.description;
 		},
+		info() {
+			return this.shelf.info;
+		},
 		storeSlug() {
 			return this.$store.state.store.slug;
 		},

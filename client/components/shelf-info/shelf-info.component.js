@@ -5,6 +5,9 @@ export default {
 		description: {
 			type: String,
 		},
+		info: {
+			type: String,
+		},
 		returns: {
 			type: String,
 		},
@@ -17,7 +20,7 @@ export default {
 			shelfInfo: [
 				{
 					tabLabel: 'תיאור',
-					tabContent: this.description,
+					tabContent: `<p>${this.description}</p><p>${this.info}</p>`,
 				},
 				{
 					tabLabel: 'החזרות',
