@@ -3,7 +3,7 @@ export default {
 	components: {},
 	props: {
 		price: {
-			type: String,
+			type: Number,
 		},
 		currency: {
 			type: String,

@@ -13,21 +13,21 @@ export default {
 	data() {
 		return {
 			order: {
-				firstName: 'Adiv - Test',
-				lastName: 'Ohayon - Test',
-				phone: '052-5555555',
-				email: 'adiv@test.com',
-				city: 'Tel aviv',
-				street: 'Main st.',
-				houseNumber: 45,
-				apptNumber: 10,
-				floor: 2,
-				zipCode: 90210,
+				firstName: null,
+				lastName: null,
+				phone: null,
+				email: null,
+				city: null,
+				street: null,
+				houseNumber: null,
+				apptNumber: null,
+				floor: null,
+				zipCode: null,
 				submitStatus: null,
 			},
 			shippingOptions: [
 				{
-					price: 33.0,
+					price: 33,
 					currency: '₪',
 					label: 'שליח עד הבית',
 					time: 'עד 3 ימי עסקים',
