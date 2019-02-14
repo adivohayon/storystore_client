@@ -68,6 +68,8 @@
 	}
 }
 
+#fp-nav {
+}
 .fp-slidesNav {
 	z-index: 10;
 	direction: ltr;
@@ -84,10 +86,28 @@
 	ul li a span {
 		height: 7px;
 		width: 7px;
-		background-color: #F5F5F5;
-		    // margin: -4px 0 0 0px;
+		background-color: #f5f5f5;
+		// margin: -4px 0 0 0px;
 	}
 }
+
+#fp-nav ul li a span,
+.fp-slidesNav ul li a span {
+	height: 7px;
+	width: 7px;
+	background-color: #f5f5f5;
+}
+
+#fp-nav ul li a.active span,
+.fp-slidesNav ul li a.active span,
+#fp-nav ul li:hover a.active span,
+.fp-slidesNav ul li:hover a.active span {
+	height: 8px;
+	width: 8px;
+	background-color: #383838;
+	margin: -4px 0 0 -4px;
+}
+
 #fp-nav ul li a span,
 .fp-slidesNav ul li a span {
 	background: #fff;
