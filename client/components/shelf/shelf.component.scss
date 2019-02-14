@@ -24,13 +24,13 @@
 	&-logo {
 		position: absolute;
 		top: 0.25rem;
-    left: 1rem;
-		width:4.5rem;
+		left: 1rem;
+		width: 4.5rem;
 		z-index: 9999;
 		-webkit-transform: translate3d(0, 0, 0);
 		img {
-			width:100%;
-			height:auto;
+			width: 100%;
+			height: auto;
 		}
 	}
 
@@ -124,7 +124,8 @@
 		transform: translate3d(0, 0, 0);
 		position: absolute;
 		bottom: 0;
-		height: 100vh;
+		// height: 100vh;
+		height: 101%;
 		width: 100%;
 		z-index: 10;
 		&--top {
