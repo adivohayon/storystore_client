@@ -18,56 +18,54 @@
 	// }
 	&__container {
 		background-color: white;
-		&--header {
-			display: flex;
-			flex-direction: column;
-			background-color: white;
-			position: fixed;
-			width: 100vw;
-			z-index: 10;
-			&--payment {
-				padding: 1.2rem 1.7rem;
-				border-bottom: 1px solid rgb(210, 210, 210);
-				display: flex;
-				flex-direction: row;
-				background-color: white;
-				justify-content: space-between;
-				&-close {
-					// display: flex;
-					// justify-content: center;
-					// align-items: center;
-					margin-top: 3px;
-					margin-left: 0.65rem;
-				}
-				&-button {
-					color: white;
-					letter-spacing: 1px;
-					padding: 0.5rem 1.8rem;
-					background-color: #51a152;
-					font-size: 1.2rem;
-					border: 0;
-					border-radius: 30px;
-					font-weight: bold;
-					outline: none;
-				}
-			}
-			&--total {
-				font-size: 1rem;
-				letter-spacing: 1px;
-				text-align: right;
-				color: #383838;
-				background-color: white;
-				padding: 1.23rem 2.1rem;
-				border-bottom: 2.5px solid rgb(190, 190, 190);
-				&__price {
-					font-weight: bold;
-				}
-			}
-		}
+
 		&--items {
 			z-index: 5;
 			padding-top: 123px;
 			// padding-bottom: 5px;
+		}
+	}
+	&__header {
+		display: flex;
+		flex-direction: column;
+		background-color: white;
+		// position: fixed;
+		width: 100%;
+		z-index: 10;
+		&--checkout {
+			padding: 1.2rem 1.7rem;
+			border-bottom: 1px solid rgb(210, 210, 210);
+			display: flex;
+			flex-direction: row;
+			background-color: white;
+			justify-content: space-between;
+			button {
+				color: white;
+				letter-spacing: 1px;
+				padding: 0.5rem 1.8rem;
+				background-color: #51a152;
+				font-size: 1.2rem;
+				border: 0;
+				border-radius: 30px;
+				font-weight: bold;
+				outline: none;
+			}
+			&--close {
+				margin-top: 3px;
+				margin-left: 0.65rem;
+			}
+		}
+		&--total {
+			font-size: 1rem;
+			letter-spacing: 1px;
+			text-align: right;
+			color: #383838;
+			background-color: white;
+			padding: 1.23rem 2.1rem;
+			border-bottom: 1px solid rgb(190, 190, 190);
+			&__price {
+				font-weight: bold;
+			}
 		}
 	}
 }

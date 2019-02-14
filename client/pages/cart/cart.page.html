@@ -1,20 +1,22 @@
 <div class="cart-page">
 	<div class="cart-page__container">
-		<div class="cart-page__container--header">
-			<nuxt-link :to="`/checkout`">
-				<button class="cart-page__container--header--payment-button">
-					לתשלום
-				</button>
-			</nuxt-link>
-			<nuxt-link :to="`/`" class="cart-page__container--header--close">
-				<icon name="close" :original="true" width="17" height="26"></icon>
-			</nuxt-link>
-		</div>
-		<div class="cart-page__container--total">
-			<span class="cart-page__container--total__text">
-				{{ itemsCount }} פריטים: סה"כ
-			</span>
-			<span class="cart-page__container--total__price">{{ subtotal }} ש"ח</span>
+		<div ref="stickyHeader" class="cart-page__header">
+			<div class="cart-page__header--checkout">
+				<nuxt-link :to="`/checkout`">
+					<button>
+						לתשלום
+					</button>
+				</nuxt-link>
+				<nuxt-link :to="`/`" class="cart-page__header--close">
+					<icon name="close" :original="true" width="17" height="26"></icon>
+				</nuxt-link>
+			</div>
+			<div class="cart-page__header--total">
+				<span class="cart-page__header--total__text">
+					{{ itemsCount }} פריטים: סה"כ
+				</span>
+				<span class="cart-page__header--total__price">{{ subtotal }} ש"ח</span>
+			</div>
 		</div>
 		<cart-item
 			v-for="(item, itemIndex) of items"
