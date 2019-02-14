@@ -1,4 +1,7 @@
 <div v-if="item" class="cart-item">
+	<button class="cart-item__close" @click="removeItem">
+		<icon name="close" :original="true" width="14" height="14"></icon>
+	</button>
 	<!-- {{ item }} -->
 	<img class="cart-item__image" :src="item.image" />
 	<div class="cart-item__content">
@@ -9,52 +12,22 @@
 		<div v-if="item.attributes.color" class="cart-item__content--color">
 			{{ item.attrs.color.label }}
 		</div>
+		<div v-if="item.attributes.size" class="cart-item__content--size">
+			{{ item.attrs.size.label }}
+		</div>
 		<div v-else v-if="item.attrs.axis.label" class="cart-item__content--axis">
 			{{ item.attrs.axis.label }}
 		</div>
 	</div>
-	<div class="cart-item__flexbox">
-		<div class="cart-item__flexbox--remove">
-			<button class="close" @click="removeItem">
-				<icon name="close" :original="true" width="14" height="14"></icon>
-			</button>
-		</div>
-		<!-- <div v-if="item.attributes.size" class="cart-item__pickers--picker">
-			<div class="picker-title">מידה:</div>
-			<select v-model="itemSize">
-				<option
-					v-for="(size, sizeIndex) in item.attributes.size"
-					:key="sizeIndex"
-					:value="size"
-				>
-					{{ size.label }}</option
-				>
+	<div class="cart-item__pickers">
+		<div class="cart-item__pickers--picker">
+			<div class="picker-label">כמות:</div>
+			<select v-model="itemQuantity">
+				<!-- <option v-for="size in item.variations.sizes">מידה: {{size}}</option> -->
+				<option v-for="(i, index) in 10" :key="index" :value="i"
+					>{{ i }}
+				</option>
 			</select>
-		</div> -->
-
-		<!-- AXIS -->
-		<!-- <div v-if="item.attributes.axis" class="cart-item__pickers--picker">
-			<div class="picker-title">ציר:</div>
-			<select v-model="selectedAttribute">
-				<option
-					v-for="(axis, axisIndex) in item.axis"
-					:key="axisIndex"
-					:value="axis.value"
-				>
-					<span v-if="axisIndex === 0"></span> {{ axis.label }}</option
-				>
-			</select>
-		</div> -->
-		<div class="cart-item__flexbox--pickers">
-			<div class="cart-item__flexbox--pickers--picker">
-				<div class="picker-label">כמות:</div>
-				<select v-model="itemQuantity">
-					<!-- <option v-for="size in item.variations.sizes">מידה: {{size}}</option> -->
-					<option v-for="(i, index) in 10" :key="index" :value="i"
-						>{{ i }}
-					</option>
-				</select>
-			</div>
 		</div>
 	</div>
 </div>

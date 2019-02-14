@@ -2,10 +2,8 @@
 	<div class="cart-page__container">
 		<div ref="stickyHeader" class="cart-page__header">
 			<div class="cart-page__header--checkout">
-				<nuxt-link :to="`/checkout`">
-					<button>
-						לתשלום
-					</button>
+				<nuxt-link :to="`/checkout`" class="checkout-btn">
+					לתשלום
 				</nuxt-link>
 				<nuxt-link :to="`/`" class="cart-page__header--close">
 					<icon name="close" :original="true" width="17" height="26"></icon>
@@ -18,11 +16,13 @@
 				<span class="cart-page__header--total__price">{{ subtotal }} ש"ח</span>
 			</div>
 		</div>
-		<cart-item
-			v-for="(item, itemIndex) of items"
-			:key="itemIndex"
-			:item="item"
-			:itemIndex="itemIndex"
-		></cart-item>
+		<div class="cart-page__items">
+			<cart-item
+				v-for="(item, itemIndex) of items"
+				:key="itemIndex"
+				:item="item"
+				:itemIndex="itemIndex"
+			></cart-item>
+		</div>
 	</div>
 </div>

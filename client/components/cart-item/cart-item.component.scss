@@ -1,20 +1,24 @@
 .cart-item {
 	display: flex;
-	padding: 1.3rem 2rem;
+	padding: 1.3rem 1rem;
 	color: #717171;
 	border-bottom: 1px solid #dbdbdb;
-	& img {
-		border: 1px solid #dbdbdb;
+	&__close {
+		position: absolute;
+		-webkit-appearance: none;
+		background-color: transparent;
+		border: none;
+		outline: none;
+		left: 2rem;
 	}
 	&__image {
 		width: 4.28rem;
 		height: 7.64rem;
-		border-color: #d6d6d6;
-		border-width: thin;
+		border: 1px solid #d6d6d6;
 	}
 	&__content {
 		flex: 1;
-		margin-right: 0.5rem;	
+		margin-right: 1rem;
 		display: flex;
 		flex-direction: column;
 		font-weight: bold;
@@ -38,58 +42,38 @@
 			line-height: 1;
 		}
 	}
-	&__flexbox {
+	&__pickers {
+		margin-right: 1rem;
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-end;
-		&--remove {
-			margin-bottom: auto;
-			margin-right: auto;
-		}
-		&--pickers {
+		&--picker {
+			font-size: 1.05rem;
+			height: 2rem;
+			font-weight: bold;
+			color: black;
 			display: flex;
-			flex-direction: column;
-			justify-content: flex-end;
-			transform: translateY(7px);
-			&--picker {
-				font-size: 1.05rem;
+			.picker-label {
+				line-height: 2.5rem;
+			}
+			select {
+				width: 5.07rem;
+				margin-right: 0.5rem;
+				background-color: #ffffff;
+				border-color: #d6d6d6;
+				border-radius: 0;
+				background: transparent url('~assets/icons/chevron-down.svg') no-repeat
+					10px center;
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				text-indent: 1px;
+				text-overflow: '';
 				font-weight: bold;
-				color: black;
-				display: flex;
-				margin-top: 0.5rem;
-				line-height: 2.4rem;
-				select {
-					width: 5.07rem;
-					height: 1.85rem;
-					margin-right: 0.5rem;
-					background-color: #ffffff;
-					border-color: #d6d6d6;
-					border-radius: 0;
-					background: transparent url('~assets/icons/chevron-down.svg')
-						no-repeat 10px center;
-					-webkit-appearance: none;
-					-moz-appearance: none;
-					text-indent: 1px;
-					text-overflow: '';
-					font-weight: bold;
-					padding: 0 0.8rem 0.05rem 0.8rem;
-					&:focus {
-						outline: none;
-					}
+				padding: 0 0.8rem 0.05rem 0.8rem;
+				&:focus {
+					outline: none;
 				}
 			}
 		}
 	}
-	.close {
-		-webkit-appearance: none;
-		background-color: transparent;
-		border: none;
-		outline: none;
-	}
-}
-button::before {
-	content: none;
-}
-button::after {
-	content: none;
 }
