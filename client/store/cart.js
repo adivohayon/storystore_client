@@ -64,13 +64,10 @@ export const actions = {
 
 export const getters = {
 	subtotal: (state, getters) => storeSlug => {
-		return getters
-			.items(storeSlug)
-			.reduce((acc, item) => {
-				const itemTotal = item.quantity * item.price;
-				return acc + itemTotal;
-			}, 0)
-			.toFixed(2);
+		return getters.items(storeSlug).reduce((acc, item) => {
+			const itemTotal = item.quantity * item.price;
+			return acc + itemTotal;
+		}, 0);
 	},
 	itemsCount: (state, getters) => storeSlug => {
 		return getters.items(storeSlug).reduce((acc, item) => {
