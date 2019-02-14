@@ -3,12 +3,19 @@
 	width: 100%;
 	padding: 0 1.3rem;
 	margin-top: 1rem;
+	-webkit-touch-callout: none; /* iOS Safari */
+	-webkit-user-select: none; /* Safari */
+	-khtml-user-select: none; /* Konqueror HTML */
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* Internet Explorer/Edge */
+	user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
 	button {
 		letter-spacing: 0.19rem;
 		text-align: center;
 		padding: 1.2rem 0.9rem;
 		border: none;
-		background-color: #FFFFFF;
+		background-color: #ffffff;
 		font-size: 1.2rem;
 		height: 3.4rem;
 		line-height: 1;
