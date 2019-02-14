@@ -16,14 +16,17 @@ export const mutations = {
 		state.shelves.push(shelf);
 	},
 	populateShelves(state, shelves) {
-		state.shelves = shelves;
+		Vue.set(state, 'shelves', shelves);
 	},
 	populateStore(state, store) {
-		state.storeId = store.id;
-		state.slug = store.slug;
-		state.name = store.name;
-		state.shippingDetails = store.shippingDetails;
-		state.returnsPolicy = store.returnsPolicy;
+		Vue.set(state, 'storeId', store.id);
+		Vue.set(state, 'slug', store.slug);
+		Vue.set(state, 'name', store.name);
+		Vue.set(state, 'shippingDetails', store.shipping_details);
+		Vue.set(state, 'info', store.info);
+		Vue.set(state, 'about', store.about);
+		Vue.set(state, 'tagline', store.tagline);
+		Vue.set(state, 'returnsPolicy', store.returnsPolicy);
 	},
 };
 

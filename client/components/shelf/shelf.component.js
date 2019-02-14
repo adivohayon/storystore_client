@@ -83,10 +83,13 @@ export default {
 		},
 		assetsPath() {
 			let path = process.env.staticDir ? process.env.staticDir : '/';
-			if (process.env.staticDir) {
-				path += `${this.storeSlug}/${this.shelf.slug}/${this.variant.slug}/`;
-			}
+			path += `${this.storeSlug}/${this.shelf.slug}/${this.variant.slug}/`;
 
+			return path;
+		},
+		logoSrc() {
+			let path = process.env.staticDir ? process.env.staticDir : '/';
+			path += `${this.storeSlug}/logo_${this.storeSlug}_white.png`;
 			return path;
 		},
 		variantImages() {
@@ -107,10 +110,10 @@ export default {
 		},
 		attributesKeys() {
 			const attributes = _get(this.shelf, 'variations[0].attrs', {});
-			console.log('attributes', attributes);
+			// console.log('attributes', attributes);
 			const attributesKeys = Object.keys(attributes);
 
-			console.log('attributesKeys', attributesKeys);
+			// console.log('attributesKeys', attributesKeys);
 			return attributesKeys;
 		},
 		attributes() {
@@ -135,7 +138,7 @@ export default {
 					attributes[attributeKey] = noDuplicates;
 				}
 			}
-			console.log('attributes', attributes);
+			// console.log('attributes', attributes);
 			return attributes;
 		},
 		cartItemsCount() {
