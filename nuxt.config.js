@@ -26,6 +26,7 @@ module.exports = {
 			},
 			{ hid: 'description', name: 'description', content: pkg.description },
 		],
+
 		//link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
 	},
 
@@ -71,8 +72,12 @@ module.exports = {
 	 */
 	modules: [
 		// Doc: https://github.com/nuxt-community/axios-module#usage
+		'@nuxtjs/google-analytics',
 		'@nuxtjs/axios',
 	],
+	googleAnalytics: {
+		id: 'UA-134688384-1',
+	},
 	/*
 	 ** Axios module configuration
 	 */

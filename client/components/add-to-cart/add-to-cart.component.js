@@ -76,6 +76,16 @@ export default {
 				item,
 				storeSlug: this.storeSlug,
 			});
+
+			// console.log('this.ga', this.$ga);
+			item.storeSlug = this.storeSlug;
+
+			this.$ga.event({
+				eventCategory: 'category',
+				eventAction: 'add-to-cart',
+				eventLabel: 'item',
+				eventValue: JSON.stringify(item),
+			});
 		},
 	},
 };
