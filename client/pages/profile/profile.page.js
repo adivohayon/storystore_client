@@ -12,15 +12,22 @@ export default {
 		console.log('storeSlug', storeSlug);
 		// this.$axios.setHeader('Access-Control-Allow-Origins', '*');
 		// let path = '//assets.storystore.co.il/';
-
-		const { policy, customerService } = await $axios.$get(url);
+		try {
+			const { policy, customerService } = await $axios.$get(url);
+			return {
+				storeSlug,
+				policy,
+				customerService,
+			};
+		} catch (err) {
+			console.log(
+				'Failed to get policy and customer service texts files. ',
+				err.message
+			);
+			return { storeSlug, policy: '', customerService: '' };
+		}
 		// const policy = 'a';
 		// console.log('policy', policy);
-		return {
-			storeSlug,
-			policy,
-			customerService,
-		};
 	},
 	props: {},
 	data() {
@@ -58,7 +65,9 @@ export default {
 		}),
 	},
 	created() {},
-	mounted() {},
+	mounted() {
+		// window.fullpage_api.reBuild();
+	},
 	methods: {
 		updateSelectedTabIndex(index) {
 			this.selectedTabIndex = index;

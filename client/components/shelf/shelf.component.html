@@ -3,9 +3,9 @@
 			
 				
 		<div class="shelf-logo">
-			<a href="/profile">
+			<nuxt-link to="/profile">
 				<img :src="logoSrc" :alt="`${storeSlug} Logo`" />
-			</a>
+			</nuxt-link>
 		</div>
 		<!-- <div class="slide slide--video">
 			<div id="video-controls">
@@ -31,14 +31,14 @@
 	<aside class="shelf-buttons">
 		<ul>
 			<li>
-				<a href="/cart">
+				<nuxt-link to="/cart">
 					<button class="btn btn--round">
 						<icon name="cart" :original="true" width="20" height="20"></icon>
 						<div v-if="cartItemsCount != 0" class="counter">
 							{{ cartItemsCount }}
 						</div>
 					</button>
-				</a>
+				</nuxt-link>
 			</li>
 			<li>
 				<button
@@ -73,6 +73,10 @@
 				:att-key="attributeKey"
 				@changed-att="setAtt"
 			></attribute-picker>
+		</div>
+
+		<div v-if="shelf.description && shelf.description.length > 0" class="shelf-description">
+			{{shelf.description}}
 		</div>
 		<!-- <color-picker
 			v-if="colors.length"

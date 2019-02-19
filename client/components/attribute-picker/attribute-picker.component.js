@@ -17,7 +17,18 @@ export default {
 			selectedAttIndex: 0,
 		};
 	},
-	computed: {},
+	computed: {
+		hidePicker() {
+			return this.onlyOneSize;
+		},
+		onlyOneSize() {
+			return (
+				this.attKey === 'size' &&
+				this.attribute.length === 1 &&
+				this.attribute[0].value === 'OS'
+			);
+		},
+	},
 	created() {},
 	mounted() {},
 	methods: {

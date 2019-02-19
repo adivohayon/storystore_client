@@ -20,7 +20,7 @@ export default {
 			shelfInfo: [
 				{
 					tabLabel: 'תיאור',
-					tabContent: `<p>${this.description}</p><p>${this.info}</p>`,
+					tabContent: `<p>${this.info}</p>`,
 				},
 				{
 					tabLabel: 'החזרות',

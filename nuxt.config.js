@@ -99,6 +99,7 @@ module.exports = {
 				? '/'
 				: '//assets.storystore.co.il/',
 		devStore: process.env.DEV_STORE,
+		mockCheckout: process.env.MOCK_CHECKOUT && process.env.MOCK_CHECKOUT == 'true',
 	},
 
 	build: {

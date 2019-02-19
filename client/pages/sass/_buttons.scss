@@ -46,3 +46,18 @@
 		// left: 28px;
 	}
 }
+
+/* Ripple effect */
+.ripple {
+	background-position: center;
+	transition: background-color 0.8s;
+}
+.ripple:hover {
+	background: #ffffff radial-gradient(circle, transparent 1%, #ffffff 1%)
+		center/15000%;
+}
+.ripple:active {
+	background-color: red;
+	background-size: 100%;
+	transition: background-color 0s;
+}

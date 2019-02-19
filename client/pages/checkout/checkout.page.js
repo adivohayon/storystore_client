@@ -80,7 +80,23 @@ export default {
 			},
 		},
 	},
-	mounted() {},
+	mounted() {
+		if (process.env.mockCheckout) {
+			this.order = {
+				firstName: 'Test: John',
+				lastName: 'Test: Smith',
+				phone: '111-222-333',
+				email: 'adiv@shop-together.io',
+				city: 'Test: Tel Aviv',
+				street: 'Test: Alenby',
+				houseNumber: 6,
+				apptNumber: 7,
+				floor: 16,
+				zipCode: 90210,
+				submitStatus: null,
+			};
+		}
+	},
 	computed: {
 		items() {
 			return this.$store.getters['cart/items'](this.storeSlug);
