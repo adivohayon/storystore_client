@@ -1,0 +1,23 @@
+<div class="checkout-response">
+	<transition name="slide-from-bottom">
+		<div class="checkout-response__container" v-if="show">
+			<button class="btn--close" @click="toggle">
+				<icon name="close" :original="true" width="14" height="14"></icon>
+			</button>
+			<header class="header">
+				<!-- Error icon -->
+				<div class="icon-round icon--error" v-if="orderQuery === 'error'">
+					<icon name="close" :original="true" width="14" height="14"></icon>
+				</div>
+				<!-- Success icon -->
+				<div class="icon-round icon--success" v-if="orderQuery === 'success'">
+					<icon name="checkmark" :original="true" width="14" height="14"></icon>
+				</div>
+				<h2>{{ title }}</h2>
+			</header>
+			<div class="checkout-response__message">
+				{{message}}
+			</div>
+		</div>
+	</transition>
+</div>

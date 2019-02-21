@@ -9,6 +9,14 @@
 	stroke: currentColor;
 }
 
+.icon-round {
+	background-color: #C61E42;
+	border-radius: 50%;
+	height: 2rem;
+	width: 2rem;
+	position: relative;
+}
+
 .svg-fill {
 	fill: currentColor;
 	stroke: none;

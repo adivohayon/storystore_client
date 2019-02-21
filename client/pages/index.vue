@@ -16,6 +16,7 @@
 			</full-page>
 			<div v-else>No shelves available or store not available</div>
 		</no-ssr>
+		<checkout-response></checkout-response>
 	</div>
 </template>
 
@@ -23,12 +24,13 @@
 import Feed from '@/components/feed';
 import Shelf from '@/components/shelf';
 import Navigation from '@/components/navigation';
+import CheckoutResponse from '@/components/checkout-response';
 import { getCategories, getShelves } from '@/services/api.service';
 import '@/icons';
 import { mapState } from 'vuex';
 
 export default {
-	components: { Feed, Shelf, Navigation },
+	components: { Feed, Shelf, Navigation, CheckoutResponse },
 	layout(ctx) {
 		return ctx.app.isMobile ? 'mobile' : 'desktop';
 	},
