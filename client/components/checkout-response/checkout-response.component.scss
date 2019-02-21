@@ -71,6 +71,18 @@ $container-height: 70vh;
 		line-height: 1.8;
 		&--success {
 			margin-top: 0.5rem;
+			.order-number {
+				font-weight: bold;
+			}
+			.success-image {
+				position: absolute;
+				left: 5rem;
+				bottom: 6rem;
+				.svg-icon {
+					width: 9rem;
+					height: auto;
+				}
+			}
 		}
 		&--error {
 			display: inline-block;

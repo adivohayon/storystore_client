@@ -27,8 +27,9 @@
 					class="checkout-response__message--success"
 					v-if="orderQuery === 'success'"
 				>
-					<div class="order-number">
-						<strong>מספר הזמנה:</strong> {{ orderNumber }}
+					<div class="order-number">מספר הזמנה: {{ orderNumber }}</div>
+					<div class="success-image">
+						<icon name="gift" :original="true"></icon>
 					</div>
 				</div>
 				<!-- Error -->

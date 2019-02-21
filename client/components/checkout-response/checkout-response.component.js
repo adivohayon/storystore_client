@@ -44,7 +44,9 @@ export default {
 		message() {
 			if (this.orderQuery) {
 				if (this.orderQuery === 'success') {
-					return 'הזמנתך התקבלה בהצלחה והיא בדרך אליך';
+					return `הזמנתך התקבלה בהצלחה והיא בדרך אליך. אישור ההזמנה ישלח אליך למייל ${
+						this.customerEmail
+					}`;
 				}
 
 				if (this.orderQuery === 'error') {
