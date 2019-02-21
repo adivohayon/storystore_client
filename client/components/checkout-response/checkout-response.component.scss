@@ -1,7 +1,10 @@
-$container-height: 55vh;
+$container-height: 70vh;
 .checkout-response {
 	&__container {
+		border-top-right-radius: 1rem;
+		border-top-left-radius: 1rem;
 		position: relative;
+		padding: 1rem 0.7rem;
 		background-color: rgba(240, 240, 240, 0.95);
 		position: fixed;
 		bottom: 0;
@@ -15,26 +18,65 @@ $container-height: 55vh;
 			position: absolute;
 			top: 1rem;
 			left: 1rem;
+			outline: none;
+			border: none;
+			background: none;	
 		}
 
-		.icon {
-			&-round {
-				.svg-icon {
-					position: absolute;
-					top: 0.5rem;
-					left: 0.5rem;
+		.header {
+			display: flex;
+			margin-top: 2rem;
+			padding: 0 0.9rem;
+			h2 {
+				font-size: 1.6rem;
+				line-height: 1.4;
+				&.success {
+					color: #51a152;
 				}
-				.svg-fill {
-					fill: white;
+				&.error {
+					color: #c61e42;
 				}
 			}
+			.icon {
+				&-round {
+					margin-left: 0.7rem;
+					.svg-icon {
+						position: absolute;
+						top: 0.55rem;
+						left: 0.55rem;
+					}
+					.svg-fill {
+						stroke: white;
+						fill: none;
+					}
+				}
 
-			&--error {
-				background-color: #c61e42;
+				&--error {
+					background-color: #c61e42;
+					.svg-fill {
+						fill: #fff;
+					}
+				}
+
+				&--success {
+					background-color: #51a152;
+				}
 			}
-
-			&--success {
-				background-color: #51a152;
+		}
+	}
+	&__message {
+		margin-top: 1rem;
+		padding: 0 3.4rem;
+		font-size: 1.1rem;
+		line-height: 1.8;
+		&--success {
+			margin-top: 0.5rem;
+		}
+		&--error {
+			display: inline-block;
+			a {
+				text-decoration: none;
+				color: #0068ce;
 			}
 		}
 	}

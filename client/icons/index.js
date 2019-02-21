@@ -1,4 +1,5 @@
 /* eslint-disable */
+import './attention'
 import './back'
 import './cart'
 import './checkmark'

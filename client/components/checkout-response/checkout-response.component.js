@@ -25,23 +25,32 @@ export default {
 					return `תודה שהזמנת ב - ${this.storeName}!`;
 				}
 				if (this.orderQuery === 'error') {
-					return 'הזמנה לא התקבלה';
+					return 'העסקה נכשלה';
 				}
 			}
 		},
 		storeName() {
 			return _get(this.$store.state, 'store.name', null);
 		},
+		storePhone() {
+			return _get(this.$store.state, 'store.info.phone', null);
+		},
 		customerEmail() {
 			return 'adivohayon@gmail.com';
 		},
 		orderNumber() {
-			return null;
+			return '767689';
 		},
 		message() {
-			return `הזמנתך התקבלה בהצלחה, אישור ההזמנה ישלח אליך למייל djh@gmail.com 
-			מספר ההזמנה: 789389
-			`;
+			if (this.orderQuery) {
+				if (this.orderQuery === 'success') {
+					return 'הזמנתך התקבלה בהצלחה והיא בדרך אליך';
+				}
+
+				if (this.orderQuery === 'error') {
+					return `כרטיס האשראי שלך לא חויב. אנא נסו שוב או צרו איתנו קשר לבירור נוסף ב-`;
+				}
+			}
 		},
 	},
 	methods: {
