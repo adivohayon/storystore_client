@@ -1,5 +1,7 @@
 .video-player {
+	height: 100%;
 	&__container {
+		height: inherit;
 		position: relative;
 		z-index: 99999;
 	}

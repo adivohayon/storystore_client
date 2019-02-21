@@ -3,8 +3,9 @@
 import '@/icons/checkmark';
 import { contactStorystore } from '@/services/api.service';
 import { validateEmail } from '@/helpers/validation.helpers';
+import VideoPlayer from '@/components/video-player';
 export default {
-	components: {},
+	components: { VideoPlayer },
 	async asyncData({ params }) {},
 	data() {
 		return {
@@ -22,13 +23,20 @@ export default {
 			validationErrors: {
 				contactEmail: false,
 			},
-			features: [
-				'ללא עלות הקמה',
-				'ממשק קל ונוח לתפעול ולשליטה',
-				'יותר מוצרים בפחות זמן - יחס המרה גבוה יותר',
-				'חווית משתמש ייחודית וחברתית',
-				'דגש על המוצרים ואיכות התוכן  (וידאו, תמונות וטקסטים)',
-				'ליווי מקצועי צמוד של הצוות של סטורי סטור',
+			productFeatures: [
+				'עיצוב בלתי מתפשר ובעברית',
+				'עובד בכל מסך, מובייל, טאבלט, דסקטופ, טלויזיה',
+				'חווית משתמש עדכנית, חברתית, אינטואיטיבית ופשוטה',
+			],
+			exposureFeatures: [
+				'לפי הממוצע העולמי משתמש ייחשף בסשן אחד ל 3-5 דפי מוצר',
+				'אצלנו המשתמש נחשף לפי 50 יותר מוצרים',
+				'אנחנו קוראים להם מדפי מוצר, וכן אפשר לפלטר לפי העדפות אישיות',
+			],
+			pricingFeatures: [
+				'לפי הממוצע העולמי משתמש ייחשף בסשן אחד ל 3-5 דפי מוצר',
+				'אצלנו המשתמש נחשף לפי 50 יותר מוצרים',
+				'אנחנו קוראים להם מדפי מוצר, וכן אפשר לפלטר לפי העדפות אישיות',
 			],
 			studioFeatures: [
 				'בניית קונספט',

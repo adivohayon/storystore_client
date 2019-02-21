@@ -1,121 +1,174 @@
-<div id="our-services">
+<div id="start">
 	<section id="hero" class="section">
-		<div class="column-one show-md"></div>
-		<div class="column-two">
-			<div class="header">
-				<div class="logo">
-					<img src="/storystore_logo.png" alt="Storystore" />
-				</div>
-				<div class="phrase">רשת קניות אונליין מציגה:</div>
-				<div class="shelf">
-					<h1>"מדף מוצר"</h1>
-					<p>
-						מדף וירטואלי המכיל את סך המידע הדרוש למשתמש בכדי לקבל החלטה מהירה
-						לרכישה
-					</p>
-				</div>
-				<div class="simulation show-sm"></div>
-				<div class="open-storystore">
-					<button class="btn btn--round btn--call-to-action">
-						פתח/י storystore לעסק שלך
-					</button>
-					<p>ללא עלות הקמה</p>
-				</div>
+		<div class="tagline">
+			<div class="tagline__header">
+				<img
+					class="tagline__logo"
+					src="/storystore_logo.png"
+					alt="storystore"
+				/>
+				<h3>רשת קניות אונליין מציגה:</h3>
 			</div>
+			<div class="tagline__text">
+				<h2>״מדף מוצר״</h2>
+				<p>
+					מדף וירטואלי המכיל את סך המידע הדרוש למשתמש בכדי לקבל החלטה מהירה
+					לרכישה
+				</p>
+			</div>
+			<div class="tagline__call-to-action show-md">
+				<button v-scroll-to="'#footer'" class="call-to-action__btn">
+					פתח/י storystore לעסק שלך
+				</button>
+				<div class="call-to-action__comment">ללא עלות הקמה</div>
+			</div>
+		</div>
+		<div class="simulation">
+			<video-player :source="`${staticDir}hero_simulation.mp4`"></video-player>
+		</div>
+		<div class="call-to-action show-sm">
+			<button v-scroll-to="'#footer'" class="call-to-action__btn">
+				פתח/י storystore לעסק שלך
+			</button>
+			<div class="call-to-action__comment">ללא עלות הקמה</div>
 		</div>
 	</section>
-	<section id="feed" class="section">
-		<div class="column-one">
-			<div class="benefits">
-				<h1>מוצר, עיצוב, חויה</h1>
-				<ul class="listing">
-					<li class="item">- עיצוב בלתי מתפשר ובעברית</li>
-					<li>- עובד בכל מסך, מובייל, טאבלט, דסקטופ, טלויזיה</li>
-					<li>- חווית משתמש עדכנית, חברתית, אינטואטיבית ופשוטה</li>
-				</ul>
-				<h1>יותר מוצרים ובפחות זמן</h1>
-				<ul>
-					<li>- הממוצע העולמי של גלישה באתר הוא בין 2-3 דקות</li>
-					<li>- storystore חוסכים למשתמש זמן התמצאות בין קטגוריות</li>
-					<li>- ניתן לפלטר את הפיד לפי העדפות אישיות</li>
-				</ul>
-			</div>
-			<div class="simulation show-sm"></div>
-		</div>
-		<div class="column-two show-md"></div>
-	</section>
-	<section id="pricing" class="section">
-		<div class="column-one">
-			<div class="pricing__container">
-				<table class="pricing-table">
-					<thead>
-						<tr class="pricing-table__row">
-							<th></th>
-							<th class="test">מקסימום מק״טים</th>
-							<th class="test">אחוז מכל עסקה</th>
-							<th>עמלת מכירות <br>מינימלית חודשית</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr class="pricing-table__row pricing-table__row--basic">
-							<td>בסיסי</td>
-							<td class="test">
-								100
-								<span class="small-text">מק״טים</span>
-							</td>
-							<td class="test">
-								5
-								<span class="small-text">%</span>
-							</td>
-							<td>
-								290
-								<span class="small-text">ש״ח</span>
-							</td>
-						</tr>
-						<tr class="pricing-table__row pricing-table__row--standard">
-							<td>מתקדם</td>
-							<td class="test">
-								1,000
-								<span class="small-text">מק״טים</span>
-							</td>
-							<td class="test">
-								3.5
-								<span class="small-text">%</span>
-							</td>
-							<td>
-								490
-								<span class="small-text">ש״ח</span>
-							</td>
-						</tr>
-						<tr class="pricing-table__row pricing-table__row--premium">
-							<td>פרמיום</td>
-							<td class="test">
-								5,000
-								<span class="small-text">מק״טים</span>
-							</td>
-							<td class="test">
-								2
-								<span class="small-text">%</span>
-							</td>
-							<td>
-								2,900
-								<span class="small-text">ש״ח</span>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		</div>
-		<div class="column-two">
-			<h1>מסלול לכל גודל וסוג של עסק</h1>
-			<ul>
-				<li>- כל מה שאפשר למכור ברשת, אפשר למכור בסטוריסטור!</li>
-				<li>- לעסקים בכל גודל</li>
-				<li>- ללא עלות הקמה</li>
-				<li>- שירות חודשי מתחדש, אין התחייביות</li>
+	<section id="features" class="section">
+		<div class="container">
+			<h1 class="header">מוצר, עיצוב, חויה</h1>
+			<ul class="list">
+				<li
+					class="list__item"
+					v-for="(feature, featureIndex) in productFeatures"
+				>
+					<div class="list__item--dash">-</div>
+					<div class="list__item--text">{{ feature }}</div>
+				</li>
+			</ul>
+			<h1 class="header">יותר מוצרים ובפחות זמן</h1>
+			<ul class="list">
+				<li
+					class="list__item"
+					v-for="(feature, featureIndex) in exposureFeatures"
+				>
+					<div class="list__item--dash">-</div>
+					<div class="list__item--text">{{ feature }}</div>
+				</li>
 			</ul>
 		</div>
+		<!-- <div class="container">
+			<h1 class="header">יותר מוצרים ובפחות זמן</h1>
+			<ul class="list">
+				<li
+					class="list__item"
+					v-for="(feature, featureIndex) in exposureFeatures"
+				>
+					<div class="list__item--dash">-</div>
+					<div class="list__item--text">{{ feature }}</div>
+				</li>
+			</ul>
+		</div> -->
+		<div class="simulation">
+			<video-player :source="`${staticDir}storystore_demo.mp4`"></video-player>
+		</div>
 	</section>
+	<section id="pricing" class="section">
+		<div class="container">
+			<h1 class="header">מסלול לכל גודל וסוג של עסק</h1>
+			<ul class="list">
+				<li
+					class="list__item"
+					v-for="(feature, featureIndex) in pricingFeatures"
+				>
+					<div class="list__item--dash">-</div>
+					<div class="list__item--text">{{ feature }}</div>
+				</li>
+			</ul>
+		</div>
+		<table class="table">
+			<tr class="table__row">
+				<th class="table__head"></th>
+				<th class="table__head">מקסימום מק״טים</th>
+				<th class="table__head">אחוז מכל עסקה</th>
+				<th class="table__head">עמלת מכירות מינימלית חודשית</th>
+			</tr>
+			<tr class="table__row">
+				<td class="table__cell">בסיסי</td>
+				<td class="table__cell">
+					100 <span style="display: block">מק״טים</span>
+				</td>
+				<td class="table__cell"><span>%</span>5</td>
+				<td class="table__cell">290 <span>ש״ח</span></td>
+			</tr>
+			<tr class="table__row">
+				<td class="table__cell">מתקדם</td>
+				<td class="table__cell">
+					1,000 <span style="display: block">מק״טים</span>
+				</td>
+				<td class="table__cell"><span>%</span>3.5</td>
+				<td class="table__cell">490 <span>ש״ח</span></td>
+			</tr>
+			<tr class="table__row">
+				<td class="table__cell">פרימיום</td>
+				<td class="table__cell">
+					5,000 <span style="display: block">מק״טים</span>
+				</td>
+				<td class="table__cell"><span>%</span>2</td>
+				<td class="table__cell">2900 <span>ש״ח</span></td>
+			</tr>
+		</table>
+	</section>
+	<footer id="footer" class="footer">
+		<div class="footer__wrapper">
+			<div class="footer__header">
+				<img
+					class="footer__header--logo"
+					:src="`${staticDir}storystore_logo--white.png`"
+					alt="Storystore Logo"
+				/>
+				<div class="footer__header--text">
+					מלא את הטופס וניצור איתך קשר בהקדם
+				</div>
+			</div>
+			<div class="footer__form">
+				<input
+					v-model="formData.companyName"
+					type="text"
+					placeholder="שם העסק"
+				/>
+				<input
+					v-model="formData.contactName"
+					type="text"
+					placeholder="שם איש קשר"
+				/>
+				<input
+					v-model="formData.contactPhone"
+					type="phone"
+					placeholder="טלפון"
+				/>
+				<input
+					v-model="formData.contactEmail"
+					:class="{'validation-error': validationErrors.contactEmail}"
+					required
+					type="email"
+					placeholder="כתובת מייל"
+				/>
+				<input
+					v-model="formData.companyUrl"
+					type="text"
+					placeholder="לינק לחנות שלך"
+				/>
+				<button class="footer__call-to-action" @click="submitForm">
+					התחל למכור
+				</button>
+				<p class="footer__our-address">
+					כתובתנו היא רח' קינג ג׳ורג׳ 48, תל אביב. <br />ניתן לפנות אלינו גם
+					בטלפון 0504484517, <br />במייל בכתובת hai@shop-together.io או בטופס
+					הבא:
+				</p>
+			</div>
+		</div>
+	</footer>
 </div>
 
 <!-- <div id="our-services">
