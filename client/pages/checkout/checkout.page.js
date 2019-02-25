@@ -1,5 +1,7 @@
+import _get from 'lodash/get';
 import { required, numeric, email } from 'vuelidate/lib/validators';
 import { getSlugFromHost } from '@/helpers/async-data.helpers';
+import { ruleCheck } from '@/helpers/rules.helpers';
 export default {
 	components: {},
 	async asyncData({ req }) {
@@ -25,20 +27,21 @@ export default {
 				zipCode: null,
 				submitStatus: null,
 			},
-			shippingOptions: [
-				{
-					price: 33,
-					currency: '₪',
-					label: 'שליח עד הבית',
-					time: 'עד 3 ימי עסקים',
-				},
-				{
-					price: 0,
-					currency: '₪',
-					label: 'שליח עד הבית',
-					time: 'עד 3 ימי עסקים',
-				},
-			],
+			selectedShipping: {},
+			// shippingOptions: [
+			// 	{
+			// 		price: 33,
+			// 		currency: '₪',
+			// 		label: 'שליח עד הבית',
+			// 		time: 'עד 3 ימי עסקים',
+			// 	},
+			// 	{
+			// 		price: 0,
+			// 		currency: '₪',
+			// 		label: 'שליח עד הבית',
+			// 		time: 'עד 3 ימי עסקים',
+			// 	},
+			// ],
 		};
 	},
 	validations: {
@@ -108,16 +111,23 @@ export default {
 			console.log('imgs', imgs);
 			return imgs;
 		},
-		kookintShippingOption() {
-			return this.subtotal > 100
-				? this.shippingOptions[1]
-				: this.shippingOptions[0];
+		// kookintShippingOption() {
+		// 	return this.subtotal > 100
+		// 		? this.shippingOptions[1]
+		// 		: this.shippingOptions[0];
+		// },
+		shippingOptions() {
+			const options = _get(this.$store.state, 'store.shippingOptions', []);
+			const filtered = options.filter(this.showShippingOption);
+			this.selectedShipping = filtered[0];
+			return filtered;
 		},
 		subtotal() {
 			return this.$store.getters['cart/subtotal'](this.storeSlug);
 		},
 		total() {
-			const total = this.subtotal + this.kookintShippingOption.price;
+			// const total = this.subtotal + this.kookintShippingOption.price;
+			const total = this.subtotal;
 			return total;
 		},
 		currency() {
@@ -157,14 +167,18 @@ export default {
 							qty: item.quantity,
 						};
 					});
+
+					this.selectedShipping.id = -1;
+					console.log('aaaa', this.selectedShipping);
 					const resp = await this.$axios.$post(`order/${this.storeSlug}`, {
 						personal,
 						address,
 						items,
+						shipping: this.selectedShipping,
 					});
 
 					console.log('***', resp);
-					window.location.href = resp.url;
+					// window.location.href = resp.url;
 					this.submitStatus = 'PENDING';
 					setTimeout(() => {
 						this.submitStatus = 'OK';
@@ -172,6 +186,23 @@ export default {
 				}
 			} catch (err) {
 				console.error('err', err);
+			}
+		},
+		showShippingOption(option) {
+			if (option.condition) {
+				// return option.condition
+				switch (option.condition.type) {
+					case 'subtotal':
+						return ruleCheck(
+							this.subtotal,
+							option.condition.rule,
+							option.condition.amount
+						);
+					default:
+						return true;
+				}
+			} else {
+				return true;
 			}
 		},
 	},

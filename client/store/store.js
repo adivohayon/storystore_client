@@ -22,7 +22,12 @@ export const mutations = {
 		Vue.set(state, 'storeId', store.id);
 		Vue.set(state, 'slug', store.slug);
 		Vue.set(state, 'name', store.name);
-		Vue.set(state, 'shippingDetails', store.shipping_details);
+
+		const shippingOptions = store.shipping_options.sort((obj1, obj2) => {
+			return obj1.price - obj2.price;
+		});
+		Vue.set(state, 'shippingOptions', shippingOptions);
+
 		Vue.set(state, 'info', store.info);
 		Vue.set(state, 'about', store.about);
 		Vue.set(state, 'tagline', store.tagline);

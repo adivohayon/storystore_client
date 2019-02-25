@@ -186,11 +186,20 @@
 	</div>
 	<div class="checkout-page__shipping">
 		<h4>פרטי משלוח</h4>
-		<div
-			v-if="storeSlug === 'kookint'"
-			class="checkout-page__shipping--container"
-		>
-			<h5>
+		<div class="checkout-page__shipping--container">
+			<div
+				v-for="(option, optionIndex) in shippingOptions"
+				:key="optionIndex"
+				class="shipping-option"
+			>
+				<h5>{{ option.type }} - {{option.price}} {{currency}} </h5>
+				<div class="shipping-options__eta">
+					{{ option.eta }}
+				</div>
+				<input type="radio" :value="option" v-model="selectedShipping" />
+			</div>
+			<!-- {{ selectedShipping }} -->
+			<!-- <h5>
 				{{
 					kookintShippingOption.price < 1
 						? 'חינם'
@@ -200,7 +209,7 @@
 			</h5>
 			<div class="checkout-page__shipping--time">
 				{{ kookintShippingOption.time }}
-			</div>
+			</div> -->
 		</div>
 	</div>
 	<ul class="checkout-page__total">
@@ -213,7 +222,8 @@
 		<li>
 			<div class="checkout-page__total--key">משלוח</div>
 			<div class="checkout-page__total--value">
-				{{ kookintShippingOption.price }} {{ kookintShippingOption.currency }}
+				{{selectedShipping.price}} {{ currency }}
+				<!-- {{ kookintShippingOption.price }} {{ kookintShippingOption.currency }} -->
 			</div>
 		</li>
 		<li>
