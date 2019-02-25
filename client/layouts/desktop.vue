@@ -1,7 +1,10 @@
 <template>
-	<div>
-		<h1>DESKTOP</h1>
-		<nuxt />
+	<div id="desktop">
+		<div class="under-construction">
+			<h1>נסה אותנו במובייל</h1>
+			<h1>גרסת הדסקטופ תעלה בקרוב...</h1>
+		</div>
+		<!-- <nuxt /> -->
 	</div>
 </template>
 
@@ -24,5 +27,18 @@ html {
 *:after {
 	box-sizing: border-box;
 	margin: 0;
+}
+
+#desktop {
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	background: #f4f5f5;
+}
+
+#desktop .under-construction {
+	flex: 1;
+	color: #000;
+	text-align: center;
 }
 </style>
