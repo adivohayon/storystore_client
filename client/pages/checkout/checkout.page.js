@@ -123,7 +123,7 @@ export default {
 
 			if (filtered.length) {
 				this.selectedShipping = filtered[0];
-				if (filtered[0].price === 0) {
+				if (filtered[0].condition && filtered[0].price === 0) {
 					return [filtered[0]];
 				}
 				return filtered;

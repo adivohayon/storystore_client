@@ -42,5 +42,5 @@ For detailed explanation on how things work, checkout [Nuxt.js docs](https://nux
 	* Send to phone
 
 
-### Local SSL
-1. 
+# CDN Sync
+aws s3 sync ./client/static/store_slug s3://storystore-api/store_slug --exclude ".DS_STORE" --delete
