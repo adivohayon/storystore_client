@@ -182,6 +182,9 @@ export default {
 					});
 
 					console.log('***', resp);
+					if (resp.url && resp.url === '') {
+						throw new Error('URL returned from API is empty');
+					}
 					window.location.href = resp.url;
 					this.submitStatus = 'PENDING';
 					setTimeout(() => {
