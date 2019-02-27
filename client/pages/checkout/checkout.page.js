@@ -118,17 +118,22 @@ export default {
 		// },
 		shippingOptions() {
 			const options = _get(this.$store.state, 'store.shippingOptions', []);
+
 			const filtered = options.filter(this.showShippingOption);
-			this.selectedShipping = filtered[0];
-			return filtered;
+
+			if (filtered.length) {
+				this.selectedShipping = filtered[0];
+				if (filtered[0].price === 0) {
+					return [filtered[0]];
+				}
+				return filtered;
+			}
 		},
 		subtotal() {
 			return this.$store.getters['cart/subtotal'](this.storeSlug);
 		},
 		total() {
-			// const total = this.subtotal + this.kookintShippingOption.price;
-			const total = this.subtotal;
-			return total;
+			return this.subtotal + this.selectedShipping.price;
 		},
 		currency() {
 			return '₪';
@@ -169,7 +174,6 @@ export default {
 					});
 
 					this.selectedShipping.id = -1;
-					console.log('aaaa', this.selectedShipping);
 					const resp = await this.$axios.$post(`order/${this.storeSlug}`, {
 						personal,
 						address,
@@ -178,7 +182,7 @@ export default {
 					});
 
 					console.log('***', resp);
-					// window.location.href = resp.url;
+					window.location.href = resp.url;
 					this.submitStatus = 'PENDING';
 					setTimeout(() => {
 						this.submitStatus = 'OK';

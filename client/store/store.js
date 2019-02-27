@@ -23,11 +23,14 @@ export const mutations = {
 		Vue.set(state, 'slug', store.slug);
 		Vue.set(state, 'name', store.name);
 
-		const shippingOptions = store.shipping_options.sort((obj1, obj2) => {
-			return obj1.price - obj2.price;
-		});
-		Vue.set(state, 'shippingOptions', shippingOptions);
+		if (store.shipping_options) {
+			const shippingOptions = store.shipping_options.sort((obj1, obj2) => {
+				return obj1.price - obj2.price;
+			});
+			Vue.set(state, 'shippingOptions', shippingOptions);
+		}
 
+		Vue.set(state, 'shippingDetails', store.shipping_details);
 		Vue.set(state, 'info', store.info);
 		Vue.set(state, 'about', store.about);
 		Vue.set(state, 'tagline', store.tagline);
