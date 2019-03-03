@@ -35,7 +35,6 @@ export default {
 	},
 	data() {
 		return {
-			swiper: null,
 			selectedColor: {
 				value: '',
 			},
@@ -44,11 +43,17 @@ export default {
 			},
 			selectedAttributes: {},
 			showShelfInfo: false,
-			showShelfSale: false,
-			storeName: null,
 		};
 	},
 	computed: {
+		...mapState({
+			shippingDetails: state => state.store.shippingDetails,
+			returns: state => state.store.returns,
+			storeSlug: state => state.store.slug,
+		}),
+		cartItemsCount() {
+			return this.$store.getters['cart/itemsCount'](this.storeSlug);
+		},
 		variant() {
 			if (this.shelf.variations.length) {
 				const variantIndex = this.shelf.variations.findIndex(variant => {
@@ -110,10 +115,7 @@ export default {
 		},
 		attributesKeys() {
 			const attributes = _get(this.shelf, 'variations[0].attrs', {});
-			// console.log('attributes', attributes);
 			const attributesKeys = Object.keys(attributes);
-
-			// console.log('attributesKeys', attributesKeys);
 			return attributesKeys;
 		},
 		attributes() {
@@ -141,107 +143,16 @@ export default {
 			// console.log('attributes', attributes);
 			return attributes;
 		},
-		cartItemsCount() {
-			return this.$store.getters['cart/itemsCount'](this.storeSlug);
-		},
-		...mapState({
-			shippingDetails: state => state.store.shippingDetails,
-			returns: state => state.store.returns,
-			// slug: state => state.store,
-		}),
-		description() {
-			return this.shelf.description;
-		},
-		info() {
-			return this.shelf.info;
-		},
-		storeSlug() {
-			return this.$store.state.store.slug;
-		},
 	},
-	// watch: {
-	// 	variant: function(val) {
-
-	// 	}
-	// },
 	created() {
 		this.selectedAttributes =
 			Object.assign({}, this.shelf.variations[0].attrs) || null;
 	},
-	mounted() {
-		this.storeName = this.$route.params.storeName;
-	},
+	mounted() {},
 	methods: {
-		getAssetsPath(storeSlug, shelfSlug, variantSlug) {
-			let path = process.env.staticDir ? process.env.staticDir : '/';
-			if (process.env.staticDir) {
-				path += `${storeSlug}/${shelfSlug}/${variantSlug}/`;
-			}
-
-			return path;
-		},
-		updateSwiperSlides() {
-			// this.swiper.removeAllSlides();
-
-			let slides = [];
-			for (let content of this.variant.content) {
-				let slide;
-				if (content.type === 'image') {
-					console.log('&&&&', content.value);
-					slide = `
-						<div class="shelf-content swiper-slide" style="background-image: url('${
-							content.value
-						}'); background-size: cover; background-repeat: no-repeat"></div>
-					`;
-				}
-
-				if (content.type === 'video') {
-					slide = `
-						<div class="shelf-content swiper-slide">
-							<img src="${content.value}" />
-						</div>
-					`;
-				}
-				// const slide = `
-				// 	<div class="shelf-content swiper-slide">
-				// 		<!-- Image -->
-				// 		<img v-if="content.type == 'image'" :src="content.value" />
-
-				// 		<!-- Video -->
-				// 		<video-player
-				// 			v-if="content.type == 'video'"
-				// 			:source="content.value"
-				// 		></video-player>
-				// 	</div>
-				// 	`;
-				if (slide) {
-					slides.push(slide);
-				}
-			}
-
-			console.log('slides', slides);
-			this.swiper.appendSlide(slides);
-			this.swiper.slideToLoop(0);
-		},
 		setAtt({ att, attKey }) {
-			console.log(attKey, att);
-			console.log('setAtt fullpage', this.shelfIndex, fullpage_api);
 			this.selectedAttributes[attKey] = att;
 			fullpage_api.moveTo(this.shelfIndex + 1, 0);
-		},
-		playVideo() {
-			const video = document.getElementById('video');
-			console.log('video', video);
-			const playpause = document.getElementById('playpause');
-			if (video.paused || video.ended) {
-				playpause.title = 'pause';
-				playpause.innerHTML = 'pause';
-				video.play();
-			} else {
-				playpause.title = 'play';
-				playpause.innerHTML = 'play';
-				video.pause();
-			}
 		},
 	},
 };
