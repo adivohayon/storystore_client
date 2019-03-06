@@ -36,6 +36,7 @@ export default {
 	data() {
 		return {
 			selectedAttributes: {},
+			selectedVariationId: null,
 			showShelfInfo: false,
 		};
 	},
@@ -113,70 +114,126 @@ export default {
 			const attributesKeys = Object.keys(attributes);
 			return attributesKeys;
 		},
-		attributes() {
-			const attributes = {};
-			// attributes.color = []
-			/*
-				Start point: "M" should be disabled
-			*/
-			/*
-				{
-					color: [
-						{label: 'black', value: '#4324234'},
-						{label: 'blue', value: '#5324234'},
-					],
-					size: [
-						{label: 'S', value: 'S'}
-						{label: 'M', value: 'M', disabled: true}
-					]
+		primaryAttributeKey() {
+			const attributes = _get(this.shelf, 'variations[0].attrs', {});
+			for (let key of this.attributesKeys) {
+				if (attributes[key].primary) {
+					return key;
 				}
-			*/
-
-			// return this.shelf.variations.map(v => v.attrs);
-
-			// Loop through the different attribute keys (size, color...)
-			for (let attributeKey of this.attributesKeys) {
-				attributes[attributeKey] = [];
-
-				const selectedAttribute = this.selectedAttributes[attributeKey];
-
-				const returnKey = attributeKey === 'size' ? 'color' : 'size';
-				if (this.shelf.id == 6) {
-					const availableAttributes = this.getAvailableAttributesForSelected(
-						this.shelf.variations,
-						attributeKey,
-						selectedAttribute.value,
-						returnKey
+			}
+		},
+		primaryAttributes() {
+			const attributes = [];
+			for (let variant of this.shelf.variations) {
+				const attr = _get(variant, ['attrs', this.primaryAttributeKey], null);
+				if (attr) {
+					const attrIndex = attributes.findIndex(
+						_attr => _attr.value === attr.value
 					);
-					console.log('Available Attributes', availableAttributes);
-				}
 
-				// console.log(
-				// 	'attributeKey - ' + attributeKey + ' - ' + selectedAttribute.value,
-				// 	availableAttributes
-				// );
-				// Loop through variations
-				for (let variant of this.shelf.variations) {
-					const attr = _get(variant, ['attrs', attributeKey], null);
-					if (attr) {
-						const attrIndex = attributes[attributeKey].findIndex(
-							_attr => _attr.value === attr.value
-						);
-
-						// Add only if it doesn't exist
-						if (attrIndex === -1) {
-							attributes[attributeKey].push(attr);
-						}
+					// Add only if it doesn't exist
+					if (attrIndex === -1) {
+						attributes.push(attr);
 					}
 				}
 			}
-			// // console.log('attributes', attributes);
+
 			return attributes;
+		},
+		selectedAttributeVariationSlug() {
+			// ge
+			const primaryAttributeValue = _get(this.selectedAttributes, [
+				this.primaryAttributeKey,
+				'value',
+			]);
+			// this.selectedAttributes[this.primaryAttributeKey]
+			const slug = this.shelf.variations.find(variant => {
+				return (
+					_get(variant, ['attrs', this.primaryAttributeKey, 'value']) ===
+					primaryAttributeValue
+				);
+			}).slug;
+
+			return slug;
+		},
+		attributes() {
+			const sizes = this.getAvailableSizes(this.selectedAttributeVariationSlug);
+			const attributes = {
+				size: sizes,
+			};
+			attributes[this.primaryAttributeKey] = this.primaryAttributes;
+
+			return attributes;
+		},
+		// attributes() {
+		// 	const attributes = {};
+		// 	// attributes.color = []
+		// 	/*
+		// 		Start point: "M" should be disabled
+		// 	*/
+		// 	/*
+		// 		{
+		// 			color: [
+		// 				{label: 'black', value: '#4324234'},
+		// 				{label: 'blue', value: '#5324234'},
+		// 			],
+		// 			size: [
+		// 				{label: 'S', value: 'S'}
+		// 				{label: 'M', value: 'M', disabled: true}
+		// 			]
+		// 		}
+		// 	*/
+
+		// 	// return this.shelf.variations.map(v => v.attrs);
+
+		// 	// Loop through the different attribute keys (size, color...)
+		// 	for (let attributeKey of this.attributesKeys) {
+		// 		attributes[attributeKey] = [];
+
+		// 		const selectedAttribute = this.selectedAttributes[attributeKey];
+
+		// 		const returnKey = attributeKey === 'size' ? 'color' : 'size';
+		// 		if (this.shelf.id == 6) {
+		// 			const availableAttributes = this.getAvailableAttributesForSelected(
+		// 				this.shelf.variations,
+		// 				attributeKey,
+		// 				selectedAttribute.value,
+		// 				returnKey
+		// 			);
+		// 			console.log('Available Attributes', availableAttributes);
+		// 		}
+
+		// 		// console.log(
+		// 		// 	'attributeKey - ' + attributeKey + ' - ' + selectedAttribute.value,
+		// 		// 	availableAttributes
+		// 		// );
+		// 		// Loop through variations
+		// 		for (let variant of this.shelf.variations) {
+		// 			const attr = _get(variant, ['attrs', attributeKey], null);
+		// 			if (attr) {
+		// 				const attrIndex = attributes[attributeKey].findIndex(
+		// 					_attr => _attr.value === attr.value
+		// 				);
+
+		// 				// Add only if it doesn't exist
+		// 				if (attrIndex === -1) {
+		// 					attributes[attributeKey].push(attr);
+		// 				}
+		// 			}
+		// 		}
+		// 	}
+		// 	// // console.log('attributes', attributes);
+		// 	return attributes;
+		// },
+		variationSlugs() {
+			return [...new Set(this.shelf.variations.map(v => v.slug))];
 		},
 	},
 	created() {
 		this.selectedAttributes =
 			Object.assign({}, this.shelf.variations[0].attrs) || null;
+
+		this.selectedVariationId = this.shelf.variations[0].id;
 
 		// const availableSizesForBlack = this.getAvailableAttributesForSelected(
 		// 	this.shelf.variations,
