@@ -38,6 +38,7 @@
 	</aside>
 	<footer class="shelf-footer">
 		<shelf-title
+			v-if="variant && variant.price"
 			:price="variant.price"
 			:currency="variant.currency"
 			:title="shelf.name"
@@ -48,6 +49,7 @@
 				v-for="(attribute, attributeKey) in attributes"
 				:key="attributeKey"
 				:attribute="attribute"
+				:selected-attribute="selectedAttributes[attributeKey]"
 				:att-key="attributeKey"
 				@changed-att="setAtt"
 			></attribute-picker>

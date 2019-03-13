@@ -3,7 +3,7 @@
 		<li
 			v-for="(att, attIndex) in attribute"
 			:key="attIndex"
-			:class="{'att--active': attIndex == selectedAttIndex}"
+			:class="{'att--active': attIndex == selectedAttIndex, 'att-disabled' : att.disabled }"
 			class="att"
 		>
 			<button
