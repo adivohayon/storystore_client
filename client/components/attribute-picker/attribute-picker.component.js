@@ -3,9 +3,9 @@ export default {
 	components: {},
 	props: {
 		attribute: {
-			type: Array,
+			type: Object,
 			default() {
-				return [];
+				return {};
 			},
 		},
 		attKey: {
@@ -24,8 +24,11 @@ export default {
 		};
 	},
 	computed: {
+		isColor() {
+			return this.attKey.includes('color');
+		},
 		selectedAttIndex() {
-			return this.attribute.findIndex(
+			return this.attribute.available.findIndex(
 				attr => attr.value === this.selectedAttribute.value
 			);
 		},
@@ -35,17 +38,26 @@ export default {
 		onlyOneSize() {
 			return (
 				this.attKey === 'size' &&
-				this.attribute.length === 1 &&
-				this.attribute[0].value === 'OS'
+				this.attribute.available.length === 1 &&
+				this.attribute.available[0].value === 'OS'
 			);
+		},
+	},
+	watch: {
+		selectedAttIndex: function(newVal) {
+			if (newVal === -1) {
+				this.setAtt(this.attribute.available[0]);
+			}
 		},
 	},
 	created() {},
 	mounted() {},
 	methods: {
-		setAtt(att, attIndex) {
-			// this.selectedAttIndex = attIndex;
-			this.$emit('changed-att', { att, attKey: this.attKey });
+		setAtt(att) {
+			this.$emit('changed-att', {
+				att,
+				attKey: this.attKey,
+			});
 		},
 	},
 };

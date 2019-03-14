@@ -46,11 +46,20 @@
 
 		<div class="shelf-attributes">
 			<attribute-picker
-				v-for="(attribute, attributeKey) in attributes"
+				v-for="(attribute, attributeKey) in variantProperties"
 				:key="attributeKey"
 				:attribute="attribute"
-				:selected-attribute="selectedAttributes[attributeKey]"
 				:att-key="attributeKey"
+				:selected-attribute="selectedProperty[attributeKey]"
+				@changed-att="setAtt"
+			></attribute-picker>
+
+			<attribute-picker
+				v-for="(attribute, attributeKey) in availableAttributes"
+				:key="attributeKey"
+				:attribute="attribute"
+				:att-key="attributeKey"
+				:selected-attribute="selectedAttributes[attributeKey]"
 				@changed-att="setAtt"
 			></attribute-picker>
 		</div>
@@ -61,11 +70,11 @@
 		>
 			{{ shelf.description }}
 		</div>
-		<add-to-cart
+		<!-- <add-to-cart
 			:variant="variant"
 			:attributes="attributes"
 			:shelf="shelf"
-		></add-to-cart>
+		></add-to-cart> -->
 	</footer>
 	<transition name="shelf-overlay-bottom">
 		<shelf-info

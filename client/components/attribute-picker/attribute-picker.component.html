@@ -1,18 +1,19 @@
 <div class="attribute-picker" v-if="!hidePicker">
+	<div>{{attribute.label}}</div>
 	<ul>
 		<li
-			v-for="(att, attIndex) in attribute"
+			v-for="(att, attIndex) in attribute.available"
 			:key="attIndex"
-			:class="{'att--active': attIndex == selectedAttIndex, 'att-disabled' : att.disabled }"
+			:class="{'att--active': attIndex == selectedAttIndex}"
 			class="att"
 		>
 			<button
-				:style="[attKey === 'color' ? {backgroundColor: att.value} : {}]"
+				:style="[isColor ? {backgroundColor: att.value} : {}]"
 				class="btn btn--round"
 				:title="att"
-				@click="setAtt(att, attIndex)"
+				@click="setAtt(att)"
 			>
-				{{ attKey !== 'color' ? att.label : '' }}
+				{{ isColor ? '' : att.label }}
 			</button>
 			<!-- <div class="selected"></div> -->
 		</li>
