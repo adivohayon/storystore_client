@@ -80,7 +80,6 @@ export default {
 					variationId: variant.id,
 				};
 			});
-			console.log('variant', attributesArr);
 			properties[itemProperty.type] = {
 				available: attributesArr,
 				label: itemProperty.label,
@@ -90,11 +89,9 @@ export default {
 		},
 		availableAttributes() {
 			const attributesArr = _get(this.variant, 'attributes', []);
-			console.log('attributesArr', attributesArr);
 			const attributes = {};
 			for (const attribute of attributesArr) {
 				// first time added to list
-				console.log('attribute', attribute);
 				if (!attributes.hasOwnProperty(attribute.itemProperty.type)) {
 					attributes[attribute.itemProperty.type] = {
 						available: [],
@@ -128,37 +125,57 @@ export default {
 		},
 	},
 	created() {
-		// Initialize to first variation in shelf
-		// this.variant = this.shelf.variations[0];
-		this.selectedVariationId = this.shelf.variations[0].id;
-
-		for (const attributeKey in this.availableAttributes) {
-			if (this.availableAttributes.hasOwnProperty(attributeKey)) {
-				const availableAttribute = _get(
-					this.availableAttributes,
-					[attributeKey, 'available'],
-					[]
-				);
-				this.$set(this.selectedAttributes, attributeKey, availableAttribute[0]);
-				// this.selectedAttributes[attributeKey] = availableAttribute[0];
-			}
-		}
-
-		this.selectedProperty = {};
-		this.$set(this.selectedProperty, this.variant.itemProperty.type, {
-			label: this.variant.property_label,
-			value: this.variant.property_value,
-		});
-		console.log('variantAttributes', this.variantProperties);
+		this.initializeVariation();
+		this.initializeSelectedAttributes();
+		this.initializeSelectedProperty();
 	},
 	mounted() {},
 	methods: {
+		initializeVariation() {
+			this.selectedVariationId = this.shelf.variations[0].id;
+		},
+		initializeSelectedAttributes() {
+			for (const attributeKey in this.availableAttributes) {
+				if (this.availableAttributes.hasOwnProperty(attributeKey)) {
+					const availableAttribute = _get(
+						this.availableAttributes,
+						[attributeKey, 'available'],
+						[]
+					);
+					const itemPropertyLabel = _get(
+						this.availableAttributes,
+						[attributeKey, 'label'],
+						''
+					);
+					const selectedAttribute = {
+						...availableAttribute[0],
+						itemPropertyLabel,
+					};
+					this.$set(this.selectedAttributes, attributeKey, selectedAttribute);
+				}
+			}
+		},
+		initializeSelectedProperty() {
+			this.selectedProperty = {};
+
+			this.$set(this.selectedProperty, this.variant.itemProperty.type, {
+				label: this.variant.property_label,
+				value: this.variant.property_value,
+				itemPropertyLabel: this.variant.itemProperty.label,
+			});
+		},
 		setAtt({ att, attKey }) {
 			if (att.variationId) {
-				this.selectedProperty[attKey] = att;
+				this.selectedProperty[attKey] = {
+					...att,
+					itemPropertyLabel: this.variantProperties[attKey].label,
+				};
 				this.selectedVariationId = att.variationId;
 			} else {
-				this.selectedAttributes[attKey] = att;
+				this.selectedAttributes[attKey] = {
+					...att,
+					itemPropertyLabel: this.availableAttributes[attKey].label,
+				};
 			}
 			fullpage_api.moveTo(this.shelfIndex + 1, 0);
 		},

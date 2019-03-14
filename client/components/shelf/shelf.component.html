@@ -70,11 +70,12 @@
 		>
 			{{ shelf.description }}
 		</div>
-		<!-- <add-to-cart
+		<add-to-cart
 			:variant="variant"
-			:attributes="attributes"
+			:selected-attributes="selectedAttributes"
+			:selected-property="selectedProperty"
 			:shelf="shelf"
-		></add-to-cart> -->
+		></add-to-cart>
 	</footer>
 	<transition name="shelf-overlay-bottom">
 		<shelf-info

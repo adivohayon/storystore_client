@@ -9,7 +9,13 @@ export default {
 				return {};
 			},
 		},
-		attributes: {
+		selectedAttributes: {
+			type: Object,
+			default() {
+				return {};
+			},
+		},
+		selectedProperty: {
 			type: Object,
 			default() {
 				return {};
@@ -43,7 +49,7 @@ export default {
 		// console.log('params', this.$route.params);
 	},
 	methods: {
-		async addToCart(shelf, attributes) {
+		async addToCart(shelf, selectedAttributes, selectedProperty) {
 			setTimeout(function() {
 				let el = document.querySelector(':focus');
 				if (el) el.blur();
@@ -53,18 +59,24 @@ export default {
 			// 		return variant.attributes.size;
 			// 	}
 			// });
-			const imageName = this.variant.assets.images[0];
+			const imageName = this.variant.assets[0];
 			const image = this.assetsPath + imageName;
 			// const image = `https://assets.storystore.co.il/${this.storeSlug}/${
 			// 	this.shelf.slug
 			// }/${this.variant.slug}/${imageName}`;
 
 			const item = {
-				...shelf,
-				...this.variant,
+				shelfId: shelf.id,
+				name: shelf.name,
+				shelfSlug: shelf.slug,
+				currency: this.variant.currency,
+				price: this.variant.price,
+				sale_price: this.variant.sale_price,
+				variationId: this.variant.id,
+				variationSlug: this.variant.slug,
 				quantity: 1,
 				image,
-				attributes,
+				attributes: { ...selectedAttributes, ...selectedProperty },
 				// sizes: removeDuplicates(sizes, 'value'),
 			};
 			delete item.assets;

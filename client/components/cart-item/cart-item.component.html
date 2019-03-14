@@ -9,7 +9,15 @@
 			{{ item.price }} {{ formatedCurrency }}
 		</div>
 		<div class="cart-item__content--name">{{ item.name }}</div>
-		<div v-if="item.attributes.color" class="cart-item__content--color">
+		<div class="cart-item__attributes">
+			<div
+				class="cart-item__attribute"
+				v-for="(attribute, attributeKey) in item.attributes"
+			>
+				{{ attribute.itemPropertyLabel }}: {{ attribute.label }}
+			</div>
+		</div>
+		<!-- <div v-if="item.attributes.color" class="cart-item__content--color">
 			{{ item.attrs.color.label }}
 		</div>
 		<div v-if="item.attributes.size" class="cart-item__content--size">
@@ -17,7 +25,7 @@
 		</div>
 		<div v-if="item.attrs.axis && item.attrs.axis.label" class="cart-item__content--axis">
 			{{ item.attrs.axis.label }}
-		</div>
+		</div> -->
 	</div>
 	<div class="cart-item__pickers">
 		<div class="cart-item__pickers--picker">
