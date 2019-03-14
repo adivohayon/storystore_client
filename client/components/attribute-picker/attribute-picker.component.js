@@ -3,38 +3,61 @@ export default {
 	components: {},
 	props: {
 		attribute: {
-			type: Array,
+			type: Object,
 			default() {
-				return [];
+				return {};
 			},
 		},
 		attKey: {
 			type: String,
 		},
+		selectedAttribute: {
+			type: Object,
+			default() {
+				return {};
+			},
+		},
 	},
 	data() {
 		return {
-			selectedAttIndex: 0,
+			// selectedAttIndex: 0,
 		};
 	},
 	computed: {
+		isColor() {
+			return this.attKey.includes('color');
+		},
+		selectedAttIndex() {
+			return this.attribute.available.findIndex(
+				attr => attr.value === this.selectedAttribute.value
+			);
+		},
 		hidePicker() {
 			return this.onlyOneSize;
 		},
 		onlyOneSize() {
 			return (
 				this.attKey === 'size' &&
-				this.attribute.length === 1 &&
-				this.attribute[0].value === 'OS'
+				this.attribute.available.length === 1 &&
+				this.attribute.available[0].value === 'OS'
 			);
+		},
+	},
+	watch: {
+		selectedAttIndex: function(newVal) {
+			if (newVal === -1) {
+				this.setAtt(this.attribute.available[0]);
+			}
 		},
 	},
 	created() {},
 	mounted() {},
 	methods: {
-		setAtt(att, attIndex) {
-			this.selectedAttIndex = attIndex;
-			this.$emit('changed-att', { att, attKey: this.attKey });
+		setAtt(att) {
+			this.$emit('changed-att', {
+				att,
+				attKey: this.attKey,
+			});
 		},
 	},
 };

@@ -12,20 +12,21 @@ export const mutations = {
 	},
 
 	addItem(state, { item, storeSlug }) {
-		const addedIndex = state[storeSlug].added.findIndex(
-			addedItem => addedItem.sku === item.sku
+		//TODO
+		// Update this to allow adding different sizes to the cart
+		const cartItemIndex = state[storeSlug].added.findIndex(
+			cartItem =>
+				cartItem.shelfId === item.shelfId &&
+				cartItem.variationId === item.variationId
 		);
 
-		console.log('addedIndex', addedIndex);
-
-		if (addedIndex > -1) {
-			const prevQty = state[storeSlug].added[addedIndex].quantity;
+		if (cartItemIndex > -1) {
+			const prevQty = state[storeSlug].added[cartItemIndex].quantity;
 			Vue.set(
-				state[storeSlug].added[addedIndex],
+				state[storeSlug].added[cartItemIndex],
 				'quantity',
 				prevQty + item.quantity
 			);
-			// state[storeSlug].added[addedIndex].quantity += item.quantity;
 		} else {
 			const items = state[storeSlug].added;
 			items.push(item);

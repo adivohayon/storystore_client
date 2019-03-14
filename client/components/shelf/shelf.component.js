@@ -1,6 +1,7 @@
 import { mapState } from 'vuex';
 
 import _get from 'lodash/get';
+import _isEmpty from 'lodash/isempty';
 import ShelfContent from './../shelf-content';
 import ColorPicker from './../color-picker';
 import SizePicker from './../size-picker';
@@ -35,51 +36,22 @@ export default {
 	},
 	data() {
 		return {
-			swiper: null,
-			selectedColor: {
-				value: '',
-			},
-			selectedSize: {
-				value: null,
-			},
+			// selectedAttributes: {},
+			selectedVariationId: null,
 			selectedAttributes: {},
 			showShelfInfo: false,
-			showShelfSale: false,
-			storeName: null,
+			selectedProperty: {},
+			// variant: null,
 		};
 	},
 	computed: {
-		variant() {
-			if (this.shelf.variations.length) {
-				const variantIndex = this.shelf.variations.findIndex(variant => {
-					if (!variant.attrs) {
-						return false;
-					}
-
-					// console.log('variant', variant.attributes);
-					/*
-						return the variant in which ALL variant attributes are matched to the selected attributes
-					*/
-					let isVariant = false;
-
-					isVariant = this.attributesKeys.every(attributeKey => {
-						return (
-							_get(variant, ['attrs', attributeKey, 'value']) ===
-							_get(this.selectedAttributes, [attributeKey, 'value'])
-						);
-					});
-					return isVariant;
-					// return (
-					// 	_get(variant, 'attributes.size.value', false) ===
-					// 		this.selectedSize.value &&
-					// 	_get(variant, 'attributes.color.value', false) ===
-					// 		this.selectedColor.value
-					// );
-				});
-
-				// console.log('variantIndex', variantIndex);
-				return this.shelf.variations[variantIndex > -1 ? variantIndex : 0];
-			}
+		...mapState({
+			shippingDetails: state => state.store.shippingDetails,
+			returns: state => state.store.returns,
+			storeSlug: state => state.store.slug,
+		}),
+		cartItemsCount() {
+			return this.$store.getters['cart/itemsCount'](this.storeSlug);
 		},
 		assetsPath() {
 			let path = process.env.staticDir ? process.env.staticDir : '/';
@@ -93,10 +65,48 @@ export default {
 			return path;
 		},
 		variantImages() {
-			const images = _get(this.variant, 'assets.images', []);
+			const images = _get(this.variant, 'assets', []);
 			return images.map(imageName => {
 				return this.assetsPath + imageName;
 			});
+		},
+		variantProperties() {
+			const properties = {};
+			const itemProperty = _get(this.variant, 'itemProperty');
+			const attributesArr = this.shelf.variations.map(variant => {
+				return {
+					label: variant.property_label,
+					value: variant.property_value,
+					variationId: variant.id,
+				};
+			});
+			properties[itemProperty.type] = {
+				available: attributesArr,
+				label: itemProperty.label,
+			};
+
+			return properties;
+		},
+		availableAttributes() {
+			const attributesArr = _get(this.variant, 'attributes', []);
+			const attributes = {};
+			for (const attribute of attributesArr) {
+				// first time added to list
+				if (!attributes.hasOwnProperty(attribute.itemProperty.type)) {
+					attributes[attribute.itemProperty.type] = {
+						available: [],
+						label: attribute.itemProperty.label,
+					};
+				}
+
+				// Push available
+				attributes[attribute.itemProperty.type].available.push({
+					label: attribute.label,
+					value: attribute.value,
+				});
+			}
+			return attributes;
+			// attributesArr.
 		},
 		variantVideo() {
 			// return _get(this.variant, 'assets.images', []);
@@ -108,140 +118,66 @@ export default {
 			// 	return videoArray[0];
 			// }
 		},
-		attributesKeys() {
-			const attributes = _get(this.shelf, 'variations[0].attrs', {});
-			// console.log('attributes', attributes);
-			const attributesKeys = Object.keys(attributes);
-
-			// console.log('attributesKeys', attributesKeys);
-			return attributesKeys;
-		},
-		attributes() {
-			const attributes = {};
-			// Loop through the different attribute keys
-			for (let attributeKey of this.attributesKeys) {
-				const withDuplicates = [];
-				// Loop through variations
-				for (let variant of this.shelf.variations) {
-					const hasValue = _get(
-						variant,
-						['attrs', attributeKey, 'value'],
-						false
-					);
-					if (hasValue && hasValue.length > 0) {
-						withDuplicates.push(variant.attrs[attributeKey]);
-					}
-				}
-
-				const noDuplicates = removeDuplicates(withDuplicates, 'value');
-				if (noDuplicates.length > 0) {
-					attributes[attributeKey] = noDuplicates;
-				}
-			}
-			// console.log('attributes', attributes);
-			return attributes;
-		},
-		cartItemsCount() {
-			return this.$store.getters['cart/itemsCount'](this.storeSlug);
-		},
-		...mapState({
-			shippingDetails: state => state.store.shippingDetails,
-			returns: state => state.store.returns,
-			// slug: state => state.store,
-		}),
-		description() {
-			return this.shelf.description;
-		},
-		info() {
-			return this.shelf.info;
-		},
-		storeSlug() {
-			return this.$store.state.store.slug;
+		variant() {
+			return this.shelf.variations.find(
+				variant => variant.id === this.selectedVariationId
+			);
 		},
 	},
-	// watch: {
-	// 	variant: function(val) {
-
-	// 	}
-	// },
 	created() {
-		this.selectedAttributes =
-			Object.assign({}, this.shelf.variations[0].attrs) || null;
+		this.initializeVariation();
+		this.initializeSelectedAttributes();
+		this.initializeSelectedProperty();
 	},
-	mounted() {
-		this.storeName = this.$route.params.storeName;
-	},
+	mounted() {},
 	methods: {
-		getAssetsPath(storeSlug, shelfSlug, variantSlug) {
-			let path = process.env.staticDir ? process.env.staticDir : '/';
-			if (process.env.staticDir) {
-				path += `${storeSlug}/${shelfSlug}/${variantSlug}/`;
-			}
-
-			return path;
+		initializeVariation() {
+			this.selectedVariationId = this.shelf.variations[0].id;
 		},
-		updateSwiperSlides() {
-			// this.swiper.removeAllSlides();
-
-			let slides = [];
-			for (let content of this.variant.content) {
-				let slide;
-				if (content.type === 'image') {
-					console.log('&&&&', content.value);
-					slide = `
-						<div class="shelf-content swiper-slide" style="background-image: url('${
-							content.value
-						}'); background-size: cover; background-repeat: no-repeat"></div>
-					`;
-				}
-
-				if (content.type === 'video') {
-					slide = `
-						<div class="shelf-content swiper-slide">
-							<img src="${content.value}" />
-						</div>
-					`;
-				}
-				// const slide = `
-				// 	<div class="shelf-content swiper-slide">
-				// 		<!-- Image -->
-				// 		<img v-if="content.type == 'image'" :src="content.value" />
-
-				// 		<!-- Video -->
-				// 		<video-player
-				// 			v-if="content.type == 'video'"
-				// 			:source="content.value"
-				// 		></video-player>
-				// 	</div>
-				// 	`;
-				if (slide) {
-					slides.push(slide);
+		initializeSelectedAttributes() {
+			for (const attributeKey in this.availableAttributes) {
+				if (this.availableAttributes.hasOwnProperty(attributeKey)) {
+					const availableAttribute = _get(
+						this.availableAttributes,
+						[attributeKey, 'available'],
+						[]
+					);
+					const itemPropertyLabel = _get(
+						this.availableAttributes,
+						[attributeKey, 'label'],
+						''
+					);
+					const selectedAttribute = {
+						...availableAttribute[0],
+						itemPropertyLabel,
+					};
+					this.$set(this.selectedAttributes, attributeKey, selectedAttribute);
 				}
 			}
+		},
+		initializeSelectedProperty() {
+			this.selectedProperty = {};
 
-			console.log('slides', slides);
-			this.swiper.appendSlide(slides);
-			this.swiper.slideToLoop(0);
+			this.$set(this.selectedProperty, this.variant.itemProperty.type, {
+				label: this.variant.property_label,
+				value: this.variant.property_value,
+				itemPropertyLabel: this.variant.itemProperty.label,
+			});
 		},
 		setAtt({ att, attKey }) {
-			console.log(attKey, att);
-			console.log('setAtt fullpage', this.shelfIndex, fullpage_api);
-			this.selectedAttributes[attKey] = att;
-			fullpage_api.moveTo(this.shelfIndex + 1, 0);
-		},
-		playVideo() {
-			const video = document.getElementById('video');
-			console.log('video', video);
-			const playpause = document.getElementById('playpause');
-			if (video.paused || video.ended) {
-				playpause.title = 'pause';
-				playpause.innerHTML = 'pause';
-				video.play();
+			if (att.variationId) {
+				this.selectedProperty[attKey] = {
+					...att,
+					itemPropertyLabel: this.variantProperties[attKey].label,
+				};
+				this.selectedVariationId = att.variationId;
 			} else {
-				playpause.title = 'play';
-				playpause.innerHTML = 'play';
-				video.pause();
+				this.selectedAttributes[attKey] = {
+					...att,
+					itemPropertyLabel: this.availableAttributes[attKey].label,
+				};
 			}
+			fullpage_api.moveTo(this.shelfIndex + 1, 0);
 		},
 	},
 };
