@@ -1,7 +1,7 @@
 import { mapState } from 'vuex';
 
 import _get from 'lodash/get';
-import _isEmpty from 'lodash/isempty';
+// import _isEmpty from 'lodash.isempty';
 import ShelfContent from './../shelf-content';
 import ColorPicker from './../color-picker';
 import SizePicker from './../size-picker';
