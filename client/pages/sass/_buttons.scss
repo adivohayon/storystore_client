@@ -1,7 +1,15 @@
 .btn {
 	outline: none;
 	border: none;
-
+	&--pill {
+		border-radius: 1.5rem;
+    height: 2.1rem;
+    width: auto;
+		padding: 0 0.4rem;
+		min-width: 2.1rem;
+		font-weight: bold;
+    color: #474747;
+	}
 	&--round {
 		border-radius: 50%;
 		height: 2.1rem;

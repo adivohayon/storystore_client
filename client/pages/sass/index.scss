@@ -13,7 +13,9 @@
 	position: relative;
 	// overflow: hidden;
 }
-
+#fp-nav ul li, .fp-slidesNav ul li {
+	margin: 7px 0px;
+}
 .fp-slidesNav {
 	position: absolute;
 	left: 50%;
@@ -81,7 +83,7 @@
 		span {
 			height: 8px;
 			width: 8px;
-			background-color: #383838;
+			background-color: #000000;
 			margin: -4px 0 0 -4px;
 			// border: 1px solid #F5F5F5;
 		}
@@ -108,8 +110,8 @@
 .fp-slidesNav ul li:hover a.active span {
 	height: 8px!important;
 	width: 8px!important;
-	background-color: #383838!important;
-	margin: -4px 0 0 -4px!important;
+	background-color: #000000!important;
+	margin: -3px 0 0 -3px!important;
 }
 
 #fp-nav ul li a span,

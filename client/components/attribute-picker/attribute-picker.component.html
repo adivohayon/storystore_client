@@ -9,8 +9,8 @@
 		>
 			<button
 				:style="[isColor ? {backgroundColor: att.value} : {}]"
-				class="btn btn--round"
-				:title="att"
+				class="btn btn--pill"
+				:title="att.label"
 				@click="setAtt(att)"
 			>
 				{{ isColor ? '' : att.label }}

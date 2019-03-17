@@ -33,13 +33,20 @@ export default {
 			);
 		},
 		hidePicker() {
-			return this.onlyOneSize;
+			return this.onlyOneSize || this.oneValueAndNull;
+		},
+		oneValueAndNull() {
+			return (
+				this.attribute.available.length === 1 &&
+				!this.attribute.available[0].value
+			);
 		},
 		onlyOneSize() {
 			return (
-				this.attKey === 'size' &&
+				this.attKey.includes('size') &&
 				this.attribute.available.length === 1 &&
-				this.attribute.available[0].value === 'OS'
+				(this.attribute.available[0].value === 'OS' ||
+					this.attribute.available[0].value === 'OneSize')
 			);
 		},
 	},

@@ -12,7 +12,6 @@
 					:key="shelfIndex"
 					:shelf="shelf"
 					:shelf-index="shelfIndex"
-					:fullpage="$refs.fullpage"
 					@rebuild-fullpage="rebuildFullpage"
 				></shelf>
 			</full-page>
