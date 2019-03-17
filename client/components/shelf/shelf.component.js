@@ -30,6 +30,12 @@ export default {
 				return {};
 			},
 		},
+		fullpage: {
+			type: Object,
+			default: () => {
+				return {};
+			},
+		},
 		shelfIndex: {
 			type: Number,
 		},
@@ -72,18 +78,23 @@ export default {
 		},
 		variantProperties() {
 			const properties = {};
-			const itemProperty = _get(this.variant, 'itemProperty');
-			const attributesArr = this.shelf.variations.map(variant => {
-				return {
-					label: variant.property_label,
-					value: variant.property_value,
-					variationId: variant.id,
-				};
+			const itemProperty = _get(this.variant, 'itemProperty', {
+				type: 'NO_PROPERTY',
+				label: '',
 			});
-			properties[itemProperty.type] = {
-				available: attributesArr,
-				label: itemProperty.label,
-			};
+			if (itemProperty && itemProperty.type && itemProperty.label) {
+				const attributesArr = this.shelf.variations.map(variant => {
+					return {
+						label: variant.property_label,
+						value: variant.property_value,
+						variationId: variant.id,
+					};
+				});
+				properties[itemProperty.type] = {
+					available: attributesArr,
+					label: itemProperty.label,
+				};
+			}
 
 			return properties;
 		},
@@ -156,13 +167,19 @@ export default {
 			}
 		},
 		initializeSelectedProperty() {
-			this.selectedProperty = {};
+			if (
+				this.variant.itemProperty &&
+				this.variant.itemProperty.type &&
+				this.variant.itemProperty.label
+			) {
+				this.selectedProperty = {};
 
-			this.$set(this.selectedProperty, this.variant.itemProperty.type, {
-				label: this.variant.property_label,
-				value: this.variant.property_value,
-				itemPropertyLabel: this.variant.itemProperty.label,
-			});
+				this.$set(this.selectedProperty, this.variant.itemProperty.type, {
+					label: this.variant.property_label,
+					value: this.variant.property_value,
+					itemPropertyLabel: this.variant.itemProperty.label,
+				});
+			}
 		},
 		setAtt({ att, attKey }) {
 			if (att.variationId) {
@@ -171,13 +188,19 @@ export default {
 					itemPropertyLabel: this.variantProperties[attKey].label,
 				};
 				this.selectedVariationId = att.variationId;
+				// fullpage_api.reBuild();
+				// this.fullpage.build();
+				// this.$refs.fullpage.build();
+				this.$emit('rebuild-fullpage');
+				fullpage_api.silentMoveTo(this.shelfIndex + 1, 0);
 			} else {
 				this.selectedAttributes[attKey] = {
 					...att,
 					itemPropertyLabel: this.availableAttributes[attKey].label,
 				};
 			}
-			fullpage_api.moveTo(this.shelfIndex + 1, 0);
+
+			// fullpage_api.moveTo(this.shelfIndex + 1, 0);
 		},
 	},
 };

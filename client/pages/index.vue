@@ -12,6 +12,8 @@
 					:key="shelfIndex"
 					:shelf="shelf"
 					:shelf-index="shelfIndex"
+					:fullpage="$refs.fullpage"
+					@rebuild-fullpage="rebuildFullpage"
 				></shelf>
 			</full-page>
 			<div v-else>No shelves available or store not available</div>
@@ -87,7 +89,13 @@ export default {
 
 		fullpage_api.destroy('all');
 	},
-	methods: {},
+	methods: {
+		rebuildFullpage() {
+			setTimeout(() => {
+				this.$refs.fullpage.build();
+			}, 10);
+		},
+	},
 };
 </script>
 
