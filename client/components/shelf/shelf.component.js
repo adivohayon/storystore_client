@@ -191,7 +191,7 @@ export default {
 				// fullpage_api.reBuild();
 				// this.fullpage.build();
 				// this.$refs.fullpage.build();
-				this.$emit('rebuild-fullpage');
+				// this.$emit('rebuild-fullpage');
 				fullpage_api.silentMoveTo(this.shelfIndex + 1, 0);
 			} else {
 				this.selectedAttributes[attKey] = {
