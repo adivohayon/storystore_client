@@ -45,7 +45,7 @@ module.exports = {
 	 */
 	css: [
 		// '@/sass/breakpoints.mixin.scss',
-		{ src: 'swiper/dist/css/swiper.min.css', lang: 'css' },
+		// { src: 'swiper/dist/css/swiper.min.css', lang: 'css' },
 		{ src: 'video.js/dist/video-js.css', lang: 'css' },
 		{ src: '~assets/fonts/fonts.css', lang: 'css' },
 	],
@@ -56,7 +56,7 @@ module.exports = {
 	// plugins: [],
 	plugins: [
 		{ src: '~/plugins/is-mobile', ssr: true },
-		{ src: '~/plugins/swiper', ssr: false },
+		// { src: '~/plugins/swiper', ssr: false },
 		{ src: '~/plugins/vuex-persist', ssr: false },
 		{ src: '~/plugins/fullpage', ssr: false },
 		{ src: '~/plugins/v-selectmenu', ssr: false },
@@ -99,12 +99,17 @@ module.exports = {
 				? '/'
 				: '//assets.storystore.co.il/',
 		devStore: process.env.DEV_STORE,
-		mockCheckout: process.env.MOCK_CHECKOUT && process.env.MOCK_CHECKOUT == 'true',
+		mockCheckout:
+			process.env.MOCK_CHECKOUT && process.env.MOCK_CHECKOUT == 'true',
 	},
 
 	build: {
 		// vendor: ['~/node_modules--mod/vue-glide-js'],
 		publicPath: `/${secrets.NODE_ENV}/_nuxt/`,
+		// babel: {},
+		transpile: [
+			'vuex-persist'
+		],
 		// vendor: ['vue-glide-js'],
 		/*
 		 ** You can extend webpack config here
