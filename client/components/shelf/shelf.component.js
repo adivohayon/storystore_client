@@ -87,7 +87,7 @@ export default {
 					return {
 						label: variant.property_label,
 						value: variant.property_value,
-						variationId: variant.id,
+						variationId: variant.variationId,
 					};
 				});
 				properties[itemProperty.type] = {
@@ -114,6 +114,7 @@ export default {
 				attributes[attribute.itemProperty.type].available.push({
 					label: attribute.label,
 					value: attribute.value,
+					variationAttributeId: attribute.variationAttribute.id,
 				});
 			}
 			return attributes;
@@ -131,7 +132,7 @@ export default {
 		},
 		variant() {
 			return this.shelf.variations.find(
-				variant => variant.id === this.selectedVariationId
+				variant => variant.variationId === this.selectedVariationId
 			);
 		},
 	},
@@ -143,7 +144,7 @@ export default {
 	mounted() {},
 	methods: {
 		initializeVariation() {
-			this.selectedVariationId = this.shelf.variations[0].id;
+			this.selectedVariationId = this.shelf.variations[0].variationId;
 		},
 		initializeSelectedAttributes() {
 			for (const attributeKey in this.availableAttributes) {
@@ -182,6 +183,7 @@ export default {
 			}
 		},
 		setAtt({ att, attKey }) {
+			// console.log('att', att);
 			if (att.variationId) {
 				this.selectedProperty[attKey] = {
 					...att,
@@ -191,8 +193,8 @@ export default {
 				// fullpage_api.reBuild();
 				// this.fullpage.build();
 				// this.$refs.fullpage.build();
-				// this.$emit('rebuild-fullpage');
-				fullpage_api.silentMoveTo(this.shelfIndex + 1, 0);
+				this.$emit('rebuild-fullpage', { shelfIndex: this.shelfIndex });
+				// fullpage_api.silentMoveTo(this.shelfIndex + 1, 0);
 			} else {
 				this.selectedAttributes[attKey] = {
 					...att,

@@ -186,7 +186,7 @@
 	</div>
 	<div class="checkout-page__shipping">
 		<h4>פרטי משלוח</h4>
-		<div class="checkout-page__shipping--container">
+		<div class="checkout-page__shipping--container" v-if="shippingOptions.length > 0">
 			<div
 				v-for="(option, optionIndex) in shippingOptions"
 				:key="optionIndex"
@@ -219,9 +219,9 @@
 				{{ subtotal }} {{ currency }}
 			</div>
 		</li>
-		<li>
+		<li v-if="shippingOptions.length > 0">
 			<div class="checkout-page__total--key">משלוח</div>
-			<div class="checkout-page__total--value">
+			<div class="checkout-page__total--value" v-if="selectedShipping && selectedShipping.price >= 0">
 				{{selectedShipping.price}} {{ currency }}
 				<!-- {{ kookintShippingOption.price }} {{ kookintShippingOption.currency }} -->
 			</div>

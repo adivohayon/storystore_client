@@ -9,7 +9,7 @@ export default {
 			show: false,
 		};
 	},
-	mounted() {
+	async mounted() {
 		if (this.orderQuery === 'error') {
 			setTimeout(() => {
 				this.toggle();
@@ -22,29 +22,24 @@ export default {
 			this.orderEmail &&
 			validateEmail(this.orderEmail)
 		) {
-			setTimeout(async () => {
-				await this.$axios.$post('order/new-order-email', {
-					to: this.orderEmail,
-					orderId: this.orderId,
-				});
+			setTimeout(() => {
 				this.toggle();
 			}, 1500);
+			await this.$axios.$post('order/new-order-email', {
+				to: this.orderEmail,
+				orderId: this.orderId,
+			});
 		}
 	},
 	computed: {
 		orderEmail() {
 			return _get(this.$route, 'query.orderEmail', null);
 		},
-		orderNumber() {
-			return _get(this.$route, 'query.orderNumber', null);
-		},
 		orderId() {
-			if (this.orderNumber) {
-				const storeId = _get(this.$store.state, 'store.storeId', null);
-				if (storeId) {
-					return Number(this.orderNumber.replace(storeId + '000', ''));
-				}
-			}
+			return _get(this.$route, 'query.orderId', null);
+		},
+		orderNumber() {
+			return `6700${this.orderId}`;
 		},
 		orderQuery() {
 			return this.$route.query.order;

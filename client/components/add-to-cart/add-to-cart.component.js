@@ -3,6 +3,9 @@ export default {
 	name: 'add-to-cart',
 	components: {},
 	props: {
+		variationAttribute: {
+			type: Number,
+		},
 		shelf: {
 			type: Object,
 			default() {
@@ -64,7 +67,17 @@ export default {
 			// const image = `https://assets.storystore.co.il/${this.storeSlug}/${
 			// 	this.shelf.slug
 			// }/${this.variant.slug}/${imageName}`;
-
+			const variationAttributeIds = [];
+			for (const attributeKey in selectedAttributes) {
+				if (
+					selectedAttributes.hasOwnProperty(attributeKey) &&
+					selectedAttributes[attributeKey].variationAttributeId
+				) {
+					variationAttributeIds.push(
+						selectedAttributes[attributeKey].variationAttributeId
+					);
+				}
+			}
 			const item = {
 				shelfId: shelf.id,
 				name: shelf.name,
@@ -72,10 +85,12 @@ export default {
 				currency: this.variant.currency,
 				price: this.variant.price,
 				sale_price: this.variant.sale_price,
-				variationId: this.variant.id,
+				variationId: this.variant.variationId,
 				variationSlug: this.variant.slug,
 				quantity: 1,
 				image,
+				variationAttributeIds,
+				// variationAttributeId: this.variant
 				attributes: { ...selectedAttributes, ...selectedProperty },
 				// sizes: removeDuplicates(sizes, 'value'),
 			};

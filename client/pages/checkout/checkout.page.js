@@ -1,7 +1,7 @@
 import _get from 'lodash/get';
 import { required, numeric, email } from 'vuelidate/lib/validators';
 import { getSlugFromHost } from '@/helpers/async-data.helpers';
-import { ruleCheck } from '@/helpers/rules.helpers';
+import { checkRule } from '@/helpers/rules.helpers';
 export default {
 	components: {},
 	async asyncData({ req }) {
@@ -99,6 +99,9 @@ export default {
 				submitStatus: null,
 			};
 		}
+		setTimeout(() => {
+			this.selectedShipping = this.shippingOptions[0];
+		}, 50);
 	},
 	computed: {
 		items() {
@@ -108,32 +111,65 @@ export default {
 			const imgs = this.items.map(item => {
 				return item.image;
 			});
-			console.log('imgs', imgs);
 			return imgs;
 		},
-		// kookintShippingOption() {
-		// 	return this.subtotal > 100
-		// 		? this.shippingOptions[1]
-		// 		: this.shippingOptions[0];
-		// },
 		shippingOptions() {
 			const options = _get(this.$store.state, 'store.shippingOptions', []);
 
-			const filtered = options.filter(this.showShippingOption);
-
-			if (filtered.length) {
-				this.selectedShipping = filtered[0];
-				if (filtered[0].condition && filtered[0].price === 0) {
-					return [filtered[0]];
+			// return options.filter(option => option)
+			const freeOptions = [];
+			const alwaysShowOptions = [];
+			const paidOptions = [];
+			// const freeOptions = options.filter(v => v.price === 0);
+			for (const option of options) {
+				// Free option
+				if (option.price === 0) {
+					if (
+						option.condition &&
+						option.condition.type &&
+						option.condition.type === 'subtotal' &&
+						checkRule(option.condition, this.subtotal)
+					) {
+						freeOptions.push(option);
+						continue;
+					}
 				}
-				return filtered;
+				// Always SHOW
+				if (
+					option.condition &&
+					option.condition.type &&
+					option.condition.type === 'always_show'
+				) {
+					alwaysShowOptions.push(option);
+					continue;
+				}
+
+				// Paid option
+				if (option.price > 0) {
+					paidOptions.push(option);
+					continue;
+				}
+			}
+
+			if (freeOptions.length > 0) {
+				return [...freeOptions, ...alwaysShowOptions];
+			} else {
+				return [...paidOptions, ...alwaysShowOptions];
 			}
 		},
 		subtotal() {
 			return this.$store.getters['cart/subtotal'](this.storeSlug);
 		},
 		total() {
-			return this.subtotal + this.selectedShipping.price;
+			if (this.subtotal) {
+				if (this.selectedShipping && this.selectedShipping.price >= 0) {
+					return this.subtotal + this.selectedShipping.price;
+				} else {
+					return this.subtotal;
+				}
+			} else {
+				return 0;
+			}
 		},
 		currency() {
 			return '₪';
@@ -148,41 +184,34 @@ export default {
 					this.order.submitStatus = 'ERROR';
 				} else {
 					// do your submit logic here
-					const personal = {
-						firstName: this.order.firstName,
-						lastName: this.order.lastName,
+					const customer = {
+						first_name: this.order.firstName,
+						last_name: this.order.lastName,
 						phone: this.order.phone,
 						email: this.order.email,
+						shipping_address: `${this.order.street} ${this.order.houseNumber} ${
+							this.order.apptNumber
+						} ${this.order.floor}`,
+						shipping_city: this.order.city,
+						shipping_zip_code: this.order.zipCode,
 					};
-					const address = {
-						street:
-							this.order.street +
-							' ' +
-							this.order.houseNumber +
-							' ' +
-							this.order.apptNumber +
-							' ' +
-							this.order.floor,
-						city: this.order.city,
-						zipCode: this.order.zipCode,
-					};
+
 					const items = this.items.map(item => {
 						return {
-							id: item.id,
+							variationId: item.variationId,
+							variationAttributeIds: item.variationAttributeIds,
 							qty: item.quantity,
 						};
 					});
-
+					// return;
 					this.selectedShipping.id = -1;
-					const resp = await this.$axios.$post(`order/${this.storeSlug}`, {
-						personal,
-						address,
+					const resp = await this.$axios.$post(`order`, {
+						customer,
 						items,
 						shipping: this.selectedShipping,
 					});
 
-					console.log('***', resp);
-					if (resp.url && resp.url === '') {
+					if (!resp.url || resp.url === '') {
 						throw new Error('URL returned from API is empty');
 					}
 					window.location.href = resp.url;
@@ -201,10 +230,12 @@ export default {
 				switch (option.condition.type) {
 					case 'subtotal':
 						return ruleCheck(
-							this.subtotal,
 							option.condition.rule,
+							this.subtotal,
 							option.condition.amount
 						);
+					case 'always_show':
+						return true;
 					default:
 						return true;
 				}

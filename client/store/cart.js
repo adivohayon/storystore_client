@@ -36,7 +36,7 @@ export const mutations = {
 
 	setItemQuantity(state, { qty, itemId, storeSlug }) {
 		const addedIndex = state[storeSlug].added.findIndex(
-			addedItem => addedItem.id === itemId
+			addedItem => addedItem.variationId === itemId
 		);
 		if (addedIndex > -1) {
 			Vue.set(state[storeSlug].added[addedIndex], 'quantity', qty);

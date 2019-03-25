@@ -29,7 +29,7 @@ export default {
 			set(qty) {
 				this.$store.commit('cart/setItemQuantity', {
 					qty,
-					itemId: this.item.id,
+					itemId: this.item.variationId,
 					storeSlug: this.storeSlug,
 				});
 			},

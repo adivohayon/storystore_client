@@ -89,9 +89,10 @@ export default {
 		fullpage_api.destroy('all');
 	},
 	methods: {
-		rebuildFullpage() {
+		rebuildFullpage({ shelfIndex }) {
 			setTimeout(() => {
 				this.$refs.fullpage.build();
+				this.$refs.fullpage.shelfIndex;
 			}, 10);
 		},
 	},
