@@ -100,20 +100,24 @@ export default {
 		},
 		availableAttributes() {
 			const attributesArr = _get(this.variant, 'attributes', []);
+
 			const attributes = {};
 			for (const attribute of attributesArr) {
 				// first time added to list
-				if (!attributes.hasOwnProperty(attribute.itemProperty.type)) {
-					attributes[attribute.itemProperty.type] = {
+				const attributeKey = attribute.itemProperty
+					? attribute.itemProperty.type
+					: 'no_attribute';
+				if (!attributes.hasOwnProperty(attributeKey)) {
+					attributes[attributeKey] = {
 						available: [],
-						label: attribute.itemProperty.label,
+						label: attribute.itemProperty ? attribute.itemProperty.label : null,
 					};
 				}
 
 				// Push available
-				attributes[attribute.itemProperty.type].available.push({
-					label: attribute.label,
-					value: attribute.value,
+				attributes[attributeKey].available.push({
+					label: attribute.label || null,
+					value: attribute.value || null,
 					variationAttributeId: attribute.variationAttribute.id,
 				});
 			}

@@ -12,7 +12,7 @@
 		<div class="cart-item__attributes">
 			<div
 				class="cart-item__attribute"
-				v-for="(attribute, attributeKey) in item.attributes"
+				v-for="(attribute, attributeKey) in item.attributes" v-if="attribute.itemPropertyLabel && attribute.label"
 			>
 				{{ attribute.itemPropertyLabel }}: {{ attribute.label }}
 			</div>
