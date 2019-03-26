@@ -28,20 +28,6 @@ export default {
 				submitStatus: null,
 			},
 			selectedShipping: {},
-			// shippingOptions: [
-			// 	{
-			// 		price: 33,
-			// 		currency: '₪',
-			// 		label: 'שליח עד הבית',
-			// 		time: 'עד 3 ימי עסקים',
-			// 	},
-			// 	{
-			// 		price: 0,
-			// 		currency: '₪',
-			// 		label: 'שליח עד הבית',
-			// 		time: 'עד 3 ימי עסקים',
-			// 	},
-			// ],
 		};
 	},
 	validations: {
@@ -99,6 +85,12 @@ export default {
 				submitStatus: null,
 			};
 		}
+
+		const checkoutDetails = localStorage.getItem('checkoutDetails');
+		if (checkoutDetails) {
+			this.order = checkoutDetails;
+		}
+
 		setTimeout(() => {
 			this.selectedShipping = this.shippingOptions[0];
 		}, 50);
@@ -183,6 +175,7 @@ export default {
 				if (this.$v.$invalid) {
 					this.order.submitStatus = 'ERROR';
 				} else {
+					localStorage.setItem('checkoutDetails', this.order);
 					// do your submit logic here
 					const customer = {
 						first_name: this.order.firstName,
