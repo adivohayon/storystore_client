@@ -86,7 +86,7 @@ export default {
 			};
 		}
 
-		const checkoutDetails = localStorage.getItem('checkoutDetails');
+		const checkoutDetails = JSON.parse(localStorage.getItem('checkoutDetails'));
 		if (checkoutDetails) {
 			this.order = checkoutDetails;
 		}
@@ -175,7 +175,7 @@ export default {
 				if (this.$v.$invalid) {
 					this.order.submitStatus = 'ERROR';
 				} else {
-					localStorage.setItem('checkoutDetails', this.order);
+					localStorage.setItem('checkoutDetails', JSON.stringify(this.order));
 					// do your submit logic here
 					const customer = {
 						first_name: this.order.firstName,
