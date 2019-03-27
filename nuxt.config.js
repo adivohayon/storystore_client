@@ -72,12 +72,12 @@ module.exports = {
 	 */
 	modules: [
 		// Doc: https://github.com/nuxt-community/axios-module#usage
-		'@nuxtjs/google-analytics',
+		['@nuxtjs/google-tag-manager', { id: 'GTM-TQKQL2Z' }],
 		'@nuxtjs/axios',
 	],
-	googleAnalytics: {
-		id: 'UA-134688384-1',
-	},
+	// googleAnalytics: {
+	// 	id: 'UA-134688384-1',
+	// },
 	/*
 	 ** Axios module configuration
 	 */
