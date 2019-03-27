@@ -72,7 +72,18 @@ module.exports = {
 	 */
 	modules: [
 		// Doc: https://github.com/nuxt-community/axios-module#usage
-		['@nuxtjs/google-tag-manager', { id: 'GTM-TQKQL2Z' }],
+		[
+			'@nuxtjs/google-tag-manager',
+			{
+				id: 'GTM-TQKQL2Z',
+				// dev: false,
+				// query: {
+				// 	gtm_preview: 'env-6',
+				// 	gtm_debug: 'x',
+				// 	url: 'http://localhost:3000',
+				// },
+			},
+		],
 		'@nuxtjs/axios',
 	],
 	// googleAnalytics: {
@@ -107,9 +118,7 @@ module.exports = {
 		// vendor: ['~/node_modules--mod/vue-glide-js'],
 		publicPath: `/${secrets.NODE_ENV}/_nuxt/`,
 		// babel: {},
-		transpile: [
-			'vuex-persist'
-		],
+		transpile: ['vuex-persist'],
 		// vendor: ['vue-glide-js'],
 		/*
 		 ** You can extend webpack config here
