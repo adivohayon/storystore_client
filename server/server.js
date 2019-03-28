@@ -26,12 +26,12 @@ https
 				try {
 					// Caching
 					let ctx = cache.get(host);
-					// if (ctx) return cb(null, ctx);
-					// console.log('aaa');
+					if (ctx) return cb(null, ctx);
+
 					const { Item } = await table
 						.get({
 							TableName,
-							Key: { host: 'queen.storystore.co.il' },
+							Key: { host },
 							AttributesToGet: ['cert', 'chain', 'privkey', 'privateKey'],
 							ReturnConsumedCapacity: 'NONE',
 						})
