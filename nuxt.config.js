@@ -24,6 +24,10 @@ module.exports = {
 				name: 'viewport',
 				content: 'width=device-width, initial-scale=1, minimal-ui',
 			},
+			{
+				'http-equiv': 'ScreenOrientation',
+				content: 'autoRotate:disabled',
+			},
 			{ hid: 'description', name: 'description', content: pkg.description },
 		],
 

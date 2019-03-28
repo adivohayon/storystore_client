@@ -1,4 +1,5 @@
 <div class="checkout-page">
+	<!-- <loader></loader> -->
 	<div class="checkout-page__header">
 		<h3>קופה</h3>
 		<nuxt-link :to="`/`" class="checkout-page__close">
@@ -186,13 +187,16 @@
 	</div>
 	<div class="checkout-page__shipping">
 		<h4>פרטי משלוח</h4>
-		<div class="checkout-page__shipping--container" v-if="shippingOptions.length > 0">
+		<div
+			class="checkout-page__shipping--container"
+			v-if="shippingOptions.length > 0"
+		>
 			<div
 				v-for="(option, optionIndex) in shippingOptions"
 				:key="optionIndex"
 				class="shipping-option"
 			>
-				<h5>{{ option.type }} - {{currency}}{{option.price}} </h5>
+				<h5>{{ option.type }} - {{ currency }}{{ option.price }}</h5>
 				<div class="shipping-options__eta">
 					{{ option.eta }}
 				</div>
@@ -221,8 +225,11 @@
 		</li>
 		<li v-if="shippingOptions.length > 0">
 			<div class="checkout-page__total--key">משלוח</div>
-			<div class="checkout-page__total--value" v-if="selectedShipping && selectedShipping.price >= 0">
-				{{selectedShipping.price}} {{ currency }}
+			<div
+				class="checkout-page__total--value"
+				v-if="selectedShipping && selectedShipping.price >= 0"
+			>
+				{{ selectedShipping.price }} {{ currency }}
 				<!-- {{ kookintShippingOption.price }} {{ kookintShippingOption.currency }} -->
 			</div>
 		</li>

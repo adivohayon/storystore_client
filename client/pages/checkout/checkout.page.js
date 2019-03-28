@@ -2,8 +2,9 @@ import _get from 'lodash/get';
 import { required, numeric, email } from 'vuelidate/lib/validators';
 import { getSlugFromHost } from '@/helpers/async-data.helpers';
 import { checkRule } from '@/helpers/rules.helpers';
+// import { Loader } from '@/components/loader';
 export default {
-	components: {},
+	// components: { Loader },
 	async asyncData({ req }) {
 		const host = process.server ? req.headers.host : window.location.hostname;
 		const storeSlug = getSlugFromHost(host);
