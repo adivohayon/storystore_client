@@ -89,7 +89,7 @@ https
 					const { Item } = await table
 						.get({
 							TableName,
-							Key: { host: 'daniellalehavi.storystore.co.il' },
+							Key: { host },
 							AttributesToGet: ['cert', 'privkey', 'privateKey'],
 							ReturnConsumedCapacity: 'NONE',
 						})
