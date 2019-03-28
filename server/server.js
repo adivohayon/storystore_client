@@ -23,8 +23,10 @@ https
 				'-----BEGIN CERTIFICATE-----\nMIIGWDCCBUCgAwIBAgISA/0eApSUkgVIa9PzLO7y8q3+MA0GCSqGSIb3DQEBCwUA\nMEoxCzAJBgNVBAYTAlVTMRYwFAYDVQQKEw1MZXQncyBFbmNyeXB0MSMwIQYDVQQD\nExpMZXQncyBFbmNyeXB0IEF1dGhvcml0eSBYMzAeFw0xOTAyMTMxNzM5MjVaFw0x\nOTA1MTQxNzM5MjVaMBsxGTAXBgNVBAMTEHN0b3J5c3RvcmUuY28uaWwwggIiMA0G\nCSqGSIb3DQEBAQUAA4ICDwAwggIKAoICAQDhOQsKUnPPoAfuc5VzMV0QdijTYXvI\nCWNdmATxycWWYEBBF3rIGBYmmuW1NcC6+tb6RX0qbLnBWA2dbV2uj+0xfnapZUkP\nRzhxvbDr7+CmM+7+WGL6Efyh+hwca51TNAc5kAyHYpBak+mrKfXPo9DoeO8V2jE4\nQ5sqUbFEz0Z5GAqBePubuzrL3iCOcvQgFceU2g/JJy7AlnjzkI5WJvpA8tgEN8Ea\nUr2rSHCN2F11cPQuQsx4Ns4haFuUg8PWP3n1c9y/m+V8EA+qkHNrh0PwN9zLLigb\nfwVTN5k1N273MA0tD5aAbHjNgeOtoUHh66LWS3JurIJMuZxtkHQjLAiJR2wu6SOi\n9KpbsquMAasNjhacJG8Y8uRs4EiBJqdT1oMbTPR0umuTu4bj0esUCCbZlaYSr+FI\nKMluDd0x3rLnPX7q2ZvPcK4tFuaop5ChWd2wjlmbCQ265+5ZACm76IM9K/5B12yx\nltkS6diT3ymqbEveHfCKDrr1Fe7Zp8Q/mLrGBDuYWGja8WLqM33wZqn7BsRMOWFL\nNzY4d1caM02p75x3pncsicmPof45zz4wK4+iblISUMDS8hC2CN7RBe3rg49isEHi\nDBGTAVmtQfM8LwveEy1C2CpgLea/2tQVlrJQC18OeU1t4xebGdpslWPw9OKN2/+0\nBjDvqTvFDstSZQIDAQABo4ICZTCCAmEwDgYDVR0PAQH/BAQDAgWgMB0GA1UdJQQW\nMBQGCCsGAQUFBwMBBggrBgEFBQcDAjAMBgNVHRMBAf8EAjAAMB0GA1UdDgQWBBS2\n8hIhnG5NUkcmGZF1G+WuQn4yZTAfBgNVHSMEGDAWgBSoSmpjBH3duubRObemRWXv\n86jsoTBvBggrBgEFBQcBAQRjMGEwLgYIKwYBBQUHMAGGImh0dHA6Ly9vY3NwLmlu\ndC14My5sZXRzZW5jcnlwdC5vcmcwLwYIKwYBBQUHMAKGI2h0dHA6Ly9jZXJ0Lmlu\ndC14My5sZXRzZW5jcnlwdC5vcmcvMBsGA1UdEQQUMBKCEHN0b3J5c3RvcmUuY28u\naWwwTAYDVR0gBEUwQzAIBgZngQwBAgEwNwYLKwYBBAGC3xMBAQEwKDAmBggrBgEF\nBQcCARYaaHR0cDovL2Nwcy5sZXRzZW5jcnlwdC5vcmcwggEEBgorBgEEAdZ5AgQC\nBIH1BIHyAPAAdQDiaUuuJujpQAnohhu2O4PUPuf+dIj7pI8okwGd3fHb/gAAAWjo\nKA6fAAAEAwBGMEQCICoi5k2sZ+vOLvcWie/ZPum7UjImqUw0iaVMIrE3cIILAiBx\nFk9867RNpZ6Ay4TTiK5FcN+2xaDH2jXT9cyUvbW0cgB3ACk8UZZUyDlluqpQ/FgH\n1Ldvv1h6KXLcpMMM9OVFR/R4AAABaOgoEOAAAAQDAEgwRgIhAM7fyO6dleSvazv0\n1ZajJtaUwa9EiJoFdp9Ck9CwXT1qAiEAo+a9Jk0AOCyJiUgvLCXvyUg/m8mNVDxp\nsgK36DTdu64wDQYJKoZIhvcNAQELBQADggEBAH8entSRIXU4Ltl5YfF5YATvh1j0\nJ6FoRJRMHfDKTFcGqKs9q4rQFeMrNfwspWrFT9W5ZLkpXlPBu7vmfaOjGQEIcrMr\nd6X/iKyBmY3gjhnD3xwIx7th+QlrmGhQ3Iz4l9ncaiRg9a/elaHpN7kiptQJH0HO\ncAx/PUQPi8DCudf7AclvHJFktHgK6UV0nbtiaCrN2uSfV0kwBL9NFi+ZVHlMqIOW\nz4xZlDwsT//iQ70+aiUgAPpbcSmFaLWebaemCwuriElKC8LY85MoDC+w13WqDpQ7\nzE4WBy7Fo1f4k5BadYnxLlN44LQmEZ3dv+lE1XKdfnZVelvaUsoFIeOez0g=\n-----END CERTIFICATE-----\n',
 			SNICallback: async (host, cb) => {
 				try {
-					let ctx = cache.get(host);
-					if (ctx) return cb(null, ctx);
+					// Caching
+					// let ctx = cache.get(host);
+					// if (ctx) return cb(null, ctx);
+
 					const { Item } = await table
 						.get({
 							TableName,
@@ -37,7 +39,7 @@ https
 					console.log(Item.cert);
 					ctx = tls.createSecureContext({
 						key: Item.privateKey || Item.privkey,
-						cert: Item.cert,
+						cert: Item.cert + Item.chain,
 					});
 					cache.set(host, ctx);
 					cb(null, ctx);
