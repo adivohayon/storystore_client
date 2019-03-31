@@ -2,9 +2,7 @@ import _get from 'lodash/get';
 import { required, numeric, email } from 'vuelidate/lib/validators';
 import { getSlugFromHost } from '@/helpers/async-data.helpers';
 import { checkRule } from '@/helpers/rules.helpers';
-// import { Loader } from '@/components/loader';
 export default {
-	// components: { Loader },
 	async asyncData({ req }) {
 		const host = process.server ? req.headers.host : window.location.hostname;
 		const storeSlug = getSlugFromHost(host);
@@ -12,6 +10,9 @@ export default {
 		return {
 			storeSlug,
 		};
+	},
+	layout(ctx) {
+		return ctx.app.isMobile ? 'mobile' : 'desktop';
 	},
 	data() {
 		return {
@@ -95,6 +96,10 @@ export default {
 		setTimeout(() => {
 			this.selectedShipping = this.shippingOptions[0];
 		}, 50);
+
+		// start checkout
+		// this.$emit('toggle-loader', {});
+		this.$store.commit('toggleLoader');
 	},
 	computed: {
 		items() {

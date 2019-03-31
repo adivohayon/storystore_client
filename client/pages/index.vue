@@ -29,6 +29,8 @@ import CheckoutResponse from '@/components/checkout-response';
 import { getCategories, getShelves } from '@/services/api.service';
 import '@/icons';
 import { mapState } from 'vuex';
+import _get from 'lodash/get';
+import _debounce from 'lodash.debounce';
 
 export default {
 	components: { Feed, Shelf, Navigation, CheckoutResponse },
@@ -59,11 +61,15 @@ export default {
 				dragAndMove: true,
 				controlArrows: false,
 				slidesNavigation: true,
-				afterRender: () => {
-					// console.log('children', this.$refs.videoEl);
-				},
+				afterLoad: _debounce(async (origin, destination) => {
+					this.activeShelfIndex = destination.index;
+				}, 100),
 			},
+			runOnce: false,
 			orderQuery: null,
+			assetsPerLoad: 2,
+			shelvesPerLoad: 2,
+			activeShelfIndex: 0,
 		};
 	},
 	computed: {
@@ -75,24 +81,139 @@ export default {
 		},
 		...mapState({
 			shelves: state => state.store.shelves,
-			// slug: state => state.store,
+			storeId: state => state.store.storeId,
+			shelvesOffset: state => state.store.pagination.offset,
 		}),
+		storeSlug() {
+			return _get(this.$store.state, 'store.slug', null);
+		},
+		assetsPath() {
+			if (this.storeSlug) {
+				let path = process.env.staticDir ? process.env.staticDir : '/';
+				path += `${this.storeSlug}/`;
+				return path;
+			}
+		},
+	},
+	watch: {
+		activeShelfIndex: async function(index) {
+			console.log(index, this.shelvesOffset - 2);
+			if (index > 0 && index === this.shelvesOffset - 2) {
+				try {
+					this.$store.commit('toggleLoader');
+					this.runOnce = false;
+					await this.$store.dispatch('store/getShelves', {
+						storeId: this.storeId,
+						offset: this.shelvesOffset,
+					});
+					await this.loadImages();
+				} catch (err) {}
+			}
+		},
 	},
 	created() {},
-	mounted() {},
+	mounted() {
+		this.$store.commit('toggleLoader');
+		this.loadImages();
+		setTimeout(() => {
+			console.log('activeShelfIndex', this.activeShelfIndex);
+		}, 1000);
+	},
 	beforeDestroy() {
-		this.feedOptions.dragAndMove = false;
+		// this.feedOptions.dragAndMove = false;
 	},
 	destroyed() {
-		console.log('destroy', fullpage_api);
-
-		fullpage_api.destroy('all');
+		// console.log('destroy', fullpage_api);
+		// fullpage_api.destroy('all');
 	},
 	methods: {
+		loadImages() {
+			return new Promise(async (resolve, reject) => {
+				const shelves = this.shelves;
+				try {
+					let moreAssetsToLoad = true;
+					let currentAssetsOffset = 0;
+					let test = -1;
+
+					while (moreAssetsToLoad) {
+						// in each loop we load two assets in the first variation of each shelf
+						for (const [shelfIndex, shelf] of shelves.entries()) {
+							// get assets not yet loaded
+							const assets = shelf.variations[0].assets.filter(
+								asset => !asset.loaded
+							);
+							// if not assets left to load, continue
+							if (!assets || !assets.length) {
+								moreAssetsToLoad = false;
+								continue;
+							}
+
+							moreAssetsToLoad = true;
+							// preload two assets
+							for (
+								let i = currentAssetsOffset;
+								i < currentAssetsOffset + this.assetsPerLoad;
+								i++
+							) {
+								if (assets[i] && assets[i].src) {
+									const image = new Image();
+									// console.log('image', assets[i].src);
+									image.src = this.assetsPath + assets[i].src;
+									await this.imageLoadedPromise(image);
+
+									this.$store.commit('store/updateShelfAssetLoaded', {
+										shelfIndex,
+										variationIndex: 0,
+										assetIndex: i,
+										loaded: true,
+									});
+								} else {
+									moreAssetsToLoad = false;
+									continue;
+								}
+							}
+							// this.$refs.fullpage.destroy('all');
+
+							// if (
+							// 	fullpage_api.getActiveSection().index === shelfIndex &&
+							// 	currentAssetsOffset < this.assetsPerLoad
+							// ) {
+							// 	this.$store.commit('toggleLoader');
+							// }
+							this.$refs.fullpage.build();
+
+							setTimeout(() => {
+								if (!this.runOnce) {
+									this.$store.commit('toggleLoader');
+									this.runOnce = true;
+								}
+							}, 900);
+						}
+
+						console.log('moreAssetsToLoad', moreAssetsToLoad);
+						currentAssetsOffset += this.assetsPerLoad;
+
+						resolve();
+						// this.$refs.fullpage.build();
+						// moreAssetsToLoad = false;
+					}
+				} catch (err) {
+					console.error(err);
+					reject(err);
+				}
+			});
+		},
+		imageLoadedPromise(imageObj) {
+			return new Promise((resolve, reject) => {
+				imageObj.onload = e => {
+					resolve(e);
+				};
+			});
+		},
 		rebuildFullpage({ shelfIndex }) {
 			setTimeout(() => {
 				this.$refs.fullpage.build();
-				this.$refs.fullpage.shelfIndex;
+				// this.$refs.fullpage.shelfIndex;
 			}, 10);
 		},
 	},

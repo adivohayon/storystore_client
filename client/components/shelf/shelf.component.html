@@ -4,6 +4,7 @@
 			<nuxt-link to="/profile">
 				<img :src="logoSrc" :alt="`${storeSlug} Logo`" />
 			</nuxt-link>
+			
 		</div>
 		<div v-if="variantVideo" class="slide" :style="{ position: 'relative' }">
 			<video-player :source="variantVideo.value"></video-player>
