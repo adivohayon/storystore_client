@@ -180,15 +180,15 @@ export default {
 							// ) {
 							// 	this.$store.commit('toggleLoader');
 							// }
-							this.$refs.fullpage.build();
-
-							setTimeout(() => {
-								if (!this.runOnce) {
-									this.$store.commit('toggleLoader');
-									this.runOnce = true;
-								}
-							}, 900);
 						}
+						setTimeout(() => {
+							if (!this.runOnce) {
+								this.$store.commit('toggleLoader');
+								this.runOnce = true;
+							}
+						}, 900);
+						console.log('building fullpage');
+						this.$refs.fullpage.build();
 
 						console.log('moreAssetsToLoad', moreAssetsToLoad);
 						currentAssetsOffset += this.assetsPerLoad;
@@ -212,6 +212,7 @@ export default {
 		},
 		rebuildFullpage({ shelfIndex }) {
 			setTimeout(() => {
+				console.log('building fullpage - event');
 				this.$refs.fullpage.build();
 				// this.$refs.fullpage.shelfIndex;
 			}, 10);
