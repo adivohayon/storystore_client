@@ -98,7 +98,7 @@ export default {
 	watch: {
 		activeShelfIndex: async function(index) {
 			console.log(index, this.shelvesOffset - 2);
-			if (index > 0 && index === this.shelvesOffset - 5) {
+			if (index > 0 && index === this.shelvesOffset - 3) {
 				try {
 					// this.$store.commit('toggleLoader');
 					// this.runOnce = false;
