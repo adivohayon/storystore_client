@@ -89,7 +89,7 @@ export const actions = {
 			}
 
 			const { shelves, pagination } = await this.$axios.$get(
-				`stores/${store.id}/shelves`
+				`stores/${store.id}/shelves?limit=15`
 			);
 			console.log('shelves', pagination);
 			// console.log(useMockData, store.shelves);
@@ -112,7 +112,7 @@ export const actions = {
 		return new Promise(async (resolve, reject) => {
 			try {
 				const { shelves, pagination } = await this.$axios.$get(
-					`stores/${storeId}/shelves?offset=${offset}`
+					`stores/${storeId}/shelves?offset=${offset}&limit=10`
 				);
 				console.log('shelves', shelves);
 				const previousShelves = state.shelves;

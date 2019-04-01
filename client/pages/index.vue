@@ -108,7 +108,9 @@ export default {
 						offset: this.shelvesOffset,
 					});
 					await this.loadImages();
-					this.$refs.fullpage.build();
+					setTimeout(() => {
+						this.$refs.fullpage.build();
+					}, 200);
 					console.log('DONE LOADING SHELVES');
 				} catch (err) {}
 			}
