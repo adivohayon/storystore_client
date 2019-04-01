@@ -99,7 +99,7 @@ export default {
 
 		// start checkout
 		// this.$emit('toggle-loader', {});
-		this.$store.commit('toggleLoader');
+		// this.$store.commit('toggleLoader');
 	},
 	computed: {
 		items() {
