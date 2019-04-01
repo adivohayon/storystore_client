@@ -75,6 +75,10 @@ export default {
 		},
 	},
 	methods: {
+		close() {
+			this.$router.replace({ query: {} });
+			this.toggle();
+		},
 		toggle() {
 			this.show = !this.show;
 		},

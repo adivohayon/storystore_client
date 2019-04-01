@@ -14,6 +14,17 @@ export default {
 	layout(ctx) {
 		return ctx.app.isMobile ? 'mobile' : 'desktop';
 	},
+	head() {
+		const storeSlug = this.$store.state.store.slug;
+		const faviconPath =
+			process.env.staticDir + storeSlug + `/${storeSlug}_favicon.png`;
+
+		return {
+			title:
+				this.$store.state.store.name + ' - ' + this.$store.state.store.tagline,
+			link: [{ rel: 'icon', href: faviconPath }],
+		};
+	},
 	data() {
 		return {
 			order: {
