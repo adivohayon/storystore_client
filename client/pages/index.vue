@@ -184,7 +184,7 @@ export default {
 							// ) {
 							// 	this.$store.commit('toggleLoader');
 							// }
-							if (shelfIndex === 2) {
+							if (shelfIndex === 1) {
 								setTimeout(() => {
 									if (!this.runOnce) {
 										this.$store.commit('toggleLoader');
@@ -222,7 +222,7 @@ export default {
 				console.log('building fullpage - event');
 				this.$refs.fullpage.build();
 				// this.$refs.fullpage.shelfIndex;
-			}, 10);
+			}, 50);
 		},
 	},
 };

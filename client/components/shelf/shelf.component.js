@@ -227,7 +227,7 @@ export default {
 				// fullpage_api.reBuild();
 				// this.fullpage.build();
 				// this.$refs.fullpage.build();
-				// this.$emit('rebuild-fullpage', { shelfIndex: this.shelfIndex });
+				this.$emit('rebuild-fullpage', { shelfIndex: this.shelfIndex });
 				// fullpage_api.silentMoveTo(this.shelfIndex + 1, 0);
 			} else {
 				this.selectedAttributes[attKey] = {
