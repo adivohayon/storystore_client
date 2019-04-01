@@ -11,8 +11,8 @@
 		</div>
 		<div
 			class="slide"
-			v-for="(image, index) in variantImages"
-			:style="{ backgroundImage: 'url(' + image + ')' }"
+			v-for="(asset, index) in variant.assets"
+			:style="{backgroundImage: getImage(asset)}"
 		></div>
 	</section>
 	<aside class="shelf-buttons">

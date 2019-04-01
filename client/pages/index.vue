@@ -61,7 +61,7 @@ export default {
 				dragAndMove: true,
 				controlArrows: false,
 				slidesNavigation: true,
-				afterLoad: _debounce(async (origin, destination) => {
+				onLeave: _debounce(async (origin, destination) => {
 					this.activeShelfIndex = destination.index;
 				}, 100),
 			},
@@ -100,24 +100,28 @@ export default {
 			console.log(index, this.shelvesOffset - 2);
 			if (index > 0 && index === this.shelvesOffset - 2) {
 				try {
-					this.$store.commit('toggleLoader');
-					this.runOnce = false;
+					// this.$store.commit('toggleLoader');
+					// this.runOnce = false;
+					console.log('START LOADING SHELVES');
 					await this.$store.dispatch('store/getShelves', {
 						storeId: this.storeId,
 						offset: this.shelvesOffset,
 					});
 					await this.loadImages();
+					this.$refs.fullpage.build();
+					console.log('DONE LOADING SHELVES');
 				} catch (err) {}
 			}
 		},
 	},
 	created() {},
-	mounted() {
+	async mounted() {
 		this.$store.commit('toggleLoader');
-		this.loadImages();
-		setTimeout(() => {
-			console.log('activeShelfIndex', this.activeShelfIndex);
-		}, 1000);
+		console.log('load images');
+		await this.loadImages();
+		console.log('load images done');
+		// this.$store.commit('toggleLoader');
+		this.$refs.fullpage.build();
 	},
 	beforeDestroy() {
 		// this.feedOptions.dragAndMove = false;
@@ -180,15 +184,18 @@ export default {
 							// ) {
 							// 	this.$store.commit('toggleLoader');
 							// }
-						}
-						setTimeout(() => {
-							if (!this.runOnce) {
-								this.$store.commit('toggleLoader');
-								this.runOnce = true;
+							if (shelfIndex === 2) {
+								setTimeout(() => {
+									if (!this.runOnce) {
+										this.$store.commit('toggleLoader');
+										this.runOnce = true;
+									}
+								}, 900);
 							}
-						}, 900);
+						}
+
 						console.log('building fullpage');
-						this.$refs.fullpage.build();
+						// this.$refs.fullpage.build();
 
 						console.log('moreAssetsToLoad', moreAssetsToLoad);
 						currentAssetsOffset += this.assetsPerLoad;

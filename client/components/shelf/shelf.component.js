@@ -238,5 +238,12 @@ export default {
 
 			// fullpage_api.moveTo(this.shelfIndex + 1, 0);
 		},
+		getImage(asset) {
+			// [asset.loaded ? backgroundImage: 'url(' + image + ')' }
+			let img = 'url(';
+			img += asset.loaded ? this.assetsPath + asset.src : '';
+			img += ')';
+			return img;
+		},
 	},
 };
