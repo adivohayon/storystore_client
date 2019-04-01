@@ -91,7 +91,6 @@ export const actions = {
 			const { shelves, pagination } = await this.$axios.$get(
 				`stores/${store.id}/shelves?limit=15`
 			);
-			console.log('shelves', pagination);
 			// console.log(useMockData, store.shelves);
 			// const store = await this.$axios.$get(`stores/${storeSlug}`);
 			// console.log('store - usemocks: ' + useMockData, store);

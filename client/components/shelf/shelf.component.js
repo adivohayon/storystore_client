@@ -72,14 +72,21 @@ export default {
 			path += `${this.storeSlug}/logo_${this.storeSlug}_white.png`;
 			return path;
 		},
-		variantImages() {
-			const images = _get(this.variant, 'assets', []);
+		variantAssets() {
+			const assets = _get(this.variant, 'assets', []);
+			return assets.map(asset =>
+				asset.loaded ? this.assetsPath + asset.src : ''
+			);
+			// let img = 'url(';
+			// img += asset.loaded ? this.assetsPath + asset.src : '';
+			// img += ')';
+			// return img;
 
-			return images
-				.filter(asset => asset.loaded)
-				.map(asset => {
-					return this.assetsPath + asset.src;
-				});
+			// return images
+			// 	.filter(asset => asset.loaded)
+			// 	.map(asset => {
+			// 		return this.assetsPath + asset.src;
+			// 	});
 		},
 		variantProperties() {
 			const properties = {};

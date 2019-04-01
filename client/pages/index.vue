@@ -63,7 +63,7 @@ export default {
 				slidesNavigation: true,
 				onLeave: _debounce(async (origin, destination) => {
 					this.activeShelfIndex = destination.index;
-				}, 100),
+				}, 10),
 			},
 			runOnce: false,
 			orderQuery: null,
@@ -98,7 +98,7 @@ export default {
 	watch: {
 		activeShelfIndex: async function(index) {
 			console.log(index, this.shelvesOffset - 2);
-			if (index > 0 && index === this.shelvesOffset - 2) {
+			if (index > 0 && index === this.shelvesOffset - 5) {
 				try {
 					// this.$store.commit('toggleLoader');
 					// this.runOnce = false;
@@ -107,10 +107,12 @@ export default {
 						storeId: this.storeId,
 						offset: this.shelvesOffset,
 					});
+					this.$refs.fullpage.build();
 					await this.loadImages();
-					setTimeout(() => {
-						this.$refs.fullpage.build();
-					}, 200);
+
+					// setTimeout(() => {
+					// 	this.$refs.fullpage.build();
+					// }, 200);
 					console.log('DONE LOADING SHELVES');
 				} catch (err) {}
 			}
@@ -122,7 +124,9 @@ export default {
 		console.log('load images');
 		await this.loadImages();
 		console.log('load images done');
+
 		// this.$store.commit('toggleLoader');
+		console.log('building fullpage');
 		this.$refs.fullpage.build();
 	},
 	beforeDestroy() {
@@ -135,86 +139,71 @@ export default {
 	methods: {
 		loadImages() {
 			return new Promise(async (resolve, reject) => {
-				const shelves = this.shelves;
 				try {
-					let moreAssetsToLoad = true;
-					let currentAssetsOffset = 0;
-					let test = -1;
+					const numberOfAssetsOnFirstRun = 2;
 
-					while (moreAssetsToLoad) {
-						// in each loop we load two assets in the first variation of each shelf
-						for (const [shelfIndex, shelf] of shelves.entries()) {
-							// get assets not yet loaded
-							const assets = shelf.variations[0].assets.filter(
-								asset => !asset.loaded
-							);
-							// if not assets left to load, continue
-							if (!assets || !assets.length) {
-								moreAssetsToLoad = false;
-								continue;
-							}
-
-							moreAssetsToLoad = true;
-							// preload two assets
-							for (
-								let i = currentAssetsOffset;
-								i < currentAssetsOffset + this.assetsPerLoad;
-								i++
-							) {
-								if (assets[i] && assets[i].src) {
-									const image = new Image();
-									// console.log('image', assets[i].src);
-									image.src = this.assetsPath + assets[i].src;
-									await this.imageLoadedPromise(image);
-
-									this.$store.commit('store/updateShelfAssetLoaded', {
+					const firstRunAssets = this.shelves.reduce(
+						(assetsToLoad, shelf, shelfIndex) => {
+							assetsToLoad.push(
+								...shelf.variations[0].assets
+									.filter(asset => !asset.loaded)
+									.slice(0, numberOfAssetsOnFirstRun)
+									.map((asset, assetIndex) => ({
+										...asset,
 										shelfIndex,
-										variationIndex: 0,
-										assetIndex: i,
-										loaded: true,
-									});
-								} else {
-									moreAssetsToLoad = false;
-									continue;
-								}
-							}
-							// this.$refs.fullpage.destroy('all');
+										index: assetIndex,
+									}))
+							);
+							return assetsToLoad;
+						},
+						[]
+					);
 
-							// if (
-							// 	fullpage_api.getActiveSection().index === shelfIndex &&
-							// 	currentAssetsOffset < this.assetsPerLoad
-							// ) {
-							// 	this.$store.commit('toggleLoader');
-							// }
-							if (shelfIndex === 1) {
-								setTimeout(() => {
-									if (!this.runOnce) {
-										this.$store.commit('toggleLoader');
-										this.runOnce = true;
-									}
-								}, 900);
-							}
-						}
-
-						console.log('building fullpage');
-						// this.$refs.fullpage.build();
-
-						console.log('moreAssetsToLoad', moreAssetsToLoad);
-						currentAssetsOffset += this.assetsPerLoad;
-
-						resolve();
-						// this.$refs.fullpage.build();
-						// moreAssetsToLoad = false;
+					for (const [assetIndex, asset] of firstRunAssets.entries()) {
+						await this.imageLoadedPromise(asset);
 					}
+
+					this.$store.commit('toggleLoader', false);
+
+					const restOfAssets = this.shelves.reduce(
+						(assetsToLoad, shelf, shelfIndex) => {
+							assetsToLoad.push(
+								...shelf.variations[0].assets
+									.filter(asset => !asset.loaded)
+									.map((asset, assetIndex) => ({
+										...asset,
+										shelfIndex,
+										index: assetIndex + numberOfAssetsOnFirstRun,
+									}))
+							);
+							return assetsToLoad;
+						},
+						[]
+					);
+
+					for (const [assetIndex, asset] of restOfAssets.entries()) {
+						await this.imageLoadedPromise(asset);
+					}
+
+					resolve();
 				} catch (err) {
 					console.error(err);
 					reject(err);
 				}
 			});
 		},
-		imageLoadedPromise(imageObj) {
+		imageLoadedPromise(asset) {
 			return new Promise((resolve, reject) => {
-				imageObj.onload = e => {
+				const image = new Image();
+				image.src = this.assetsPath + asset.src;
+				console.log('assetIndex', asset);
+				image.onload = e => {
+					this.$store.commit('store/updateShelfAssetLoaded', {
+						shelfIndex: asset.shelfIndex,
+						variationIndex: 0,
+						assetIndex: asset.index,
+						loaded: true,
+					});
 					resolve(e);
 				};
 			});
