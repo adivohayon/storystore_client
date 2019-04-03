@@ -157,14 +157,6 @@ export default {
 		this.initializeSelectedAttributes();
 		this.initializeSelectedProperty();
 	},
-	watch: {
-		// variantImages: function(newVal) {
-		// 	// console.log('newVal', newVal);
-		// 	if (newVal.length > 0) {
-		// 		this.$emit('rebuild-fullpage', { shelfIndex: this.shelfIndex });
-		// 	}
-		// },
-	},
 	mounted() {},
 	methods: {
 		initializeVariation() {
@@ -231,10 +223,8 @@ export default {
 				// 	// console.log('image', assets[i].src);
 
 				// }
-				// fullpage_api.reBuild();
-				// this.fullpage.build();
-				// this.$refs.fullpage.build();
-				this.$emit('rebuild-fullpage', { shelfIndex: this.shelfIndex });
+
+				this.$emit('rebuild-fullpage', { activeSlideIndex: 0 });
 				// fullpage_api.silentMoveTo(this.shelfIndex + 1, 0);
 			} else {
 				this.selectedAttributes[attKey] = {

@@ -54,7 +54,7 @@ export default {
 			fixerClass: '',
 			feedOptions: {
 				sectionSelector: '.shelf',
-				// slideSelector: '.shelf-content',
+				slideSelector: '.slide',
 				autoScrolling: true,
 				licenseKey: '45154D42-6F8E4ACE-AB31A7B3-11A8CE75',
 				dragAndMoveKey: 'c3RvcnlzdG9yZS5jby5pbF9ZSTBaSEpoWjBGdVpFMXZkbVU9YjYy',
@@ -63,7 +63,7 @@ export default {
 				slidesNavigation: true,
 				onLeave: _debounce(async (origin, destination) => {
 					this.activeShelfIndex = destination.index;
-				}, 10),
+				}, 1000),
 			},
 			runOnce: false,
 			orderQuery: null,
@@ -97,22 +97,19 @@ export default {
 	},
 	watch: {
 		activeShelfIndex: async function(index) {
-			console.log(index, this.shelvesOffset - 2);
-			if (index > 0 && index === this.shelvesOffset - 3) {
+			console.log(index, this.shelvesOffset - 3);
+			if (index > 0 && index > this.shelvesOffset - 3) {
 				try {
-					// this.$store.commit('toggleLoader');
-					// this.runOnce = false;
 					console.log('START LOADING SHELVES');
 					await this.$store.dispatch('store/getShelves', {
 						storeId: this.storeId,
 						offset: this.shelvesOffset,
 					});
-					this.$refs.fullpage.build();
+					// this.$emit('rebuild-fullpage', { shelfIndex: this.shelfIndex });
+					await this.rebuildFullpage({});
+
 					await this.loadImages();
 
-					// setTimeout(() => {
-					// 	this.$refs.fullpage.build();
-					// }, 200);
 					console.log('DONE LOADING SHELVES');
 				} catch (err) {}
 			}
@@ -121,13 +118,11 @@ export default {
 	created() {},
 	async mounted() {
 		this.$store.commit('toggleLoader');
-		console.log('load images');
 		await this.loadImages();
-		console.log('load images done');
 
 		// this.$store.commit('toggleLoader');
-		console.log('building fullpage');
-		this.$refs.fullpage.build();
+
+		// this.$emit('rebuild-fullpage', { shelfIndex: this.shelfIndex });
 	},
 	beforeDestroy() {
 		// this.feedOptions.dragAndMove = false;
@@ -139,6 +134,7 @@ export default {
 	methods: {
 		loadImages() {
 			return new Promise(async (resolve, reject) => {
+				console.log('load images');
 				try {
 					const numberOfAssetsOnFirstRun = 2;
 
@@ -184,10 +180,10 @@ export default {
 					for (const [assetIndex, asset] of restOfAssets.entries()) {
 						await this.imageLoadedPromise(asset);
 					}
-
+					console.log('load images done');
 					resolve();
 				} catch (err) {
-					console.error(err);
+					console.error('load images failed', err);
 					reject(err);
 				}
 			});
@@ -196,7 +192,6 @@ export default {
 			return new Promise((resolve, reject) => {
 				const image = new Image();
 				image.src = this.assetsPath + asset.src;
-				console.log('assetIndex', asset);
 				image.onload = e => {
 					this.$store.commit('store/updateShelfAssetLoaded', {
 						shelfIndex: asset.shelfIndex,
@@ -208,12 +203,97 @@ export default {
 				};
 			});
 		},
-		rebuildFullpage({ shelfIndex }) {
-			setTimeout(() => {
-				console.log('building fullpage - event');
-				this.$refs.fullpage.build();
-				// this.$refs.fullpage.shelfIndex;
-			}, 50);
+		rebuildFullpage({ activeSectionIndex = -1, activeSlideIndex = -1 }) {
+			// console.log('test', activeSectionIndex);
+			// if (!activeSe)
+			return new Promise((resolve, reject) => {
+				try {
+					console.log('STARTING rebuildFullpage');
+					const sectionSelector =
+						this.feedOptions.sectionSelector || '.section';
+
+					const slideSelector = this.feedOptions.slideSelector || '.slide';
+					let activeSlide = document.querySelector(
+						this.feedOptions.sectionSelector +
+							'.active ' +
+							this.feedOptions.slideSelector +
+							'.active'
+					);
+
+					// Get activeSectionIndex if none was provided
+
+					if (activeSectionIndex === -1) {
+						activeSectionIndex = fp_utils.index(
+							document.querySelector(
+								this.feedOptions.sectionSelector + '.active'
+							)
+						);
+					}
+
+					if (activeSlideIndex === -1) {
+						const activeSlideSelector =
+							this.feedOptions.sectionSelector +
+							'.active ' +
+							this.feedOptions.slideSelector +
+							'.active';
+						activeSlideIndex = fp_utils.index(
+							document.querySelector(activeSlideSelector)
+						);
+					}
+					// if (activeSlideIndex === -1 && activeSlide === -1) {
+					// 	activeSlideIndex = activeSlide ? fp_utils.index(activeSlide) : 0;
+					// }
+
+					console.log('activeSectionIndex', activeSectionIndex);
+					console.log('activeSlideIndex', activeSlideIndex);
+					// console.log('sectionSelector', sectionSelector);
+
+					// Destroy
+					this.$refs.fullpage.destroy();
+
+					// console.log('activeSectionIndex', activeSectionIndex);
+					// Restore active section class
+					if (activeSectionIndex > -1) {
+						fp_utils.addClass(
+							document.querySelectorAll(sectionSelector)[activeSectionIndex],
+							'active'
+						);
+					}
+
+					// Restore active slide class
+					if (activeSlideIndex > -1) {
+						fp_utils.addClass(
+							document.querySelectorAll(`${sectionSelector} ${slideSelector}`)[
+								activeSlideIndex
+							],
+							'active'
+						);
+					}
+
+					this.$refs.fullpage.init();
+					console.log('DONE rebuildFullpage');
+					resolve();
+				} catch (err) {
+					console.error(err);
+					reject(err);
+				}
+			});
+
+			// setTimeout(() => {
+			// 	console.log('doing init');
+			// 	this.$refs.fullpage.init();
+			// }, 1500);
+
+			// 	const prevIndex = this.activeShelfIndex;
+			// 	console.log('activeShelfIndex', this.activeShelfIndex);
+			// 	setTimeout(() => {
+			// 		console.log('building fullpage');
+			// 		// this.$refs.fullpage.build();
+			// 		this.$refs.fullpage.destroy();
+			// 		// this.$refs.fullpage.init();
+			// 		this.$refs.fullpage.silentMoveTo(prevIndex, 0);
+			// 		// console.log('test', this.$refs.fullpage);
+			// 	}, 50);
 		},
 	},
 };
