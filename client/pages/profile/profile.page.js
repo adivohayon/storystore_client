@@ -65,9 +65,7 @@ export default {
 		}),
 	},
 	created() {},
-	mounted() {
-		// window.fullpage_api.reBuild();
-	},
+	mounted() {},
 	methods: {
 		updateSelectedTabIndex(index) {
 			this.selectedTabIndex = index;

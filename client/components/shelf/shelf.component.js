@@ -8,6 +8,7 @@ import SizePicker from './../size-picker';
 import AddToCart from './../add-to-cart';
 import ShelfTitle from './../shelf-title';
 import ShelfInfo from './../shelf-info';
+import Loader from './../loader';
 import VideoPlayer from './../video-player';
 import AttributePicker from './../attribute-picker';
 import { removeDuplicates } from '@/helpers/collection.helpers';
@@ -22,6 +23,7 @@ export default {
 		ShelfInfo,
 		VideoPlayer,
 		AttributePicker,
+		Loader,
 	},
 	props: {
 		shelf: {
@@ -61,7 +63,7 @@ export default {
 		},
 		assetsPath() {
 			let path = process.env.staticDir ? process.env.staticDir : '/';
-			path += `${this.storeSlug}/${this.shelf.slug}/${this.variant.slug}/`;
+			path += `${this.storeSlug}/`;
 
 			return path;
 		},
@@ -70,11 +72,21 @@ export default {
 			path += `${this.storeSlug}/logo_${this.storeSlug}_white.png`;
 			return path;
 		},
-		variantImages() {
-			const images = _get(this.variant, 'assets', []);
-			return images.map(imageName => {
-				return this.assetsPath + imageName;
-			});
+		variantAssets() {
+			const assets = _get(this.variant, 'assets', []);
+			return assets.map(asset =>
+				asset.loaded ? this.assetsPath + asset.src : ''
+			);
+			// let img = 'url(';
+			// img += asset.loaded ? this.assetsPath + asset.src : '';
+			// img += ')';
+			// return img;
+
+			// return images
+			// 	.filter(asset => asset.loaded)
+			// 	.map(asset => {
+			// 		return this.assetsPath + asset.src;
+			// 	});
 		},
 		variantProperties() {
 			const properties = {};
@@ -194,10 +206,25 @@ export default {
 					itemPropertyLabel: this.variantProperties[attKey].label,
 				};
 				this.selectedVariationId = att.variationId;
-				// fullpage_api.reBuild();
-				// this.fullpage.build();
-				// this.$refs.fullpage.build();
-				// this.$emit('rebuild-fullpage', { shelfIndex: this.shelfIndex });
+
+				// Load images
+				this.variant.assets.forEach((asset, assetIndex) => {
+					const variationIndex = this.shelf.variations.findIndex(
+						variation => variation.variationId === this.variant.variationId
+					);
+					this.$store.commit('store/updateShelfAssetLoaded', {
+						shelfIndex: this.shelfIndex,
+						variationIndex,
+						assetIndex,
+						loaded: true,
+					});
+				});
+				// if (this.variant.assets[i] && assets[i].src) {
+				// 	// console.log('image', assets[i].src);
+
+				// }
+
+				this.$emit('rebuild-fullpage', { activeSlideIndex: 0 });
 				// fullpage_api.silentMoveTo(this.shelfIndex + 1, 0);
 			} else {
 				this.selectedAttributes[attKey] = {
@@ -207,6 +234,13 @@ export default {
 			}
 
 			// fullpage_api.moveTo(this.shelfIndex + 1, 0);
+		},
+		getImage(asset) {
+			// [asset.loaded ? backgroundImage: 'url(' + image + ')' }
+			let img = 'url(';
+			img += asset.loaded ? this.assetsPath + asset.src : '';
+			img += ')';
+			return img;
 		},
 	},
 };

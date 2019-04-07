@@ -3,13 +3,26 @@ import { required, numeric, email } from 'vuelidate/lib/validators';
 import { getSlugFromHost } from '@/helpers/async-data.helpers';
 import { checkRule } from '@/helpers/rules.helpers';
 export default {
-	components: {},
 	async asyncData({ req }) {
 		const host = process.server ? req.headers.host : window.location.hostname;
 		const storeSlug = getSlugFromHost(host);
 
 		return {
 			storeSlug,
+		};
+	},
+	layout(ctx) {
+		return ctx.app.isMobile ? 'mobile' : 'desktop';
+	},
+	head() {
+		const storeSlug = this.$store.state.store.slug;
+		const faviconPath =
+			process.env.staticDir + storeSlug + `/${storeSlug}_favicon.png`;
+
+		return {
+			title:
+				this.$store.state.store.name + ' - ' + this.$store.state.store.tagline,
+			link: [{ rel: 'icon', href: faviconPath }],
 		};
 	},
 	data() {
@@ -94,6 +107,10 @@ export default {
 		setTimeout(() => {
 			this.selectedShipping = this.shippingOptions[0];
 		}, 50);
+
+		// start checkout
+		// this.$emit('toggle-loader', {});
+		// this.$store.commit('toggleLoader');
 	},
 	computed: {
 		items() {

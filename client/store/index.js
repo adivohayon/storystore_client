@@ -1,5 +1,16 @@
 import { getSlugFromHost } from '@/helpers/async-data.helpers';
-
+export const state = () => ({
+	showLoader: false,
+});
+export const mutations = {
+	toggleLoader(state, toggle) {
+		if (typeof toggle === 'boolean') {
+			state.showLoader = toggle;
+		} else {
+			state.showLoader = !state.showLoader;
+		}
+	},
+};
 export const actions = {
 	async nuxtServerInit({ dispatch }, { req, redirect, error, route }) {
 		const host = process.server ? req.headers.host : window.location.hostname;

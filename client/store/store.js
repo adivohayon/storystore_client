@@ -8,6 +8,7 @@ Vue.use(Vuex);
 
 export const state = () => ({
 	shelves: [],
+	pagination: {},
 	// slug: null,
 });
 
@@ -35,6 +36,21 @@ export const mutations = {
 		Vue.set(state, 'about', store.about);
 		Vue.set(state, 'tagline', store.tagline);
 		Vue.set(state, 'returns', store.returns);
+	},
+	updateShelfAssetLoaded(
+		state,
+		{ shelfIndex, variationIndex, assetIndex, loaded }
+	) {
+		// Vue.set(state, ['shelves'])
+		state.shelves[shelfIndex].variations[variationIndex].assets[
+			assetIndex
+		].loaded = loaded;
+	},
+	setPagination(state, pagination) {
+		Vue.set(state, 'pagination', pagination);
+	},
+	appendShelves(state, shelves) {
+		state.shelves.push(...shelves);
 	},
 };
 
@@ -72,11 +88,15 @@ export const actions = {
 				store = await this.$axios.$get(`stores/${storeSlug}`);
 			}
 
+			const { shelves, pagination } = await this.$axios.$get(
+				`stores/${store.id}/shelves?limit=3`
+			);
 			// console.log(useMockData, store.shelves);
 			// const store = await this.$axios.$get(`stores/${storeSlug}`);
 			// console.log('store - usemocks: ' + useMockData, store);
-			if (store) {
-				commit('populateShelves', store.shelves);
+			if (store && shelves && pagination) {
+				commit('setPagination', pagination);
+				commit('populateShelves', shelves);
 				commit('populateStore', store);
 				return true;
 			}
@@ -87,7 +107,25 @@ export const actions = {
 			return false;
 		}
 	},
-
+	getShelves({ state, commit }, { storeId, offset }) {
+		return new Promise(async (resolve, reject) => {
+			try {
+				const { shelves, pagination } = await this.$axios.$get(
+					`stores/${storeId}/shelves?offset=${offset}&limit=10`
+				);
+				console.log('shelves', shelves);
+				// const previousShelves = state.shelves;
+				if (shelves && pagination) {
+					commit('setPagination', pagination);
+					commit('appendShelves', shelves);
+				}
+				resolve();
+			} catch (err) {
+				console.error(err);
+				reject(err);
+			}
+		});
+	},
 	// async getShelves({ commit }, storeSlug) {
 	// 	try {
 	// 		console.log('USE_MOCK_DATA', useMockData);

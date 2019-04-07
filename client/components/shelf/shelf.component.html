@@ -4,14 +4,15 @@
 			<nuxt-link to="/profile">
 				<img :src="logoSrc" :alt="`${storeSlug} Logo`" />
 			</nuxt-link>
+			
 		</div>
 		<div v-if="variantVideo" class="slide" :style="{ position: 'relative' }">
 			<video-player :source="variantVideo.value"></video-player>
 		</div>
 		<div
 			class="slide"
-			v-for="(image, index) in variantImages"
-			:style="{ backgroundImage: 'url(' + image + ')' }"
+			v-for="(asset, index) in variantAssets"
+			:style="{ backgroundImage: 'url(' + asset + ')' }"
 		></div>
 	</section>
 	<aside class="shelf-buttons">

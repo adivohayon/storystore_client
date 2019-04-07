@@ -1,5 +1,6 @@
 <template>
 	<div>
+		<loader v-if="showLoader"></loader>
 		<!-- <no-ssr> -->
 		<!-- <full-page
 				v-if="hasShelves"
@@ -17,8 +18,11 @@
 <script>
 import '@/icons';
 import { mapState } from 'vuex';
-
+import Loader from './../components/loader';
 export default {
+	components: {
+		Loader,
+	},
 	data() {
 		return {
 			// feedOptions: {
@@ -38,6 +42,9 @@ export default {
 		};
 	},
 	computed: {
+		showLoader() {
+			return this.$store.state.showLoader;
+		},
 		// hasShelves() {
 		// 	return (
 		// 		this.$store.state.store.shelves &&
@@ -49,8 +56,15 @@ export default {
 	mounted() {
 		console.log('$$$orderQuery', this.$route.query.order);
 		this.orderQuery = this.$route.query.order;
+		this.$on('toggle-loader', () => {
+			console.log('loader toggled');
+		});
 	},
-	methods: {},
+	methods: {
+		test() {
+			console.log('test');
+		},
+	},
 };
 </script>
 

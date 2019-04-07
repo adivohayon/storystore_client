@@ -41,7 +41,7 @@ export default {
 		assetsPath() {
 			let path = process.env.staticDir ? process.env.staticDir : '/';
 			if (process.env.staticDir) {
-				path += `${this.storeSlug}/${this.shelf.slug}/${this.variant.slug}/`;
+				path += `${this.storeSlug}/`;
 			}
 
 			return path;
@@ -62,7 +62,7 @@ export default {
 			// 		return variant.attributes.size;
 			// 	}
 			// });
-			const imageName = this.variant.assets[0];
+			const imageName = this.variant.assets[0].src;
 			const image = this.assetsPath + imageName;
 			// const image = `https://assets.storystore.co.il/${this.storeSlug}/${
 			// 	this.shelf.slug
@@ -107,12 +107,12 @@ export default {
 			// console.log('this.ga', this.$ga);
 			item.storeSlug = this.storeSlug;
 
-			this.$ga.event({
-				eventCategory: 'category',
-				eventAction: 'add-to-cart',
-				eventLabel: 'item',
-				eventValue: JSON.stringify(item),
-			});
+			// this.$ga.event({
+			// 	eventCategory: 'category',
+			// 	eventAction: 'add-to-cart',
+			// 	eventLabel: 'item',
+			// 	eventValue: JSON.stringify(item),
+			// });
 		},
 	},
 };
