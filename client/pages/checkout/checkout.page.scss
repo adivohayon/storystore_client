@@ -22,25 +22,33 @@
 		}
 	}
 	&__cart {
-		background: #ffffff;
+		// background: #ffffff;
 		margin-top: 0.6rem;
-		padding: 1.8rem;
-		&--header {
-			display: flex;
-			h4 {
-				font-size: 1.1rem;
-				font-weight: bold;
-				flex: 1;
-			}
+		// &--header {
+		// 	display: flex;
+		// 	h4 {
+		// 		font-size: 1.1rem;
+		// 		font-weight: bold;
+		// 		flex: 1;
+		// 	}
+		// }
+		h4 {
+			font-size: 1.1rem;
+			font-weight: bold;
+			flex: 1;
+			padding: 1rem 1.8rem;
 		}
 		&--link {
 			text-decoration: none;
 			color: inherit;
 			font-size: 0.9rem;
 			letter-spacing: 1px;
+			position: absolute;
+			left: 1rem;
 		}
 		&--images {
-			margin-top: 1rem;
+			background: #fff;
+			padding: 1rem;
 			img {
 				margin-top: 0.5rem;
 				border: 1px solid #d6d6d6;
@@ -55,14 +63,58 @@
 			flex: 1;
 			padding: 1rem 1.8rem;
 		}
-		&--container {
-			// background: #ffffff;
-			// padding: 0.5rem 0.8rem;
-		}
 	}
 	&__form {
 		display: flex;
 		flex-direction: column;
+		&--section {
+			background: #ffffff;
+		}
+		&--container {
+			display: flex;
+			&#border-bottom {
+				border-bottom: 1px solid #cacaca;
+			}
+		}
+		&--input {
+			flex: 1;
+			min-height: 3rem;
+			padding-right: 1rem;
+			font-size: 1.2rem;
+			width: 100%;
+			border-radius: 0;
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			// border: 0;
+			outline: 0;
+			border-top: 1px solid #cacaca;
+			border-bottom: 0;
+			border-left: 0;
+			border-right: 0;
+			&#border-left {
+				border-left: 1px solid #cacaca;
+			}
+			&#border-bottom {
+				border-bottom: 1px solid #cacaca;
+			}
+			&::placeholder {
+				color: #cacaca;
+				font-size: 1.1rem;
+			}
+			// color: #535353;
+			// font-size: 1rem;
+			// font-size: 16px;
+			// border-radius: 0;
+			// background: transparent;
+			// border-bottom: 1px solid #979797;
+			&.error::placeholder {
+				color: #c61e42;
+
+				// border-color: #c61e42;
+				// font-size: 16px;
+			}
+		}
 		&--item {
 			display: flex;
 			flex-direction: column;
@@ -79,21 +131,6 @@
 			font-size: 1rem;
 			font-weight: bold;
 			margin-top: 0.5rem;
-		}
-		&--input {
-			color: #535353;
-			// font-size: 1rem;
-			font-size: 16px;
-			border-radius: 0;
-			border: 0;
-			outline: 0;
-			background: transparent;
-			border-bottom: 1px solid #979797;
-			min-height: 3rem;
-			&.error {
-				border-color: #c61e42;
-				font-size: 16px;
-			}
 		}
 	}
 	&__shipping {

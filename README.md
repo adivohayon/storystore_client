@@ -46,4 +46,4 @@ For detailed explanation on how things work, checkout [Nuxt.js docs](https://nux
 aws s3 sync ./client/static s3://storystore-api/ --exclude ".DS_STORE" --delete
 
 # Register new store in production
-http://store_slug.storystore.co.il/register
+http://store_slug .storystore.co.il/register
