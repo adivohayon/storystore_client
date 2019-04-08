@@ -1,6 +1,7 @@
 import { mapState } from 'vuex';
 
 import _get from 'lodash/get';
+import _orderBy from 'lodash.orderby';
 // import _isEmpty from 'lodash.isempty';
 import ShelfContent from './../shelf-content';
 import ColorPicker from './../color-picker';
@@ -49,6 +50,7 @@ export default {
 			selectedAttributes: {},
 			showShelfInfo: false,
 			selectedProperty: {},
+			alreadySwiped: false,
 			// variant: null,
 		};
 	},
@@ -151,6 +153,10 @@ export default {
 				variant => variant.variationId === this.selectedVariationId
 			);
 		},
+		sortedVariations() {
+			return _orderBy(this.shelf.variations, ['variation_order'], ['asc']);
+			return this.shelf.variation;
+		},
 	},
 	created() {
 		this.initializeVariation();
@@ -159,6 +165,10 @@ export default {
 	},
 	mounted() {},
 	methods: {
+		swipeDown() {
+			this.alreadySwiped = true;
+			fullpage_api.moveSectionDown();
+		},
 		initializeVariation() {
 			this.selectedVariationId = this.shelf.variations[0].variationId;
 		},
@@ -223,8 +233,9 @@ export default {
 				// 	// console.log('image', assets[i].src);
 
 				// }
-
-				this.$emit('rebuild-fullpage', { activeSlideIndex: 0 });
+				setTimeout(() => {
+					this.$emit('rebuild-fullpage', { activeSlideIndex: 0 });
+				}, 3500);
 				// fullpage_api.silentMoveTo(this.shelfIndex + 1, 0);
 			} else {
 				this.selectedAttributes[attKey] = {

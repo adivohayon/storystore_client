@@ -32,7 +32,9 @@ export default {
 		},
 	},
 	data() {
-		return {};
+		return {
+			added: false,
+		};
 	},
 	computed: {
 		storeSlug() {
@@ -53,6 +55,10 @@ export default {
 	},
 	methods: {
 		async addToCart(shelf, selectedAttributes, selectedProperty) {
+			if (this.added) {
+				this.$router.replace('/checkout');
+			}
+
 			setTimeout(function() {
 				let el = document.querySelector(':focus');
 				if (el) el.blur();
@@ -104,9 +110,19 @@ export default {
 				storeSlug: this.storeSlug,
 			});
 
+			if (typeof fbq !== 'undefined' && fbq) {
+				fbq('track', 'AddToCart', {
+					content_name: `${this.shelf.name} - ${this.variant.property_label}`,
+					content_category: this.storeSlug,
+					content_ids: [this.variant.variationId],
+					content_type: 'product',
+					value: this.variant.finalPrice,
+					currency: this.variant.currency,
+				});
+			}
 			// console.log('this.ga', this.$ga);
 			item.storeSlug = this.storeSlug;
-
+			this.added = true;
 			// this.$ga.event({
 			// 	eventCategory: 'category',
 			// 	eventAction: 'add-to-cart',

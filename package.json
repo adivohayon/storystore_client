@@ -35,6 +35,8 @@
 		"lodash.debounce": "^4.0.8",
 		"lodash.get": "^4.4.2",
 		"lodash.isempty": "^4.4.0",
+		"lodash.orderby": "^4.6.0",
+		"lodash.throttle": "^4.1.1",
 		"nodemailer": "^5.1.1",
 		"nuxt": "^2.3.1",
 		"nuxt-sass-resources-loader": "^2.0.5",

@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<loader v-if="showLoader"></loader>
+		<loader v-if="showLoader" :hide-elements="hideLoaderElements"></loader>
 		<!-- <no-ssr> -->
 		<!-- <full-page
 				v-if="hasShelves"
@@ -43,7 +43,10 @@ export default {
 	},
 	computed: {
 		showLoader() {
-			return this.$store.state.showLoader;
+			return this.$store.state.loader.show;
+		},
+		hideLoaderElements() {
+			return this.$store.state.loader.hideElements;
 		},
 		// hasShelves() {
 		// 	return (
@@ -56,9 +59,9 @@ export default {
 	mounted() {
 		console.log('$$$orderQuery', this.$route.query.order);
 		this.orderQuery = this.$route.query.order;
-		this.$on('toggle-loader', () => {
-			console.log('loader toggled');
-		});
+		// this.$on('toggle-loader', () => {
+		// 	console.log('loader toggled');
+		// });
 	},
 	methods: {
 		test() {

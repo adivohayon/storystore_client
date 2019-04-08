@@ -1,7 +1,11 @@
 export default {
 	name: 'loader',
 	components: {},
-	props: [],
+	props: {
+		hideElements: {
+			type: Boolean,
+		},
+	},
 	data() {
 		return {};
 	},

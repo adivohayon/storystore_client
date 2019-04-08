@@ -1,8 +1,9 @@
 <div class="add-to-cart">
 	<button
 		class="btn btn--add-to-cart"
+		:class="{'checkout': added}"
 		@touchend="addToCart(shelf, selectedAttributes, selectedProperty)"
 	>
-		הוספה לסל
+		{{ added ? 'לתשלום' : 'הוספה לסל' }}
 	</button>
 </div>

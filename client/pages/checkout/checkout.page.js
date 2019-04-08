@@ -2,6 +2,8 @@ import _get from 'lodash/get';
 import { required, numeric, email } from 'vuelidate/lib/validators';
 import { getSlugFromHost } from '@/helpers/async-data.helpers';
 import { checkRule } from '@/helpers/rules.helpers';
+import { pageHeadMixin } from '@/helpers/mixins';
+
 export default {
 	async asyncData({ req }) {
 		const host = process.server ? req.headers.host : window.location.hostname;
@@ -11,19 +13,9 @@ export default {
 			storeSlug,
 		};
 	},
+	mixins: [pageHeadMixin],
 	layout(ctx) {
 		return ctx.app.isMobile ? 'mobile' : 'desktop';
-	},
-	head() {
-		const storeSlug = this.$store.state.store.slug;
-		const faviconPath =
-			process.env.staticDir + storeSlug + `/${storeSlug}_favicon.png`;
-
-		return {
-			title:
-				this.$store.state.store.name + ' - ' + this.$store.state.store.tagline,
-			link: [{ rel: 'icon', href: faviconPath }],
-		};
 	},
 	data() {
 		return {
@@ -41,8 +33,16 @@ export default {
 				submitStatus: null,
 			},
 			selectedShipping: {},
+			firstUpdate: true,
 		};
 	},
+	// watch: {
+	// 	items: newVal => {
+	// 		if (newVal.length > 0) {
+
+	// 		}
+	// 	},
+	// },
 	validations: {
 		order: {
 			firstName: {
@@ -81,6 +81,31 @@ export default {
 				numeric,
 			},
 		},
+	},
+	updated() {
+		if (
+			typeof fbq !== 'undefined' &&
+			fbq &&
+			this.items.length > 0 &&
+			this.total > 0 &&
+			this.storeSlug &&
+			this.firstUpdate
+		) {
+			const initiateCheckoutValues = {
+				content_category: this.storeSlug,
+				content_ids: this.items.map(item => item.variationId),
+				contents: this.items.map(item => ({
+					id: item.variationId,
+					quantity: item.quantity,
+				})),
+				currency: this.currency,
+				num_items: this.items.length,
+				value: this.total,
+			};
+
+			fbq('track', 'InitiateCheckout', initiateCheckoutValues);
+			this.firstUpdate = false;
+		}
 	},
 	mounted() {
 		if (process.env.mockCheckout) {
@@ -215,15 +240,27 @@ export default {
 					});
 					// return;
 					this.selectedShipping.id = -1;
-					const resp = await this.$axios.$post(`order`, {
-						customer,
-						items,
-						shipping: this.selectedShipping,
-					});
+					// const resp = await this.$axios.$post(`order`, {
+					// 	customer,
+					// 	items,
+					// 	shipping: this.selectedShipping,
+					// });
 
-					if (!resp.url || resp.url === '') {
-						throw new Error('URL returned from API is empty');
-					}
+					// if (!resp.url || resp.url === '') {
+					// 	throw new Error('URL returned from API is empty');
+					// }
+
+					localStorage.setItem(
+						'lastPurchase',
+						JSON.stringify({
+							currency: this.currency,
+							items: this.items,
+							subtotal: this.subtotal,
+							total: this.total,
+							selectedShipping: this.selectedShipping,
+						})
+					);
+
 					window.location.href = resp.url;
 					this.submitStatus = 'PENDING';
 					setTimeout(() => {

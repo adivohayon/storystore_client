@@ -3,7 +3,7 @@ import { removeDuplicates } from '@/helpers/collection.helpers';
 import _get from 'lodash/get';
 import Vue from 'vue';
 import Vuex from 'vuex';
-
+import _orderBy from 'lodash.orderby';
 Vue.use(Vuex);
 
 export const state = () => ({
@@ -17,6 +17,14 @@ export const mutations = {
 		state.shelves.push(shelf);
 	},
 	populateShelves(state, shelves) {
+		for (const shelf of shelves) {
+			shelf.variations = _orderBy(
+				shelf.variations,
+				['variation_order'],
+				['asc']
+			);
+		}
+
 		Vue.set(state, 'shelves', shelves);
 	},
 	populateStore(state, store) {
@@ -42,14 +50,23 @@ export const mutations = {
 		{ shelfIndex, variationIndex, assetIndex, loaded }
 	) {
 		// Vue.set(state, ['shelves'])
-		state.shelves[shelfIndex].variations[variationIndex].assets[
-			assetIndex
-		].loaded = loaded;
+		if (state.shelves[shelfIndex]) {
+			state.shelves[shelfIndex].variations[variationIndex].assets[
+				assetIndex
+			].loaded = loaded;
+		}
 	},
 	setPagination(state, pagination) {
 		Vue.set(state, 'pagination', pagination);
 	},
 	appendShelves(state, shelves) {
+		for (const shelf of shelves) {
+			shelf.variations = _orderBy(
+				shelf.variations,
+				['variation_order'],
+				['asc']
+			);
+		}
 		state.shelves.push(...shelves);
 	},
 };
@@ -89,7 +106,7 @@ export const actions = {
 			}
 
 			const { shelves, pagination } = await this.$axios.$get(
-				`stores/${store.id}/shelves?limit=3`
+				`stores/${store.id}/shelves?limit=5`
 			);
 			// console.log(useMockData, store.shelves);
 			// const store = await this.$axios.$get(`stores/${storeSlug}`);

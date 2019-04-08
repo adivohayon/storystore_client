@@ -29,6 +29,9 @@ export default {
 				to: this.orderEmail,
 				orderId: this.orderId,
 			});
+			if (this.lastPurchase) {
+				this.trackPurchase(this.lastPurchase);
+			}
 		}
 	},
 	computed: {
@@ -57,8 +60,14 @@ export default {
 		storeName() {
 			return _get(this.$store.state, 'store.name', null);
 		},
+		storeSlug() {
+			return _get(this.$store.state, 'store.slug', null);
+		},
 		storePhone() {
 			return _get(this.$store.state, 'store.info.phone', null);
+		},
+		lastPurchase() {
+			return JSON.parse(localStorage.getItem('lastPurchase')) || null;
 		},
 		message() {
 			if (this.orderQuery) {
@@ -75,6 +84,24 @@ export default {
 		},
 	},
 	methods: {
+		trackPurchase(order) {
+			if (typeof fbq !== 'undefined' && fbq && order) {
+				const PurchaseValues = {
+					content_category: this.storeSlug,
+					content_ids: order.items.map(item => item.variationId),
+					contents: order.items.map(item => ({
+						id: item.variationId,
+						quantity: item.quantity,
+					})),
+					content_name: 'purchase',
+					content_type: 'product',
+					currency: order.currency,
+					value: order.total,
+				};
+				console.log('trackPurchase', PurchaseValues);
+				// fbq('track', 'Purchase', ViewContentValues);
+			}
+		},
 		close() {
 			this.$router.replace({ query: {} });
 			this.toggle();

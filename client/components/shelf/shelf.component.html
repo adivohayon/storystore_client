@@ -77,6 +77,13 @@
 			:selected-property="selectedProperty"
 			:shelf="shelf"
 		></add-to-cart>
+		<div v-if="shelfIndex === 0 && !alreadySwiped" class="swipe-down" @click="swipeDown">
+			<!-- <div class="chevron-down"></div> -->
+			<icon name="chevron-up" width="28" height="28"></icon>
+			<div class="see-more">
+				See More
+			</div>
+		</div>
 	</footer>
 	<transition name="shelf-overlay-bottom">
 		<shelf-info

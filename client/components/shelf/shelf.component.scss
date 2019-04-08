@@ -2,7 +2,7 @@
 	& > section {
 		position: relative;
 		-webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
+		transform: translate3d(0, 0, 0);
 	}
 	// height: 100vh;
 	// color: black;
@@ -16,6 +16,30 @@
 		letter-spacing: 1px;
 		padding: 0.4rem 1rem;
 		// border-bottom: 1px solid rgba(203, 202, 202, 0.7);
+	}
+	.swipe-down {
+		text-align: center;
+		padding-top: 1rem;
+		.chevron-down {
+			display: inline-block;
+			border-right: 3px solid #ffffff;
+			border-bottom: 3px solid #ffffff;
+			width: 16px;
+			height: 16px;
+			transform: rotate(225deg);
+		}
+
+		.see-more {
+			background-color: #4181ef;
+			color: #ffffff;
+			border-radius: 2rem;
+			font-size: 1rem;
+			margin: auto;
+			// max-width: 8rem;
+			width: 12rem;
+			text-align: center;
+			padding: 0.6rem 1rem;
+		}
 	}
 	// .test {
 	// 	display: block;

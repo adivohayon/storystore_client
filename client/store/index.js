@@ -1,17 +1,32 @@
 import { getSlugFromHost } from '@/helpers/async-data.helpers';
 export const state = () => ({
-	showLoader: false,
+	loader: {
+		show: false,
+		hideElements: false,
+	},
 });
 export const mutations = {
 	toggleLoader(state, toggle) {
 		if (typeof toggle === 'boolean') {
-			state.showLoader = toggle;
+			state.loader.show = toggle;
 		} else {
-			state.showLoader = !state.showLoader;
+			state.loader.show = !state.loader.show;
+		}
+	},
+	toggleLoaderHideElements(state, toggle) {
+		if (typeof toggle === 'boolean') {
+			state.loader.hideElements = toggle;
+		} else {
+			state.loader.hideElements = !state.loader.hideElements;
 		}
 	},
 };
 export const actions = {
+	toggleHiddenLoader({ commit }, toggle) {
+		commit('toggleLoaderHideElements', toggle);
+		commit('toggleLoader', toggle);
+	},
+
 	async nuxtServerInit({ dispatch }, { req, redirect, error, route }) {
 		const host = process.server ? req.headers.host : window.location.hostname;
 		const storeSlug = getSlugFromHost(host);

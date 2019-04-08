@@ -31,23 +31,14 @@ import '@/icons';
 import { mapState } from 'vuex';
 import _get from 'lodash/get';
 import _debounce from 'lodash.debounce';
-
+import _throttle from 'lodash.throttle';
+import { pageHeadMixin } from '@/helpers/mixins';
 export default {
 	components: { Feed, Shelf, Navigation, CheckoutResponse },
 	layout(ctx) {
 		return ctx.app.isMobile ? 'mobile' : 'desktop';
 	},
-	head() {
-		const storeSlug = this.$store.state.store.slug;
-		const faviconPath =
-			process.env.staticDir + storeSlug + `/${storeSlug}_favicon.png`;
-
-		return {
-			title:
-				this.$store.state.store.name + ' - ' + this.$store.state.store.tagline,
-			link: [{ rel: 'icon', href: faviconPath }],
-		};
-	},
+	mixins: [pageHeadMixin],
 	data() {
 		return {
 			isMobile: true,
@@ -61,15 +52,40 @@ export default {
 				dragAndMove: true,
 				controlArrows: false,
 				slidesNavigation: true,
+				// onLeave: _debounce(async (origin, destination) => {
+				// 	this.activeShelfIndex = destination.index;
+				// 	this.$store.dispatch('toggleHiddenLoader', true);
+				// }, 30),
+				// afterLoad: (origin, destination) => {
+				// 	this.$store.dispatch('toggleHiddenLoader', false);
+				// 	console.log('afterLoad');
+				// },
 				onLeave: _debounce(async (origin, destination) => {
 					this.activeShelfIndex = destination.index;
-				}, 1000),
+					this.$router.push({
+						path: this.$route.path,
+						query: {
+							...this.$route.query,
+							shelfIndex: this.activeShelfIndex + 1,
+						},
+					});
+
+					const currentShelf = this.shelves[this.activeShelfIndex];
+					this.trackViewContent(currentShelf);
+					// this.$store.dispatch('toggleHiddenLoader', true);
+				}, 100),
+				// afterLoad: (origin, destination) => {
+				// 	this.$store.dispatch('toggleHiddenLoader', false);
+				// 	console.log('afterLoad');
+				// },
 			},
 			runOnce: false,
 			orderQuery: null,
 			assetsPerLoad: 2,
 			shelvesPerLoad: 2,
 			activeShelfIndex: 0,
+			isBuilding: false,
+			firstUpdate: true,
 		};
 	},
 	computed: {
@@ -96,30 +112,141 @@ export default {
 		},
 	},
 	watch: {
-		activeShelfIndex: async function(index) {
-			console.log(index, this.shelvesOffset - 3);
-			if (index > 0 && index > this.shelvesOffset - 3) {
-				try {
-					console.log('START LOADING SHELVES');
-					await this.$store.dispatch('store/getShelves', {
-						storeId: this.storeId,
-						offset: this.shelvesOffset,
-					});
-					// this.$emit('rebuild-fullpage', { shelfIndex: this.shelfIndex });
-					await this.rebuildFullpage({});
-
-					await this.loadImages();
-
-					console.log('DONE LOADING SHELVES');
-				} catch (err) {}
-			}
-		},
+		// activeShelfIndex:
+		// activeShelfIndex: async function(index) {
+		// 	console.log(index, this.shelvesOffset - 3);
+		// 	if (index > 0 && index > this.shelvesOffset - 3) {
+		// 		try {
+		// 			console.log('START LOADING SHELVES');
+		// 			await this.$store.dispatch('store/getShelves', {
+		// 				storeId: this.storeId,
+		// 				offset: this.shelvesOffset,
+		// 			});
+		// 			// this.$emit('rebuild-fullpage', { shelfIndex: this.shelfIndex });
+		// 			await this.rebuildFullpage({});
+		// 			await this.loadImages();
+		// 			console.log('DONE LOADING SHELVES');
+		// 		} catch (err) {}
+		// 	}
+		// },
 	},
-	created() {},
+	created() {
+		console.log('created');
+	},
+	updated() {
+		if (this.firstUpdate) {
+			console.log('updated');
+			const queryShelfIndex = this.$route.query.shelfIndex;
+			if (queryShelfIndex > 1) {
+				console.log('aaaaaa');
+				fullpage_api.moveTo(queryShelfIndex);
+			} else {
+				// console.log('this.$route.query,', this.$route.query);
+				this.$router.push({
+					path: this.$route.path,
+					query: {
+						shelfIndex: this.activeShelfIndex + 1,
+						...this.$route.query,
+					},
+				});
+				this.trackViewContent(this.shelves[0]);
+			}
+			this.firstUpdate = false;
+		}
+	},
 	async mounted() {
+		console.log('mounted');
+		// this.$refs.fullpage.
 		this.$store.commit('toggleLoader');
 		await this.loadImages();
+		// const shelfSelector = 'div.shelf.fp-section';
+		// const translateFromStr = str => {
+		// 	const lookupWord = 'translate3d(';
 
+		// 	const lookupIndex = str.lastIndexOf(lookupWord);
+
+		// 	return lookupIndex > -1
+		// 		? str
+		// 				.substring(lookupIndex + lookupWord.length, str.length - 2)
+		// 				.split('px, ', 2)
+		// 				.map(v => Number(v))
+		// 		: [0, 0];
+		// };
+		// // this.$store.dispatch('toggleHiddenLoader', true);
+		// const bodyHeight = document.body.offsetHeight;
+		// const bodyWidth = document.body.offsetWidth;
+		// console.log('bodyWidth', bodyWidth);
+		// const mutationObserver = new MutationObserver(
+		// 	_debounce(
+		// 		mutations => {
+		// 			console.log('mutation', mutations);
+		// 			const [xTranslate, yTranslate] = translateFromStr(
+		// 				mutations[0].oldValue
+		// 			);
+		// 			const isVertical = mutations[0].target.id === 'fullpage';
+		// 			const translate = isVertical ? yTranslate : xTranslate;
+		// 			const comparator = isVertical
+		// 				? document.body.offsetHeight
+		// 				: document.body.offsetWidth;
+		// 			console.log('isVertical', isVertical, translate);
+
+		// 			if (translate === 0) {
+		// 				console.log('DISABLE UI');
+		// 				this.$store.dispatch('toggleHiddenLoader', true);
+		// 				return;
+		// 			}
+
+		// 			if (
+		// 				(translate + 1) % comparator === 0 ||
+		// 				(translate - 1) % comparator === 0
+		// 			) {
+		// 				console.log('ENABLE UI');
+		// 				this.$store.dispatch('toggleHiddenLoader', false);
+		// 			} else {
+		// 				this.$store.dispatch('toggleHiddenLoader', true);
+		// 				console.log('DISABLE UI');
+		// 			}
+		// 		},
+		// 		230,
+		// 		{ leading: true }
+		// 	)
+		// );
+		// // console.log('body.offsetHeight', document.body.offsetHeight);
+		// mutationObserver.observe(this.$refs.fullpage.$el, {
+		// 	attributes: true,
+		// 	characterData: true,
+		// 	attributeOldValue: true,
+		// 	characterDataOldValue: true,
+		// 	attributeFilter: ['style'],
+		// });
+
+		// // need to update this to the current active shelf
+		// mutationObserver.observe(
+		// 	document.querySelector('.shelf.active .fp-slidesContainer'),
+		// 	{
+		// 		attributes: true,
+		// 		characterData: true,
+		// 		attributeOldValue: true,
+		// 		characterDataOldValue: true,
+		// 		attributeFilter: ['style'],
+		// 	}
+		// );
+
+		// const activeSlideElement
+		// document.addEventListener(
+		// 	'touchend',
+		// 	e => {
+		// 		const disableFullpageEl =
+		// 			!e.path[0].className.includes('btn') ||
+		// 			e.path[3].className === 'attribute-picker';
+
+		// 		if (!disableFullpageEl && !this.isBuilding) {
+		// 			this.$store.dispatch('toggleHiddenLoader', false);
+		// 			console.log('turn off');
+		// 		}
+		// 	},
+		// 	false
+		// );
 		// this.$store.commit('toggleLoader');
 
 		// this.$emit('rebuild-fullpage', { shelfIndex: this.shelfIndex });
@@ -132,6 +259,22 @@ export default {
 		// fullpage_api.destroy('all');
 	},
 	methods: {
+		trackViewContent(shelf) {
+			// console.log('fbq', fbq);
+			if (typeof fbq !== 'undefined' && fbq && shelf) {
+				const ViewContentValues = {
+					content_category: this.storeSlug,
+					content_ids: [shelf.id],
+					content_name: shelf.name,
+					content_type: 'product',
+					contents: [{ id: shelf.id, quantity: 1 }],
+					currency: shelf.variations[0].currency,
+					value: shelf.variations[0].finalPrice,
+				};
+				console.log('ViewContent', ViewContentValues);
+				fbq('track', 'ViewContent', ViewContentValues);
+			}
+		},
 		loadImages() {
 			return new Promise(async (resolve, reject) => {
 				console.log('load images');
@@ -208,6 +351,8 @@ export default {
 			// if (!activeSe)
 			return new Promise((resolve, reject) => {
 				try {
+					this.isBuilding = true;
+					// this.$store.dispatch('toggleHiddenLoader');
 					console.log('STARTING rebuildFullpage');
 					const sectionSelector =
 						this.feedOptions.sectionSelector || '.section';
@@ -263,16 +408,20 @@ export default {
 					// Restore active slide class
 					if (activeSlideIndex > -1) {
 						fp_utils.addClass(
-							document.querySelectorAll(`${sectionSelector} ${slideSelector}`)[
-								activeSlideIndex
-							],
+							document.querySelectorAll(
+								`${sectionSelector}.active ${slideSelector}`
+							)[activeSlideIndex],
 							'active'
 						);
 					}
 
 					this.$refs.fullpage.init();
-					console.log('DONE rebuildFullpage');
-					resolve();
+					// this.$store.dispatch('toggleHiddenLoader');
+					setTimeout(() => {
+						console.log('DONE rebuildFullpage');
+						this.isBuilding = false;
+						resolve();
+					}, 1000);
 				} catch (err) {
 					console.error(err);
 					reject(err);
