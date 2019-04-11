@@ -38,7 +38,7 @@ export default {
 			// 		// console.log('children', this.$refs.videoEl);
 			// 	},
 			// },
-			orderQuery: null,
+			// orderQuery: null,
 		};
 	},
 	computed: {
@@ -57,11 +57,7 @@ export default {
 	},
 	created() {},
 	mounted() {
-		console.log('$$$orderQuery', this.$route.query.order);
-		this.orderQuery = this.$route.query.order;
-		// this.$on('toggle-loader', () => {
-		// 	console.log('loader toggled');
-		// });
+		// this.orderQuery = this.$route.query.order;
 	},
 	methods: {
 		test() {

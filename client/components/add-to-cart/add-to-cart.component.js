@@ -12,6 +12,10 @@ export default {
 				return {};
 			},
 		},
+		shelfGoal: {
+			type: String,
+			default: 'PURCHASE',
+		},
 		selectedAttributes: {
 			type: Object,
 			default() {
@@ -37,6 +41,15 @@ export default {
 		};
 	},
 	computed: {
+		buttonText() {
+			if (this.shelfGoal === 'PURCHASE') {
+				return this.added ? 'לתשלום' : 'הוספה לסל';
+			}
+
+			if (this.shelfGoal === 'CONTACT') {
+				return 'צור קשר';
+			}
+		},
 		storeSlug() {
 			return this.$store.state.store.slug;
 		},
@@ -55,6 +68,10 @@ export default {
 	},
 	methods: {
 		async addToCart(shelf, selectedAttributes, selectedProperty) {
+			if (this.shelfGoal === 'CONTACT') {
+				return;
+			}
+
 			if (this.added) {
 				this.$router.replace('/checkout');
 			}

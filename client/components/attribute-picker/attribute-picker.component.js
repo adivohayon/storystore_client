@@ -21,6 +21,7 @@ export default {
 	data() {
 		return {
 			// selectedAttIndex: 0,
+			setAttDeferredClick: false,
 		};
 	},
 	computed: {
@@ -60,7 +61,8 @@ export default {
 	created() {},
 	mounted() {},
 	methods: {
-		setAtt(att) {
+		async setAtt(att) {
+			console.log('change att');
 			this.$emit('changed-att', {
 				att,
 				attKey: this.attKey,

@@ -4,7 +4,6 @@
 			<nuxt-link to="/profile">
 				<img :src="logoSrc" :alt="`${storeSlug} Logo`" />
 			</nuxt-link>
-			
 		</div>
 		<div v-if="variantVideo" class="slide" :style="{ position: 'relative' }">
 			<video-player :source="variantVideo.value"></video-player>
@@ -15,7 +14,7 @@
 			:style="{ backgroundImage: 'url(' + asset + ')' }"
 		></div>
 	</section>
-	<aside class="shelf-buttons">
+	<aside class="shelf-buttons" v-if="shelfGoal === 'PURCHASE'">
 		<ul>
 			<li>
 				<nuxt-link to="/cart">
@@ -44,8 +43,7 @@
 			:currency="variant.currency"
 			:title="shelf.name"
 		></shelf-title>
-
-		<div class="shelf-attributes">
+		<div class="shelf-attributes" :class="{'disable-touch': isAnimating}">
 			<attribute-picker
 				v-for="(attribute, attributeKey) in variantProperties"
 				:key="attributeKey"
@@ -72,12 +70,17 @@
 			{{ shelf.description }}
 		</div>
 		<add-to-cart
+			:shelf-goal="shelfGoal"
 			:variant="variant"
 			:selected-attributes="selectedAttributes"
 			:selected-property="selectedProperty"
 			:shelf="shelf"
 		></add-to-cart>
-		<div v-if="shelfIndex === 0 && !alreadySwiped" class="swipe-down" @click="swipeDown">
+		<div
+			v-if="shelfIndex === 0 && !alreadySwiped"
+			class="swipe-down"
+			@click="swipeDown"
+		>
 			<!-- <div class="chevron-down"></div> -->
 			<icon name="chevron-up" width="28" height="28"></icon>
 			<div class="see-more">

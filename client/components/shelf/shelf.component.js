@@ -60,6 +60,13 @@ export default {
 			returns: state => state.store.returns,
 			storeSlug: state => state.store.slug,
 		}),
+		shelfGoal() {
+			if (this.storeSlug === 'oz-nadlan') {
+				return 'CONTACT';
+			} else {
+				return 'PURCHASE';
+			}
+		},
 		cartItemsCount() {
 			return this.$store.getters['cart/itemsCount'](this.storeSlug);
 		},
@@ -157,6 +164,18 @@ export default {
 			return _orderBy(this.shelf.variations, ['variation_order'], ['asc']);
 			return this.shelf.variation;
 		},
+		isAnimating() {
+			if (typeof fullpage_api !== 'undefined') {
+				return fullpage_api.dragAndMove.isAnimating;
+			} else {
+				return false;
+			}
+		},
+	},
+	watch: {
+		isAnimating: function(newVal) {
+			console.log('isAnimating', newVal);
+		},
 	},
 	created() {
 		this.initializeVariation();
@@ -209,7 +228,7 @@ export default {
 			}
 		},
 		setAtt({ att, attKey }) {
-			// console.log('att', att);
+			// Changed variant
 			if (att.variationId) {
 				this.selectedProperty[attKey] = {
 					...att,
@@ -217,7 +236,7 @@ export default {
 				};
 				this.selectedVariationId = att.variationId;
 
-				// Load images
+				// Load assets
 				this.variant.assets.forEach((asset, assetIndex) => {
 					const variationIndex = this.shelf.variations.findIndex(
 						variation => variation.variationId === this.variant.variationId
@@ -229,14 +248,8 @@ export default {
 						loaded: true,
 					});
 				});
-				// if (this.variant.assets[i] && assets[i].src) {
-				// 	// console.log('image', assets[i].src);
 
-				// }
-				setTimeout(() => {
-					this.$emit('rebuild-fullpage', { activeSlideIndex: 0 });
-				}, 3500);
-				// fullpage_api.silentMoveTo(this.shelfIndex + 1, 0);
+				this.$emit('rebuild-fullpage', { activeSlideIndex: 0 });
 			} else {
 				this.selectedAttributes[attKey] = {
 					...att,

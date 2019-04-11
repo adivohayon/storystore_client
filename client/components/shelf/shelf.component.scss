@@ -213,6 +213,10 @@
 	.shelf-overlay-bottom-leave {
 		height: 85vh;
 	}
+
+	.disable-touch {
+		background-color: red;
+	}
 }
 @media (max-height: 500px) {
 	.shelf-buttons {
