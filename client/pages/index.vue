@@ -54,6 +54,10 @@ export default {
 				controlArrows: false,
 				slidesNavigation: true,
 				onLeave: _debounce(this.handleShelfLeave, 300),
+				afterRender: _throttle(() => {
+					console.log('FINISHED rebuildFullpage');
+					this.isBuilding = false;
+				}, 1700),
 				// afterLoad: this.handleShelfLoaded,
 			},
 			runOnce: false,
@@ -146,7 +150,7 @@ export default {
 		},
 		rebuildFullpage({ activeSectionIndex = -1, activeSlideIndex = -1 }) {
 			return new Promise((resolve, reject) => {
-				const numberOfPolls = 5;
+				const numberOfPolls = 20;
 				let i = 0;
 				console.log(
 					'Initial isAnimating',
@@ -154,6 +158,7 @@ export default {
 				);
 				const buildFunc = () => {
 					console.log('STARTING rebuildFullpage');
+					this.isBuilding = true;
 					const sectionSelector =
 						this.feedOptions.sectionSelector || '.section';
 
@@ -208,9 +213,17 @@ export default {
 
 					this.$refs.fullpage.init();
 				};
-				const polling = setInterval(() => {
+				// END buildFunc
+				const polling = setInterval(async () => {
 					console.log('isAnimating', fullpage_api.dragAndMove.isAnimating);
-					if (i >= numberOfPolls || !fullpage_api.dragAndMove.isAnimating) {
+					console.log('isBuilding', this.isBuilding);
+					console.log('i', i);
+					if (
+						i >= numberOfPolls ||
+						(!fullpage_api.dragAndMove.isAnimating &&
+							!this.isBuilding &&
+							!fullpage_api.dragAndMove.isGrabbing)
+					) {
 						// this.$refs.fullpage.build();
 						// BUILD
 						buildFunc();
@@ -218,7 +231,7 @@ export default {
 						resolve();
 					}
 					i++;
-				}, 300);
+				}, 250);
 			});
 		},
 		handleFirstUpdate() {
@@ -285,7 +298,6 @@ export default {
 					for (const [assetIndex, asset] of firstRunAssets.entries()) {
 						await this.imageLoadedPromise(asset);
 					}
-
 					this.$store.commit('toggleLoader', false);
 
 					const restOfAssets = this.shelves.reduce(
