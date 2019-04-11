@@ -53,7 +53,7 @@ export default {
 				dragAndMove: true,
 				controlArrows: false,
 				slidesNavigation: true,
-				onLeave: this.handleShelfLeave,
+				onLeave: _debounce(this.handleShelfLeave, 300),
 				// afterLoad: this.handleShelfLoaded,
 			},
 			runOnce: false,
@@ -100,177 +100,131 @@ export default {
 	beforeDestroy() {},
 	destroyed() {},
 	methods: {
-		handleShelfLeave(origin, destination) {
+		async handleShelfLeave(origin, destination) {
 			console.log('origin', origin.index);
 			console.log('destination', destination.index);
-			// _defer(
-			// 	(origin, destination) => {
-			// 		console.log('Shelf Leave', { origin, destination });
-			// 	},
-			// 	origin,
-			// 	destination
-			// );
+			try {
+				// Handle query for each shelf
+				this.activeShelfIndex = destination.index;
+				this.$router.push({
+					path: this.$route.path,
+					query: {
+						...this.$route.query,
+						shelfIndex: this.activeShelfIndex + 1,
+					},
+				});
 
-			// return _debounce(async (origin, destination) => {
-			// 	console.log('Shelf Leave', { origin, destination });
-			// 	// this.activeShelfIndex = destination.index;
-			// 	// this.$router.push({
-			// 	// 	path: this.$route.path,
-			// 	// 	query: {
-			// 	// 		...this.$route.query,
-			// 	// 		shelfIndex: this.activeShelfIndex + 1,
-			// 	// 	},
-			// 	// });
+				// Track content for analytics
+				const currentShelf = this.shelves[this.activeShelfIndex];
+				this.trackViewContent(currentShelf);
 
-			// 	// const currentShelf = this.shelves[this.activeShelfIndex];
-			// 	// this.trackViewContent(currentShelf);
-			// }, 100);
+				console.log('this.shelvesOffset', this.shelvesOffset);
+				// Do we need to load more shelves?
+				if (
+					destination.index > 0 &&
+					destination.index > Math.abs(this.shelvesOffset - 3)
+				) {
+					if (destination.isLast) {
+						this.$store.commit('toggleLoader');
+					}
+
+					console.log('START LOADING SHELVES');
+					await this.$store.dispatch('store/getShelves', {
+						storeId: this.storeId,
+						offset: this.shelvesOffset,
+					});
+					// this.$emit('rebuild-fullpage', { shelfIndex: this.shelfIndex });
+					await this.loadAssets();
+					await this.rebuildFullpage({ activeSectionIndex: destination.index });
+
+					console.log('DONE LOADING SHELVES');
+				}
+			} catch (err) {}
 		},
 		handleShelfLoaded(origin, destination) {
 			console.log('Shelf Loaded', { origin, destination });
 		},
 		rebuildFullpage({ activeSectionIndex = -1, activeSlideIndex = -1 }) {
-			// console.log('test', activeSectionIndex);
-			// if (!activeSe)
 			return new Promise((resolve, reject) => {
-				try {
-					// if (fullpage_api.dragAndMove.isAnimating) {
+				const numberOfPolls = 5;
+				let i = 0;
+				console.log(
+					'Initial isAnimating',
+					fullpage_api.dragAndMove.isAnimating
+				);
+				const buildFunc = () => {
+					console.log('STARTING rebuildFullpage');
+					const sectionSelector =
+						this.feedOptions.sectionSelector || '.section';
 
-					// }
-					console.log('rebuildFullpage / Start', {
-						activeSectionIndex,
-						activeSlideIndex,
-					});
-
-					console.log(
-						'rebuildFullpage / isAnimating',
-						fullpage_api.dragAndMove.isAnimating
+					const slideSelector = this.feedOptions.slideSelector || '.slide';
+					let activeSlide = document.querySelector(
+						this.feedOptions.sectionSelector +
+							'.active ' +
+							this.feedOptions.slideSelector +
+							'.active'
 					);
-					setTimeout(() => {
-						console.log(
-							'rebuildFullpage / Timeout / isAnimating',
-							fullpage_api.dragAndMove.isAnimating
+
+					// Get activeSectionIndex if none was provided
+
+					if (activeSectionIndex === -1) {
+						activeSectionIndex = fp_utils.index(
+							document.querySelector(
+								this.feedOptions.sectionSelector + '.active'
+							)
 						);
+					}
 
-						// const waitForIsAnimating = setInterval(function() {
-						// 	console.log(
-						// 		'fullpage_api.dragAndMove.isAnimating',
-						// 		fullpage_api.dragAndMove.isAnimating
-						// 	);
-						// 	if (!fullpage_api.dragAndMove.isAnimating) {
-						// 		clearInterval(waitForIsAnimating);
-						// 	}
-						// }, 1);
-
-						this.isBuilding = true;
-						// this.$store.dispatch('toggleHiddenLoader');
-						console.log('STARTING rebuildFullpage');
-						const sectionSelector =
-							this.feedOptions.sectionSelector || '.section';
-
-						const slideSelector = this.feedOptions.slideSelector || '.slide';
-						let activeSlide = document.querySelector(
+					if (activeSlideIndex === -1) {
+						const activeSlideSelector =
 							this.feedOptions.sectionSelector +
-								'.active ' +
-								this.feedOptions.slideSelector +
-								'.active'
+							'.active ' +
+							this.feedOptions.slideSelector +
+							'.active';
+						activeSlideIndex = fp_utils.index(
+							document.querySelector(activeSlideSelector)
 						);
+					}
+					// Destroy
+					this.$refs.fullpage.destroy();
 
-						// Get activeSectionIndex if none was provided
+					// Restore active section class
+					if (activeSectionIndex > -1) {
+						fp_utils.addClass(
+							document.querySelectorAll(sectionSelector)[activeSectionIndex],
+							'active'
+						);
+					}
 
-						if (activeSectionIndex === -1) {
-							activeSectionIndex = fp_utils.index(
-								document.querySelector(
-									this.feedOptions.sectionSelector + '.active'
-								)
-							);
-						}
+					// Restore active slide class
+					if (activeSlideIndex > -1) {
+						fp_utils.addClass(
+							document.querySelectorAll(
+								`${sectionSelector}.active ${slideSelector}`
+							)[activeSlideIndex],
+							'active'
+						);
+					}
 
-						if (activeSlideIndex === -1) {
-							const activeSlideSelector =
-								this.feedOptions.sectionSelector +
-								'.active ' +
-								this.feedOptions.slideSelector +
-								'.active';
-							activeSlideIndex = fp_utils.index(
-								document.querySelector(activeSlideSelector)
-							);
-						}
-						// if (activeSlideIndex === -1 && activeSlide === -1) {
-						// 	activeSlideIndex = activeSlide ? fp_utils.index(activeSlide) : 0;
-						// }
-
-						console.log('activeSectionIndex', activeSectionIndex);
-						console.log('activeSlideIndex', activeSlideIndex);
-						// console.log('sectionSelector', sectionSelector);
-
-						// Destroy
-						// fullpage_api.dragAndMove.destroy('all');
-						// this.$refs.fullpage.destroy();
-						// fullpage_api.dragAndMove.destroy('all');
-						fullpage_api.destroy('all');
-						// console.log('activeSectionIndex', activeSectionIndex);
-						// Restore active section class
-						if (activeSectionIndex > -1) {
-							fp_utils.addClass(
-								document.querySelectorAll(sectionSelector)[activeSectionIndex],
-								'active'
-							);
-						}
-
-						// Restore active slide class
-						if (activeSlideIndex > -1) {
-							fp_utils.addClass(
-								document.querySelectorAll(
-									`${sectionSelector}.active ${slideSelector}`
-								)[activeSlideIndex],
-								'active'
-							);
-						}
-
-						this.$refs.fullpage.init();
-						// fullpage_api.dragAndMove.destroy('all');
-						setTimeout(() => {
-							// fullpage_api.dragAndMove.init();
-							this.isBuilding = false;
-							console.log('DONE rebuildFullpage');
-							resolve();
-						}, 2500);
-						// fullpage_api.silentMoveTo(activeSectionIndex + 1, activeSlideIndex);
-					}, 300);
-
-					// this.$store.dispatch('toggleHiddenLoader');
-					// setTimeout(() => {
-					// 	this.isBuilding = false;
-					// 	resolve();
-					// }, 1000);
-				} catch (err) {
-					console.error(err);
-					reject(err);
-				}
+					this.$refs.fullpage.init();
+				};
+				const polling = setInterval(() => {
+					console.log('isAnimating', fullpage_api.dragAndMove.isAnimating);
+					if (i >= numberOfPolls || !fullpage_api.dragAndMove.isAnimating) {
+						// this.$refs.fullpage.build();
+						// BUILD
+						buildFunc();
+						clearTimeout(polling);
+						resolve();
+					}
+					i++;
+				}, 300);
 			});
-
-			// setTimeout(() => {
-			// 	console.log('doing init');
-			// 	this.$refs.fullpage.init();
-			// }, 1500);
-
-			// 	const prevIndex = this.activeShelfIndex;
-			// 	console.log('activeShelfIndex', this.activeShelfIndex);
-			// 	setTimeout(() => {
-			// 		console.log('building fullpage');
-			// 		// this.$refs.fullpage.build();
-			// 		this.$refs.fullpage.destroy();
-			// 		// this.$refs.fullpage.init();
-			// 		this.$refs.fullpage.silentMoveTo(prevIndex, 0);
-			// 		// console.log('test', this.$refs.fullpage);
-			// 	}, 50);
 		},
 		handleFirstUpdate() {
 			if (this.firstUpdate) {
 				const queryShelfIndex = this.$route.query.shelfIndex;
 				if (queryShelfIndex > 1) {
-					console.log('aaaaaa');
 					fullpage_api.moveTo(queryShelfIndex);
 				} else {
 					this.$router.push({

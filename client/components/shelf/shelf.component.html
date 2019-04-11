@@ -43,7 +43,7 @@
 			:currency="variant.currency"
 			:title="shelf.name"
 		></shelf-title>
-		<div class="shelf-attributes" :class="{'disable-touch': isAnimating}">
+		<div class="shelf-attributes">
 			<attribute-picker
 				v-for="(attribute, attributeKey) in variantProperties"
 				:key="attributeKey"

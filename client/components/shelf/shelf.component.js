@@ -164,18 +164,6 @@ export default {
 			return _orderBy(this.shelf.variations, ['variation_order'], ['asc']);
 			return this.shelf.variation;
 		},
-		isAnimating() {
-			if (typeof fullpage_api !== 'undefined') {
-				return fullpage_api.dragAndMove.isAnimating;
-			} else {
-				return false;
-			}
-		},
-	},
-	watch: {
-		isAnimating: function(newVal) {
-			console.log('isAnimating', newVal);
-		},
 	},
 	created() {
 		this.initializeVariation();

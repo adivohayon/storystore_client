@@ -106,7 +106,7 @@ export const actions = {
 			}
 
 			const { shelves, pagination } = await this.$axios.$get(
-				`stores/${store.id}/shelves?limit=15`
+				`stores/${store.id}/shelves?limit=5`
 			);
 			// console.log(useMockData, store.shelves);
 			// const store = await this.$axios.$get(`stores/${storeSlug}`);
@@ -128,7 +128,7 @@ export const actions = {
 		return new Promise(async (resolve, reject) => {
 			try {
 				const { shelves, pagination } = await this.$axios.$get(
-					`stores/${storeId}/shelves?offset=${offset}&limit=10`
+					`stores/${storeId}/shelves?offset=${offset}&limit=5`
 				);
 				console.log('shelves', shelves);
 				// const previousShelves = state.shelves;
@@ -143,18 +143,19 @@ export const actions = {
 			}
 		});
 	},
-	// async getShelves({ commit }, storeSlug) {
-	// 	try {
-	// 		console.log('USE_MOCK_DATA', useMockData);
-	// 		const shelves = useMockData
-	// 			? (await import(`@/mocks/${storeSlug}.mock.json`)).default
-	// 			: (await this.$axios.$get(`stores/${storeSlug}/shelves`)).data;
-
-	// 		console.log('resp', shelves);
-	// 		commit('populate', shelves);
-	// 		// console.log('resp', resp.data);
-	// 	} catch (err) {
-	// 		console.error('Store / Shelves / Dispatch get / Error', err);
-	// 	}
-	// },
+	assetLoaded(asset) {
+		return new Promise((resolve, reject) => {
+			const image = new Image();
+			image.src = this.assetsPath + asset.src;
+			image.onload = e => {
+				this.$store.commit('store/updateShelfAssetLoaded', {
+					shelfIndex: asset.shelfIndex,
+					variationIndex: 0,
+					assetIndex: asset.index,
+					loaded: true,
+				});
+				resolve(e);
+			};
+		});
+	},
 };
