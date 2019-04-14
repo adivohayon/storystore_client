@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<loader v-if="showLoader" :hide-elements="hideLoaderElements"></loader>
+		<!-- <loader v-if="showLoader" :hide-elements="hideLoaderElements"></loader> -->
 		<!-- <no-ssr> -->
 		<!-- <full-page
 				v-if="hasShelves"

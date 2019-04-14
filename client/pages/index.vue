@@ -54,10 +54,13 @@ export default {
 				controlArrows: false,
 				slidesNavigation: true,
 				onLeave: _debounce(this.handleShelfLeave, 300),
-				afterRender: _throttle(() => {
-					console.log('FINISHED rebuildFullpage');
-					this.isBuilding = false;
-				}, 1700),
+				afterRender: () => {
+					setTimeout(() => {
+						console.log('FINISHED rebuildFullpage');
+						this.isBuilding = false;
+					}, 500);
+					// fullpage_api.silentMoveTo(this.activeShelfIndex);
+				},
 				// afterLoad: this.handleShelfLoaded,
 			},
 			runOnce: false,
@@ -150,6 +153,10 @@ export default {
 		},
 		rebuildFullpage({ activeSectionIndex = -1, activeSlideIndex = -1 }) {
 			return new Promise((resolve, reject) => {
+				if (this.isBuilding) {
+					console.log('Already building... skipping...');
+					resolve();
+				}
 				const numberOfPolls = 20;
 				let i = 0;
 				console.log(
@@ -231,7 +238,7 @@ export default {
 						resolve();
 					}
 					i++;
-				}, 250);
+				}, 450);
 			});
 		},
 		handleFirstUpdate() {
