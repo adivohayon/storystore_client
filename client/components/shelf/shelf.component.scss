@@ -7,6 +7,36 @@
 			height: 100vh;
 			overflow: hidden;
 
+			// .glide {
+			// 	div ul.carousel__pagination {
+			// 		position: absolute;
+			// 		top: 1rem;
+			// 		z-index: 20;
+			// 		bottom: unset;
+			// 	}
+			// }
+			&__pagination {
+				position: absolute;
+				top: 1rem;
+				z-index: 20;
+				bottom: unset;
+				padding: 0;
+				text-align: center;
+				width: 100%;
+				li {
+					height: 0.5rem;
+					width: 0.5rem;
+					border-radius: 50%;
+					background-color: #ffffff;
+					margin: 0 0.4rem;
+					display: inline-block;
+					&.active {
+						background-color: #000000;
+						height: 0.6rem;
+						width: 0.6rem;
+					}
+				}
+			}
 			/deep/ .hooper {
 				&-pagination {
 					position: absolute;
@@ -24,8 +54,8 @@
 
 					&.is-active {
 						background-color: #000000;
-							height: 0.6rem;
-							width: 0.6rem;
+						height: 0.6rem;
+						width: 0.6rem;
 					}
 				}
 			}

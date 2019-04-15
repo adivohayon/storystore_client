@@ -19,7 +19,7 @@
 			</carousel> -->
 
 			<!-- HOOPER -->
-			<hooper :settings="hooperOptions" class="carousel" ref="carousel">
+			<!-- <hooper :settings="hooperOptions" class="carousel" ref="carousel">
 				<slide
 					class="slide"
 					v-for="(asset, index) in variantAssets"
@@ -27,7 +27,27 @@
 					:style="{ backgroundImage: 'url(' + asset + ')' }"
 				></slide>
 				<hooper-pagination slot="hooper-addons"></hooper-pagination>
-			</hooper>
+			</hooper> -->
+
+			<!-- GLIDE -->
+			<vue-glide class="carousel" :options="glideOptions" v-model="currentSlideIndex">
+				<vue-glide-slide
+					class="slide"
+					v-for="(asset, index) in variantAssets"
+					:key="index"
+					:style="{ backgroundImage: 'url(' + asset + ')' }"
+					>{{ index }}</vue-glide-slide
+				>
+				<template slot="control" >
+					<ul class="carousel__pagination">
+						<li
+							v-for="(asset, index) in variantAssets"
+							:class="{'active': index === currentSlideIndex}"
+						></li>
+					</ul>
+				</template>
+			</vue-glide>
+
 			<!-- SIEMA -->
 			<!-- <div class="carousel__pagination">
 				<ul>

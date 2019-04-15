@@ -54,6 +54,7 @@
 		"v-selectmenu": "^1.0.7",
 		"vue-carousel": "^0.18.0",
 		"vue-fullpage.js": "^0.1.1",
+		"vue-glide-js": "^1.3.10",
 		"vue-l-carousel": "^1.1.0",
 		"vue-scrollto": "^2.13.0",
 		"vue-svgicon": "^3.2.2",

@@ -60,7 +60,15 @@ export default {
 			hooperOptions: {
 				itemsToShow: 1,
 				// infiniteScroll: true,
-				// shortDrag: false,
+				mouseDrag: false,
+				touchDrag: true,
+				shortDrag: false,
+			},
+			glideOptions: {
+				type: 'carousel',
+				perView: 1,
+				gap: 0,
+				bound: true,
 			},
 			currentSlideIndex: 0,
 			// variant: null,
@@ -249,8 +257,8 @@ export default {
 					});
 				});
 
-				this.$refs.carousel.restart();
-				this.$refs.carousel.slideTo(0);
+				// this.$refs.carousel.restart();
+				// this.$refs.carousel.slideTo(0);
 				// this.$emit('rebuild-fullpage', { activeSlideIndex: 0 });
 				// this.$refs.carousel.destroy(false, () => {
 				// 	this.$refs.carousel.init();
