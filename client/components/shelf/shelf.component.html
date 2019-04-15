@@ -1,18 +1,28 @@
 <div class="shelf">
-	<section>
-		<div class="shelf-logo">
-			<nuxt-link to="/profile">
-				<img :src="logoSrc" :alt="`${storeSlug} Logo`" />
-			</nuxt-link>
-		</div>
-		<div v-if="variantVideo" class="slide" :style="{ position: 'relative' }">
+	<div class="shelf-logo">
+		<nuxt-link to="/profile">
+			<img :src="logoSrc" :alt="`${storeSlug} Logo`" />
+		</nuxt-link>
+	</div>
+	<section class="assets">
+		<!-- <div v-if="variantVideo" class="slide" :style="{ position: 'relative' }">
 			<video-player :source="variantVideo.value"></video-player>
-		</div>
-		<div
+		</div> -->
+		<no-ssr>
+			<carousel :per-page="1" class="carousel">
+				<slide
+					class="slide"
+					v-for="(asset, index) in variantAssets"
+					:key="index"
+					:style="{ backgroundImage: 'url(' + asset + ')' }"
+				></slide>
+			</carousel>
+		</no-ssr>
+		<!-- <div
 			class="slide"
 			v-for="(asset, index) in variantAssets"
 			:style="{ backgroundImage: 'url(' + asset + ')' }"
-		></div>
+		></div> -->
 	</section>
 	<aside class="shelf-buttons" v-if="shelfGoal === 'PURCHASE'">
 		<ul>

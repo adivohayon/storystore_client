@@ -12,6 +12,7 @@ export const mutations = {
 		} else {
 			state.loader.show = !state.loader.show;
 		}
+		console.log('toggleLoader', state.loader.show);
 	},
 	toggleLoaderHideElements(state, toggle) {
 		if (typeof toggle === 'boolean') {

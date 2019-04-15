@@ -13,6 +13,7 @@ import Loader from './../loader';
 import VideoPlayer from './../video-player';
 import AttributePicker from './../attribute-picker';
 import { removeDuplicates } from '@/helpers/collection.helpers';
+
 export default {
 	name: 'shelf',
 	components: {
@@ -174,7 +175,7 @@ export default {
 	methods: {
 		swipeDown() {
 			this.alreadySwiped = true;
-			fullpage_api.moveSectionDown();
+			// fullpage_api.moveSectionDown();
 		},
 		initializeVariation() {
 			this.selectedVariationId = this.shelf.variations[0].variationId;
@@ -237,7 +238,7 @@ export default {
 					});
 				});
 
-				this.$emit('rebuild-fullpage', { activeSlideIndex: 0 });
+				// this.$emit('rebuild-fullpage', { activeSlideIndex: 0 });
 			} else {
 				this.selectedAttributes[attKey] = {
 					...att,
