@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="layout--mobile">
 		<!-- <loader v-if="showLoader" :hide-elements="hideLoaderElements"></loader> -->
 		<!-- <no-ssr> -->
 		<!-- <full-page
@@ -70,6 +70,10 @@ export default {
 <style>
 * {
 	font-family: 'Simpler', 'system-ui', sans-serif;
+}
+.layout--mobile {
+	height: calc(var(--vh, 1vh) * 100);
+	overflow: auto;
 }
 html {
 	font-size: 14px;

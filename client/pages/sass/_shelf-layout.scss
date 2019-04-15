@@ -10,6 +10,8 @@ $shelf-footer-height: 3.4rem;
 	}
 }
 .shelf {
+	height: 100vh;
+	position: relative;
 	// height: calc(100vh - #{$total-fixed-height});
 
 	/********************************

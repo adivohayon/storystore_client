@@ -1,10 +1,10 @@
 <div class="shelf">
-	<section>
-		<div class="shelf-logo">
-			<nuxt-link to="/profile">
-				<img :src="logoSrc" :alt="`${storeSlug} Logo`" />
-			</nuxt-link>
-		</div>
+	<div class="shelf-logo">
+		<nuxt-link to="/profile">
+			<img :src="logoSrc" :alt="`${storeSlug} Logo`" />
+		</nuxt-link>
+	</div>
+	<section class="assets">
 		<div v-if="variantVideo" class="slide" :style="{ position: 'relative' }">
 			<video-player :source="variantVideo.value"></video-player>
 		</div>

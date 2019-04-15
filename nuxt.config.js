@@ -54,6 +54,17 @@ module.exports = {
 		{ src: '~assets/fonts/fonts.css', lang: 'css' },
 	],
 
+	polyfill: {
+		features: [
+			// {
+			// 	require: 'css-scroll-snap-polyfill',
+			// 	install: scrollSnapPolyfill => {
+			// 		console.log('scrollSnapPolyfill', scrollSnapPolyfill);
+			// 		scrollSnapPolyfill();
+			// 	},
+			// },
+		],
+	},
 	/*
 	 ** Plugins to load before mounting the App
 	 */
@@ -61,6 +72,7 @@ module.exports = {
 	plugins: [
 		{ src: '~/plugins/is-mobile', ssr: true },
 		// { src: '~/plugins/swiper', ssr: false },
+		{ src: '~/plugins/smoothscroll-polyfill', ssr: false },
 		{ src: '~/plugins/vuex-persist', ssr: false },
 		{ src: '~/plugins/fullpage', ssr: false },
 		{ src: '~/plugins/v-selectmenu', ssr: false },
@@ -89,6 +101,7 @@ module.exports = {
 			},
 		],
 		'@nuxtjs/axios',
+		'nuxt-polyfill',
 	],
 	// googleAnalytics: {
 	// 	id: 'UA-134688384-1',

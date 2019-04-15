@@ -1,9 +1,15 @@
 .shelf {
-	& > section {
+
+	.assets {
 		position: relative;
-		-webkit-transform: translate3d(0, 0, 0);
-		transform: translate3d(0, 0, 0);
+		height: inherit;
+		.slide {
+			background-size: cover;
+			background-position: center;
+			height: inherit;
+		}
 	}
+	
 	// height: 100vh;
 	// color: black;
 	// background-size: cover;
@@ -85,10 +91,7 @@
 			}
 		}
 	}
-	.slide {
-		background-size: cover;
-		background-position: center;
-	}
+
 	&-content__pagination {
 		top: 1rem;
 		position: absolute;

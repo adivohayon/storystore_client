@@ -1,20 +1,23 @@
 <template>
-	<div id="page" :class="fixerClass">
+	<div id="page">
 		<no-ssr>
-			<full-page
+			<!-- <div
 				v-if="shelves && shelves.length > 0"
-				id="fullpage"
-				ref="fullpage"
-				:options="feedOptions"
-			>
+				ref="feed"
+				class="feed"
+				@touchstart="handleTouchStart"
+				@touchend="handleTouchEnd"
+			> -->
+			<feed v-if="shelves && shelves.length > 0">
 				<shelf
 					v-for="(shelf, shelfIndex) in shelves"
+					:id="`section-${shelfIndex}`"
 					:key="shelfIndex"
 					:shelf="shelf"
 					:shelf-index="shelfIndex"
-					@rebuild-fullpage="rebuildFullpage"
 				></shelf>
-			</full-page>
+			</feed>
+			<!-- </div> -->
 			<div v-else>No shelves available or store not available</div>
 		</no-ssr>
 		<checkout-response></checkout-response>
@@ -33,6 +36,7 @@ import _get from 'lodash/get';
 import _debounce from 'lodash.debounce';
 import _throttle from 'lodash.throttle';
 import _defer from 'lodash.defer';
+import ScrollSnap from 'scroll-snap';
 import { pageHeadMixin } from '@/helpers/mixins';
 export default {
 	components: { Feed, Shelf, Navigation, CheckoutResponse },
@@ -42,34 +46,19 @@ export default {
 	mixins: [pageHeadMixin],
 	data() {
 		return {
-			isMobile: true,
-			fixerClass: '',
-			feedOptions: {
-				sectionSelector: '.shelf',
-				slideSelector: '.slide',
-				autoScrolling: true,
-				licenseKey: '45154D42-6F8E4ACE-AB31A7B3-11A8CE75',
-				dragAndMoveKey: 'c3RvcnlzdG9yZS5jby5pbF9ZSTBaSEpoWjBGdVpFMXZkbVU9YjYy',
-				dragAndMove: true,
-				controlArrows: false,
-				slidesNavigation: true,
-				onLeave: _debounce(this.handleShelfLeave, 300),
-				afterRender: () => {
-					setTimeout(() => {
-						console.log('FINISHED rebuildFullpage');
-						this.isBuilding = false;
-					}, 500);
-					// fullpage_api.silentMoveTo(this.activeShelfIndex);
-				},
-				// afterLoad: this.handleShelfLoaded,
-			},
-			runOnce: false,
-			orderQuery: null,
 			assetsPerLoad: 2,
 			shelvesPerLoad: 2,
 			activeShelfIndex: 0,
 			isBuilding: false,
 			firstUpdate: true,
+			feedOptions: {
+				sectionSelector: 'section',
+				excludedClasses: ['att'],
+				scrollDirection: 'down',
+			},
+			prevClientY: null,
+			clientHeight: null,
+			snapObject: null,
 		};
 	},
 	computed: {
@@ -103,10 +92,72 @@ export default {
 	async mounted() {
 		this.$store.commit('toggleLoader');
 		await this.loadAssets();
+		// const snapPthis.$refs.feed
+
+		// this.clientHeight = window.innerHeight;
+
+		// this.scrollTo('section-3');
+		// setTimeout(() => {
+		// 	document.getElementById('section-3').scrollIntoView({
+		// 		block: 'start',
+		// 		inline: 'nearest',
+		// 		behavior: 'smooth',
+		// 	});
+		// }, 1000);
 	},
 	beforeDestroy() {},
 	destroyed() {},
 	methods: {
+		scrollTo(elementId) {
+			//TODO: check if elementID exists before scrolling
+			const element = document.getElementById(elementId);
+			setTimeout(() => {
+				console.log('scrolling to', element);
+				// document.getElementById(elementId).scrollTo(0, 1000);
+				element.scrollIntoView({
+					block: 'start',
+					inline: 'nearest',
+					behavior: 'smooth',
+				});
+			}, 30);
+		},
+		handleTouchStart(e) {
+			// console.log('start touch / clientY', e.touches[0].clientY);
+			this.prevClientY = e.touches[0].clientY;
+			// console.log('start touch / pageY', e.touches[0].pageY);
+			// console.log('start touch / screenY', e.touches[0].screenY);
+
+			// disable UI
+		},
+		handleTouchEnd(e) {
+			const currentClientY = e.changedTouches[0].clientY;
+			const scrolledDown = currentClientY < this.prevClientY;
+			// console.log('touchend / event', e.changedTouches[0]);
+			console.log('currentClientY', currentClientY);
+			// console.log('end touch / pageY', e.changedTouches[0].pageY);
+			// console.log('end touch / screenY', e.changedTouches[0].screenY);
+			let touchedSection;
+			for (const path of e.path) {
+				// if it's in the ecluded list do nothing
+				if (this.feedOptions.excludedClasses.includes(path.className)) {
+					console.log('touchend / clicked an excluded selector', path.id);
+					return;
+				}
+
+				// what's the touched section's id
+				if (path.id && path.id.startsWith(this.feedOptions.sectionSelector)) {
+					touchedSection = path.id;
+				}
+			}
+
+			console.log('fullheight', this.clientHeight);
+			if (touchedSection) {
+				if (currentClientY > this.clientHeight > 2)
+					this.scrollTo(touchedSection);
+			}
+			// console.log('touch end', touchedSection);
+			//re-enable UI
+		},
 		async handleShelfLeave(origin, destination) {
 			console.log('origin', origin.index);
 			console.log('destination', destination.index);
@@ -142,7 +193,6 @@ export default {
 					});
 					// this.$emit('rebuild-fullpage', { shelfIndex: this.shelfIndex });
 					await this.loadAssets();
-					await this.rebuildFullpage({ activeSectionIndex: destination.index });
 
 					console.log('DONE LOADING SHELVES');
 				}
@@ -151,101 +201,11 @@ export default {
 		handleShelfLoaded(origin, destination) {
 			console.log('Shelf Loaded', { origin, destination });
 		},
-		rebuildFullpage({ activeSectionIndex = -1, activeSlideIndex = -1 }) {
-			return new Promise((resolve, reject) => {
-				if (this.isBuilding) {
-					console.log('Already building... skipping...');
-					resolve();
-				}
-				const numberOfPolls = 20;
-				let i = 0;
-				console.log(
-					'Initial isAnimating',
-					fullpage_api.dragAndMove.isAnimating
-				);
-				const buildFunc = () => {
-					console.log('STARTING rebuildFullpage');
-					this.isBuilding = true;
-					const sectionSelector =
-						this.feedOptions.sectionSelector || '.section';
-
-					const slideSelector = this.feedOptions.slideSelector || '.slide';
-					let activeSlide = document.querySelector(
-						this.feedOptions.sectionSelector +
-							'.active ' +
-							this.feedOptions.slideSelector +
-							'.active'
-					);
-
-					// Get activeSectionIndex if none was provided
-
-					if (activeSectionIndex === -1) {
-						activeSectionIndex = fp_utils.index(
-							document.querySelector(
-								this.feedOptions.sectionSelector + '.active'
-							)
-						);
-					}
-
-					if (activeSlideIndex === -1) {
-						const activeSlideSelector =
-							this.feedOptions.sectionSelector +
-							'.active ' +
-							this.feedOptions.slideSelector +
-							'.active';
-						activeSlideIndex = fp_utils.index(
-							document.querySelector(activeSlideSelector)
-						);
-					}
-					// Destroy
-					this.$refs.fullpage.destroy();
-
-					// Restore active section class
-					if (activeSectionIndex > -1) {
-						fp_utils.addClass(
-							document.querySelectorAll(sectionSelector)[activeSectionIndex],
-							'active'
-						);
-					}
-
-					// Restore active slide class
-					if (activeSlideIndex > -1) {
-						fp_utils.addClass(
-							document.querySelectorAll(
-								`${sectionSelector}.active ${slideSelector}`
-							)[activeSlideIndex],
-							'active'
-						);
-					}
-
-					this.$refs.fullpage.init();
-				};
-				// END buildFunc
-				const polling = setInterval(async () => {
-					console.log('isAnimating', fullpage_api.dragAndMove.isAnimating);
-					console.log('isBuilding', this.isBuilding);
-					console.log('i', i);
-					if (
-						i >= numberOfPolls ||
-						(!fullpage_api.dragAndMove.isAnimating &&
-							!this.isBuilding &&
-							!fullpage_api.dragAndMove.isGrabbing)
-					) {
-						// this.$refs.fullpage.build();
-						// BUILD
-						buildFunc();
-						clearTimeout(polling);
-						resolve();
-					}
-					i++;
-				}, 450);
-			});
-		},
 		handleFirstUpdate() {
 			if (this.firstUpdate) {
 				const queryShelfIndex = this.$route.query.shelfIndex;
 				if (queryShelfIndex > 1) {
-					fullpage_api.moveTo(queryShelfIndex);
+					// fullpage_api.moveTo(queryShelfIndex);
 				} else {
 					this.$router.push({
 						path: this.$route.path,
