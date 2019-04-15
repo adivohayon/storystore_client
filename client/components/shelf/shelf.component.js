@@ -13,7 +13,7 @@ import Loader from './../loader';
 import VideoPlayer from './../video-player';
 import AttributePicker from './../attribute-picker';
 import { removeDuplicates } from '@/helpers/collection.helpers';
-
+import _debounce from 'lodash.debounce';
 export default {
 	name: 'shelf',
 	components: {
@@ -70,9 +70,12 @@ export default {
 				gap: 0,
 				rewind: false,
 				// bound: true,
-				dragThreshold: 180,
+				dragThreshold: 150,
+				swipeThreshold: 250,
 			},
+			viewportWidth: null,
 			currentSlideIndex: 0,
+			showSpacer: false,
 			// variant: null,
 		};
 	},
@@ -192,8 +195,36 @@ export default {
 		this.initializeSelectedAttributes();
 		this.initializeSelectedProperty();
 	},
-	mounted() {},
+	mounted() {
+		this.viewportWidth = window.innerWidth;
+		this.$refs.carousel.addEventListener(
+			'scroll',
+			_debounce(this.handleScroll, 100)
+		);
+		// window.addEventListener('scroll', _debounce(this.handleScroll, 100));
+		// document.addEventListener('touchend', this.handleTouch);
+		// this.$refs.carousel.addEventListener(
+		// 	'touchmove',
+		// 	_debounce(this.handleScroll, 100)
+		// );
+	},
+	beforeDestroy() {
+		this.$refs.carousel.removeEventListener(
+			'scroll',
+			_debounce(this.handleScroll, 100)
+		);
+	},
 	methods: {
+		handleTouch(e) {
+			console.log('scrollLeft', e);
+		},
+		handleScroll(e) {
+			// console.log('viewportWidth', this.viewportWidth);
+			// console.log('scrollLeft', e.target.scrollLeft);
+			if (e.target.scrollLeft % this.viewportWidth === 0) {
+				this.currentSlideIndex = e.target.scrollLeft / this.viewportWidth;
+			}
+		},
 		swipeDown() {
 			this.alreadySwiped = true;
 			// fullpage_api.moveSectionDown();
@@ -258,7 +289,7 @@ export default {
 						loaded: true,
 					});
 				});
-				this.$refs.carousel.go('=0');
+				// this.$refs.carousel.go('=0');
 				// this.$refs.carousel.restart();
 				// this.$refs.carousel.slideTo(0);
 				// this.$emit('rebuild-fullpage', { activeSlideIndex: 0 });

@@ -8,6 +8,27 @@
 		<!-- <div v-if="variantVideo" class="slide" :style="{ position: 'relative' }">
 			<video-player :source="variantVideo.value"></video-player>
 		</div> -->
+		<div class="carousel" ref="carousel">
+			<!-- <div class="carousel__spacer" v-if="showSpacer"></div> -->
+			<!-- <div class="carousel__spacer" v-if="currentSlideIndex  0"></div> -->
+			<div
+				v-for="(asset, index) in variantAssets"
+				:key="index"
+				:id="`slide-${index}`"
+				:style="{ backgroundImage: 'url(' + asset + ')' }"
+				class="slide"
+			></div>
+			<div class="carousel__spacer" v-if="currentSlideIndex > 0"></div>
+			<div class="carousel__pagination">
+				<ul>
+					<li
+						v-for="(asset, index) in variantAssets"
+						:class="{'active': index === currentSlideIndex}"
+					></li>
+					<!-- <li v-for="(asset, index) in variantAssets"></li> -->
+				</ul>
+			</div>
+		</div>
 		<no-ssr>
 			<!-- <carousel :per-page="1" class="carousel">
 				<slide
@@ -30,7 +51,7 @@
 			</hooper> -->
 
 			<!-- GLIDE -->
-			<vue-glide
+			<!-- <vue-glide
 				class="carousel"
 				:options="glideOptions"
 				v-model="currentSlideIndex"
@@ -50,7 +71,7 @@
 						></li>
 					</ul>
 				</template>
-			</vue-glide>
+			</vue-glide> -->
 
 			<!-- SIEMA -->
 			<!-- <div class="carousel__pagination">

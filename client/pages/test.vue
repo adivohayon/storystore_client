@@ -1,15 +1,13 @@
 <template>
 	<div id="page">
-		<carousel :per-page="1" class="carousel">
-			<slide
+		<div class="carousel">
+			<div
 				v-for="(asset, index) in variantAssets"
 				:key="index"
 				:style="{ backgroundImage: 'url(' + asset + ')' }"
 				class="slide"
-			>
-				<!-- <img :src="asset" /> -->
-			</slide>
-		</carousel>
+			></div>
+		</div>
 	</div>
 </template>
 
@@ -49,17 +47,20 @@ export default {
 	.carousel {
 		direction: ltr;
 		height: 100vh;
-		overflow: hidden;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		overflow-x: scroll;
+		overflow-y: hidden;
+		scroll-snap-type: x mandatory;
 		.slide {
-			height:100vh;
-			width: 100%;
+			scroll-snap-align: start;
+			height: 100vh;
+			min-width: 100%;
 			background-size: cover;
 			background-position: center;
-			// img {
-			// 	width: 100%;
-			// 	height: 100%;
-			// }
 		}
+		// overflow: hidden;
 	}
 }
 </style>

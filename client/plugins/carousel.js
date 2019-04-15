@@ -14,7 +14,7 @@
 // Vue.component('slide', Slide);
 // Vue.component('hooper-pagination', Pagination);
 
-import Vue from 'vue';
-import VueGlide from 'vue-glide-js';
-import 'vue-glide-js/dist/vue-glide.css';
-Vue.use(VueGlide);
+// import Vue from 'vue';
+// import VueGlide from 'vue-glide-js';
+// import 'vue-glide-js/dist/vue-glide.css';
+// Vue.use(VueGlide);
