@@ -65,10 +65,12 @@ export default {
 				shortDrag: false,
 			},
 			glideOptions: {
-				type: 'carousel',
+				type: 'slider',
 				perView: 1,
 				gap: 0,
-				bound: true,
+				rewind: false,
+				// bound: true,
+				dragThreshold: 180,
 			},
 			currentSlideIndex: 0,
 			// variant: null,
@@ -256,7 +258,7 @@ export default {
 						loaded: true,
 					});
 				});
-
+				this.$refs.carousel.go('=0');
 				// this.$refs.carousel.restart();
 				// this.$refs.carousel.slideTo(0);
 				// this.$emit('rebuild-fullpage', { activeSlideIndex: 0 });

@@ -30,15 +30,19 @@
 			</hooper> -->
 
 			<!-- GLIDE -->
-			<vue-glide class="carousel" :options="glideOptions" v-model="currentSlideIndex">
+			<vue-glide
+				class="carousel"
+				:options="glideOptions"
+				v-model="currentSlideIndex"
+				ref="carousel"
+			>
 				<vue-glide-slide
 					class="slide"
 					v-for="(asset, index) in variantAssets"
 					:key="index"
 					:style="{ backgroundImage: 'url(' + asset + ')' }"
-					>{{ index }}</vue-glide-slide
-				>
-				<template slot="control" >
+				></vue-glide-slide>
+				<template slot="control">
 					<ul class="carousel__pagination">
 						<li
 							v-for="(asset, index) in variantAssets"
