@@ -1,25 +1,25 @@
 <template>
 	<div id="page">
-		<no-ssr>
-			<!-- <div
+		<!-- <no-ssr> -->
+		<!-- <div
 				v-if="shelves && shelves.length > 0"
 				ref="feed"
 				class="feed"
 				@touchstart="handleTouchStart"
 				@touchend="handleTouchEnd"
 			> -->
-			<feed v-if="shelves && shelves.length > 0">
-				<shelf
-					v-for="(shelf, shelfIndex) in shelves"
-					:id="`section-${shelfIndex}`"
-					:key="shelfIndex"
-					:shelf="shelf"
-					:shelf-index="shelfIndex"
-				></shelf>
-			</feed>
-			<!-- </div> -->
-			<div v-else>No shelves available or store not available</div>
-		</no-ssr>
+		<feed v-if="shelves && shelves.length > 0">
+			<shelf
+				v-for="(shelf, shelfIndex) in shelves"
+				:id="`section-${shelfIndex}`"
+				:key="shelfIndex"
+				:shelf="shelf"
+				:shelf-index="shelfIndex"
+			></shelf>
+		</feed>
+		<!-- </div> -->
+		<div v-else>No shelves available or store not available</div>
+		<!-- </no-ssr> -->
 		<checkout-response></checkout-response>
 	</div>
 </template>

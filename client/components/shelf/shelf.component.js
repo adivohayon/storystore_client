@@ -13,6 +13,7 @@ import Loader from './../loader';
 import VideoPlayer from './../video-player';
 import AttributePicker from './../attribute-picker';
 import { removeDuplicates } from '@/helpers/collection.helpers';
+
 export default {
 	name: 'shelf',
 	components: {

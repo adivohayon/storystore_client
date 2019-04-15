@@ -1,15 +1,24 @@
 .shelf {
-
 	.assets {
 		position: relative;
 		height: inherit;
-		.slide {
-			background-size: cover;
-			background-position: center;
-			height: inherit;
+		.carousel {
+			direction: ltr;
+			height: 100vh;
+			overflow: hidden;
+			.slide {
+				height:100vh;
+				width: 100%;
+				background-size: cover;
+				background-position: center;
+			}
+			/deep/ .VueCarousel-pagination {
+				position: absolute;
+				top: 0;
+			}
 		}
 	}
-	
+
 	// height: 100vh;
 	// color: black;
 	// background-size: cover;
