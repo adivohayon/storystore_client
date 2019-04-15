@@ -33,6 +33,7 @@
 		"dotenv": "^6.2.0",
 		"express": "^4.16.4",
 		"googleapis": "^36.0.0",
+		"hooper": "^0.1.2",
 		"lodash.debounce": "^4.0.8",
 		"lodash.defer": "^4.1.0",
 		"lodash.get": "^4.4.2",
@@ -57,6 +58,7 @@
 		"vue-scrollto": "^2.13.0",
 		"vue-svgicon": "^3.2.2",
 		"vue-video-player": "^5.0.2",
+		"vue2-siema": "^0.2.2",
 		"vue2-touch-events": "^1.1.1",
 		"vuelidate": "^0.7.4",
 		"vuex-persist": "^2.0.0"

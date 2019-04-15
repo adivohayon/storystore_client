@@ -52,6 +52,17 @@ export default {
 			showShelfInfo: false,
 			selectedProperty: {},
 			alreadySwiped: false,
+			carouselOptions: {
+				loop: true,
+				perPage: 1,
+				rtl: false,
+			},
+			hooperOptions: {
+				itemsToShow: 1,
+				// infiniteScroll: true,
+				// shortDrag: false,
+			},
+			currentSlideIndex: 0,
 			// variant: null,
 		};
 	},
@@ -238,7 +249,12 @@ export default {
 					});
 				});
 
+				this.$refs.carousel.restart();
+				this.$refs.carousel.slideTo(0);
 				// this.$emit('rebuild-fullpage', { activeSlideIndex: 0 });
+				// this.$refs.carousel.destroy(false, () => {
+				// 	this.$refs.carousel.init();
+				// });
 			} else {
 				this.selectedAttributes[attKey] = {
 					...att,

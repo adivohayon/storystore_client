@@ -28,6 +28,7 @@
 		min-width: 100%;
 		min-height: 100%;
 		scroll-snap-align: start;
+		overflow: hidden;
 		.assets {
 			scroll-snap-type: x mandatory;
 			& > .slide {

@@ -9,14 +9,45 @@
 			<video-player :source="variantVideo.value"></video-player>
 		</div> -->
 		<no-ssr>
-			<carousel :per-page="1" class="carousel">
+			<!-- <carousel :per-page="1" class="carousel">
 				<slide
 					class="slide"
 					v-for="(asset, index) in variantAssets"
 					:key="index"
 					:style="{ backgroundImage: 'url(' + asset + ')' }"
 				></slide>
-			</carousel>
+			</carousel> -->
+
+			<!-- HOOPER -->
+			<hooper :settings="hooperOptions" class="carousel" ref="carousel">
+				<slide
+					class="slide"
+					v-for="(asset, index) in variantAssets"
+					:key="index"
+					:style="{ backgroundImage: 'url(' + asset + ')' }"
+				></slide>
+				<hooper-pagination slot="hooper-addons"></hooper-pagination>
+			</hooper>
+			<!-- SIEMA -->
+			<!-- <div class="carousel__pagination">
+				<ul>
+					<li v-for="(asset, index) in variantAssets" :class="{'active': index === currentSlideIndex}">
+					</li>
+				</ul>
+			</div>
+			<siema
+				class="carousel"
+				:current.sync="currentSlideIndex"
+				ref="carousel"
+				:options="carouselOptions"
+			>
+				<div
+					v-for="(asset, index) in variantAssets"
+					:key="index"
+					:style="{ backgroundImage: 'url(' + asset + ')' }"
+					class="slide"
+				></div>
+			</siema> -->
 		</no-ssr>
 		<!-- <div
 			class="slide"
