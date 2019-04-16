@@ -2,15 +2,7 @@ $variant-container-height: 5rem; //rem
 $shelf-header-height: 5.3rem; //rems
 $shelf-footer-height: 3.4rem;
 
-.swiper-pagination-bullet {
-	border: 1px solid #ffffff;
-	background-color: transparent;
-	margin: 0 0.2rem;
-	opacity: 1;
-	&-active {
-		background-color: #ffffff;
-	}
-}
+
 .shelf {
 	height: 100vh;
 	position: relative;
@@ -41,6 +33,12 @@ $shelf-footer-height: 3.4rem;
 			// bottom: -3px;
 
 			&-bullet {
+				border: 1px solid #ffffff;
+				background-color: transparent;
+				margin: 0 0.3rem;
+				opacity: 1;
+				width: 9px;
+				height: 9px;
 				// width: 100%;
 				// border-radius: 1rem;
 				// height: 20px;
@@ -50,10 +48,9 @@ $shelf-footer-height: 3.4rem;
 				// color: #000;
 				// opacity: 1;
 				// background: rgba(0, 0, 0, 0.2);
-				// &-active {
-				// 	color: #fff;
-				// 	background: #007aff;
-				// }
+				&-active {
+					background-color: #ffffff;
+				}
 			}
 		}
 	}
