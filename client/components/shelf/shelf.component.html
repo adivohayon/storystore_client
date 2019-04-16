@@ -8,9 +8,7 @@
 		<!-- <div v-if="variantVideo" class="slide" :style="{ position: 'relative' }">
 			<video-player :source="variantVideo.value"></video-player>
 		</div> -->
-		<div class="carousel" ref="carousel">
-			<!-- <div class="carousel__spacer" v-if="showSpacer"></div> -->
-			<!-- <div class="carousel__spacer" v-if="currentSlideIndex  0"></div> -->
+		<!-- <div class="carousel" ref="carousel">
 			<div
 				v-for="(asset, index) in variantAssets"
 				:key="index"
@@ -25,10 +23,27 @@
 						v-for="(asset, index) in variantAssets"
 						:class="{'active': index === currentSlideIndex}"
 					></li>
-					<!-- <li v-for="(asset, index) in variantAssets"></li> -->
 				</ul>
 			</div>
+		</div> -->
+
+		<div v-swiper:mySwiper="swiperOption">
+			<div class="swiper-wrapper carousel">
+				<div
+					v-for="(asset, index)  in variantAssets"
+					:key="index"
+					:style="{ backgroundImage: 'url(' + asset + ')' }"
+					class="swiper-slide slide"
+				>
+					<!-- <img :src="asset"> -->
+				</div>
+			</div>
+			<div class="swiper-pagination">
+				
+			</div>
+			<div class="shelf-scrims--top"></div>
 		</div>
+
 		<no-ssr>
 			<!-- <carousel :per-page="1" class="carousel">
 				<slide
@@ -184,7 +199,7 @@
 		></shelf-info>
 	</transition>
 	<div class="shelf-scrims">
-		<div class="shelf-scrims--top"></div>
+		<!-- <div class="shelf-scrims--top"></div> -->
 		<div class="shelf-scrims--bottom"></div>
 	</div>
 </div>

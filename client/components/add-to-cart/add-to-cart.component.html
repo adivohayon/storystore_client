@@ -2,7 +2,7 @@
 	<button
 		class="btn btn--add-to-cart"
 		:class="{'checkout': added}"
-		@touchend="addToCart(shelf, selectedAttributes, selectedProperty)"
+		@click="addToCart(shelf, selectedAttributes, selectedProperty)"
 	>
 		{{ buttonText }}
 	</button>

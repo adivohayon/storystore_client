@@ -2,10 +2,29 @@
 	.assets {
 		position: relative;
 		height: inherit;
+		.swiper-container {
+			.swiper-pagination {
+				position: absolute;
+				top: 1rem;
+				z-index: 20;
+				bottom: unset;
+				padding: 0;
+				text-align: center;
+				width: 100%;
+				span.swiper-pagination-bullet {
+					border: 1px solid #ffffff;
+
+					&-active {
+						background-color: #ffffff;
+					}
+				}
+			}
+		}
 		.carousel {
-			direction: ltr;
+			// direction: ltr;
 			height: 100vh;
-			overflow: hidden;
+
+			// overflow: hidden;
 
 			// .glide {
 			// 	div ul.carousel__pagination {
@@ -68,16 +87,16 @@
 				}
 			}
 
-			direction: ltr;
+			// direction: ltr;
 			height: 100vh;
-			display: flex;
-			flex-direction: row;
-			flex-wrap: nowrap;
-			overflow-x: scroll;
-			overflow-y: hidden;
-			scroll-snap-type: x mandatory;
+			// display: flex;
+			// flex-direction: row;
+			// flex-wrap: nowrap;
+			// overflow-x: scroll;
+			// overflow-y: hidden;
+			// scroll-snap-type: x mandatory;
 			.slide {
-				scroll-snap-align: start;
+				// scroll-snap-align: start;
 				height: 100vh;
 				min-width: 100%;
 				background-size: cover;

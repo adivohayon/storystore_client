@@ -76,6 +76,18 @@ export default {
 			viewportWidth: null,
 			currentSlideIndex: 0,
 			showSpacer: false,
+			swiperOption: {
+				pagination: {
+					el: '.swiper-pagination',
+				},
+				slidesPerView: 1,
+				speed: 500,
+				iOSEdgeSwipeDetection: true,
+				threshold: 10,
+				effect: 'fade',
+				// loop: true,
+				// some swiper options...
+			},
 			// variant: null,
 		};
 	},
@@ -197,10 +209,10 @@ export default {
 	},
 	mounted() {
 		this.viewportWidth = window.innerWidth;
-		this.$refs.carousel.addEventListener(
-			'scroll',
-			_debounce(this.handleScroll, 100)
-		);
+		// this.$refs.carousel.addEventListener(
+		// 	'scroll',
+		// 	_debounce(this.handleScroll, 100)
+		// );
 		// window.addEventListener('scroll', _debounce(this.handleScroll, 100));
 		// document.addEventListener('touchend', this.handleTouch);
 		// this.$refs.carousel.addEventListener(
@@ -209,10 +221,10 @@ export default {
 		// );
 	},
 	beforeDestroy() {
-		this.$refs.carousel.removeEventListener(
-			'scroll',
-			_debounce(this.handleScroll, 100)
-		);
+		// this.$refs.carousel.removeEventListener(
+		// 	'scroll',
+		// 	_debounce(this.handleScroll, 100)
+		// );
 	},
 	methods: {
 		handleTouch(e) {
