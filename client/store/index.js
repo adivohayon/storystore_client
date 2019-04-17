@@ -1,7 +1,7 @@
 import { getSlugFromHost } from '@/helpers/async-data.helpers';
 export const state = () => ({
 	loader: {
-		show: false,
+		show: true,
 		hideElements: false,
 	},
 });

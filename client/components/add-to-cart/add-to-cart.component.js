@@ -74,6 +74,7 @@ export default {
 
 			if (this.added) {
 				this.$router.replace('/checkout');
+				return;
 			}
 
 			setTimeout(function() {
