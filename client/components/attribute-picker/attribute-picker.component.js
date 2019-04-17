@@ -34,7 +34,8 @@ export default {
 			);
 		},
 		hidePicker() {
-			return this.onlyOneSize || this.oneValueAndNull;
+			// return this.onlyOneSize || this.oneValueAndNull;
+			return this.oneValueAndNull;
 		},
 		oneValueAndNull() {
 			return (
