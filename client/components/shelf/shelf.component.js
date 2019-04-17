@@ -70,24 +70,24 @@ export default {
 				iOSEdgeSwipeDetection: true,
 				threshold: 10,
 				effect: 'fade',
-				loop: true,
-				loopedSlides: 1,
+				// loop: true,
+				// loopedSlides: 1,
 				on: {
-					slideNextTransitionStart: function() {
-						const previousSlideIndex = this.realIndex + 1;
-						if (previousSlideIndex === 1) {
-							this.slideTo(1);
-						}
-					},
-					slidePrevTransitionStart: function() {
-						let slidesLength = this.slides.length - 2;
-						const previousSlideIndex = this.realIndex + 1;
-						console.log('this.realIndex ', this.realIndex);
-						console.log(previousSlideIndex, slidesLength);
-						if (previousSlideIndex === slidesLength) {
-							this.slideTo(previousSlideIndex);
-						}
-					},
+					// slideNextTransitionStart: function() {
+					// 	const previousSlideIndex = this.realIndex + 1;
+					// 	if (previousSlideIndex === 1) {
+					// 		this.slideTo(1);
+					// 	}
+					// },
+					// slidePrevTransitionStart: function() {
+					// 	let slidesLength = this.slides.length - 2;
+					// 	const previousSlideIndex = this.realIndex + 1;
+					// 	console.log('this.realIndex ', this.realIndex);
+					// 	console.log(previousSlideIndex, slidesLength);
+					// 	if (previousSlideIndex === slidesLength) {
+					// 		this.slideTo(previousSlideIndex);
+					// 	}
+					// },
 				},
 			},
 		};
@@ -119,6 +119,17 @@ export default {
 			let path = process.env.staticDir ? process.env.staticDir : '/';
 			path += `${this.storeSlug}/logo_${this.storeSlug}_white.png`;
 			return path;
+		},
+		shelfTitle() {
+			if (this.storeSlug === 'alinecohen') {
+				return (
+					this.shelf.name +
+					' - ' +
+					this.variant.property_label
+				).toUpperCase();
+			} else {
+				return this.shelf.name;
+			}
 		},
 		variantAssets() {
 			const assets = _get(this.variant, 'assets', []);
@@ -268,8 +279,8 @@ export default {
 			}
 		},
 		setAtt({ att, attKey }) {
-			this.assetsSwiper.update();
-			this.assetsSwiper.slideTo(0);
+			// this.assetsSwiper.update();
+			// this.assetsSwiper.slideTo(0);
 			// Changed variant
 			if (att.variationId) {
 				this.selectedProperty[attKey] = {
