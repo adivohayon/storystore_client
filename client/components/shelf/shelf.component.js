@@ -60,11 +60,11 @@ export default {
 				pagination: {
 					el: '.swiper-pagination',
 				},
-				autoplay: {
-					delay: 1000,
-					stopOnLastSlide: false,
-					disableOnInteraction: true,
-				},
+				// autoplay: {
+				// 	delay: 1000,
+				// 	stopOnLastSlide: false,
+				// 	disableOnInteraction: true,
+				// },
 				slidesPerView: 1,
 				speed: 500,
 				iOSEdgeSwipeDetection: true,
