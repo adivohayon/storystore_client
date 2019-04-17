@@ -5,9 +5,10 @@ import { checkRule } from '@/helpers/rules.helpers';
 import { pageHeadMixin } from '@/helpers/mixins';
 
 export default {
-	async asyncData({ req }) {
+	async asyncData({ req, store }) {
 		const host = process.server ? req.headers.host : window.location.hostname;
 		const storeSlug = getSlugFromHost(host);
+		store.commit('toggleLoader', false);
 
 		return {
 			storeSlug,

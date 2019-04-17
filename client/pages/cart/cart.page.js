@@ -7,6 +7,8 @@ export default {
 		const host = process.server ? req.headers.host : window.location.hostname;
 		const storeSlug = getSlugFromHost(host);
 
+		store.commit('toggleLoader', false);
+
 		return {
 			storeSlug,
 		};
