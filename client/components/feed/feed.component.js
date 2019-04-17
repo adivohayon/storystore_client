@@ -50,7 +50,6 @@ export default {
 		document.documentElement.style.setProperty('--vh', `${vh}px`);
 		// Then we set the value in the --vh custom property to the root of the document
 
-		this.$store.commit('toggleLoader');
 		this.loadAssets().then(() => {
 			const queryShelfIndex = this.$route.query.shelfIndex;
 			this.sectionLeave(queryShelfIndex);
@@ -59,11 +58,17 @@ export default {
 			}
 		});
 	},
+	// beforeRouteUpdate(to, from, next) {
+	// 	// react to route changes...
+	// 	// don't forget to call next()
+	// 	console.log('aaaaa');
+	// 	next();
+	// },
 	methods: {
 		loadMoreShelves(nextSectionIndex, isLast) {
 			return new Promise(async (resolve, reject) => {
-				console.log('paginationOffset', this.paginationOffset);
-				console.log('nextSectionIndex', nextSectionIndex);
+				// console.log('paginationOffset', this.paginationOffset);
+				// console.log('nextSectionIndex', nextSectionIndex);
 				const moreShelvesThreshold = 3;
 				try {
 					if (
@@ -98,13 +103,14 @@ export default {
 		sectionLeave(sectionIndex) {
 			console.log('sectionLeave', sectionIndex);
 			this.sectionIndex = sectionIndex;
-			this.$router.push({
-				path: this.$route.path,
-				query: {
-					...this.$route.query,
-					shelfIndex: this.sectionIndex,
-				},
-			});
+			// this.insertQueryParam('shelfIndex', this.sectionIndex);
+			// this.$router.push({
+			// 	path: this.$route.path,
+			// 	query: {
+			// 		...this.$route.query,
+			// 		shelfIndex: this.sectionIndex,
+			// 	},
+			// });
 
 			// Track content for analytics
 			const currentShelf = this.shelves[sectionIndex];
@@ -121,12 +127,14 @@ export default {
 				let sectionId;
 				const scrollDown = e.changedTouches[0].pageY < this.startY;
 
-				const touchedSection = e.path.find(el =>
-					el.id.startsWith(this.sectionIdPrefix)
-				);
+				const touchedSection = e
+					.composedPath()
+					.find(el => (el.id ? el.id.startsWith(this.sectionIdPrefix) : false));
 				if (!touchedSection) {
+					console.error('touchedSection error');
 					throw new Error('No section to select');
 				}
+				// console.log('touchedSection', touchedSection);
 
 				const comparedSection = scrollDown
 					? touchedSection.nextElementSibling
@@ -149,6 +157,7 @@ export default {
 					sectionId = touchedSection.id;
 				}
 
+				// console.log('sectionId', sectionId);
 				const sectionIndex = Number(
 					sectionId.substring(
 						sectionId.indexOf(this.sectionIdPrefix) +
@@ -252,6 +261,34 @@ export default {
 					resolve(e);
 				};
 			});
+		},
+		insertQueryParam(key, value) {
+			key = escape(key);
+			value = escape(value);
+
+			var kvp = document.location.search.substr(1).split('&');
+			if (kvp == '') {
+				document.location.search = '?' + key + '=' + value;
+			} else {
+				var i = kvp.length;
+				var x;
+				while (i--) {
+					x = kvp[i].split('=');
+
+					if (x[0] == key) {
+						x[1] = value;
+						kvp[i] = x.join('=');
+						break;
+					}
+				}
+
+				if (i < 0) {
+					kvp[kvp.length] = [key, value].join('=');
+				}
+
+				//this will reload the page, it's likely better to store this until finished
+				document.location.search = kvp.join('&');
+			}
 		},
 	},
 };

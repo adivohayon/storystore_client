@@ -61,7 +61,9 @@ export default {
 	},
 	watch: {},
 	created() {},
-	async mounted() {},
+	async mounted() {
+		this.$store.commit('toggleLoader');
+	},
 	methods: {},
 };
 </script>
