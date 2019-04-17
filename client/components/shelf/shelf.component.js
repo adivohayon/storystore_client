@@ -52,45 +52,47 @@ export default {
 			showShelfInfo: false,
 			selectedProperty: {},
 			alreadySwiped: false,
-			carouselOptions: {
-				loop: true,
-				perPage: 1,
-				rtl: false,
-			},
-			hooperOptions: {
-				itemsToShow: 1,
-				// infiniteScroll: true,
-				mouseDrag: false,
-				touchDrag: true,
-				shortDrag: false,
-			},
-			glideOptions: {
-				type: 'slider',
-				perView: 1,
-				gap: 0,
-				rewind: false,
-				// bound: true,
-				dragThreshold: 150,
-				swipeThreshold: 250,
-			},
 			viewportWidth: null,
 			currentSlideIndex: 0,
 			showSpacer: false,
+			// assetsSwiper: null,
 			swiperOption: {
 				pagination: {
 					el: '.swiper-pagination',
+				},
+				autoplay: {
+					delay: 1000,
+					stopOnLastSlide: false,
+					disableOnInteraction: true,
 				},
 				slidesPerView: 1,
 				speed: 500,
 				iOSEdgeSwipeDetection: true,
 				threshold: 10,
 				effect: 'fade',
-				// loop: true,
-				// some swiper options...
+				loop: true,
+				loopedSlides: 1,
+				on: {
+					slideNextTransitionStart: function() {
+						const previousSlideIndex = this.realIndex + 1;
+						if (previousSlideIndex === 1) {
+							this.slideTo(1);
+						}
+					},
+					slidePrevTransitionStart: function() {
+						let slidesLength = this.slides.length - 2;
+						const previousSlideIndex = this.realIndex + 1;
+						console.log('this.realIndex ', this.realIndex);
+						console.log(previousSlideIndex, slidesLength);
+						if (previousSlideIndex === slidesLength) {
+							this.slideTo(previousSlideIndex);
+						}
+					},
+				},
 			},
-			// variant: null,
 		};
 	},
+
 	computed: {
 		...mapState({
 			shippingDetails: state => state.store.shippingDetails,
@@ -209,23 +211,8 @@ export default {
 	},
 	mounted() {
 		this.viewportWidth = window.innerWidth;
-		// this.$refs.carousel.addEventListener(
-		// 	'scroll',
-		// 	_debounce(this.handleScroll, 100)
-		// );
-		// window.addEventListener('scroll', _debounce(this.handleScroll, 100));
-		// document.addEventListener('touchend', this.handleTouch);
-		// this.$refs.carousel.addEventListener(
-		// 	'touchmove',
-		// 	_debounce(this.handleScroll, 100)
-		// );
 	},
-	beforeDestroy() {
-		// this.$refs.carousel.removeEventListener(
-		// 	'scroll',
-		// 	_debounce(this.handleScroll, 100)
-		// );
-	},
+
 	methods: {
 		handleTouch(e) {
 			console.log('scrollLeft', e);
@@ -281,6 +268,8 @@ export default {
 			}
 		},
 		setAtt({ att, attKey }) {
+			this.assetsSwiper.update();
+			this.assetsSwiper.slideTo(0);
 			// Changed variant
 			if (att.variationId) {
 				this.selectedProperty[attKey] = {

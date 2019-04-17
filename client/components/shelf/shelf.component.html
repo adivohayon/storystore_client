@@ -8,26 +8,8 @@
 		<!-- <div v-if="variantVideo" class="slide" :style="{ position: 'relative' }">
 			<video-player :source="variantVideo.value"></video-player>
 		</div> -->
-		<!-- <div class="carousel" ref="carousel">
-			<div
-				v-for="(asset, index) in variantAssets"
-				:key="index"
-				:id="`slide-${index}`"
-				:style="{ backgroundImage: 'url(' + asset + ')' }"
-				class="slide"
-			></div>
-			<div class="carousel__spacer" v-if="currentSlideIndex > 0"></div>
-			<div class="carousel__pagination">
-				<ul>
-					<li
-						v-for="(asset, index) in variantAssets"
-						:class="{'active': index === currentSlideIndex}"
-					></li>
-				</ul>
-			</div>
-		</div> -->
 
-		<div v-swiper:mySwiper="swiperOption">
+		<div v-swiper:assetsSwiper="swiperOption">
 			<div class="swiper-wrapper carousel">
 				<div
 					v-for="(asset, index)  in variantAssets"
@@ -35,78 +17,14 @@
 					:style="{ backgroundImage: 'url(' + asset + ')' }"
 					class="swiper-slide slide"
 				>
-					<!-- <img :src="asset"> -->
+					<!-- <img :src="asset"> {{asset}} -->
 				</div>
 			</div>
 			<div class="swiper-pagination"></div>
 			<div class="shelf-scrims--top"></div>
 		</div>
 
-		<no-ssr>
-			<!-- <carousel :per-page="1" class="carousel">
-				<slide
-					class="slide"
-					v-for="(asset, index) in variantAssets"
-					:key="index"
-					:style="{ backgroundImage: 'url(' + asset + ')' }"
-				></slide>
-			</carousel> -->
-
-			<!-- HOOPER -->
-			<!-- <hooper :settings="hooperOptions" class="carousel" ref="carousel">
-				<slide
-					class="slide"
-					v-for="(asset, index) in variantAssets"
-					:key="index"
-					:style="{ backgroundImage: 'url(' + asset + ')' }"
-				></slide>
-				<hooper-pagination slot="hooper-addons"></hooper-pagination>
-			</hooper> -->
-
-			<!-- GLIDE -->
-			<!-- <vue-glide
-				class="carousel"
-				:options="glideOptions"
-				v-model="currentSlideIndex"
-				ref="carousel"
-			>
-				<vue-glide-slide
-					class="slide"
-					v-for="(asset, index) in variantAssets"
-					:key="index"
-					:style="{ backgroundImage: 'url(' + asset + ')' }"
-				></vue-glide-slide>
-				<template slot="control">
-					<ul class="carousel__pagination">
-						<li
-							v-for="(asset, index) in variantAssets"
-							:class="{'active': index === currentSlideIndex}"
-						></li>
-					</ul>
-				</template>
-			</vue-glide> -->
-
-			<!-- SIEMA -->
-			<!-- <div class="carousel__pagination">
-				<ul>
-					<li v-for="(asset, index) in variantAssets" :class="{'active': index === currentSlideIndex}">
-					</li>
-				</ul>
-			</div>
-			<siema
-				class="carousel"
-				:current.sync="currentSlideIndex"
-				ref="carousel"
-				:options="carouselOptions"
-			>
-				<div
-					v-for="(asset, index) in variantAssets"
-					:key="index"
-					:style="{ backgroundImage: 'url(' + asset + ')' }"
-					class="slide"
-				></div>
-			</siema> -->
-		</no-ssr>
+		<no-ssr> </no-ssr>
 		<!-- <div
 			class="slide"
 			v-for="(asset, index) in variantAssets"

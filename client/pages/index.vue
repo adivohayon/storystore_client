@@ -62,6 +62,7 @@ export default {
 	watch: {},
 	created() {},
 	async mounted() {
+		window.ScreenOrientation.lock('portrait');
 		// this.$store.commit('toggleLoader');
 	},
 	methods: {},

@@ -29,6 +29,10 @@ export const pageHeadMixin = {
 			title:
 				this.$store.state.store.name + ' - ' + this.$store.state.store.tagline,
 			link: [{ rel: 'icon', href: faviconPath }],
+			meta: [
+				{ name: 'viewport', content: 'width=device-width, user-scalable=no' },
+				{ name: 'screen-orientation', content: 'autoRotate:disabled' },
+			],
 			script,
 			noscript,
 			__dangerouslyDisableSanitizers: ['noscript', 'script'],

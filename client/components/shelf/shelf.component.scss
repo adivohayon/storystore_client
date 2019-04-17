@@ -60,6 +60,11 @@
 				min-width: 100%;
 				background-size: cover;
 				background-position: center;
+				img {
+					width: 100%;
+					height: auto;
+					object-fit: contain;
+				}
 			}
 		}
 	}
@@ -72,7 +77,6 @@
 		z-index: 30;
 		// border-bottom: 1px solid rgba(203, 202, 202, 0.7);
 	}
-
 
 	.swipe-down {
 		text-align: center;
