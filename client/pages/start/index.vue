@@ -5,7 +5,9 @@ import { contactStorystore } from '@/services/api.service';
 import { validateEmail } from '@/helpers/validation.helpers';
 export default {
 	components: {},
-	async asyncData({ params }) {},
+	async asyncData({ params, store }) {
+		store.commit('toggleLoader', false);
+	},
 	data() {
 		return {
 			contactFormResp: {
