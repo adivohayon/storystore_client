@@ -1,6 +1,12 @@
 .shelf {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+
+	align-items: flex-start;
 	.assets {
-		position: relative;
+		position: absolute;
+		width: 100%;
 		height: inherit;
 		.swiper-container {
 			.swiper-pagination {
@@ -11,29 +17,11 @@
 				padding: 0;
 				text-align: center;
 				width: 100%;
-				// span.swiper-pagination-bullet {
-				// 	border: 1px solid #ffffff;
-
-				// 	&-active {
-				// 		background-color: #ffffff;
-				// 	}
-				// }
 			}
 		}
 		.carousel {
 			// direction: ltr;
 			height: 100vh;
-
-			// overflow: hidden;
-
-			// .glide {
-			// 	div ul.carousel__pagination {
-			// 		position: absolute;
-			// 		top: 1rem;
-			// 		z-index: 20;
-			// 		bottom: unset;
-			// 	}
-			// }
 			&__spacer {
 				background-color: #cecece;
 				min-width: 3rem;
@@ -64,57 +52,16 @@
 					}
 				}
 			}
-			/deep/ .hooper {
-				&-pagination {
-					position: absolute;
-					top: 1rem;
-					z-index: 20;
-					bottom: unset;
-				}
 
-				&-indicator {
-					height: 0.5rem;
-					width: 0.5rem;
-					border-radius: 50%;
-					background-color: #ffffff;
-					margin: 0 0.4rem;
-
-					&.is-active {
-						background-color: #000000;
-						height: 0.6rem;
-						width: 0.6rem;
-					}
-				}
-			}
-
-			// direction: ltr;
 			height: 100vh;
-			// display: flex;
-			// flex-direction: row;
-			// flex-wrap: nowrap;
-			// overflow-x: scroll;
-			// overflow-y: hidden;
-			// scroll-snap-type: x mandatory;
 			.slide {
-				// scroll-snap-align: start;
 				height: 100vh;
 				min-width: 100%;
 				background-size: cover;
 				background-position: center;
 			}
-			// /deep/ .VueCarousel-pagination {
-			// 	position: absolute;
-			// 	top: 0;
-			// }
 		}
 	}
-
-	// height: 100vh;
-	// color: black;
-	// background-size: cover;
-	// overflow: hidden;
-	// position: relative;
-	// color: #ffffff;
 
 	&-description {
 		font-size: 0.9rem;
@@ -146,18 +93,7 @@
 			padding: 0.6rem 1rem;
 		}
 	}
-	// .test {
-	// 	display: block;
-	// 	width: 100%;
-	// 	height: 5rem;
-	// 	position: relative;
-	// 	bottom: 50%;
-	// 	z-index: 9999999999;
-	// 	background-color: black;
-	// 	-webkit-transform: translate3d(0, 0, 0);
-	// 	-ms-transform: translate3d(0, 0, 0);
-	// 	transform: translate3d(0, 0, 0);
-	// }
+
 	&-logo {
 		position: absolute;
 		top: 1.1rem;
@@ -169,6 +105,16 @@
 			width: 100%;
 			height: auto;
 		}
+	}
+
+	&-title {
+		position: relative;
+		z-index: 30;
+	}
+
+	.attribute-picker {
+		position: relative;
+		z-index: 30;
 	}
 
 	.slide--video {
@@ -239,16 +185,25 @@
 		}
 	}
 
-	&-footer {
+	&-options {
 		-webkit-transform: translate3d(0, 0, 0);
-		-ms-transform: translate3d(0, 0, 0);
 		transform: translate3d(0, 0, 0);
 		position: absolute;
-		bottom: 1rem;
+		bottom: 6rem;
+		z-index: 30;
+		width: auto;
+		opacity: 1;
+		font-size: 1.3rem;
+	}
+
+	&-footer {
+		// -webkit-transform: translate3d(0, 0, 0);
+		// transform: translate3d(0, 0, 0);
+		position: relative;
+		// bottom: 1rem;
 		z-index: 30;
 		width: 100%;
-		opacity: 0.99;
-		font-size: 1.3rem;
+		padding-bottom: 1rem;
 	}
 
 	&-scrims {

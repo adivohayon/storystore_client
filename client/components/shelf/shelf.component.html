@@ -38,9 +38,7 @@
 					<!-- <img :src="asset"> -->
 				</div>
 			</div>
-			<div class="swiper-pagination">
-				
-			</div>
+			<div class="swiper-pagination"></div>
 			<div class="shelf-scrims--top"></div>
 		</div>
 
@@ -137,39 +135,42 @@
 			</li>
 		</ul>
 	</aside>
+	<!-- <div class="shelf-options"></div> -->
+	<shelf-title
+		v-if="variant && variant.price"
+		:price="variant.price"
+		:currency="variant.currency"
+		:title="shelf.name"
+	></shelf-title>
+	<attribute-picker
+		v-for="(attribute, attributeKey) in variantProperties"
+		:key="attributeKey"
+		:attribute="attribute"
+		:att-key="attributeKey"
+		:selected-attribute="selectedProperty[attributeKey]"
+		@changed-att="setAtt"
+	></attribute-picker>
+
+	<attribute-picker
+		v-for="(attribute, attributeKey) in availableAttributes"
+		:key="attributeKey"
+		:attribute="attribute"
+		:att-key="attributeKey"
+		:selected-attribute="selectedAttributes[attributeKey]"
+		@changed-att="setAtt"
+	></attribute-picker>
+
+	<!-- <div class="shelf-attributes">
+		
+	</div> -->
+
+	<div
+		v-if="shelf.description && shelf.description.length > 0"
+		class="shelf-description"
+	>
+		{{ shelf.description }}
+	</div>
 	<footer class="shelf-footer">
-		<shelf-title
-			v-if="variant && variant.price"
-			:price="variant.price"
-			:currency="variant.currency"
-			:title="shelf.name"
-		></shelf-title>
-		<div class="shelf-attributes">
-			<attribute-picker
-				v-for="(attribute, attributeKey) in variantProperties"
-				:key="attributeKey"
-				:attribute="attribute"
-				:att-key="attributeKey"
-				:selected-attribute="selectedProperty[attributeKey]"
-				@changed-att="setAtt"
-			></attribute-picker>
-
-			<attribute-picker
-				v-for="(attribute, attributeKey) in availableAttributes"
-				:key="attributeKey"
-				:attribute="attribute"
-				:att-key="attributeKey"
-				:selected-attribute="selectedAttributes[attributeKey]"
-				@changed-att="setAtt"
-			></attribute-picker>
-		</div>
-
-		<div
-			v-if="shelf.description && shelf.description.length > 0"
-			class="shelf-description"
-		>
-			{{ shelf.description }}
-		</div>
 		<add-to-cart
 			:shelf-goal="shelfGoal"
 			:variant="variant"
@@ -177,18 +178,18 @@
 			:selected-property="selectedProperty"
 			:shelf="shelf"
 		></add-to-cart>
-		<div
+		<!-- <div
 			v-if="shelfIndex === 0 && !alreadySwiped"
 			class="swipe-down"
 			@click="swipeDown"
 		>
-			<!-- <div class="chevron-down"></div> -->
 			<icon name="chevron-up" width="28" height="28"></icon>
 			<div class="see-more">
 				See More
 			</div>
-		</div>
+		</div> -->
 	</footer>
+
 	<transition name="shelf-overlay-bottom">
 		<shelf-info
 			v-if="showShelfInfo"
