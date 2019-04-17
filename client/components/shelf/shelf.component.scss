@@ -67,8 +67,12 @@
 		font-size: 0.9rem;
 		letter-spacing: 1px;
 		padding: 0.4rem 1rem;
+		position: relative;
+		z-index: 30;
 		// border-bottom: 1px solid rgba(203, 202, 202, 0.7);
 	}
+
+
 	.swipe-down {
 		text-align: center;
 		padding-top: 1rem;
