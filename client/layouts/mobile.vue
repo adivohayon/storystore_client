@@ -1,6 +1,6 @@
 <template>
 	<div class="layout--mobile">
-		<!-- <loader v-if="showLoader" :hide-elements="hideLoaderElements"></loader> -->
+		<loader v-if="showLoader"></loader>
 		<!-- <no-ssr> -->
 		<!-- <full-page
 				v-if="hasShelves"
