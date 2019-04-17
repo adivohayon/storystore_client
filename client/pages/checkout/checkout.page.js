@@ -213,6 +213,7 @@ export default {
 	methods: {
 		async submit() {
 			try {
+				this.$store.commit('toggleLoader', true);
 				console.log('submit!');
 				this.$v.$touch();
 				if (this.$v.$invalid) {
@@ -241,15 +242,15 @@ export default {
 					});
 					// return;
 					this.selectedShipping.id = -1;
-					// const resp = await this.$axios.$post(`order`, {
-					// 	customer,
-					// 	items,
-					// 	shipping: this.selectedShipping,
-					// });
+					const resp = await this.$axios.$post(`order`, {
+						customer,
+						items,
+						shipping: this.selectedShipping,
+					});
 
-					// if (!resp.url || resp.url === '') {
-					// 	throw new Error('URL returned from API is empty');
-					// }
+					if (!resp.url || resp.url === '') {
+						throw new Error('URL returned from API is empty');
+					}
 
 					localStorage.setItem(
 						'lastPurchase',
