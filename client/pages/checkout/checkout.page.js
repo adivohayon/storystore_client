@@ -29,7 +29,7 @@ export default {
 				houseNumber: null,
 				apptNumber: null,
 				floor: null,
-				zipCode: null,
+				// zipCode: null,
 				submitStatus: null,
 			},
 			selectedShipping: {},
@@ -76,10 +76,10 @@ export default {
 				required,
 				numeric,
 			},
-			zipCode: {
-				required,
-				numeric,
-			},
+			// zipCode: {
+			// 	required,
+			// 	numeric,
+			// },
 		},
 	},
 	updated() {
@@ -119,7 +119,7 @@ export default {
 				houseNumber: 6,
 				apptNumber: 7,
 				floor: 16,
-				zipCode: 90210,
+				// zipCode: 90210,
 				submitStatus: null,
 			};
 		}
@@ -228,7 +228,7 @@ export default {
 							this.order.apptNumber
 						} ${this.order.floor}`,
 						shipping_city: this.order.city,
-						shipping_zip_code: this.order.zipCode,
+						// shipping_zip_code: this.order.zipCode,
 					};
 
 					const items = this.items.map(item => {

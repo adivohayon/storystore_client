@@ -147,13 +147,13 @@
 						:class="{'error': !$v.order.city.required && this.order.submitStatus}"
 						v-model.trim="$v.order.city.$model"
 					/>
-					<input
+					<!-- <input
 						placeholder="מיקוד"
 						type="number"
 						class="checkout-page__form--input"
 						:class="{'error': (!$v.order.zipCode.required || !$v.order.zipCode.numeric) && this.order.submitStatus}"
 						v-model.trim="$v.order.zipCode.$model"
-					/>
+					/> -->
 				</div>
 			</div>
 			<!-- <div class="checkout-page__form--item">
