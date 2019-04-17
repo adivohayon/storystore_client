@@ -82,6 +82,7 @@ module.exports = {
 		{ src: '~/plugins/vue-scrollto', ssr: true },
 		{ src: '~/plugins/vuelidate', ssr: true },
 		{ src: '~/plugins/carousel', ssr: false },
+		{ src: '~/plugins/scrollspy', ssr: false },
 	],
 
 	/*

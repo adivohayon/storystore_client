@@ -1,6 +1,15 @@
-<div class="feed" id="feed" ref="feed">
-	<slot></slot>
-	<!-- <div id="section-0" style="background-color:red;">Item 1</div>
-	<div id="section-1" style="background-color:green;">Item 2</div>
-	<div id="section-2" style="background-color:yellow;">Item 3</div> -->
+<div
+	class="feed"
+	id="feed"
+	ref="feed"
+	@touchend="handleTouch"
+	@touchstart="handleTouch"
+>
+	<shelf
+		v-for="(shelf, shelfIndex) in shelves"
+		:id="`section-${shelfIndex}`"
+		:key="shelfIndex"
+		:shelf="shelf"
+		:shelf-index="shelfIndex"
+	></shelf>
 </div>
