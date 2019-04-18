@@ -38,7 +38,7 @@ export const mutations = {
 			});
 			Vue.set(state, 'shippingOptions', shippingOptions);
 		}
-		console.log('returns', store.returns);
+		// console.log('returns', store.returns);
 		Vue.set(state, 'shippingDetails', store.shipping_details);
 		Vue.set(state, 'info', store.info);
 		Vue.set(state, 'about', store.about);

@@ -5,8 +5,10 @@
 	@touchend="handleTouch"
 	@touchstart="handleTouch"
 >
+	<shelf id="section-0" :shelf="shelves[0]" :shelf-index="0" @scroll-down="scrollTo(1)"></shelf>
 	<shelf
 		v-for="(shelf, shelfIndex) in shelves"
+		v-if="shelfIndex > 0"
 		:id="`section-${shelfIndex}`"
 		:key="shelfIndex"
 		:shelf="shelf"

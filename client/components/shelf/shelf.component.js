@@ -237,6 +237,7 @@ export default {
 		},
 		swipeDown() {
 			this.alreadySwiped = true;
+			this.$emit('scroll-down');
 			// fullpage_api.moveSectionDown();
 		},
 		initializeVariation() {
