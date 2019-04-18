@@ -94,12 +94,12 @@ export default {
 						quantity: item.quantity,
 					})),
 					content_name: 'purchase',
-					content_type: 'product',
-					currency: order.currency,
+					content_type: 'product_group',
+					currency: order.currency === '₪' ? 'ILS' : order.currency,
 					value: order.total,
 				};
 				console.log('trackPurchase', PurchaseValues);
-				// fbq('track', 'Purchase', ViewContentValues);
+				fbq('track', 'Purchase', PurchaseValues);
 			}
 		},
 		close() {
