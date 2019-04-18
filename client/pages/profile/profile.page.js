@@ -17,7 +17,7 @@ export default {
 			return {
 				storeSlug,
 				policy,
-				customerService,
+				customerServiceTxt: customerService,
 			};
 		} catch (err) {
 			console.log(
@@ -39,6 +39,32 @@ export default {
 		};
 	},
 	computed: {
+		customerService() {
+			if (this.customerServiceTxt && customerServiceTxt.length > 0) {
+				return this.customerServiceTxt;
+			} else {
+				let txt = `<h4>${this.storeName}<h4>\n`;
+				const info = this.$store.state.store.info;
+				if (info) {
+					if (info.address) {
+						txt += `${info.address} <br>`;
+					}
+					if (info.phone) {
+						txt += `${info.phone} <br>`;
+					}
+					if (info.email) {
+						txt += `${info.email} <br>`;
+					}
+					if (info.address) {
+						txt += `${info.address} <br>`;
+					}
+					if (info.openingHours) {
+						txt += `${info.openingHours} <br>`;
+					}
+				}
+				return txt;
+			}
+		},
 		logoSrc() {
 			let path = process.env.staticDir ? process.env.staticDir : '/';
 			path += `${this.storeSlug}/logo_${this.storeSlug}_dark.png`;
