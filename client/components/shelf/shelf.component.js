@@ -4,23 +4,15 @@ import _get from 'lodash/get';
 import _orderBy from 'lodash.orderby';
 // import _isEmpty from 'lodash.isempty';
 import ShelfContent from './../shelf-content';
-import ColorPicker from './../color-picker';
-import SizePicker from './../size-picker';
-import AddToCart from './../add-to-cart';
 import ShelfTitle from './../shelf-title';
 import ShelfInfo from './../shelf-info';
 import Loader from './../loader';
 import VideoPlayer from './../video-player';
 import AttributePicker from './../attribute-picker';
-import { removeDuplicates } from '@/helpers/collection.helpers';
-import _debounce from 'lodash.debounce';
 export default {
 	name: 'shelf',
 	components: {
 		ShelfContent,
-		ColorPicker,
-		SizePicker,
-		AddToCart,
 		ShelfTitle,
 		ShelfInfo,
 		VideoPlayer,
@@ -51,7 +43,6 @@ export default {
 			selectedAttributes: {},
 			showShelfInfo: false,
 			selectedProperty: {},
-			alreadySwiped: false,
 			viewportWidth: null,
 			currentSlideIndex: 0,
 			showSpacer: false,
@@ -99,16 +90,6 @@ export default {
 			returns: state => state.store.returns,
 			storeSlug: state => state.store.slug,
 		}),
-		shelfGoal() {
-			if (this.storeSlug === 'oz-nadlan') {
-				return 'CONTACT';
-			} else {
-				return 'PURCHASE';
-			}
-		},
-		cartItemsCount() {
-			return this.$store.getters['cart/itemsCount'](this.storeSlug);
-		},
 		assetsPath() {
 			let path = process.env.staticDir ? process.env.staticDir : '/';
 			path += `${this.storeSlug}/`;
@@ -235,11 +216,7 @@ export default {
 				this.currentSlideIndex = e.target.scrollLeft / this.viewportWidth;
 			}
 		},
-		swipeDown() {
-			this.alreadySwiped = true;
-			this.$emit('scroll-down');
-			// fullpage_api.moveSectionDown();
-		},
+
 		initializeVariation() {
 			this.selectedVariationId = this.shelf.variations[0].variationId;
 		},

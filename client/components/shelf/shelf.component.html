@@ -31,29 +31,12 @@
 			:style="{ backgroundImage: 'url(' + asset + ')' }"
 		></div> -->
 	</section>
-	<aside class="shelf-buttons" v-if="shelfGoal === 'PURCHASE'">
-		<ul>
-			<li>
-				<nuxt-link to="/cart">
-					<button class="btn btn--round">
-						<icon name="cart" :original="true" width="20" height="20"></icon>
-						<div v-if="cartItemsCount != 0" class="counter">
-							{{ cartItemsCount }}
-						</div>
-					</button>
-				</nuxt-link>
-			</li>
-			<li>
-				<button
-					class="btn btn--round"
-					v-on:click="showShelfInfo = !showShelfInfo"
-				>
-					<icon name="info" :original="true" width="18" height="18"></icon>
-				</button>
-			</li>
-		</ul>
-	</aside>
 	<!-- <div class="shelf-options"></div> -->
+	<div class="shelf-info-button">
+		<button class="btn btn--round" v-on:click="showShelfInfo = !showShelfInfo">
+			<icon name="info" :original="true" width="18" height="18"></icon>
+		</button>
+	</div>
 	<shelf-title
 		v-if="variant && variant.price"
 		:price="variant.price"
@@ -88,7 +71,7 @@
 	>
 		{{ shelf.description }}
 	</div>
-	<footer class="shelf-footer">
+	<!-- <footer class="shelf-footer">
 		<add-to-cart
 			:shelf-goal="shelfGoal"
 			:variant="variant"
@@ -106,7 +89,7 @@
 				See More
 			</div>
 		</div>
-	</footer>
+	</footer> -->
 
 	<transition name="shelf-overlay-bottom">
 		<shelf-info

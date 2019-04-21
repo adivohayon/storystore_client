@@ -12,10 +12,6 @@ export default {
 				return {};
 			},
 		},
-		shelfGoal: {
-			type: String,
-			default: 'PURCHASE',
-		},
 		selectedAttributes: {
 			type: Object,
 			default() {
@@ -34,16 +30,25 @@ export default {
 				return {};
 			},
 		},
+		showGoToPayment: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	data() {
-		return {
-			added: false,
-		};
+		return {};
 	},
 	computed: {
+		shelfGoal() {
+			if (this.storeSlug === 'oz-nadlan') {
+				return 'CONTACT';
+			} else {
+				return 'PURCHASE';
+			}
+		},
 		buttonText() {
 			if (this.shelfGoal === 'PURCHASE') {
-				return this.added ? 'לתשלום' : 'הוספה לסל';
+				return this.showGoToPayment ? 'לתשלום' : 'הוספה לסל';
 			}
 
 			if (this.shelfGoal === 'CONTACT') {
@@ -72,7 +77,7 @@ export default {
 				return;
 			}
 
-			if (this.added) {
+			if (this.showGoToPayment) {
 				this.$router.replace('/checkout');
 				return;
 			}
@@ -140,7 +145,8 @@ export default {
 			}
 			// console.log('this.ga', this.$ga);
 			item.storeSlug = this.storeSlug;
-			this.added = true;
+			this.$emit('setGoToPayment');
+			// this.added = true;
 			// this.$ga.event({
 			// 	eventCategory: 'category',
 			// 	eventAction: 'add-to-cart',

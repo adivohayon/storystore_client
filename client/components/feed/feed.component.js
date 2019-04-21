@@ -1,9 +1,10 @@
 // import scrollSnapPolyfill from 'css-scroll-snap-polyfill';
 import _get from 'lodash/get';
 import Shelf from '@/components/shelf';
+import AddToCart from './../add-to-cart';
 export default {
 	name: 'feed',
-	components: { Shelf },
+	components: { Shelf, AddToCart },
 	props: {
 		shelves: {
 			type: Array,
@@ -17,8 +18,10 @@ export default {
 			startY: 0,
 			sectionOffset: 100,
 			screenHeight: 0,
-			sectionIndex: 0,
 			sectionIdPrefix: 'section',
+			swipedOneDown: false,
+			currentShelfComponent: {},
+			showGoToPayment: false,
 		};
 	},
 	computed: {
@@ -31,6 +34,10 @@ export default {
 		storeSlug() {
 			return _get(this.$store.state, 'store.slug', null);
 		},
+		currentShelfIndex() {
+			return _get(this.$store.state, 'currentShelfIndex', 0);
+		},
+
 		assetsPath() {
 			if (this.storeSlug) {
 				let path = process.env.staticDir ? process.env.staticDir : '/';
@@ -38,18 +45,19 @@ export default {
 				return path;
 			}
 		},
+		cartItemsCount() {
+			return this.$store.getters['cart/itemsCount'](this.storeSlug);
+		},
 	},
 	created() {},
 	mounted() {
+		console.log('feed mounted');
 		this.screenHeight = window.innerHeight;
-		const scrollSnapPolyfill = require('css-scroll-snap-polyfill');
-		scrollSnapPolyfill();
 
-		// First we get the viewport height and we multiple it by 1% to get a value for a vh unit
+		// Full height fix
 		const vh = this.screenHeight * 0.01;
 		document.documentElement.style.setProperty('--vh', `${vh}px`);
-		// Then we set the value in the --vh custom property to the root of the document
-
+		// this.currentShelfComponent = getCurrentShelfComponent(shelfIndex);
 		this.loadAssets().then(() => {
 			const queryShelfIndex = this.$route.query.shelfIndex;
 			this.sectionLeave(queryShelfIndex);
@@ -58,13 +66,14 @@ export default {
 			}
 		});
 	},
-	// beforeRouteUpdate(to, from, next) {
-	// 	// react to route changes...
-	// 	// don't forget to call next()
-	// 	console.log('aaaaa');
-	// 	next();
-	// },
 	methods: {
+		getCurrentShelfComponent(shelfIndex) {
+			if (shelfIndex === 0) {
+				return this.$refs.firstShelf || null;
+			} else {
+				return this.$refs.shelf ? this.$refs.shelf[shelfIndex - 1] : null;
+			}
+		},
 		loadMoreShelves(nextSectionIndex, isLast) {
 			return new Promise(async (resolve, reject) => {
 				// console.log('paginationOffset', this.paginationOffset);
@@ -89,20 +98,25 @@ export default {
 				}
 			});
 		},
-		scrollTo(sectionIndex) {
-			const sectionId = this.sectionIdPrefix + '-' + sectionIndex;
-			const element = document.getElementById(sectionId);
-			if (element) {
-				element.scrollIntoView({
-					block: 'start',
-					inline: 'nearest',
-					behavior: 'smooth',
-				});
-			}
+		scrollTo(shelfIndex) {
+			const shelfComponent =
+				shelfIndex === 0
+					? this.$refs.firstShelf
+					: this.$refs.shelf[shelfIndex - 1];
+
+			shelfComponent.$el.scrollIntoView({
+				block: 'start',
+				inline: 'nearest',
+				behavior: 'smooth',
+			});
+			this.sectionLeave(shelfIndex);
 		},
 		sectionLeave(sectionIndex) {
-			console.log('sectionLeave', sectionIndex);
-			this.sectionIndex = sectionIndex;
+			const shelfIndex = sectionIndex || 0;
+			console.log('sectionLeave', shelfIndex);
+			this.$store.commit('setCurrentShelfIndex', shelfIndex);
+			this.currentShelfComponent = this.getCurrentShelfComponent(shelfIndex);
+			this.showGoToPayment = false;
 			// this.insertQueryParam('shelfIndex', this.sectionIndex);
 			// this.$router.push({
 			// 	path: this.$route.path,
@@ -113,10 +127,14 @@ export default {
 			// });
 
 			// Track content for analytics
-			const currentShelf = this.shelves[sectionIndex];
+			const currentShelf = this.shelves[shelfIndex];
 			this.trackViewContent(currentShelf);
 
-			this.loadMoreShelves(sectionIndex + 1);
+			this.loadMoreShelves(shelfIndex + 1);
+
+			if (!this.swipedOneDown && shelfIndex !== 0) {
+				this.swipedOneDown = true;
+			}
 		},
 		handleTouch(e) {
 			if (e.type === 'touchstart') {
@@ -131,8 +149,7 @@ export default {
 					.composedPath()
 					.find(el => (el.id ? el.id.startsWith(this.sectionIdPrefix) : false));
 				if (!touchedSection) {
-					console.error('touchedSection error');
-					throw new Error('No section to select');
+					return;
 				}
 				// console.log('touchedSection', touchedSection);
 
@@ -165,7 +182,9 @@ export default {
 							1
 					)
 				);
-				this.sectionLeave(sectionIndex);
+				if (sectionIndex !== this.currentShelfIndex) {
+					this.sectionLeave(sectionIndex);
+				}
 			}
 		},
 		trackViewContent(shelf) {
