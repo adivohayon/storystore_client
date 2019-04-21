@@ -8,6 +8,7 @@
 				@touchstart="handleTouchStart"
 				@touchend="handleTouchEnd"
 			> -->
+		<page-header></page-header>
 		<feed v-if="hasShelves" :shelves="shelves"></feed>
 		<!-- </div> -->
 		<div v-else>No shelves available or store not available</div>
@@ -18,7 +19,8 @@
 
 <script>
 import Feed from '@/components/feed';
-import Navigation from '@/components/navigation';
+import PageHeader from '@/components/page-header';
+// import Navigation from '@/components/navigation';
 import CheckoutResponse from '@/components/checkout-response';
 import { getCategories, getShelves } from '@/services/api.service';
 import '@/icons';
@@ -26,7 +28,7 @@ import { mapState } from 'vuex';
 import ScrollSnap from 'scroll-snap';
 import { pageHeadMixin } from '@/helpers/mixins';
 export default {
-	components: { Feed, Navigation, CheckoutResponse },
+	components: { Feed, PageHeader, CheckoutResponse },
 	layout(ctx) {
 		return ctx.app.isMobile ? 'mobile' : 'desktop';
 	},
