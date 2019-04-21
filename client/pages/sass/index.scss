@@ -10,6 +10,11 @@ body {
   overscroll-behavior-y: contain;
 }
 
+#page {
+	height: 100vh;
+	overflow: hidden;
+}
+
 .fp-enabled {
 	// overflow: unset !important;
 }
