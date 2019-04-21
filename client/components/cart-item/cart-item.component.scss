@@ -3,13 +3,17 @@
 	padding: 1.3rem 1rem;
 	color: #717171;
 	border-bottom: 1px solid #dbdbdb;
+	position: relative;
 	&__close {
 		position: absolute;
 		-webkit-appearance: none;
 		background-color: transparent;
 		border: none;
 		outline: none;
-		left: 1rem;
+		left: 0.5rem;
+		top: 0.5rem;
+		padding: 1rem;
+
 	}
 	&__image {
 		width: 4.28rem;

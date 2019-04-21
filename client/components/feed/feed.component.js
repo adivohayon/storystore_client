@@ -58,9 +58,9 @@ export default {
 		const vh = this.screenHeight * 0.01;
 		document.documentElement.style.setProperty('--vh', `${vh}px`);
 		// this.currentShelfComponent = getCurrentShelfComponent(shelfIndex);
+		this.sectionLeave(0);
 		this.loadAssets().then(() => {
-			const queryShelfIndex = this.$route.query.shelfIndex;
-			this.sectionLeave(queryShelfIndex);
+			const queryShelfIndex = this.$route.query.shelfIndex || 0;
 			if (queryShelfIndex > 0) {
 				this.scrollTo(queryShelfIndex);
 			}
