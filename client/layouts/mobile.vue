@@ -57,6 +57,9 @@ export default {
 	},
 	created() {},
 	mounted() {
+		// Full height fix
+		const vh = window.innerHeight * 0.01;
+		document.documentElement.style.setProperty('--vh', `${vh}px`);
 		// this.orderQuery = this.$route.query.order;
 	},
 	methods: {
@@ -73,7 +76,7 @@ export default {
 }
 .layout--mobile {
 	height: calc(var(--vh, 1vh) * 100);
-	overflow: auto;
+	overflow: hidden;
 }
 html {
 	font-size: 14px;
@@ -85,7 +88,9 @@ html {
 	box-sizing: border-box;
 	direction: rtl;
 }
-
+body {
+	overscroll-behavior-y: contain;
+}
 *,
 *:before,
 *:after {

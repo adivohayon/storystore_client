@@ -3,8 +3,10 @@ import { required, numeric, email } from 'vuelidate/lib/validators';
 import { getSlugFromHost } from '@/helpers/async-data.helpers';
 import { checkRule } from '@/helpers/rules.helpers';
 import { pageHeadMixin } from '@/helpers/mixins';
+import PageHeader from '@/components/page-header';
 
 export default {
+	components: { PageHeader },
 	async asyncData({ req, store }) {
 		const host = process.server ? req.headers.host : window.location.hostname;
 		const storeSlug = getSlugFromHost(host);
