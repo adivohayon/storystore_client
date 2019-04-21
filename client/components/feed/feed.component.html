@@ -5,13 +5,54 @@
 	@touchend="handleTouch"
 	@touchstart="handleTouch"
 >
-	<shelf id="section-0" :shelf="shelves[0]" :shelf-index="0" @scroll-down="scrollTo(1)"></shelf>
+	<shelf
+		id="section-0"
+		:shelf="shelves[0]"
+		ref="firstShelf"
+		:shelf-index="0"
+		@scroll-down="scrollTo(1)"
+		:class="{'see-more': currentShelfIndex === 0 && !swipedOneDown}"
+	></shelf>
 	<shelf
 		v-for="(shelf, shelfIndex) in shelves"
 		v-if="shelfIndex > 0"
+		ref="shelf"
 		:id="`section-${shelfIndex}`"
 		:key="shelfIndex"
 		:shelf="shelf"
 		:shelf-index="shelfIndex"
 	></shelf>
+	<footer class="feed-footer">
+		<div class="feed-footer__buttons">
+		
+			<add-to-cart
+				v-if="currentShelfComponent"
+				:variant="currentShelfComponent.variant"
+				:selected-attributes="currentShelfComponent.selectedAttributes"
+				:selected-property="currentShelfComponent.selectedProperty"
+				:shelf="shelves[currentShelfIndex]"
+				:show-go-to-payment="showGoToPayment"
+				@setGoToPayment="showGoToPayment = true;"
+			></add-to-cart>
+			<nuxt-link to="/cart" class="cart-button">
+				<button class="btn btn--round">
+					<icon name="cart" :original="true" width="20" height="20"></icon>
+					<div v-if="cartItemsCount != 0" class="counter">
+						{{ cartItemsCount }}
+					</div>
+				</button>
+			</nuxt-link>
+		</div>
+
+		<div
+			v-if="currentShelfIndex === 0 && !swipedOneDown"
+			class="swipe-down"
+			@click="scrollTo(1)"
+		>
+			<icon name="chevron-up" width="28" height="28"></icon>
+			<div class="see-more">
+				See More
+			</div>
+		</div>
+	</footer>
 </div>

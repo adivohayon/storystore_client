@@ -4,8 +4,12 @@ export const state = () => ({
 		show: true,
 		hideElements: false,
 	},
+	currentShelfIndex: 0,
 });
 export const mutations = {
+	setCurrentShelfIndex(state, shelfIndex) {
+		state.currentShelfIndex = shelfIndex;
+	},
 	toggleLoader(state, toggle) {
 		if (typeof toggle === 'boolean') {
 			state.loader.show = toggle;

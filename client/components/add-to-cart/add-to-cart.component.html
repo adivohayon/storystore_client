@@ -1,7 +1,7 @@
 <div class="add-to-cart">
 	<button
 		class="btn btn--add-to-cart"
-		:class="{'checkout': added}"
+		:class="{'checkout': showGoToPayment}"
 		@click="addToCart(shelf, selectedAttributes, selectedProperty)"
 	>
 		{{ buttonText }}
