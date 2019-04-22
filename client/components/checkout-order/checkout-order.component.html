@@ -1,0 +1,43 @@
+<div class="checkout-order">
+	<h4>ההזמנה שלי</h4>
+	<div class="checkout-order__items">
+		<img
+			v-for="(img, index) in itemsImages"
+			:src="img"
+			:key="index"
+			width="45px"
+			height="80px"
+		/>
+		<nuxt-link :to="`/cart`" class="cart-btn">
+			לצפייה
+		</nuxt-link>
+	</div>
+
+	<div class="shipping-details" v-if="shippingAddress">
+		כתובת למשלוח <br />
+		<strong>{{ shippingAddress }}</strong>
+	</div>
+	<!-- <div>{{ itemsImages }}</div> -->
+	<ul class="checkout-order__total">
+		<li>
+			<div class="checkout-order__total--key">סה״כ ביניים</div>
+			<div class="checkout-order__total--value">
+				{{ subtotal }} {{ currency }}
+			</div>
+		</li>
+		<li>
+			<div class="checkout-order__total--key">משלוח</div>
+			<div
+				v-if="selectedShipping && selectedShipping.price >= 0"
+				class="checkout-order__total--value"
+			>
+				{{ selectedShipping.price }} {{ currency }}
+				<!-- {{ kookintShippingOption.price }} {{ kookintShippingOption.currency }} -->
+			</div>
+		</li>
+		<li>
+			<div class="checkout-order__total--key">סה״כ</div>
+			<div class="checkout-order__total--value">{{ total }} {{ currency }}</div>
+		</li>
+	</ul>
+</div>

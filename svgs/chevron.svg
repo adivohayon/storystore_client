@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="22px" viewBox="0 0 12 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>chevron-left</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Mobile/Header" transform="translate(-354.000000, -13.000000)" fill="#494949" fill-rule="nonzero">
+            <g id="Header">
+                <g id="chevron-left" transform="translate(360.000000, 24.000000) rotate(-180.000000) translate(-360.000000, -24.000000) translate(354.000000, 13.000000)">
+                    <polygon id="Path" points="12 19.3966667 4.58299595 11 12 2.585 9.71659919 0 0 11 9.71659919 22"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

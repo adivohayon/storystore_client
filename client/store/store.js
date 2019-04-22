@@ -80,6 +80,9 @@ export const getters = {
 
 		return atts.length ? removeDuplicates(atts, 'value') : [];
 	},
+	currency: state => {
+		return _get(state.shelves[0].variations[0].currency);
+	},
 
 	// shelfSizes: () => variations => {
 	// 	const sizes = variations.map(variant => {

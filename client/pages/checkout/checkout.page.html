@@ -1,5 +1,4 @@
 <div class="checkout-page">
-	<!-- <loader></loader> -->
 	<page-header></page-header>
 	<div class="checkout-page__header">
 		<h3>פרטי משלוח והזמנה</h3>
@@ -49,64 +48,6 @@
 					v-model.trim="$v.order.phone.$model"
 				/>
 			</div>
-			<!-- <div class="checkout-page__form--item">
-					<label class="checkout-page__form--label">שם פרטי</label>
-					<input
-						class="checkout-page__form--input"
-						:class="{'error': !$v.order.firstName.required && this.order.submitStatus}"
-						v-model.trim="$v.order.firstName.$model"
-					/>
-					<div
-						class="error"
-						v-if="!$v.order.firstName.required && this.order.submitStatus"
-					>
-						אנא הכנס שם פרטי
-					</div>
-				</div> -->
-			<!-- <div class="checkout-page__form--item">
-					<label class="checkout-page__form--label">שם משפחה</label>
-					<input
-						class="checkout-page__form--input"
-						:class="{'error': !$v.order.lastName.required && this.order.submitStatus}"
-						v-model.trim="$v.order.lastName.$model"
-					/>
-					<div
-						class="error"
-						v-if="!$v.order.lastName.required && this.order.submitStatus"
-					>
-						אנא הכנס שם משפחה
-					</div>
-				</div> -->
-			<!-- <div class="checkout-page__form--item">
-					<label class="checkout-page__form--label">טלפון</label>
-					<input
-						type="tel"
-						class="checkout-page__form--input"
-						:class="{'error': (!$v.order.phone.required) && this.order.submitStatus}"
-						v-model.trim="$v.order.phone.$model"
-					/>
-					<div
-						class="error"
-						v-if="(!$v.order.phone.required)  && this.order.submitStatus"
-					>
-						אנא הכנס טלפון
-					</div>
-				</div>
-				<div class="checkout-page__form--item">
-					<label class="checkout-page__form--label">מייל</label>
-					<input
-						type="email"
-						class="checkout-page__form--input"
-						:class="{'error': (!$v.order.email.required || !$v.order.email.email) && this.order.submitStatus}"
-						v-model.trim="$v.order.email.$model"
-					/>
-					<div
-						class="error"
-						v-if="(!$v.order.email.required || !$v.order.email.email) && this.order.submitStatus"
-					>
-						אנא הכנס כתובת מייל
-					</div>
-				</div> -->
 			<h4>פרטי משלוח</h4>
 			<div class="checkout-page__form--section">
 				<input
@@ -157,95 +98,6 @@
 					/> -->
 				</div>
 			</div>
-			<!-- <div class="checkout-page__form--item">
-				<label class="checkout-page__form--label">עיר</label>
-				<input
-					class="checkout-page__form--input"
-					:class="{'error': !$v.order.city.required && this.order.submitStatus}"
-					v-model.trim="$v.order.city.$model"
-				/>
-				<div
-					class="error"
-					v-if="!$v.order.city.required && this.order.submitStatus"
-				>
-					אנא הכנס עיר
-				</div>
-			</div>
-			<div class="checkout-page__form--item">
-				<label class="checkout-page__form--label">רחוב</label>
-				<input
-					class="checkout-page__form--input"
-					:class="{'error': !$v.order.street.required && this.order.submitStatus}"
-					v-model.trim="$v.order.street.$model"
-				/>
-				<div
-					class="error"
-					v-if="!$v.order.street.required && this.order.submitStatus"
-				>
-					אנא הכנס רחוב
-				</div>
-			</div>
-			<div class="checkout-page__form--item">
-				<label class="checkout-page__form--label">מספר בית</label>
-				<input
-					type="number"
-					class="checkout-page__form--input"
-					:class="{'error': (!$v.order.houseNumber.required || !$v.order.houseNumber.numeric) && this.order.submitStatus}"
-					v-model.trim="$v.order.houseNumber.$model"
-				/>
-				<div
-					class="error"
-					v-if="(!$v.order.houseNumber.required || !$v.order.houseNumber.numeric) && this.order.submitStatus"
-				>
-					אנא הכנס מספר בית
-				</div>
-			</div>
-			<div class="checkout-page__form--item">
-				<label class="checkout-page__form--label">מספר דירה</label>
-				<input
-					type="number"
-					class="checkout-page__form--input"
-					:class="{'error': (!$v.order.apptNumber.required || !$v.order.apptNumber.numeric) && this.order.submitStatus}"
-					v-model.trim="$v.order.apptNumber.$model"
-				/>
-				<div
-					class="error"
-					v-if="(!$v.order.apptNumber.required || !$v.order.apptNumber.numeric) && this.order.submitStatus"
-				>
-					אנא הכנס מספר דירה
-				</div>
-			</div>
-			<div class="checkout-page__form--item">
-				<label class="checkout-page__form--label">קומה</label>
-				<input
-					type="number"
-					class="checkout-page__form--input"
-					:class="{'error': (!$v.order.floor.required || !$v.order.floor.numeric) && this.order.submitStatus}"
-					v-model.trim="$v.order.floor.$model"
-				/>
-				<div
-					class="error"
-					v-if="(!$v.order.floor.required || !$v.order.floor.numeric) && this.order.submitStatus"
-				>
-					אנא הכנס קומה
-				</div>
-			</div>
-			<div class="checkout-page__form--item">
-				<label class="checkout-page__form--label">מיקוד</label>
-				<input
-					type="number"
-					class="checkout-page__form--input"
-					:class="{'error': (!$v.order.zipCode.required || !$v.order.zipCode.numeric) && this.order.submitStatus}"
-					v-model.trim="$v.order.zipCode.$model"
-				/>
-				<div
-					class="error"
-					v-if="(!$v.order.zipCode.required || !$v.order.zipCode.numeric) && this.order.submitStatus"
-				>
-					אנא הכנס מיקוד
-				</div>
-			</div> -->
-			<!-- <button type="submit">submit</button> -->
 		</form>
 	</div>
 	<div class="checkout-page__shipping">
@@ -265,18 +117,6 @@
 				</div>
 				<input type="radio" :value="option" v-model="selectedShipping" />
 			</div>
-			<!-- {{ selectedShipping }} -->
-			<!-- <h5>
-				{{
-					kookintShippingOption.price < 1
-						? 'חינם'
-						: kookintShippingOption.price + ' ' + kookintShippingOption.currency
-				}}
-				- {{ kookintShippingOption.label }}
-			</h5>
-			<div class="checkout-page__shipping--time">
-				{{ kookintShippingOption.time }}
-			</div> -->
 		</div>
 	</div>
 	<div class="checkout-page__cart">

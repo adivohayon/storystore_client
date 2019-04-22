@@ -78,7 +78,7 @@ export default {
 			}
 
 			if (this.showGoToPayment) {
-				this.$router.replace('/checkout');
+				this.$router.replace('/checkout/shipping-options');
 				return;
 			}
 

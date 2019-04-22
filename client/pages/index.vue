@@ -8,7 +8,6 @@
 				@touchstart="handleTouchStart"
 				@touchend="handleTouchEnd"
 			> -->
-		<page-header></page-header>
 		<feed v-if="hasShelves" :shelves="shelves"></feed>
 		<!-- </div> -->
 		<div v-else>No shelves available or store not available</div>

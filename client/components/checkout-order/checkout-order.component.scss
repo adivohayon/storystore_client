@@ -1,0 +1,47 @@
+.checkout-order {
+	h4 {
+		font-size: 1.1rem;
+		font-weight: bold;
+		padding: 0.8rem 1.2rem;
+	}
+	&__items {
+		background-color: #ffffff;
+		padding: 1rem;
+		img {
+			margin-top: 0.5rem;
+			border: 1px solid #d6d6d6;
+			margin-left: 0.7rem;
+		}
+
+		.cart-btn {
+			text-decoration: none;
+			color: inherit;
+			font-size: 0.9rem;
+			letter-spacing: 1px;
+			position: absolute;
+			left: 1rem;
+		}
+	}
+
+	&__total {
+		list-style: none;
+		padding: 0;
+		font-size: 1rem;
+		padding: 1rem 1.8rem;
+		// min-height: 18rem;
+		li {
+			display: flex;
+			margin-top: 0.6rem;
+		}
+		&--key {
+			flex: 1;
+		}
+		&--value {
+			font-weight: bold;
+		}
+	}
+
+	.shipping-details {
+		padding: 1rem 1.8rem 0;
+	}
+}

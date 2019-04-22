@@ -1,5 +1,6 @@
 <template>
 	<div class="layout--mobile">
+		<page-header></page-header>
 		<loader v-if="showLoader"></loader>
 		<!-- <no-ssr> -->
 		<!-- <full-page
@@ -19,9 +20,12 @@
 import '@/icons';
 import { mapState } from 'vuex';
 import Loader from './../components/loader';
+import PageHeader from '@/components/page-header';
+
 export default {
 	components: {
 		Loader,
+		PageHeader,
 	},
 	data() {
 		return {
@@ -76,7 +80,7 @@ export default {
 }
 .layout--mobile {
 	height: calc(var(--vh, 1vh) * 100);
-	overflow: hidden;
+	/* overflow: hidden; */
 }
 html {
 	font-size: 14px;

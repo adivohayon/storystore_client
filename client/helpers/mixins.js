@@ -39,3 +39,7 @@ export const pageHeadMixin = {
 		};
 	},
 };
+
+export const checkoutMixin = {
+	computed: {},
+};
