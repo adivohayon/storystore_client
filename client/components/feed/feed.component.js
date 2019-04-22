@@ -1,5 +1,6 @@
 // import scrollSnapPolyfill from 'css-scroll-snap-polyfill';
 import _get from 'lodash/get';
+import _debounce from 'lodash.debounce';
 import Shelf from '@/components/shelf';
 import AddToCart from './../add-to-cart';
 export default {
@@ -17,11 +18,11 @@ export default {
 		return {
 			startY: 0,
 			sectionOffset: 100,
-			screenHeight: 0,
 			sectionIdPrefix: 'section',
 			swipedOneDown: false,
 			currentShelfComponent: {},
 			showGoToPayment: false,
+			shelfHeight: 640,
 		};
 	},
 	computed: {
@@ -52,10 +53,10 @@ export default {
 	created() {},
 	mounted() {
 		console.log('feed mounted');
-		this.screenHeight = window.innerHeight;
+		this.shelfHeight = this.$refs.feed.clientHeight;
 
 		// Full height fix
-		const vh = this.screenHeight * 0.01;
+		const vh = this.shelfHeight * 0.01;
 		document.documentElement.style.setProperty('--vh', `${vh}px`);
 		// this.currentShelfComponent = getCurrentShelfComponent(shelfIndex);
 		this.sectionLeave(0);
@@ -67,6 +68,16 @@ export default {
 		});
 	},
 	methods: {
+		onScroll: _debounce(function(e) {
+			const scrollTop = e.target.scrollTop;
+			const shelfIndex = Math.round(
+				(scrollTop - this.sectionOffset) / this.shelfHeight
+			);
+
+			if (shelfIndex !== this.currentShelfIndex) {
+				this.sectionLeave(shelfIndex);
+			}
+		}, 20),
 		getCurrentShelfComponent(shelfIndex) {
 			if (shelfIndex === 0) {
 				return this.$refs.firstShelf || null;
@@ -134,57 +145,6 @@ export default {
 
 			if (!this.swipedOneDown && shelfIndex !== 0) {
 				this.swipedOneDown = true;
-			}
-		},
-		handleTouch(e) {
-			if (e.type === 'touchstart') {
-				this.startY = e.changedTouches[0].pageY;
-			}
-
-			if (e.type === 'touchend') {
-				let sectionId;
-				const scrollDown = e.changedTouches[0].pageY < this.startY;
-
-				const touchedSection = e
-					.composedPath()
-					.find(el => (el.id ? el.id.startsWith(this.sectionIdPrefix) : false));
-				if (!touchedSection) {
-					return;
-				}
-				// console.log('touchedSection', touchedSection);
-
-				const comparedSection = scrollDown
-					? touchedSection.nextElementSibling
-					: touchedSection.previousElementSibling;
-
-				if (comparedSection) {
-					const clientRect = comparedSection.getBoundingClientRect();
-					if (scrollDown) {
-						sectionId =
-							clientRect.y < this.screenHeight - this.sectionOffset
-								? comparedSection.id
-								: touchedSection.id;
-					} else {
-						sectionId =
-							Math.abs(clientRect.y) < clientRect.height - this.sectionOffset
-								? comparedSection.id
-								: touchedSection.id;
-					}
-				} else {
-					sectionId = touchedSection.id;
-				}
-
-				// console.log('sectionId', sectionId);
-				const sectionIndex = Number(
-					sectionId.substring(
-						sectionId.indexOf(this.sectionIdPrefix) +
-							this.sectionIdPrefix.length +
-							1
-					)
-				);
-				if (sectionIndex !== this.currentShelfIndex) {
-					this.sectionLeave(sectionIndex);
-				}
 			}
 		},
 		trackViewContent(shelf) {
