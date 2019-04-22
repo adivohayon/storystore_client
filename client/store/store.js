@@ -43,6 +43,7 @@ export const mutations = {
 		Vue.set(state, 'info', store.info);
 		Vue.set(state, 'about', store.about);
 		Vue.set(state, 'tagline', store.tagline);
+		Vue.set(state, 'settings', store.settings);
 		Vue.set(state, 'returns', store.returns);
 	},
 	updateShelfAssetLoaded(
