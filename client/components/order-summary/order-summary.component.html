@@ -1,0 +1,27 @@
+<div class="order-summary">
+	<div class="order-summary__shipping-details" v-if="shippingAddress">
+		כתובת למשלוח <br />
+		<strong>{{ shippingAddress }}</strong>
+	</div>
+	<ul class="order-summary__total">
+		<li>
+			<div class="order-summary__total--key">סה״כ ביניים</div>
+			<div class="order-summary__total--value">
+				{{ subtotal }} {{ currency }}
+			</div>
+		</li>
+		<li>
+			<div class="order-summary__total--key">משלוח</div>
+			<div
+				v-if="selectedShipping && selectedShipping.price >= 0"
+				class="order-summary__total--value"
+			>
+				{{ selectedShipping.price }} {{ currency }}
+			</div>
+		</li>
+		<li>
+			<div class="order-summary__total--key">סה״כ</div>
+			<div class="order-summary__total--value">{{ total }} {{ currency }}</div>
+		</li>
+	</ul>
+</div>

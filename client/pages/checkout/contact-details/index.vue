@@ -64,23 +64,23 @@
 					/>
 				</div>
 			</div>
-		</form>
-		
-		<checkout-order :shipping-address="shippingAddress"></checkout-order>
-
+		</form>		
+		<order-summary :shipping-address="shippingAddress"></order-summary>
 		<div class="checkout-page__next-btn">
 			<button id="checkout-submit" @click="completeCheckout">
 				לתשלום מאובטח
 			</button>
 		</div>
+		<checkout-order></checkout-order>
 	</div>
 </template>
 <script>
 import _get from 'lodash/get';
 import { required, numeric, email } from 'vuelidate/lib/validators';
 import CheckoutOrder from '@/components/checkout-order';
+import OrderSummary from '@/components/order-summary';
 export default {
-	components: { CheckoutOrder },
+	components: { CheckoutOrder, OrderSummary },
 	layout(ctx) {
 		return ctx.app.isMobile ? 'mobile' : 'desktop';
 	},
@@ -130,7 +130,7 @@ export default {
 			if (shippingDetails.city) addressStr += shippingDetails.city + ', ';
 			if (shippingDetails.apptNumber)
 				addressStr += `דירה ${shippingDetails.apptNumber} `;
-			if (shippingDetails.floor) addressStr += shippingDetails.floor;
+			if (shippingDetails.floor) addressStr += `קומה ${shippingDetails.floor}`;
 
 			return addressStr;
 		},

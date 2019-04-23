@@ -1,5 +1,5 @@
 <div class="checkout-order">
-	<h4>ההזמנה שלי</h4>
+	<h4>הפריטים שלי</h4>
 	<div class="checkout-order__items">
 		<img
 			v-for="(img, index) in itemsImages"
@@ -13,12 +13,12 @@
 		</nuxt-link>
 	</div>
 
-	<div class="shipping-details" v-if="shippingAddress">
+	<!-- <div class="shipping-details" v-if="shippingAddress">
 		כתובת למשלוח <br />
 		<strong>{{ shippingAddress }}</strong>
-	</div>
+	</div> -->
 	<!-- <div>{{ itemsImages }}</div> -->
-	<ul class="checkout-order__total">
+	<!-- <ul class="checkout-order__total">
 		<li>
 			<div class="checkout-order__total--key">סה״כ ביניים</div>
 			<div class="checkout-order__total--value">
@@ -32,12 +32,11 @@
 				class="checkout-order__total--value"
 			>
 				{{ selectedShipping.price }} {{ currency }}
-				<!-- {{ kookintShippingOption.price }} {{ kookintShippingOption.currency }} -->
 			</div>
 		</li>
 		<li>
 			<div class="checkout-order__total--key">סה״כ</div>
 			<div class="checkout-order__total--value">{{ total }} {{ currency }}</div>
 		</li>
-	</ul>
+	</ul> -->
 </div>

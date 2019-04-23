@@ -47,24 +47,12 @@
 					/>
 					<input
 						id="border-left"
-						:class="{
-							error:
-								(!$v.shippingDetails.apptNumber.required ||
-									!$v.shippingDetails.apptNumber.numeric) &&
-								this.shippingDetails.invalid,
-						}"
 						v-model.trim="$v.shippingDetails.apptNumber.$model"
 						placeholder="מספר דירה"
 						type="number"
 						class="checkout-page__input"
 					/>
 					<input
-						:class="{
-							error:
-								(!$v.shippingDetails.floor.required ||
-									!$v.shippingDetails.floor.numeric) &&
-								this.shippingDetails.invalid,
-						}"
 						v-model.trim="$v.shippingDetails.floor.$model"
 						placeholder="קומה"
 						type="number"
@@ -86,20 +74,21 @@
 				</div>
 			</div>
 		</form>
-		<checkout-order></checkout-order>
-
+		<order-summary></order-summary>
 		<div class="checkout-page__next-btn">
 			<button id="checkout-submit" @click="submitShippingDetails">
 				להזנת פרטים אישיים
 			</button>
 		</div>
+		<checkout-order></checkout-order>
 	</div>
 </template>
 <script>
 import { required, numeric, email } from 'vuelidate/lib/validators';
 import CheckoutOrder from '@/components/checkout-order';
+import OrderSummary from '@/components/order-summary';
 export default {
-	components: { CheckoutOrder },
+	components: { CheckoutOrder, OrderSummary },
 	async asyncData() {},
 	layout(ctx) {
 		return ctx.app.isMobile ? 'mobile' : 'desktop';
@@ -144,11 +133,9 @@ export default {
 				numeric,
 			},
 			apptNumber: {
-				required,
 				numeric,
 			},
 			floor: {
-				required,
 				numeric,
 			},
 		},

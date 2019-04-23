@@ -1,0 +1,21 @@
+.order-summary {
+	&__shipping-details {
+		padding: 1rem 1.8rem 0;
+	}
+	&__total {
+		list-style: none;
+		padding: 0;
+		font-size: 1rem;
+		padding: 1rem 1.8rem;
+		li {
+			display: flex;
+			margin-top: 0.6rem;
+		}
+		&--key {
+			flex: 1;
+		}
+		&--value {
+			font-weight: bold;
+		}
+	}
+}

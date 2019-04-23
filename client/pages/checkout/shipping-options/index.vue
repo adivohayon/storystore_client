@@ -27,7 +27,12 @@
 					</div>
 				</div>
 			</div>
-
+			<order-summary></order-summary>
+			<div class="checkout-page__next-btn">
+				<button id="checkout-submit" @click="goToShippingDetails">
+					להזנת פרטי המשלוח
+				</button>
+			</div>
 			<checkout-order></checkout-order>
 			<!-- <div class="complete-checkout">
 				<nuxt-link to="/checkout/shipping-details">
@@ -36,12 +41,6 @@
 					</button>
 				</nuxt-link>
 			</div> -->
-
-			<div class="checkout-page__next-btn">
-				<button id="checkout-submit" @click="goToShippingDetails">
-					להזנת פרטי המשלוח
-				</button>
-			</div>
 		</div>
 	</div>
 </template>
@@ -49,9 +48,10 @@
 import _get from 'lodash/get';
 import PageHeader from '@/components/page-header';
 import CheckoutOrder from '@/components/checkout-order';
+import OrderSummary from '@/components/order-summary';
 import { checkoutMixin } from '@/helpers/mixins';
 export default {
-	components: { PageHeader, CheckoutOrder },
+	components: { PageHeader, CheckoutOrder, OrderSummary },
 	async asyncData() {},
 	mixins: [checkoutMixin],
 	layout(ctx) {
