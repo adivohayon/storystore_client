@@ -18,6 +18,7 @@ export const state = () => ({
 		phone: null,
 		email: null,
 	},
+	lastPurchase: {},
 });
 
 export const mutations = {
@@ -30,9 +31,12 @@ export const mutations = {
 	setPersonalDetails(state, personal) {
 		Vue.set(state, 'personal', personal);
 	},
+	setLastPurchase(state, purchase) {
+		Vue.set(state, 'lastPurchase', purchase);
+	},
 };
 export const actions = {
-	checkout({ rootGetters, state }, storeSlug) {
+	checkout({ rootGetters, state, commit }, storeSlug) {
 		return new Promise(async (resolve, reject) => {
 			try {
 				const customer = {
@@ -47,7 +51,6 @@ export const actions = {
 					// shipping_zip_code: this.order.zipCode,
 				};
 
-				console.log('rootGetters', rootGetters);
 				const items = rootGetters['cart/items'](storeSlug);
 				const itemsPayload = items.map(item => {
 					return {
@@ -81,16 +84,14 @@ export const actions = {
 						? _get(items[0], 'variations[0].currency', 'ILS')
 						: 'ILS';
 
-				localStorage.setItem(
-					'lastPurchase',
-					JSON.stringify({
-						currency,
-						items,
-						subtotal,
-						total,
-						selectedShipping: shippingPayload,
-					})
-				);
+				const purchase = {
+					currency,
+					items,
+					subtotal,
+					total,
+					selectedShipping: shippingPayload,
+				};
+				commit('setLastPurchase', purchase);
 
 				resolve(resp.url);
 			} catch (err) {

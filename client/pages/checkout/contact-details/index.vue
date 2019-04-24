@@ -12,7 +12,7 @@
 		<form
 			id="checkoutForm"
 			class="checkout-page__form"
-			:class="{ 'form-group--error': $v.personal.invalid }"
+			:class="{ 'form-group--error': $v.invalid }"
 			@submit.prevent="submit"
 		>
 			<h4>פרטי אישיים</h4>
@@ -25,7 +25,7 @@
 						class="checkout-page__input"
 						id="border-left"
 						:class="{
-							error: !$v.personal.firstName.required && this.personal.invalid,
+							error: !$v.personal.firstName.required && this.invalid,
 						}"
 						v-model.trim="$v.personal.firstName.$model"
 					/>
@@ -33,7 +33,7 @@
 						placeholder="שם משפחה"
 						class="checkout-page__input"
 						:class="{
-							error: !$v.personal.lastName.required && this.personal.invalid,
+							error: !$v.personal.lastName.required && this.invalid,
 						}"
 						v-model.trim="$v.personal.lastName.$model"
 					/>
@@ -46,7 +46,7 @@
 						:class="{
 							error:
 								(!$v.personal.email.required || !$v.personal.email.email) &&
-								this.personal.invalid,
+								this.invalid,
 						}"
 						v-model.trim="$v.personal.email.$model"
 					/>
@@ -58,13 +58,13 @@
 						class="checkout-page__input"
 						id="border-bottom"
 						:class="{
-							error: !$v.personal.phone.required && this.personal.invalid,
+							error: !$v.personal.phone.required && this.invalid,
 						}"
 						v-model.trim="$v.personal.phone.$model"
 					/>
 				</div>
 			</div>
-		</form>		
+		</form>
 		<order-summary :shipping-address="shippingAddress"></order-summary>
 		<div class="checkout-page__next-btn">
 			<button id="checkout-submit" @click="completeCheckout">
@@ -104,16 +104,19 @@ export default {
 	},
 	data() {
 		return {
-			personal: {
-				firstName: null,
-				lastName: null,
-				phone: null,
-				email: null,
-				invalid: false,
-			},
+			personal: null,
+			invalid: false,
 		};
 	},
 	computed: {
+		statePersonal: {
+			get() {
+				return _get(this.$store.state, 'checkout.personal', null);
+			},
+			set(details) {
+				this.$store.commit('checkout/setPersonalDetails', details);
+			},
+		},
 		storeSlug() {
 			return _get(this.$store.state, 'store.slug', null);
 		},
@@ -135,17 +138,26 @@ export default {
 			return addressStr;
 		},
 	},
-	mounted() {},
+	watch: {
+		statePersonal: function(newVal) {
+			this.personal = { ...newVal };
+		},
+	},
+	mounted() {
+		if (!this.personal) {
+			this.personal = { ...this.statePersonal };
+		}
+	},
 	methods: {
 		async completeCheckout() {
 			try {
 				this.$v.$touch();
 				if (this.$v.$invalid) {
-					this.personal.invalid = true;
+					this.invalid = true;
 					return;
 				}
-				this.personal.invalid = false;
-				this.$store.commit('checkout/setPersonalDetails', this.personal);
+				this.invalid = false;
+				this.statePersonal = this.personal;
 				const items = this.$store.getters['cart/items'](this.storeSlug);
 				const paymentUrl = await this.$store.dispatch(
 					'checkout/checkout',
@@ -153,6 +165,7 @@ export default {
 				);
 
 				console.log('paymentUrl', paymentUrl);
+				this.$store.dispatch('toggleLoader', true);
 				window.location.href = paymentUrl;
 			} catch (err) {
 				console.error('Checkout error', err);
