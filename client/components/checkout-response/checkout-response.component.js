@@ -67,7 +67,8 @@ export default {
 			return _get(this.$store.state, 'store.info.phone', null);
 		},
 		lastPurchase() {
-			return JSON.parse(localStorage.getItem('lastPurchase')) || null;
+			return _get(this.$store.state, 'checkout.lastPurchase', null);
+			// return JSON.parse(localStorage.getItem('lastPurchase')) || null;
 		},
 		message() {
 			if (this.orderQuery) {

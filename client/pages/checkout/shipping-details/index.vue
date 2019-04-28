@@ -12,7 +12,7 @@
 		<form
 			id="checkoutForm"
 			class="checkout-page__form"
-			:class="{ 'form-group--error': $v.shippingDetails.invalid }"
+			:class="{ 'form-group--error': $v.invalid }"
 			@submit.prevent="submit"
 		>
 			<h4>פרטי משלוח</h4>
@@ -22,7 +22,7 @@
 						:class="{
 							error:
 								!$v.shippingDetails.street.required &&
-								this.shippingDetails.invalid,
+								this.invalid,
 						}"
 						v-model.trim="$v.shippingDetails.street.$model"
 						placeholder="רחוב"
@@ -38,7 +38,7 @@
 							error:
 								(!$v.shippingDetails.houseNumber.required ||
 									!$v.shippingDetails.houseNumber.numeric) &&
-								this.shippingDetails.invalid,
+								this.invalid,
 						}"
 						v-model.trim="$v.shippingDetails.houseNumber.$model"
 						placeholder="מספר בית"
@@ -65,7 +65,7 @@
 						:class="{
 							error:
 								!$v.shippingDetails.city.required &&
-								this.shippingDetails.invalid,
+								this.invalid,
 						}"
 						v-model.trim="$v.shippingDetails.city.$model"
 						placeholder="עיר"
@@ -87,6 +87,7 @@
 import { required, numeric, email } from 'vuelidate/lib/validators';
 import CheckoutOrder from '@/components/checkout-order';
 import OrderSummary from '@/components/order-summary';
+import _get from 'lodash/get';
 export default {
 	components: { CheckoutOrder, OrderSummary },
 	async asyncData() {},
@@ -95,28 +96,40 @@ export default {
 	},
 	data() {
 		return {
-			shippingDetails: {
-				city: null,
-				street: null,
-				houseNumber: null,
-				apptNumber: null,
-				floor: null,
-				// zipCode: null,
-				invalid: false,
-			},
+			invalid: false,
+			shippingDetails: null,
 		};
 	},
-	computed: {},
-	mounted() {},
+	computed: {
+		stateShippingDetails: {
+			get() {
+				return _get(this.$store.state, 'checkout.shippingDetails', null);
+			},
+			set(details) {
+				this.$store.commit('checkout/setShippingDetails', details);
+			},
+		},
+	},
+	watch: {
+		stateShippingDetails: function(newVal) {
+			this.shippingDetails = { ...newVal };
+		},
+	},
+	mounted() {
+		if (!this.shippingDetails) {
+			this.shippingDetails = { ...this.stateShippingDetails };
+		}
+	},
 	methods: {
 		submitShippingDetails() {
 			this.$v.$touch();
 			if (this.$v.$invalid) {
-				this.shippingDetails.invalid = true;
+				this.invalid = true;
 				return;
 			}
-			this.shippingDetails.invalid = false;
-			this.$store.commit('checkout/setShippingDetails', this.shippingDetails);
+			this.invalid = false;
+
+			this.stateShippingDetails = this.shippingDetails;
 			this.$router.push('/checkout/contact-details');
 		},
 	},

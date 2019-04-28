@@ -35,7 +35,13 @@ export const actions = {
 		commit('toggleLoaderHideElements', toggle);
 		commit('toggleLoader', toggle);
 	},
+	toggleLoader({ commit }, toggle) {
+		commit('toggleLoader', toggle);
 
+		setTimeout(() => {
+			commit('toggleLoader', false);
+		}, 6000);
+	},
 	async nuxtServerInit({ dispatch }, { req, redirect, error, route }) {
 		const host = process.server ? req.headers.host : window.location.hostname;
 		const storeSlug = getSlugFromHost(host);
