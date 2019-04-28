@@ -26,7 +26,7 @@ const mutationObserverFunc = ([mutation]) => {
 		const comparator = isShelfChange(mutation)
 			? document.body.offsetHeight
 			: document.body.offsetWidth;
-		const uiToggle = handleUIToggling(translate, comparator)
+		const uiToggle = handleUIToggling(translate, comparator);
 		// if (isShelfChange(mutation)) {
 
 		// }

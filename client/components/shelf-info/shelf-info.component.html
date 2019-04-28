@@ -1,16 +1,22 @@
 <div class="shelf-info">
-	<button class="shelf-info__close close" v-on:click="closeInfo"></button>
-	<div class="shelf-info__tabs">
-		<div class="shelf-info__tabs--header">
+	<div class="shelf-info__tabs" ref="shelfInfoComponent">
+		<div
+			class="shelf-info__tabs--label"
+			:class="{active: selectedTabIndex == index}"
+			v-for="(tab, index) in infoTabs"
+			@click="toggleShowContent(index)"
+		>
+			{{ tab }}
+			<span class="show-more-less" v-if="showTabContent(index)">-</span>
+			<span class="show-more-less" v-if="!showTabContent(index)">+</span>
 			<div
-				class="shelf-info__tabs--label"
-				:class="{active: selectedTabIndex == index}"
-				v-for="(tab, index) in infoTabs"
-				@click="updateSelectedTabIndex(index)"
-			>
-				{{ tab }}
-			</div>
+				class="shelf-info__tabs--content"
+				v-html="getTabContent(index)"
+				v-show="showTabContent(index)"
+			></div>
 		</div>
-		<div class="shelf-info__tabs--content" v-html="tabContent"></div>
+	</div>
+	<div class="shelf-info__container--close">
+		<button class="shelf-info__close" v-on:click="closeInfo">סגור</button>
 	</div>
 </div>

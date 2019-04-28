@@ -80,7 +80,7 @@ export default {
 }
 .layout--mobile {
 	height: calc(var(--vh, 1vh) * 100);
-	/* overflow: hidden; */
+	overflow: hidden;
 }
 html {
 	font-size: 14px;

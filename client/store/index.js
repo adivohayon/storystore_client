@@ -4,9 +4,13 @@ export const state = () => ({
 		show: false,
 		hideElements: false,
 	},
+	showShelfInfo: false,
 	currentShelfIndex: 0,
 });
 export const mutations = {
+	toggleShelfInfo(state) {
+		state.showShelfInfo = !state.showShelfInfo;
+	},
 	setCurrentShelfIndex(state, shelfIndex) {
 		state.currentShelfIndex = shelfIndex;
 	},

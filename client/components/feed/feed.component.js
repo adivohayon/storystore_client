@@ -16,6 +16,7 @@ export default {
 	},
 	data() {
 		return {
+			showShelfInfo: false,
 			startY: 0,
 			sectionOffset: 100,
 			sectionIdPrefix: 'section',

@@ -1,3 +1,4 @@
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 export default {
 	name: 'shelf-info',
 	components: {},
@@ -20,18 +21,20 @@ export default {
 			shelfInfo: [
 				{
 					tabLabel: 'תיאור',
-					tabContent: `<p>${this.info}</p>`,
+					tabContent: this.info,
+					showContent: true,
 				},
 				{
 					tabLabel: 'החזרות',
 					tabContent: this.returns,
+					showContent: false,
 				},
 				{
 					tabLabel: 'משלוחים',
 					tabContent: this.shipping,
+					showContent: false,
 				},
 			],
-			selectedTabIndex: 0,
 		};
 	},
 	computed: {
@@ -40,21 +43,34 @@ export default {
 				return shelfInfoItem.tabLabel;
 			});
 		},
-		tabContent() {
-			if (this.shelfInfo[this.selectedTabIndex]) {
-				return this.shelfInfo[this.selectedTabIndex].tabContent;
-			}
-		},
 	},
 	created() {},
-	mounted() {},
+	mounted() {
+		console.log('el', this.$refs);
+		disableBodyScroll(this.$refs.shelfInfoComponent);
+	},
+	beforeDestroy() {
+		enableBodyScroll(this.$refs.shelfInfoComponent);
+	},
 	methods: {
-		updateSelectedTabIndex(index) {
-			this.selectedTabIndex = index;
+		getTabContent(index) {
+			return this.shelfInfo[index].tabContent;
 		},
+		showTabContent(index) {
+			return this.shelfInfo[index].showContent;
+		},
+		toggleShowContent(index) {
+			console.log('toggleShowContent', index);
+			this.shelfInfo[index].showContent = !this.shelfInfo[index].showContent;
+		},
+		// updateSelectedTabIndex(index) {
+		// 	this.selectedTabIndex = index;
+		// 	this.shelfInfo[index].showContent = !this.shelfInfo[index].showContent;
+		// 	console.log('selectedTabIndex', this.selectedTabIndex);
+		// },
 		closeInfo() {
 			console.log('closeInfo');
-			this.$emit('close-info');
+			this.$store.commit('toggleShelfInfo');
 		},
 	},
 };

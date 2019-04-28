@@ -1,53 +1,56 @@
 .shelf-info {
-	background-color: #424242;
-	opacity: 0.98;
+	padding: 4rem 2rem 9rem 2rem;
+	overflow: hidden;
+	background-color: #313131;
 	position: absolute;
 	bottom: 0;
-	z-index: 20;
+	z-index: 40;
 	width: 100%;
-	border-top-left-radius: 15px;
-	border-top-right-radius: 15px;
-	// border-bottom: 1px solid rgba(203, 202, 202, 0.5);
-	height: 85vh;
-	&__close {
-		position: absolute;
-		border: 0;
-		background-color: transparent;
-		font-weight: bold;
-		color: #fff;
-		left: 13px;
-		top: -1px;
-		font-size: 1.2rem;
-	}
+	// -webkit-overflow-scrolling: touch;
+	height: 100%;
 	&__tabs {
-		height: calc(100% - 255px);
-		// border-bottom: 1px solid rgba(203, 202, 202, 0.5);
-		&--header {
-			display: flex;
-			padding: 0.3rem;
-			letter-spacing: 1px;
-		}
+		overflow: auto;
+    height: 100%;
+		// overflow: scroll;
 		&--label {
-			// font-size: 1.1rem;
-			font-size: 2.2vh;
-			width: 6rem;
-			text-align: center;
-			padding: 0.6rem 0rem 0.4rem 0rem;
+			position: relative;
+			font-size: 1.4rem;
+			padding: 0.5rem 0;
 			font-weight: bold;
-			&.active {
-				border-bottom: 1px solid #fff;
+			border-top: 1px solid #979797;
+			.show-more-less {
+				position: absolute;
+				left: 0;
+			}
+			&:last-child {
+				border-bottom: 1px solid #979797;
 			}
 		}
 		&--content {
-			// font-size: 1.1rem;
-			font-size: 2.2vh;
-			padding: 0.5rem 1.1rem;
-			max-height: 40vh;
+			font-size: 1rem;
+			margin-top: 0.75rem;
 			overflow-y: scroll;
-			// max-height: calc(100% - 52.26px);
-			// overflow: hidden;
-			// max-height:7rem;
-			// overflow-y: scroll;
+		}
+	}
+	&__container--close {
+		padding: 1rem 2rem;
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		button {
+			letter-spacing: 0.19rem;
+			text-align: center;
+			padding: 1.2rem 0.9rem;
+			border: none;
+			background-color: #ffffff;
+			font-size: 1.2rem;
+			height: 3.4rem;
+			line-height: 1;
+			border-radius: 23px;
+			display: block;
+			width: 100%;
+			font-weight: bold;
 		}
 	}
 }

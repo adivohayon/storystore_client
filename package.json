@@ -28,6 +28,7 @@
 		"@nuxtjs/axios": "^5.3.6",
 		"@nuxtjs/google-tag-manager": "^2.1.4",
 		"aws-sdk": "^2.395.0",
+		"body-scroll-lock": "^2.6.1",
 		"cross-env": "^5.2.0",
 		"css-scroll-snap-polyfill": "^0.1.2",
 		"dotenv": "^6.2.0",

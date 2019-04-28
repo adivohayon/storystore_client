@@ -13,6 +13,7 @@ body {
 #page {
 	height: 100vh;
 	overflow: hidden;
+	position: relative;
 }
 
 .fp-enabled {
@@ -127,4 +128,28 @@ body {
 #fp-nav ul li a span,
 .fp-slidesNav ul li a span {
 	background: #fff;
+}
+
+// SHELF INFO MODAL
+.shelf-info {
+	opacity: 0.7;
+	// -webkit-overflow-scrolling: auto;
+}
+.modal-fade-enter {
+	opacity: 0;
+}
+.modal-fade-enter-active {
+	transition: opacity .2s ease-in;
+}
+.modal-fade-enter-to {
+	opacity: 0.7;
+}
+.modal-fade-leave {
+	opacity: 0.7;
+}
+.modal-fade-leave-active {
+	transition: opacity .25s ease-out;
+}
+.modal-fade-leave-to {
+	opacity: 0;
 }

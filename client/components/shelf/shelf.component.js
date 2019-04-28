@@ -41,7 +41,7 @@ export default {
 			// selectedAttributes: {},
 			selectedVariationId: null,
 			selectedAttributes: {},
-			showShelfInfo: false,
+			// showShelfInfo: false,
 			selectedProperty: {},
 			viewportWidth: null,
 			currentSlideIndex: 0,
@@ -301,6 +301,11 @@ export default {
 			img += asset.loaded ? this.assetsPath + asset.src : '';
 			img += ')';
 			return img;
+		},
+		showShelfInfo() {
+			console.log('shelf componenet/showShelfInfo');
+			this.$store.commit('toggleShelfInfo');
+			// this.$emit('show-shelf-info');
 		},
 	},
 };

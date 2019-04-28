@@ -33,7 +33,7 @@
 	</section>
 	<!-- <div class="shelf-options"></div> -->
 	<div class="shelf-info-button">
-		<button class="btn btn--round" v-on:click="showShelfInfo = !showShelfInfo">
+		<button class="btn btn--round" v-on:click="showShelfInfo">
 			<icon name="info" :original="true" width="18" height="18"></icon>
 		</button>
 	</div>
@@ -61,37 +61,13 @@
 		@changed-att="setAtt"
 	></attribute-picker>
 
-	<!-- <div class="shelf-attributes">
-		
-	</div> -->
-
 	<div
 		v-if="shelf.description && shelf.description.length > 0"
 		class="shelf-description"
 	>
 		{{ shelf.description }}
 	</div>
-	<!-- <footer class="shelf-footer">
-		<add-to-cart
-			:shelf-goal="shelfGoal"
-			:variant="variant"
-			:selected-attributes="selectedAttributes"
-			:selected-property="selectedProperty"
-			:shelf="shelf"
-		></add-to-cart>
-		<div
-			v-if="shelfIndex === 0 && !alreadySwiped"
-			class="swipe-down"
-			@click="swipeDown"
-		>
-			<icon name="chevron-up" width="28" height="28"></icon>
-			<div class="see-more">
-				See More
-			</div>
-		</div>
-	</footer> -->
-
-	<transition name="shelf-overlay-bottom">
+	<!-- <transition name="shelf-overlay-bottom">
 		<shelf-info
 			v-if="showShelfInfo"
 			:info="shelf.info"
@@ -99,7 +75,7 @@
 			:shipping="shippingDetails"
 			v-on:close-info="showShelfInfo = false"
 		></shelf-info>
-	</transition>
+	</transition> -->
 	<div class="shelf-scrims">
 		<!-- <div class="shelf-scrims--top"></div> -->
 		<div class="shelf-scrims--bottom"></div>
