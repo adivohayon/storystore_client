@@ -26,5 +26,9 @@ export default {
 	},
 	created() {},
 	mounted() {},
-	methods: {},
+	methods: {
+		showShelfInfo() {
+			this.$store.commit('toggleShelfInfo');
+		},
+	},
 };

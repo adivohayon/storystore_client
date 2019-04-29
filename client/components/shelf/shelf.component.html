@@ -24,40 +24,51 @@
 			<div class="shelf-scrims--top"></div>
 		</div>
 	</section>
-	<div class="shelf-info-button">
+	<!-- <div class="shelf-info-button">
 		<button class="btn btn--round" v-on:click="showShelfInfo">
 			<icon name="info" :original="true" width="18" height="18"></icon>
 		</button>
-	</div>
-	<shelf-title
+	</div> -->
+
+	<div class="shelf-footer">
+	
+		<attribute-picker
+			v-for="(attribute, attributeKey) in variantProperties"
+			:key="attributeKey"
+			:attribute="attribute"
+			:att-key="attributeKey"
+			:selected-attribute="selectedProperty[attributeKey]"
+			@changed-att="setAtt"
+		></attribute-picker>
+
+		<attribute-picker
+			v-for="(attribute, attributeKey) in availableAttributes"
+			:key="attributeKey"
+			:attribute="attribute"
+			:att-key="attributeKey"
+			:selected-attribute="selectedAttributes[attributeKey]"
+			@changed-att="setAtt"
+		></attribute-picker>
+		<shelf-title
 		v-if="variant && variant.price"
 		:price="variant.price"
 		:currency="variant.currency"
 		:title="shelfTitle"
 	></shelf-title>
-	<attribute-picker
-		v-for="(attribute, attributeKey) in variantProperties"
-		:key="attributeKey"
-		:attribute="attribute"
-		:att-key="attributeKey"
-		:selected-attribute="selectedProperty[attributeKey]"
-		@changed-att="setAtt"
-	></attribute-picker>
-
-	<attribute-picker
-		v-for="(attribute, attributeKey) in availableAttributes"
-		:key="attributeKey"
-		:attribute="attribute"
-		:att-key="attributeKey"
-		:selected-attribute="selectedAttributes[attributeKey]"
-		@changed-att="setAtt"
-	></attribute-picker>
-
-	<div
-		v-if="shelf.description && shelf.description.length > 0"
-		class="shelf-description"
-	>
-		{{ shelf.description }}
+		<div
+			v-if="shelf.description && shelf.description.length > 0"
+			class="shelf-description"
+		>
+			{{ shelf.description }}
+		</div>
+		<add-to-cart
+			:variant="variant"
+			:selected-attributes="selectedAttributes"
+			:selected-property="selectedProperty"
+			:shelf="shelf"
+			:show-go-to-payment="showGoToPayment"
+			@setGoToPayment="showGoToPayment = true;"
+		></add-to-cart>
 	</div>
 	<div class="shelf-scrims">
 		<!-- <div class="shelf-scrims--top"></div> -->

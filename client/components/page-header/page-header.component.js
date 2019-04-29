@@ -8,8 +8,13 @@ export default {
 		return {};
 	},
 	mounted() {
-		this.test = this.sizes;
+		console.log('refs', this.$refs);
+		this.$refs.pageHeader.style.setProperty(
+			'--page-header-text-color',
+			this.textColor
+		);
 	},
+	watch: {},
 	computed: {
 		storeSlug() {
 			return this.$store.state.store.slug;
@@ -19,8 +24,21 @@ export default {
 			path += `${this.storeSlug}/${this.storeSlug}_logo.png`;
 			return path;
 		},
-		headerColor() {
+		bgColor() {
 			return _get(this.$store.state, 'store.settings.primaryColor', '#ffffff');
+		},
+		textColor() {
+			switch (this.bgColor) {
+				case '#000000':
+					return '#ffffff';
+				case '#ffffff':
+					return '#000000';
+				default:
+					return '#000000';
+			}
+		},
+		cartItemsCount() {
+			return this.$store.getters['cart/itemsCount'](this.storeSlug);
 		},
 	},
 	methods: {},

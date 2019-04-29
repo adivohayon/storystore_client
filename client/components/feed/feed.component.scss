@@ -18,12 +18,12 @@
 		width: 100%;
 		z-index: 40;
 		padding-bottom: 1rem;
-		background-image: linear-gradient(
-			-180deg,
-			rgba(238, 238, 238, 0) 10%,
-			rgba(95, 95, 95, 0.3) 40%,
-			rgba(0, 0, 0, 1) 99%
-		);
+    background-image: linear-gradient(-180deg, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 0.7) 50%, black 99%);
+        display: flex;
+    flex-direction: column;
+		justify-content: flex-end;
+		
+		height: 8rem;
 
 		&__buttons {
 			display: flex;
@@ -51,19 +51,27 @@
 		}
 
 		.swipe-down {
+			@keyframes MoveUpDown {
+				0%, 100% {
+					top: -27px;
+				}
+				50% {
+					top: -35px;
+				}
+			}
 			text-align: center;
+			// margin-top: 2rem;
+			position: relative;
 			.svg-icon {
+				position: absolute;
+				margin: auto;
+				left: 0;
+				right: 0;
+				top: -27px;
 				animation: MoveUpDown 1.2s ease-in-out infinite;
 			}
 
-			@keyframes MoveUpDown {
-				0%, 100% {
-					top: 5px;
-				}
-				50% {
-					top: -5px;
-				}
-			}
+	
 
 			.see-more {
 				background-color: #4181ef;
@@ -95,3 +103,5 @@
 		}
 	}
 }
+
+

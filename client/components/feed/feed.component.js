@@ -2,10 +2,10 @@
 import _get from 'lodash/get';
 import _debounce from 'lodash.debounce';
 import Shelf from '@/components/shelf';
-import AddToCart from './../add-to-cart';
+
 export default {
 	name: 'feed',
-	components: { Shelf, AddToCart },
+	components: { Shelf },
 	props: {
 		shelves: {
 			type: Array,
@@ -20,9 +20,8 @@ export default {
 			startY: 0,
 			sectionOffset: 100,
 			sectionIdPrefix: 'section',
-			swipedOneDown: false,
-			currentShelfComponent: {},
-			showGoToPayment: false,
+			showSeeMore: true,
+			// currentShelfComponent: {},
 			shelfHeight: 640,
 		};
 	},
@@ -74,6 +73,10 @@ export default {
 	},
 	methods: {
 		onScroll: _debounce(function(e) {
+			if (this.showSeeMore) {
+				this.showSeeMore = false;
+			}
+
 			const shelfIndex = Math.round(
 				(window.scrollY - this.sectionOffset) / this.shelfHeight
 			);
@@ -129,8 +132,8 @@ export default {
 			const shelfIndex = sectionIndex || 0;
 			console.log('sectionLeave', shelfIndex);
 			this.$store.commit('setCurrentShelfIndex', shelfIndex);
-			this.currentShelfComponent = this.getCurrentShelfComponent(shelfIndex);
-			this.showGoToPayment = false;
+			// this.currentShelfComponent = this.getCurrentShelfComponent(shelfIndex);
+			// this.showGoToPayment = false;
 			// this.insertQueryParam('shelfIndex', this.sectionIndex);
 			// this.$router.push({
 			// 	path: this.$route.path,
@@ -145,10 +148,6 @@ export default {
 			this.trackViewContent(currentShelf);
 
 			this.loadMoreShelves(shelfIndex + 1);
-
-			if (!this.swipedOneDown && shelfIndex !== 0) {
-				this.swipedOneDown = true;
-			}
 		},
 		trackViewContent(shelf) {
 			// console.log('fbq', fbq);

@@ -8,6 +8,7 @@ import ShelfTitle from './../shelf-title';
 import ShelfInfo from './../shelf-info';
 import VideoPlayer from './../video-player';
 import AttributePicker from './../attribute-picker';
+import AddToCart from './../add-to-cart';
 export default {
 	name: 'shelf',
 	components: {
@@ -16,6 +17,7 @@ export default {
 		ShelfInfo,
 		VideoPlayer,
 		AttributePicker,
+		AddToCart,
 	},
 	props: {
 		shelf: {
@@ -37,6 +39,7 @@ export default {
 	data() {
 		return {
 			// selectedAttributes: {},
+			showGoToPayment: false,
 			selectedVariationId: null,
 			selectedAttributes: {},
 			// showShelfInfo: false,
@@ -263,9 +266,6 @@ export default {
 			img += asset.loaded ? this.assetsPath + asset.src : '';
 			img += ')';
 			return img;
-		},
-		showShelfInfo() {
-			this.$store.commit('toggleShelfInfo');
 		},
 	},
 };

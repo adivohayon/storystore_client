@@ -3,13 +3,48 @@
 	-moz-box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.35);
 	box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.35);
 	// position: relative;
-	
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
 
+	.btn {
+		background-color: inherit;
+	}
+
+	.cart-button {
+		.btn {
+			position: relative;
+			padding-top: 0.2rem;
+		}
+		.counter {
+			height: 1.5em;
+			width: 1.5em;
+			border-radius: 50%;
+			color: var(--page-header-text-color);
+			font-size: 14px;
+			font-weight: bold;
+			line-height: 1.5em;
+			position: absolute;
+			top: 0.2rem;
+			left: 2.7rem;
+			border: 1px solid var(--page-header-text-color);
+		}
+	}
+
+
+	& > a {
+		display: block;
+		padding: 0.7rem 1rem;
+	}
+
+	.svg-fill {
+		stroke: var(--page-header-text-color);
+	}
 	.logo {
 		// height: 3.2rem;
 		height:100%;
 		text-align: center;
-		padding: 0.7rem 1rem;
+		// padding: 0.7rem 1rem;
 		img {
 			height: 100%;
 			width: auto;

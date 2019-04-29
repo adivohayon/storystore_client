@@ -1,4 +1,11 @@
 <div class="shelf-title">
-	<div class="shelf-title__price">{{price}} {{formatedCurrency}}</div>
-		<div class="shelf-title__title">{{title}}</div>
+	<div class="shelf-info-button">
+		<button class="btn btn--round" v-on:click="showShelfInfo">
+			<icon name="more" :original="true" width="18" height="18"></icon>
+		</button>
+	</div>
+	<div class="shelf-title__content">
+		<div class="shelf-title__price">{{ price }} {{ formatedCurrency }}</div>
+		<div class="shelf-title__title">{{ title }}</div>
+	</div>
 </div>

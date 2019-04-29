@@ -1,8 +1,17 @@
-<div class="page-header" :style="{backgroundColor: headerColor}">
+<div class="page-header" :style="{backgroundColor: bgColor}" ref="pageHeader">
 	<nuxt-link to="/profile">
 		<!-- <img :src="logoSrc" :alt="`${storeSlug} Logo`" /> -->
 		<div class="logo">
 			<img :src="logoSrc" alt="" />
 		</div>
+	</nuxt-link>
+
+	<nuxt-link to="/cart" class="cart-button">
+		<button class="btn">
+			<icon name="cart" width="20" height="20"></icon>
+			<div v-if="cartItemsCount != 0" class="counter">
+				{{ cartItemsCount }}
+			</div>
+		</button>
 	</nuxt-link>
 </div>

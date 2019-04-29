@@ -1,8 +1,4 @@
-<div
-	class="feed"
-	id="feed"
-	ref="feed"
->
+<div class="feed" id="feed" ref="feed">
 	<shelf
 		id="section-0"
 		:shelf="shelves[0]"
@@ -20,33 +16,13 @@
 		:shelf="shelf"
 		:shelf-index="shelfIndex"
 	></shelf>
-	<footer class="feed-footer">
-		<div class="feed-footer__buttons">
+	<footer v-if="currentShelfIndex === 0 && showSeeMore" class="feed-footer">
+		<!-- <div class="feed-footer__buttons">
 		
-			<add-to-cart
-				v-if="currentShelfComponent"
-				:variant="currentShelfComponent.variant"
-				:selected-attributes="currentShelfComponent.selectedAttributes"
-				:selected-property="currentShelfComponent.selectedProperty"
-				:shelf="shelves[currentShelfIndex]"
-				:show-go-to-payment="showGoToPayment"
-				@setGoToPayment="showGoToPayment = true;"
-			></add-to-cart>
-			<nuxt-link to="/cart" class="cart-button">
-				<button class="btn btn--round">
-					<icon name="cart" :original="true" width="20" height="20"></icon>
-					<div v-if="cartItemsCount != 0" class="counter">
-						{{ cartItemsCount }}
-					</div>
-				</button>
-			</nuxt-link>
-		</div>
+	
+		</div> -->
 
-		<div
-			v-if="currentShelfIndex === 0 && !swipedOneDown"
-			class="swipe-down"
-			@click="scrollTo(1)"
-		>
+		<div class="swipe-down" @click="scrollTo(1)">
 			<icon name="chevron-up" width="28" height="28"></icon>
 			<div class="see-more">
 				See More
