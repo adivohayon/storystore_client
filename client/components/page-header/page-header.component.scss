@@ -39,6 +39,8 @@
 	& > a {
 		display: block;
 		padding: 0.7rem 1rem;
+		text-align: left;
+		max-width: 11rem;
 	}
 
 	.svg-fill {
@@ -49,7 +51,7 @@
 	.logo {
 		// height: 3.2rem;
 		height: 100%;
-		text-align: center;
+		text-align: right;
 		// padding: 0.7rem 1rem;
 		img {
 			height: 100%;
