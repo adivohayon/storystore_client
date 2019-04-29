@@ -1,11 +1,12 @@
 .shelf-info {
 	padding: 4rem 2rem 9rem 2rem;
 	overflow: hidden;
-	background-color: #313131;
-	position: absolute;
+	background-color: rgba(49, 49, 49, 0.7);
+	position: fixed;
 	bottom: 0;
-	z-index: 40;
+	z-index: 30;
 	width: 100%;
+	color: #ffffff;
 	// -webkit-overflow-scrolling: touch;
 	height: 100%;
 	&__tabs {
