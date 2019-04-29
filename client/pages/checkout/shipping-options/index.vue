@@ -1,5 +1,5 @@
 <template>
-	<div class="checkout-page checkout-page--shipping-options page-content">
+	<div class="page checkout-page checkout-page--shipping-options">
 		<div class="checkout-page__header">
 			<h3>פרטי משלוח והזמנה</h3>
 			<nuxt-link :to="`/`" class="checkout-page__back">

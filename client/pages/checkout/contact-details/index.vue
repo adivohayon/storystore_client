@@ -166,9 +166,9 @@ export default {
 				);
 
 				console.log('paymentUrl', paymentUrl);
-				this.$store.dispatch('toggleLoader', false);
 				window.location.href = paymentUrl;
 			} catch (err) {
+				this.$store.dispatch('toggleLoader', false);
 				console.error('Checkout error', err);
 			}
 		},

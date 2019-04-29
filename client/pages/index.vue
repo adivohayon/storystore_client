@@ -1,5 +1,5 @@
 <template>
-	<div id="page">
+	<div class="page index-page">
 		<!-- <no-ssr> -->
 		<!-- <div
 				v-if="shelves && shelves.length > 0"
@@ -97,7 +97,11 @@ export default {
 		// window.ScreenOrientation.lock('portrait');
 		// this.$store.commit('toggleLoader');
 	},
-	methods: {},
+	methods: {
+		onScroll() {
+			console.log('yoo');
+		},
+	},
 };
 </script>
 

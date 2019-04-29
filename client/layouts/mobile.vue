@@ -1,5 +1,5 @@
 <template>
-	<div class="layout--mobile">
+	<div class="layout layout--mobile">
 		<page-header></page-header>
 		<loader v-if="showLoader"></loader>
 		<!-- <no-ssr> -->
@@ -74,13 +74,52 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 * {
 	font-family: 'Simpler', 'system-ui', sans-serif;
 }
+body {
+	// background-color: #000000;
+}
 .layout--mobile {
-	height: calc(var(--vh, 1vh) * 100);
+	$page-header-height: 3.2rem;
+	// $viewport-height: var(--vh, 1vh) * 100;
+
+	padding-top: $page-header-height;
+	color: #000000;
+
+	display: grid;
+	grid-template-rows: [page-header] auto [page] auto;
 	overflow: hidden;
+	// height: calc(var(--vh, 1vh) * 100);
+	.page-header {
+		grid-row: page-header;
+		position: fixed;
+		z-index: 40;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: $page-header-height;
+	}
+	.page {
+		grid-row: page;
+		background-color: #f5f5f5;
+		overflow: hidden;
+	}
+
+	.feed {
+		-webkit-overflow-scrolling: touch;
+		color: #ffffff;
+		& > .shelf {
+			height: calc(100vh - #{$page-header-height});
+			position: relative;
+		}
+		// & > .shelf {
+		// 	min-height: calc(calc(var(--vh, 1vh) * 100) - 3.2rem);
+		// }
+	}
+
+	/* overflow: hidden; */
 }
 html {
 	font-size: 14px;

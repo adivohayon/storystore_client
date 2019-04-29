@@ -54,8 +54,9 @@ export default {
 	created() {},
 	mounted() {
 		console.log('feed mounted');
-		this.shelfHeight = this.$refs.feed.clientHeight;
-
+		this.shelfHeight = this.$refs.feed.clientHeight / this.shelves.length;
+		window.addEventListener('scroll', this.onScroll);
+		console.log('shelfHeight', this.shelfHeight);
 		// Full height fix
 		const vh = this.shelfHeight * 0.01;
 		document.documentElement.style.setProperty('--vh', `${vh}px`);
@@ -68,11 +69,13 @@ export default {
 			}
 		});
 	},
+	destroyed() {
+		window.removeEventListener('scroll', this.onScroll);
+	},
 	methods: {
 		onScroll: _debounce(function(e) {
-			const scrollTop = e.target.scrollTop;
 			const shelfIndex = Math.round(
-				(scrollTop - this.sectionOffset) / this.shelfHeight
+				(window.scrollY - this.sectionOffset) / this.shelfHeight
 			);
 
 			if (shelfIndex !== this.currentShelfIndex) {
@@ -116,9 +119,8 @@ export default {
 					? this.$refs.firstShelf
 					: this.$refs.shelf[shelfIndex - 1];
 
-			shelfComponent.$el.scrollIntoView({
-				block: 'start',
-				inline: 'nearest',
+			window.scrollTo({
+				top: shelfComponent.$el.offsetTop,
 				behavior: 'smooth',
 			});
 			this.sectionLeave(shelfIndex);
