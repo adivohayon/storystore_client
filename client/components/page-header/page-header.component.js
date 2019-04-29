@@ -13,6 +13,10 @@ export default {
 			'--page-header-text-color',
 			this.textColor
 		);
+		this.$refs.pageHeader.style.setProperty(
+			'--page-header-bg-color',
+			this.bgColor
+		);
 	},
 	watch: {},
 	computed: {
