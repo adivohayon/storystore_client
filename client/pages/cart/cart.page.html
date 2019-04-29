@@ -2,11 +2,11 @@
 	<div class="cart-page__container">
 		<div ref="stickyHeader" class="cart-page__header">
 			<div class="cart-page__header--checkout">
-				<a href="/checkout/shipping-options" class="checkout-btn">
+				<nuxt-link to="/" class="cart-page__header--close">
+					<icon name="chevron" :original="true" width="22" height="22"></icon>
+				</nuxt-link>
+				<nuxt-link to="/checkout/shipping-options" class="checkout-btn">
 					לתשלום
-				</a>
-				<nuxt-link :to="`/`" class="cart-page__header--close">
-					<icon name="close" :original="true" width="17" height="26"></icon>
 				</nuxt-link>
 			</div>
 			<div class="cart-page__header--total">
@@ -23,6 +23,11 @@
 				:item="item"
 				:itemIndex="itemIndex"
 			></cart-item>
+		</div>
+		<div class="cart-page__checkout">
+			<nuxt-link to="/checkout/shipping-options" class="checkout-btn">
+				לתשלום
+			</nuxt-link>
 		</div>
 	</div>
 </div>
