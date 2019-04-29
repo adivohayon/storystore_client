@@ -5,7 +5,6 @@
 		ref="firstShelf"
 		:shelf-index="0"
 		@scroll-down="scrollTo(1)"
-		:class="{'see-more': currentShelfIndex === 0 && !swipedOneDown}"
 	></shelf>
 	<shelf
 		v-for="(shelf, shelfIndex) in shelves"
