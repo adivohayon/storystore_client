@@ -151,6 +151,7 @@ export default {
 	methods: {
 		async completeCheckout() {
 			try {
+				this.$store.dispatch('toggleLoader', true);
 				this.$v.$touch();
 				if (this.$v.$invalid) {
 					this.invalid = true;
@@ -165,7 +166,7 @@ export default {
 				);
 
 				console.log('paymentUrl', paymentUrl);
-				this.$store.dispatch('toggleLoader', true);
+				this.$store.dispatch('toggleLoader', false);
 				window.location.href = paymentUrl;
 			} catch (err) {
 				console.error('Checkout error', err);

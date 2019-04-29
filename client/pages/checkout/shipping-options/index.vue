@@ -50,6 +50,7 @@ import PageHeader from '@/components/page-header';
 import CheckoutOrder from '@/components/checkout-order';
 import OrderSummary from '@/components/order-summary';
 import { checkoutMixin } from '@/helpers/mixins';
+import { checkRule } from '@/helpers/rules.helpers';
 export default {
 	components: { PageHeader, CheckoutOrder, OrderSummary },
 	async asyncData() {},
