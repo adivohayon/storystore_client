@@ -29,6 +29,9 @@ export default {
 		// const policy = 'a';
 		// console.log('policy', policy);
 	},
+	layout(ctx) {
+		return ctx.app.isMobile ? 'mobile' : 'desktop';
+	},
 	props: {},
 	data() {
 		return {
