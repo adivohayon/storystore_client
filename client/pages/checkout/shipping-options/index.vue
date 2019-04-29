@@ -117,6 +117,12 @@ export default {
 		currency() {
 			return '₪';
 		},
+		storeSlug() {
+			return _get(this.$store.state, 'store.slug', null);
+		},
+		subtotal() {
+			return this.$store.getters['cart/subtotal'](this.storeSlug);
+		},
 	},
 	mounted() {
 		setTimeout(() => {

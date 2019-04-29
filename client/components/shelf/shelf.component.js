@@ -6,7 +6,6 @@ import _orderBy from 'lodash.orderby';
 import ShelfContent from './../shelf-content';
 import ShelfTitle from './../shelf-title';
 import ShelfInfo from './../shelf-info';
-import Loader from './../loader';
 import VideoPlayer from './../video-player';
 import AttributePicker from './../attribute-picker';
 export default {
@@ -17,7 +16,6 @@ export default {
 		ShelfInfo,
 		VideoPlayer,
 		AttributePicker,
-		Loader,
 	},
 	props: {
 		shelf: {
@@ -43,7 +41,6 @@ export default {
 			selectedAttributes: {},
 			// showShelfInfo: false,
 			selectedProperty: {},
-			viewportWidth: null,
 			currentSlideIndex: 0,
 			showSpacer: false,
 			// assetsSwiper: null,
@@ -63,23 +60,7 @@ export default {
 				effect: 'fade',
 				// loop: true,
 				// loopedSlides: 1,
-				on: {
-					// slideNextTransitionStart: function() {
-					// 	const previousSlideIndex = this.realIndex + 1;
-					// 	if (previousSlideIndex === 1) {
-					// 		this.slideTo(1);
-					// 	}
-					// },
-					// slidePrevTransitionStart: function() {
-					// 	let slidesLength = this.slides.length - 2;
-					// 	const previousSlideIndex = this.realIndex + 1;
-					// 	console.log('this.realIndex ', this.realIndex);
-					// 	console.log(previousSlideIndex, slidesLength);
-					// 	if (previousSlideIndex === slidesLength) {
-					// 		this.slideTo(previousSlideIndex);
-					// 	}
-					// },
-				},
+				on: {},
 			},
 		};
 	},
@@ -201,22 +182,9 @@ export default {
 		this.initializeSelectedAttributes();
 		this.initializeSelectedProperty();
 	},
-	mounted() {
-		this.viewportWidth = window.innerWidth;
-	},
+	mounted() {},
 
 	methods: {
-		handleTouch(e) {
-			console.log('scrollLeft', e);
-		},
-		handleScroll(e) {
-			// console.log('viewportWidth', this.viewportWidth);
-			// console.log('scrollLeft', e.target.scrollLeft);
-			if (e.target.scrollLeft % this.viewportWidth === 0) {
-				this.currentSlideIndex = e.target.scrollLeft / this.viewportWidth;
-			}
-		},
-
 		initializeVariation() {
 			this.selectedVariationId = this.shelf.variations[0].variationId;
 		},
@@ -257,8 +225,6 @@ export default {
 			}
 		},
 		setAtt({ att, attKey }) {
-			// this.assetsSwiper.update();
-			// this.assetsSwiper.slideTo(0);
 			// Changed variant
 			if (att.variationId) {
 				this.selectedProperty[attKey] = {
@@ -279,13 +245,9 @@ export default {
 						loaded: true,
 					});
 				});
-				// this.$refs.carousel.go('=0');
-				// this.$refs.carousel.restart();
-				// this.$refs.carousel.slideTo(0);
-				// this.$emit('rebuild-fullpage', { activeSlideIndex: 0 });
-				// this.$refs.carousel.destroy(false, () => {
-				// 	this.$refs.carousel.init();
-				// });
+
+				// go to first slide
+				this.assetsSwiper.slideTo(0);
 			} else {
 				this.selectedAttributes[attKey] = {
 					...att,
@@ -303,9 +265,7 @@ export default {
 			return img;
 		},
 		showShelfInfo() {
-			console.log('shelf componenet/showShelfInfo');
 			this.$store.commit('toggleShelfInfo');
-			// this.$emit('show-shelf-info');
 		},
 	},
 };
