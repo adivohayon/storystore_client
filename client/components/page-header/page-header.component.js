@@ -5,7 +5,9 @@ export default {
 	async asyncData({}) {},
 	props: {},
 	data() {
-		return {};
+		return {
+			showCart: false,
+		};
 	},
 	mounted() {
 		console.log('refs', this.$refs);
@@ -17,6 +19,7 @@ export default {
 			'--page-header-bg-color',
 			this.bgColor
 		);
+		this.showCart = true;
 	},
 	watch: {},
 	computed: {
