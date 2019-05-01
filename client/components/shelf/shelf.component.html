@@ -9,7 +9,7 @@
 			<video-player :source="variantVideo.value"></video-player>
 		</div> -->
 
-		<div v-swiper:assetsSwiper="swiperOption" dir="ltr">
+		<div v-swiper:assetsSwiper="swiperOption" dir="ltr" v-if="variantAssets.length > 0">
 			<div class="swiper-wrapper carousel">
 				<div
 					v-for="(asset, index)  in variantAssets"
@@ -17,7 +17,8 @@
 					:style="{ backgroundImage: 'url(' + asset + ')' }"
 					class="swiper-slide slide"
 				>
-					<!-- <img :src="asset"> {{asset}} -->
+				<!-- {{asset}} -->
+					<!-- <img :src="asset"> {{asset}} --> 
 				</div>
 			</div>
 			<div class="swiper-pagination"></div>

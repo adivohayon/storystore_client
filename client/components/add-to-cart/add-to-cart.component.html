@@ -2,7 +2,7 @@
 	<button
 		class="btn btn--add-to-cart"
 		:class="{'checkout': showGoToPayment}"
-		@click="addToCart(shelf, selectedAttributes, selectedProperty)"
+		@click="ctaClick(shelf)"
 	>
 		{{ buttonText }}
 	</button>

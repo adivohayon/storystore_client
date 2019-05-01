@@ -26,12 +26,6 @@ export default {
 				return {};
 			},
 		},
-		fullpage: {
-			type: Object,
-			default: () => {
-				return {};
-			},
-		},
 		shelfIndex: {
 			type: Number,
 		},
@@ -61,7 +55,7 @@ export default {
 				iOSEdgeSwipeDetection: true,
 				threshold: 10,
 				effect: 'fade',
-				// loop: true,
+				loop: true,
 				// loopedSlides: 1,
 				on: {},
 			},

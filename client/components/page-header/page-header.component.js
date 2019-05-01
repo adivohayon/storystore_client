@@ -6,7 +6,7 @@ export default {
 	props: {},
 	data() {
 		return {
-			showCart: false,
+			// showCart: false,
 		};
 	},
 	mounted() {
@@ -19,10 +19,13 @@ export default {
 			'--page-header-bg-color',
 			this.bgColor
 		);
-		this.showCart = true;
+		// this.showCart = true;
 	},
 	watch: {},
 	computed: {
+		showCart() {
+			return this.$store.state.store.settings.hasCart;
+		},
 		storeSlug() {
 			return this.$store.state.store.slug;
 		},

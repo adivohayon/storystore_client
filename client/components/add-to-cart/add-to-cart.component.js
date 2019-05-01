@@ -47,13 +47,7 @@ export default {
 			}
 		},
 		buttonText() {
-			if (this.shelfGoal === 'PURCHASE') {
-				return this.showGoToPayment ? 'לתשלום' : 'הוספה לסל';
-			}
-
-			if (this.shelfGoal === 'CONTACT') {
-				return 'צור קשר';
-			}
+			return this.shelf.cta_text || 'הוספה לסל';
 		},
 		storeSlug() {
 			return this.$store.state.store.slug;
@@ -72,6 +66,23 @@ export default {
 		// console.log('params', this.$route.params);
 	},
 	methods: {
+		ctaClick(shelf) {
+			switch (shelf.type) {
+				case 'ADD_TO_CART':
+					this.addToCart(shelf, this.selectedAttributes, this.selectedProperty);
+					break;
+				case 'SCROLL_TO':
+					break;
+				case 'LINK':
+					const shelfLink = shelf.data.url;
+					this.goToLink(shelfLink);
+					break;
+			}
+		},
+		goToLink(url) {
+			const win = window.open(url, '_blank');
+			win.focus();
+		},
 		async addToCart(shelf, selectedAttributes, selectedProperty) {
 			if (this.shelfGoal === 'CONTACT') {
 				return;
