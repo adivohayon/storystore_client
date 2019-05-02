@@ -9,10 +9,14 @@ Vue.use(Vuex);
 export const state = () => ({
 	shelves: [],
 	pagination: {},
+	// feedComponent: {},
 	// slug: null,
 });
 
 export const mutations = {
+	// setFeedComponent(state, feedComponent) {
+	// 	Vue.set(state, 'feedComponent', feedComponent);
+	// },
 	add(state, shelf) {
 		state.shelves.push(shelf);
 	},

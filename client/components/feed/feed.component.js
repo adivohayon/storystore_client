@@ -50,7 +50,11 @@ export default {
 			return this.$store.getters['cart/itemsCount'](this.storeSlug);
 		},
 	},
-	created() {},
+	created() {
+		if (this.storeSlug === 'stores') {
+			this.showSeeMore = false;
+		}
+	},
 	mounted() {
 		console.log('feed mounted');
 		this.shelfHeight = this.$refs.feed.clientHeight / this.shelves.length;
@@ -67,6 +71,7 @@ export default {
 				this.scrollTo(queryShelfIndex);
 			}
 		});
+		// this.$store.commit('store/setFeedComponent', this.$refs.feed);
 	},
 	destroyed() {
 		window.removeEventListener('scroll', this.onScroll);
