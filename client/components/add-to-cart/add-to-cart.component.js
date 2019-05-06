@@ -47,7 +47,11 @@ export default {
 			}
 		},
 		buttonText() {
-			return this.shelf.cta_text || 'הוספה לסל';
+			if (this.showGoToPayment) {
+				return 'לתשלום';
+			} else {
+				return this.shelf.cta_text || 'הוספה לסל';
+			}
 		},
 		storeSlug() {
 			return this.$store.state.store.slug;
@@ -70,6 +74,7 @@ export default {
 			switch (shelf.type) {
 				case 'ADD_TO_CART':
 					this.addToCart(shelf, this.selectedAttributes, this.selectedProperty);
+					this.$emit('setGoToPayment');
 					break;
 				case 'SCROLL_TO':
 					break;
@@ -84,10 +89,6 @@ export default {
 			win.focus();
 		},
 		async addToCart(shelf, selectedAttributes, selectedProperty) {
-			if (this.shelfGoal === 'CONTACT') {
-				return;
-			}
-
 			if (this.showGoToPayment) {
 				this.$router.replace('/checkout/shipping-options');
 				return;
@@ -156,7 +157,7 @@ export default {
 			}
 			// console.log('this.ga', this.$ga);
 			item.storeSlug = this.storeSlug;
-			this.$emit('setGoToPayment');
+
 			// this.added = true;
 			// this.$ga.event({
 			// 	eventCategory: 'category',

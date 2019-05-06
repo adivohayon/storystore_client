@@ -55,7 +55,7 @@ export default {
 				iOSEdgeSwipeDetection: true,
 				threshold: 10,
 				effect: 'fade',
-				loop: true,
+				loop: false,
 				// loopedSlides: 1,
 				on: {},
 			},
