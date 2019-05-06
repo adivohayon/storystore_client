@@ -1,4 +1,5 @@
 import { removeDuplicates } from '@/helpers/collection.helpers';
+import _get from 'lodash.get';
 export default {
 	name: 'add-to-cart',
 	components: {},
@@ -77,6 +78,13 @@ export default {
 					this.$emit('setGoToPayment');
 					break;
 				case 'SCROLL_TO':
+					// const
+					let scrollTo = 0;
+					if (shelf.data.scrollTo && shelf.data.scrollTo === 'LAST_SHELF') {
+						scrollTo = _get(this.$store.state, 'store.shelves', []).length - 1;
+					}
+					// console.log('scrollTo', scrollTo);
+					this.$emit('scrollTo', scrollTo);
 					break;
 				case 'LINK':
 					const shelfLink = shelf.data.url;

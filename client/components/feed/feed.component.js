@@ -128,6 +128,7 @@ export default {
 			});
 		},
 		scrollTo(shelfIndex) {
+			// console.log('scrolling to', shelfIndex);
 			const shelfComponent =
 				shelfIndex === 0
 					? this.$refs.firstShelf
@@ -141,7 +142,7 @@ export default {
 		},
 		sectionLeave(sectionIndex) {
 			const shelfIndex = sectionIndex || 0;
-			console.log('sectionLeave', shelfIndex);
+			// console.log('sectionLeave', shelfIndex);
 			this.$store.commit('setCurrentShelfIndex', shelfIndex);
 			// this.currentShelfComponent = this.getCurrentShelfComponent(shelfIndex);
 			// this.showGoToPayment = false;

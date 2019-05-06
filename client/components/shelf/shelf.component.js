@@ -271,5 +271,9 @@ export default {
 			img += ')';
 			return img;
 		},
+		// HACKING
+		scrollTo(scrollIndex) {
+			this.$emit('scroll-to', scrollIndex);
+		},
 	},
 };

@@ -4,7 +4,7 @@
 		:shelf="shelves[0]"
 		ref="firstShelf"
 		:shelf-index="0"
-		@scroll-down="scrollTo(1)"
+		@scroll-to="scrollTo"
 	></shelf>
 	<shelf
 		v-for="(shelf, shelfIndex) in shelves"
@@ -14,8 +14,8 @@
 		:key="shelfIndex"
 		:shelf="shelf"
 		:shelf-index="shelfIndex"
-	>
-	</shelf>
+		@scroll-to="scrollTo"
+	></shelf>
 	<footer v-if="currentShelfIndex === 0 && showSeeMore" class="feed-footer">
 		<!-- <div class="feed-footer__buttons">
 		
