@@ -22,6 +22,12 @@ $ npm run generate
 For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
 
 
+## Settings
+1. `hasCart: true [Boolean]` - Enables cart components.
+2. `primaryColor: #000000 [String]` - Should be a valid CSS color format. Used in the 'page-header' component
+3. `sendEmail: false [Boolean]` - If true, sends an email to the store info email on checkout response.
+4. `showSeeMore: true [Boolean]` - shows the 'See More' button in the first shelf.
+
 ## Dev Setup
 
 1. `npm install`

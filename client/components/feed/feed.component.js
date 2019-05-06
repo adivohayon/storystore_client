@@ -20,7 +20,6 @@ export default {
 			startY: 0,
 			sectionOffset: 100,
 			sectionIdPrefix: 'section',
-			showSeeMore: true,
 			// currentShelfComponent: {},
 			shelfHeight: 640,
 		};
@@ -49,12 +48,19 @@ export default {
 		cartItemsCount() {
 			return this.$store.getters['cart/itemsCount'](this.storeSlug);
 		},
+		showSeeMore: {
+			get() {
+				return _get(this.$store.state, 'store.settings.showSeeMore', true);
+			},
+			set(show) {
+				this.$store.commit('store/updateSettings', {
+					key: 'showSeeMore',
+					value: show,
+				});
+			},
+		},
 	},
-	created() {
-		if (this.storeSlug === 'stores') {
-			this.showSeeMore = false;
-		}
-	},
+	created() {},
 	mounted() {
 		console.log('feed mounted');
 		this.shelfHeight = this.$refs.feed.clientHeight / this.shelves.length;
