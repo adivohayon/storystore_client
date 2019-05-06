@@ -1,0 +1,56 @@
+<div class="contact-form">
+	<h2 class="contact-form__header">
+		<span>story<strong>store</strong></span
+		><br />
+		for your business
+	</h2>
+	<form class="contact-form__form">
+		<div class="form-container">
+			<input
+				v-model.trim="$v.formData.fullName.$model"
+				class="form-input"
+				:class="{
+					error: !$v.formData.fullName.required && invalid,
+				}"
+				type="text"
+				placeholder="full name"
+			/>
+			<input
+				v-model.trim="$v.formData.businessName.$model"
+				class="form-input"
+				:class="{
+					error: !$v.formData.businessName.required && invalid,
+				}"
+				type="text"
+				placeholder="business name"
+			/>
+		</div>
+		<input
+			v-model.trim="$v.formData.mailAddress.$model"
+			class="form-input"
+			:class="{
+				error: (!$v.formData.mailAddress.required || !$v.formData.mailAddress.email)  && invalid,
+			}"
+			type="text"
+			placeholder="mail address"
+		/>
+		<input
+			v-model.trim="$v.formData.phoneNumber.$model"
+			class="form-input"
+			:class="{
+				error: (!$v.formData.phoneNumber.required || !$v.formData.phoneNumber.numeric) && invalid,
+			}"
+			type="text"
+			placeholder="phone number"
+		/>
+		<div class="storystore-info">
+			<div class="storystore-info__call-us">
+				you can call us <a href="tel:0504484517">050-4484517</a>
+			</div>
+			<div class="storystore-info__mail-us">
+				or mail us
+				<a href="mailto:hai@shop-together.io">hai@shop-together.io</a>
+			</div>
+		</div>
+	</form>
+</div>

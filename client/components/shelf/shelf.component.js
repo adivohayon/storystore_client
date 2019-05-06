@@ -9,6 +9,7 @@ import ShelfInfo from './../shelf-info';
 import VideoPlayer from './../video-player';
 import AttributePicker from './../attribute-picker';
 import AddToCart from './../add-to-cart';
+import ContactForm from '@/components/contact-form';
 export default {
 	name: 'shelf',
 	components: {
@@ -18,6 +19,7 @@ export default {
 		VideoPlayer,
 		AttributePicker,
 		AddToCart,
+		ContactForm,
 	},
 	props: {
 		shelf: {
@@ -33,6 +35,7 @@ export default {
 	data() {
 		return {
 			// selectedAttributes: {},
+			ctaClicked: false,
 			showGoToPayment: false,
 			selectedVariationId: null,
 			selectedAttributes: {},
@@ -172,6 +175,13 @@ export default {
 		sortedVariations() {
 			return _orderBy(this.shelf.variations, ['variation_order'], ['asc']);
 			return this.shelf.variation;
+		},
+		isShelfContactForm() {
+			if (this.shelf.type === 'CONTACT_FORM') {
+				return true;
+			} else {
+				return false;
+			}
 		},
 	},
 	created() {

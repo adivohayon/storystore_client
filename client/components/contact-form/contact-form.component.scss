@@ -1,0 +1,58 @@
+.contact-form {
+	padding: 1rem 2rem;
+	direction: ltr;
+	background: #000;
+	width: 100%;
+	height: 100vh;
+	color: #fff;
+	&__header {
+		text-transform: uppercase;
+		font-weight: normal;
+		text-align: left;
+		padding-top: 5rem;
+		padding-bottom: 0.6rem;
+		border-bottom: 1px solid #979797;
+		font-size: 2.2rem;
+		span {
+			text-transform: lowercase;
+		}
+	}
+	&__form {
+		margin-top: 2rem;
+		.form-container {
+			display: flex;
+			.form-input:first-child {
+				margin-right: 1rem;
+			}
+		}
+		.form-input {
+			width: 100%;
+			color: #fff;
+			background: #0d0d0d;
+			border: 1px solid #979797;
+			padding: 0.8rem 1rem;
+			margin-top: 1rem;
+			border-radius: 21px;
+			outline: none;
+			font-size: 1.1rem;
+			&::placeholder {
+				font-size: 1.2rem;
+				color: rgba(252, 252, 252, 0.33);
+			}
+		}
+		.storystore-info {
+			margin-top: 2rem;
+			text-align: left;
+			font-size: 1rem;
+			&__mail-us {
+				margin-top: 0.3rem;
+			}
+			a {
+				text-decoration: none;
+				cursor: not-allowed;
+				color: currentColor;
+				border-bottom: 1px solid #979797;
+			}
+		}
+	}
+}

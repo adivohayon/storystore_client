@@ -77,6 +77,8 @@ export default {
 					const shelfLink = shelf.data.url;
 					this.goToLink(shelfLink);
 					break;
+				case 'CONTACT_FORM':
+					this.$emit('cta-clicked');
 			}
 		},
 		goToLink(url) {

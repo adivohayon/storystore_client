@@ -17,9 +17,7 @@
 		>
 			<h4>פרטי אישיים</h4>
 			<div class="checkout-page__section">
-				<div
-					class="checkout-page__form-group checkout-page__form-group--multiple-columns"
-				>
+				<div class="checkout-page__form-group checkout-page__form-group--multiple-columns">
 					<input
 						placeholder="שם פרטי"
 						class="checkout-page__input"
@@ -28,7 +26,7 @@
 							error: !$v.personal.firstName.required && this.invalid,
 						}"
 						v-model.trim="$v.personal.firstName.$model"
-					/>
+					>
 					<input
 						placeholder="שם משפחה"
 						class="checkout-page__input"
@@ -36,7 +34,7 @@
 							error: !$v.personal.lastName.required && this.invalid,
 						}"
 						v-model.trim="$v.personal.lastName.$model"
-					/>
+					>
 				</div>
 				<div class="checkout-page__form-group">
 					<input
@@ -49,7 +47,7 @@
 								this.invalid,
 						}"
 						v-model.trim="$v.personal.email.$model"
-					/>
+					>
 				</div>
 				<div class="checkout-page__form-group">
 					<input
@@ -61,15 +59,13 @@
 							error: !$v.personal.phone.required && this.invalid,
 						}"
 						v-model.trim="$v.personal.phone.$model"
-					/>
+					>
 				</div>
 			</div>
 		</form>
 		<order-summary :shipping-address="shippingAddress"></order-summary>
 		<div class="checkout-page__next-btn">
-			<button id="checkout-submit" @click="completeCheckout">
-				לתשלום מאובטח
-			</button>
+			<button id="checkout-submit" @click="completeCheckout">לתשלום מאובטח</button>
 		</div>
 		<checkout-order></checkout-order>
 	</div>
@@ -84,7 +80,6 @@ export default {
 	layout(ctx) {
 		return ctx.app.isMobile ? 'mobile' : 'desktop';
 	},
-	async asyncData() {},
 	validations: {
 		personal: {
 			firstName: {
