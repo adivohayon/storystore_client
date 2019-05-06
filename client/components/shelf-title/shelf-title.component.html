@@ -1,5 +1,5 @@
 <div class="shelf-title">
-	<div class="shelf-info-button">
+	<div class="shelf-info-button" v-if="info.length > 0  || returns.length > 0 || shipping.length > 0">
 		<button class="btn btn--round" v-on:click="showShelfInfo">
 			<icon name="more" :original="true" width="18" height="18"></icon>
 		</button>

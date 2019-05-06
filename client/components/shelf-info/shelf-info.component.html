@@ -5,7 +5,7 @@
 			:class="{active: selectedTabIndex == index}"
 			v-for="(tab, index) in infoTabs"
 			@click="toggleShowContent(index)"
-			v-if="getTabContent(index).length"
+			v-if="getTabContent(index) && getTabContent(index).length"
 		>
 			{{ tab }}
 			<span class="show-more-less" v-if="showTabContent(index)">-</span>
