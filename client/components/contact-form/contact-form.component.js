@@ -59,6 +59,7 @@ export default {
 					return;
 				}
 				this.invalid = false;
+				this.$store.dispatch('toggleLoader', true);
 				const resp = await this.$store.dispatch(
 					'submitContactForm',
 					this.formData
@@ -66,10 +67,12 @@ export default {
 
 				this.error = false;
 				this.success = true;
+				this.$store.dispatch('toggleLoader', false);
 				// console.log('submitForm resp', resp);
 			} catch (err) {
 				this.error = true;
 				this.success = false;
+				this.$store.dispatch('toggleLoader', false);
 				console.log('submitForm error', err);
 			}
 		},
