@@ -51,14 +51,7 @@ export default {
 			return _get(this.$store.state, 'store.settings.primaryColor', '#ffffff');
 		},
 		bgColor() {
-			switch (this.primaryColor) {
-				case '#000000':
-					return '#ffffff';
-				case '#ffffff':
-					return '#000000';
-				default:
-					return '#000000';
-			}
+			return '#000000';
 		},
 		showLoader() {
 			return this.$store.state.loader.show;

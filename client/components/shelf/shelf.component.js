@@ -180,7 +180,8 @@ export default {
 			return _get(this.shelf, 'type', 'ADD_TO_CART');
 		},
 		hasScrims() {
-			return this.shelfType === 'CONTACT_FORM';
+			// return this.shelfType === 'CONTACT_FORM';
+			return true;
 		},
 	},
 	created() {
