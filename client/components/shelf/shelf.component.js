@@ -174,7 +174,7 @@ export default {
 		},
 		sortedVariations() {
 			return _orderBy(this.shelf.variations, ['variation_order'], ['asc']);
-			return this.shelf.variation;
+			// return this.shelf.variation;
 		},
 		shelfType() {
 			return _get(this.shelf, 'type', 'ADD_TO_CART');
@@ -182,6 +182,13 @@ export default {
 		hasScrims() {
 			// return this.shelfType === 'CONTACT_FORM';
 			return true;
+		},
+		footerBottom() {
+			if (this.shelfIndex === 0) {
+				return '6rem';
+			}
+
+			return '0';
 		},
 	},
 	created() {

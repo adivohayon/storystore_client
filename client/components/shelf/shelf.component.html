@@ -35,7 +35,7 @@
 		</button>
 	</div> -->
 
-	<div class="shelf-footer">
+	<div class="shelf-footer" :style="{bottom: footerBottom}">
 		<attribute-picker
 			v-for="(attribute, attributeKey) in variantProperties"
 			:key="attributeKey"
