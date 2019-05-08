@@ -1,5 +1,8 @@
 <div class="page-header" :style="{backgroundColor: bgColor}" ref="pageHeader">
-	<nuxt-link to="/profile">
+	<nuxt-link
+		to="/profile"
+		:style="[showCart ? {textAlign: 'right'} : {textAlign: 'center'}]"
+	>
 		<!-- <img :src="logoSrc" :alt="`${storeSlug} Logo`" /> -->
 		<div class="logo">
 			<img :src="logoSrc" alt="" />
