@@ -1,12 +1,12 @@
 import '@/icons';
 import { mapState } from 'vuex';
 // import axios from 'axios';
-import { getSlugFromHost } from '@/helpers/async-data.helpers';
+import { getSubdomainFromHost } from '@/helpers/async-data.helpers';
 export default {
 	async asyncData({ req, $axios, store }) {
 		const host = process.server ? req.headers.host : window.location.hostname;
 		console.log('host', host);
-		const storeSlug = getSlugFromHost(host);
+		const storeSlug = getSubdomainFromHost(host);
 		let url = 'stores/' + storeSlug + `/texts`;
 		store.commit('toggleLoader', false);
 		console.log('storeSlug', storeSlug);

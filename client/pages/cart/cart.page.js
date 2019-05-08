@@ -1,11 +1,11 @@
 import CartItem from '@/components/cart-item';
 import '@/icons';
-import { getSlugFromHost } from '@/helpers/async-data.helpers';
+import { getSubdomainFromHost } from '@/helpers/async-data.helpers';
 export default {
 	components: { CartItem },
 	async asyncData({ req, store }) {
 		const host = process.server ? req.headers.host : window.location.hostname;
-		const storeSlug = getSlugFromHost(host);
+		const storeSlug = getSubdomainFromHost(host);
 
 		store.commit('toggleLoader', false);
 

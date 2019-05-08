@@ -12,5 +12,9 @@ const nuxt = new Nuxt(config);
 // app.use(nuxt.render);
 app.use((req, res) => setTimeout(() => nuxt.render(req, res), 0));
 
+// COMMENT OUT IN PRODUCTION
+// const port = 3000;
 // app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+
+// UNCOMMENT IN PRODUCTION
 module.exports = app;

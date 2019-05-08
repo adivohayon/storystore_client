@@ -116,18 +116,20 @@ export const actions = {
 			} else {
 				store = await this.$axios.$get(`stores/${storeSlug}`);
 			}
-
-			const { shelves, pagination } = await this.$axios.$get(
-				`stores/${store.id}/shelves?limit=5`
-			);
-			// console.log(useMockData, store.shelves);
-			// const store = await this.$axios.$get(`stores/${storeSlug}`);
-			// console.log('store - usemocks: ' + useMockData, store);
-			if (store && shelves && pagination) {
-				commit('setPagination', pagination);
-				commit('populateShelves', shelves);
-				commit('populateStore', store);
-				return true;
+			// console.log('store', store);
+			if (store && store.id) {
+				const { shelves, pagination } = await this.$axios.$get(
+					`stores/${store.id}/shelves?limit=5`
+				);
+				// console.log(useMockData, store.shelves);
+				// const store = await this.$axios.$get(`stores/${storeSlug}`);
+				// console.log('store - usemocks: ' + useMockData, store);
+				if (shelves && pagination) {
+					commit('setPagination', pagination);
+					commit('populateShelves', shelves);
+					commit('populateStore', store);
+					return true;
+				}
 			}
 			return false;
 			// console.log('resp', resp.data);

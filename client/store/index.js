@@ -1,4 +1,4 @@
-import { getSlugFromHost } from '@/helpers/async-data.helpers';
+import { getSubdomainFromHost } from '@/helpers/async-data.helpers';
 export const state = () => ({
 	loader: {
 		show: false,
@@ -43,40 +43,43 @@ export const actions = {
 		}, 6000);
 	},
 	async nuxtServerInit({ dispatch }, { req, redirect, error, route }) {
+		console.log('---nuxtServerInit---');
 		const host = process.server ? req.headers.host : window.location.hostname;
-		const storeSlug = getSlugFromHost(host);
+		// console.log('nuxtServerInit subdomains', req);
+		// console.log('host', host);
+		const storeSlug = getSubdomainFromHost(host);
 
+		console.log('storeSlug', storeSlug);
+		// Not website root let's check for store
+		const fetchStoreResp = await dispatch('store/get', storeSlug);
+		if (!fetchStoreResp) {
+			console.log(`'${storeSlug}' store was not found`);
+			return error('החנות לא נמצאה');
+		}
 		// const hostsParts = req.headers.host.split('.');
 		// const isDomain = hostsParts.findIndex(item => item === 'storystore') > -1;
 
 		// const storeSlug = isDomain ? hostsParts[0] : process.env.DEV_STORE;
-		const isWebsiteRoot = storeSlug === 'storystore' || storeSlug === 'www';
+		// const isWebsiteRoot = storeSlug === 'storystore' || storeSlug === 'www';
 
-		if (isWebsiteRoot) {
-			console.log('Website root | Route:', route.name);
-			if (route.name === 'index') {
-				return redirect('/start');
-			}
-			if (route.name === 'start') {
-				return;
-			}
+		// if (isWebsiteRoot) {
+		// console.log('Website root | Route:', route.name);
+		// if (route.name === 'index') {
+		// 	return redirect('/start');
+		// }
+		// if (route.name === 'start') {
+		// 	return;
+		// }
 
-			return error('404');
-		} else {
-			// If we try /start we should get a 404 to prevent duplicates on subdomains
-			if (route.name === 'start') {
-				return error('404');
-			}
+		// return error('404');
+		// } else {
+		// 	// If we try /start we should get a 404 to prevent duplicates on subdomains
+		// 	if (route.name === 'start') {
+		// 		return error('404');
+		// 	}
 
-			console.log('storeSlug', storeSlug);
-			// Not website root let's check for store
-			const fetchStoreResp = await dispatch('store/get', storeSlug);
-			if (!fetchStoreResp) {
-				console.log(`'${storeSlug}' store was not found`);
-				return error('החנות לא נמצאה');
-			}
-			// console.log('fetchStoreResp', fetchStoreResp);
-		}
+		// console.log('fetchStoreResp', fetchStoreResp);
+		// }
 
 		// if (route.name === 'start' && !noSubdomain) {
 		// 	error('404');
