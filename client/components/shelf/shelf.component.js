@@ -190,6 +190,12 @@ export default {
 
 			return '0';
 		},
+		feedSettings() {
+			return _get(this.$store.state, 'store.settings.feed', {
+				scrims: true,
+				seperators: false,
+			});
+		},
 	},
 	created() {
 		this.initializeVariation();
