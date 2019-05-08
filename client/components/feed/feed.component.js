@@ -134,10 +134,19 @@ export default {
 					? this.$refs.firstShelf
 					: this.$refs.shelf[shelfIndex - 1];
 
-			window.scrollTo({
-				top: shelfComponent.$el.offsetTop,
+			let params = {
 				behavior: 'smooth',
-			});
+			};
+			console.log('shelfComponent', shelfComponent);
+			console.log('shelfIndex', shelfIndex);
+			console.log('this.shelves.length - 1', this.shelves.length - 1);
+			if (shelfIndex === this.shelves.length - 1) {
+				params.top = document.body.scrollHeight;
+			} else {
+				params.top = shelfComponent.$el.offsetTop;
+			}
+			console.log('params', params);
+			window.scrollTo(params);
 			this.sectionLeave(shelfIndex);
 		},
 		sectionLeave(sectionIndex) {
