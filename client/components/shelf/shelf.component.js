@@ -176,12 +176,11 @@ export default {
 			return _orderBy(this.shelf.variations, ['variation_order'], ['asc']);
 			return this.shelf.variation;
 		},
-		isShelfContactForm() {
-			if (this.shelf.type === 'CONTACT_FORM') {
-				return true;
-			} else {
-				return false;
-			}
+		shelfType() {
+			return _get(this.shelf, 'type', 'ADD_TO_CART');
+		},
+		hasScrims() {
+			return this.shelfType === 'CONTACT_FORM';
 		},
 	},
 	created() {

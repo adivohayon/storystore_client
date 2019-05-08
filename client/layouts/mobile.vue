@@ -1,5 +1,5 @@
 <template>
-	<div class="layout layout--mobile">
+	<div :style="{ backgroundColor: bgColor }" class="layout layout--mobile">
 		<page-header></page-header>
 		<loader v-if="showLoader"></loader>
 		<!-- <no-ssr> -->
@@ -21,6 +21,7 @@ import '@/icons';
 import { mapState } from 'vuex';
 import Loader from './../components/loader';
 import PageHeader from '@/components/page-header';
+import _get from 'lodash.get';
 
 export default {
 	components: {
@@ -46,6 +47,19 @@ export default {
 		};
 	},
 	computed: {
+		primaryColor() {
+			return _get(this.$store.state, 'store.settings.primaryColor', '#ffffff');
+		},
+		bgColor() {
+			switch (this.primaryColor) {
+				case '#000000':
+					return '#ffffff';
+				case '#ffffff':
+					return '#000000';
+				default:
+					return '#000000';
+			}
+		},
 		showLoader() {
 			return this.$store.state.loader.show;
 		},
@@ -103,7 +117,7 @@ body {
 	}
 	.page {
 		grid-row: page;
-		background-color: #f5f5f5;
+		// background-color: #f5f5f5;
 		overflow: hidden;
 	}
 

@@ -5,20 +5,15 @@
 		</nuxt-link>
 	</div> -->
 	<contact-form
-		v-if="isShelfContactForm"
+		v-if="shelfType === 'CONTACT_FORM'"
 		:submitted="ctaClicked"
 	></contact-form>
-	jjj-{{ ctaClicked }}
-	<section v-if="!isShelfContactForm" class="assets">
+	<section class="assets" v-if="variantAssets.length > 0">
 		<!-- <div v-if="variantVideo" class="slide" :style="{ position: 'relative' }">
 			<video-player :source="variantVideo.value"></video-player>
 		</div> -->
 
-		<div
-			v-swiper:assetsSwiper="swiperOption"
-			dir="ltr"
-			v-if="variantAssets.length > 0"
-		>
+		<div v-swiper:assetsSwiper="swiperOption" dir="ltr">
 			<div class="swiper-wrapper carousel">
 				<div
 					v-for="(asset, index)  in variantAssets"
@@ -59,12 +54,12 @@
 			@changed-att="setAtt"
 		></attribute-picker>
 		<shelf-title
-		v-if="variant && variant.price"
-		:price="variant.price"
-		:currency="variant.currency"
-		:title="shelfTitle"
-		:info="shelf.info"
-	></shelf-title>
+			v-if="variant && variant.price"
+			:price="variant.price"
+			:currency="variant.currency"
+			:title="shelfTitle"
+			:info="shelf.info"
+		></shelf-title>
 		<div
 			v-if="shelf.description && shelf.description.length > 0"
 			class="shelf-description"
@@ -82,7 +77,7 @@
 			@scrollTo="scrollTo"
 		></add-to-cart>
 	</div>
-	<div v-if="!isShelfContactForm" class="shelf-scrims">
+	<div v-if="hasScrims" class="shelf-scrims">
 		<!-- <div class="shelf-scrims--top"></div> -->
 		<div class="shelf-scrims--bottom"></div>
 	</div>

@@ -118,8 +118,12 @@ export const actions = {
 			}
 			// console.log('store', store);
 			if (store && store.id) {
+				let limit = 5;
+				if (storeSlug === 'stores') {
+					limit = 15;
+				}
 				const { shelves, pagination } = await this.$axios.$get(
-					`stores/${store.id}/shelves?limit=5`
+					`stores/${store.id}/shelves?limit=${limit}`
 				);
 				// console.log(useMockData, store.shelves);
 				// const store = await this.$axios.$get(`stores/${storeSlug}`);
