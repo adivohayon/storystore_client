@@ -1,3 +1,5 @@
+import _get from 'lodash.get';
+
 export default {
 	name: 'shelf-title',
 	components: {},
@@ -12,9 +14,20 @@ export default {
 		title: {
 			type: String,
 		},
+		info: {
+			type: String,
+			default: '',
+		},
 	},
 	data() {
-		return {};
+		return {
+			shipping() {
+				return _get(this.$store.state, 'store.shippingDetails', '');
+			},
+			returns() {
+				return _get(this.$store.state, 'store.returns', '');
+			},
+		};
 	},
 	computed: {
 		formatedCurrency() {

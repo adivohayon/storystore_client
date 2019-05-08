@@ -5,9 +5,7 @@ export default {
 	async asyncData({}) {},
 	props: {},
 	data() {
-		return {
-			// showCart: false,
-		};
+		return {};
 	},
 	mounted() {
 		console.log('refs', this.$refs);
@@ -24,7 +22,7 @@ export default {
 	watch: {},
 	computed: {
 		showCart() {
-			return this.$store.state.store.settings.hasCart;
+			return _get(this.$store.state, 'store.settings.hasCart', true);
 		},
 		storeSlug() {
 			return this.$store.state.store.slug;
