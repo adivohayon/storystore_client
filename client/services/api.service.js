@@ -16,10 +16,9 @@ export const getShelves = (storeId, categoryId = 0, storeSlug) => {
 	});
 };
 
-export const contactStorystore = formData => {
-	console.log('formData', formData);
-	return axios.post('/api/mailer', { ...formData });
-	// return new Promise(resolve => {
-	// 	resolve();
-	// });
+export const submitContactForm = formData => {
+	console.log('submitContactForm', formData);
+	return axios.post('functions/submit-contact-form', {
+		...formData,
+	});
 };

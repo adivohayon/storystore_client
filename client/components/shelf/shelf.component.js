@@ -274,5 +274,11 @@ export default {
 		scrollTo(scrollIndex) {
 			this.$emit('scroll-to', scrollIndex);
 		},
+		ctaClickedHandle() {
+			this.ctaClicked = false;
+			setTimeout(() => {
+				this.ctaClicked = true;
+			}, 30);
+		},
 	},
 };

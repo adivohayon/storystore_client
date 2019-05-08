@@ -96,6 +96,20 @@ export const actions = {
 		// 	console.log('resp', resp);
 		// }
 	},
+	submitContactForm({}, formData) {
+		return new Promise(async (resolve, reject) => {
+			try {
+				await this.$axios.$post('functions/submit-contact-form', {
+					...formData,
+				});
+				console.log('success');
+				resolve();
+			} catch (err) {
+				console.log(err);
+				reject(err);
+			}
+		});
+	},
 };
 
 // export const strict = false;

@@ -4,53 +4,65 @@
 		><br />
 		for your business
 	</h2>
-	<form class="contact-form__form">
-		<div class="form-container">
+	<form
+		class="contact-form__form"
+		id="contactForm"
+		:class="{ 'form-group--error': $v.invalid }"
+		@submit.prevent="submit"
+		v-if="!success && !error"
+	>
+		<div class="form-group">
 			<input
-				v-model.trim="$v.formData.fullName.$model"
-				class="form-input"
-				:class="{
-					error: !$v.formData.fullName.required && invalid,
-				}"
 				type="text"
 				placeholder="full name"
+				v-model.trim="$v.formData.name.$model"
+				:class="{
+					error: !$v.formData.name.required && this.invalid,
+				}"
+				class="form-input"
 			/>
 			<input
-				v-model.trim="$v.formData.businessName.$model"
+				v-model.trim="$v.formData.company.$model"
 				class="form-input"
 				:class="{
-					error: !$v.formData.businessName.required && invalid,
+					error: !$v.formData.company.required && invalid,
 				}"
 				type="text"
-				placeholder="business name"
+				placeholder="company"
 			/>
 		</div>
 		<input
-			v-model.trim="$v.formData.mailAddress.$model"
+			v-model.trim="$v.formData.email.$model"
 			class="form-input"
 			:class="{
-				error: (!$v.formData.mailAddress.required || !$v.formData.mailAddress.email)  && invalid,
+				error: (!$v.formData.email.required || !$v.formData.email.email)  && invalid,
 			}"
-			type="text"
-			placeholder="mail address"
+			type="email"
+			placeholder="email"
 		/>
 		<input
-			v-model.trim="$v.formData.phoneNumber.$model"
+			v-model.trim="$v.formData.phone.$model"
 			class="form-input"
 			:class="{
-				error: (!$v.formData.phoneNumber.required || !$v.formData.phoneNumber.numeric) && invalid,
+				error: (!$v.formData.phone.required || !$v.formData.phone.numeric) && invalid,
 			}"
-			type="text"
-			placeholder="phone number"
+			type="number"
+			placeholder="phone"
 		/>
-		<div class="storystore-info">
-			<div class="storystore-info__call-us">
-				you can call us <a href="tel:0504484517">050-4484517</a>
-			</div>
-			<div class="storystore-info__mail-us">
-				or mail us
-				<a href="mailto:hai@shop-together.io">hai@shop-together.io</a>
-			</div>
-		</div>
 	</form>
+	<div v-else class="contact-form__message">
+		<div v-if="success" class="contact-form__message--success">
+			Thank you for contacting storystore. <br>
+			We will get back to you very soon!
+		</div>
+	</div>
+	<div class="storystore-info">
+		<div class="storystore-info__call-us">
+			you can call us <a href="tel:0504484517">050-4484517</a>
+		</div>
+		<div class="storystore-info__mail-us">
+			or mail us
+			<a href="mailto:hai@shop-together.io">hai@shop-together.io</a>
+		</div>
+	</div>
 </div>

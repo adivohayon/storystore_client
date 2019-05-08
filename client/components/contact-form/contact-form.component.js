@@ -1,5 +1,5 @@
 // import _get from 'lodash/get';
-import { contactStorystore } from '@/services/api.service';
+import { submitContactForm } from '@/services/api.service';
 import { required, numeric, email } from 'vuelidate/lib/validators';
 export default {
 	name: 'contact-form',
@@ -12,17 +12,17 @@ export default {
 	},
 	validations: {
 		formData: {
-			fullName: {
+			name: {
 				required,
 			},
-			businessName: {
+			company: {
 				required,
 			},
-			mailAddress: {
+			email: {
 				required,
 				email,
 			},
-			phoneNumber: {
+			phone: {
 				required,
 				numeric,
 			},
@@ -30,8 +30,15 @@ export default {
 	},
 	data() {
 		return {
-			formData: {},
+			formData: {
+				name: null,
+				company: null,
+				email: null,
+				phone: null,
+			},
 			invalid: false,
+			success: false,
+			error: false,
 		};
 	},
 	watch: {
@@ -52,9 +59,17 @@ export default {
 					return;
 				}
 				this.invalid = false;
-				const resp = await contactStorystore(this.formData);
-				console.log('submitForm resp', resp);
+				const resp = await this.$store.dispatch(
+					'submitContactForm',
+					this.formData
+				);
+
+				this.error = false;
+				this.success = true;
+				// console.log('submitForm resp', resp);
 			} catch (err) {
+				this.error = true;
+				this.success = false;
 				console.log('submitForm error', err);
 			}
 		},

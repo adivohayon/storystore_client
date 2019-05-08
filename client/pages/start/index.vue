@@ -1,7 +1,7 @@
 <template src="./start.page.html"></template>
 <script>
 import '@/icons/checkmark';
-import { contactStorystore } from '@/services/api.service';
+
 import { validateEmail } from '@/helpers/validation.helpers';
 export default {
 	components: {},

@@ -17,9 +17,17 @@
 			text-transform: lowercase;
 		}
 	}
+	&__message {
+		padding: 3rem 1.5rem;
+		font-size: 1.1rem;
+		line-height: 1.7;
+		&--success {
+		}
+	}
+
 	&__form {
 		margin-top: 2rem;
-		.form-container {
+		.form-group {
 			display: flex;
 			.form-input:first-child {
 				margin-right: 1rem;
@@ -35,24 +43,28 @@
 			border-radius: 21px;
 			outline: none;
 			font-size: 1.1rem;
+			transition: border ease-in 0.2s;
+			&.error {
+				border: 1px solid #ff7070;
+			}
 			&::placeholder {
 				font-size: 1.2rem;
 				color: rgba(252, 252, 252, 0.33);
 			}
 		}
-		.storystore-info {
-			margin-top: 2rem;
-			text-align: left;
-			font-size: 1rem;
-			&__mail-us {
-				margin-top: 0.3rem;
-			}
-			a {
-				text-decoration: none;
-				cursor: not-allowed;
-				color: currentColor;
-				border-bottom: 1px solid #979797;
-			}
+	}
+	.storystore-info {
+		margin-top: 2rem;
+		text-align: left;
+		font-size: 1rem;
+		&__mail-us {
+			margin-top: 0.3rem;
+		}
+		a {
+			text-decoration: none;
+			cursor: not-allowed;
+			color: currentColor;
+			border-bottom: 1px solid #979797;
 		}
 	}
 }
