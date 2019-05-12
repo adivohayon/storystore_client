@@ -194,6 +194,7 @@ export default {
 			return _get(this.$store.state, 'store.settings.feed', {
 				scrims: true,
 				seperators: false,
+				autoplay: false,
 			});
 		},
 	},
