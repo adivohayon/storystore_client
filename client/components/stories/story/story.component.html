@@ -1,0 +1,18 @@
+<div class="story">
+	<div class="story__view">
+		<story-slide
+			v-for="(variation, variationIndex) in story.variations"
+			v-show="variationIndex === currentSlideIndex"
+			:key="variationIndex"
+			:variation="variation"
+			:shelf-name="story.name"
+			:shelf-slug="story.slug"
+		></story-slide>
+		<div class="clickable-area">
+			<div class="clickable-area__previous" @click="previousSlide"></div>
+			<div class="clickable-area__next" @click="nextSlide"></div>
+		</div>
+	</div>
+
+	
+</div>

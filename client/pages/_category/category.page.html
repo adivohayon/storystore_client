@@ -1,0 +1,12 @@
+<div class="page category-page">
+	<h1>Stories</h1>
+
+	<div
+		v-for="(category, categoryIndex) in categories"
+		:key="categoryIndex"
+		v-if="category.shelves.length > 0"
+	>
+		<h2>{{category.label}}</h2>
+		<stories :stories="category.shelves"> </stories>
+	</div>
+</div>

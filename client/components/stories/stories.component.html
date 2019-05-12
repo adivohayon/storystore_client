@@ -1,0 +1,36 @@
+<div class="stories">
+	<horizontal-slider>
+		<div
+			class="product--story"
+			v-for="(thumbnail, thumbnailIndex) in storyThumbnails"
+			:key="thumbnailIndex"
+			@click="enterStory(thumbnailIndex)"
+		>
+			<img :src="thumbnail" style="width: 5rem" alt="">
+		</div>
+	</horizontal-slider>
+
+	<story
+		@go-to-story="goToStory"
+		@go-to-slide="goToSlide"
+		v-for="(story, storyIndex) in stories"
+		v-if="currentStoryIndex === storyIndex && showStory"
+		:key="storyIndex"
+		:story="story"
+		:current-slide-index="currentSlideIndex"
+		:story-index="storyIndex"
+	>
+	</story>
+	<!-- 
+	<div class="story__view" v-if="storyView" @click="nextSlide">
+			<story-slide
+				v-for="(variation, variationIndex) in shelf.variations"
+				v-show="variationIndex === currentSlideIndex"
+				
+				:key="variationIndex"
+				:variation="variation"
+				:shelf-name="shelf.name"
+				:shelf-slug="shelf.slug"
+			></story-slide>
+		</div> -->
+</div>

@@ -56,6 +56,8 @@ export const actions = {
 			console.log(`'${storeSlug}' store was not found`);
 			return error('החנות לא נמצאה');
 		}
+
+		console.log('done');
 		// const hostsParts = req.headers.host.split('.');
 		// const isDomain = hostsParts.findIndex(item => item === 'storystore') > -1;
 

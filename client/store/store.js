@@ -128,6 +128,7 @@ export const actions = {
 				// console.log(useMockData, store.shelves);
 				// const store = await this.$axios.$get(`stores/${storeSlug}`);
 				// console.log('store - usemocks: ' + useMockData, store);
+				// console.log('stores', store);
 				if (shelves && pagination) {
 					commit('setPagination', pagination);
 					commit('populateShelves', shelves);
@@ -175,5 +176,19 @@ export const actions = {
 				resolve(e);
 			};
 		});
+	},
+	getCategories({}, categorySlug) {
+		return new Promise(async (resolve, reject) => {
+			try {
+				const categories = await this.$axios.$get(
+					`stores/1/categories/${categorySlug}`
+				);
+				resolve(categories);
+			} catch (err) {
+				console.error(err);
+				reject(err);
+			}
+		});
+		// return
 	},
 };
