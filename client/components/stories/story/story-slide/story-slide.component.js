@@ -116,7 +116,7 @@ export default {
 
 				this.$set(this.selectedProperty, this.variation.itemProperty.type, {
 					label: this.variation.property_label,
-					value: this.variation.property_value,
+					value: this.variation.property_value || '#ffffff',
 					itemPropertyLabel: this.variation.itemProperty.label,
 				});
 			}

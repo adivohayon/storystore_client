@@ -2,7 +2,11 @@
 	height: 100%;
 	width: 100%;
 	background-size: cover;
+	position: absolute;
+	top:0;
+	left: 0;
 
+	z-index: 50;
 	&__cta {
 		position: absolute;
 		z-index: 50;
@@ -15,6 +19,9 @@
 		// margin-bottom: 4rem;
 	}
 	
-	
+	&--on-top {
+		position: relative;
+		z-index: 60;
+	}
 
 }

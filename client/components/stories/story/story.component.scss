@@ -16,7 +16,7 @@
 			left: 0;
 			height: 100%;
 			width: 100%;
-			z-index: 45;
+			z-index: 100;
 			&__previous {
 				flex: 1;
 				// background-color: red;
@@ -33,7 +33,7 @@
 
 	&__pagination {
 		position: relative;
-		z-index: 40;
+		z-index: 70;
 		ul {
 			background-color: #ffffff;
 			padding: 0;
@@ -72,3 +72,22 @@
 // // .progress-leave-to {
 // // 	width: 0;
 // // }
+
+.fade-enter {
+	opacity: 0;
+}
+.fade-enter-active {
+	transition: opacity .2s ease-in;
+}
+.fade-enter-to {
+	opacity: 0.7;
+}
+.fade-leave {
+	opacity: 0.7;
+}
+.fade-leave-active {
+	transition: opacity .25s ease-out;
+}
+.fade-leave-to {
+	opacity: 0;
+}

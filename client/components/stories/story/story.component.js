@@ -42,7 +42,7 @@ export default {
 		paginationItems() {
 			return this.story.variations.map(variation => {
 				if (variation.itemProperty.type === 'fashion_simple_color') {
-					return variation.property_value;
+					return variation.property_value || '#ffffff';
 				}
 			});
 		},
