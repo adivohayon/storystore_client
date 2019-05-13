@@ -2,4 +2,11 @@
 	height: 100%;
 	width: 100%;
 	background-size: cover;
+
+	&__cta {
+		position: relative;
+		z-index: 50;
+	}
+	
+
 }

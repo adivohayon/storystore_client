@@ -1,18 +1,35 @@
 <div class="story">
 	<div class="story__view">
+		<div class="story__pagination">
+			<ul>
+				<li
+					v-for="(color, paginationIndex) in paginationItems"
+					:style="{backgroundColor: convertHex(color, 40)}"
+					:key="paginationIndex"
+				>
+					<!-- {{ showProgress }} -->
+						<div
+							class="story__pagination__progress"
+							ref="progressBars"
+							:style="{backgroundColor: color}"
+						></div>
+
+					<!-- {{ itemIndex }} -->
+					<!-- {{paginationItems}} -->
+				</li>
+			</ul>
+		</div>
 		<story-slide
 			v-for="(variation, variationIndex) in story.variations"
 			v-show="variationIndex === currentSlideIndex"
 			:key="variationIndex"
 			:variation="variation"
-			:shelf-name="story.name"
-			:shelf-slug="story.slug"
+			:shelf="story"
+			@autoplay="toggleAutoplay"
 		></story-slide>
 		<div class="clickable-area">
 			<div class="clickable-area__previous" @click="previousSlide"></div>
 			<div class="clickable-area__next" @click="nextSlide"></div>
 		</div>
 	</div>
-
-	
 </div>

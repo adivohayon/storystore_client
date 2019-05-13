@@ -17,6 +17,8 @@ export default {
 			currentStoryIndex: 0,
 			currentSlideIndex: 0,
 			showStory: false,
+			storyInterval: null,
+			duration: 3000, // ms
 		};
 	},
 	computed: {
@@ -41,8 +43,13 @@ export default {
 	},
 	created() {},
 	mounted() {},
+	destroyed() {
+		this.stopAutoplay();
+	},
 	methods: {
 		goToSlide({ param, storyIndex }) {
+			clearInterval(this.storyInterval);
+			this.autoplay();
 			if (param === 'NEXT_SLIDE') {
 				if (
 					this.currentSlideIndex ===
@@ -68,7 +75,21 @@ export default {
 			this.currentStoryIndex = storyIndex;
 			this.currentSlideIndex = 0;
 			this.showStory = true;
+			this.autoplay();
 			console.log('enter story', storyIndex);
+		},
+		autoplay() {
+			console.log('autoplay');
+			this.storyInterval = setInterval(() => {
+				this.goToSlide({
+					param: 'NEXT_SLIDE',
+					storyIndex: this.currentStoryIndex,
+				});
+			}, this.duration);
+		},
+		stopAutoplay() {
+			console.log('stop autoplay');
+			clearInterval(this.storyInterval);
 		},
 		goToStory({ param, storyIndex }) {
 			if (param === 'NEXT_STORY') {
@@ -87,8 +108,12 @@ export default {
 				} else {
 					this.currentSlideIndex =
 						this.stories[storyIndex - 1].variations.length - 1;
+
 					this.currentStoryIndex--;
-					console.log('previous story', this.currentStoryIndex);
+					console.log(
+						'previous story currentSlideIndex',
+						this.currentSlideIndex
+					);
 				}
 			}
 		},
@@ -97,6 +122,7 @@ export default {
 			this.currentSlideIndex = 0;
 			this.showStory = false;
 			console.log('exit story');
+			this.stopAutoplay();
 		},
 	},
 };

@@ -9,12 +9,13 @@
 
 		.clickable-area {
 			display: flex;
-			flex-direction: row-reverse;
+			flex-direction: row;
 			position: absolute;
 			top: 0;
 			left: 0;
 			height: 100%;
 			width: 100%;
+			z-index: 45;
 			&__previous {
 				flex: 1;
 				// background-color: red;
@@ -28,4 +29,43 @@
 
 	&__thumbnail {
 	}
+
+	&__pagination {
+		ul {
+			background-color: #ffffff;
+			padding: 0;
+			list-style-type: none;
+			display: flex;
+			flex-direction: row;
+			justify-content: space-evenly;
+			li {
+				flex: 1;
+				height: 1rem;
+			}
+		}
+
+		&__progress {
+			height: 100%;
+			width: 0;
+		}
+	}
 }
+
+// .progress-enter {
+// 	width: 0;
+// }
+// .progress-enter-active {
+// 	transition: width 20s ease-in;
+// }
+// .progress-enter-to {
+// 	width: 100%;
+// }
+// // .progress-leave {
+// // 	width: 100%;
+// // }
+// // .progress-leave-active {
+// // 	transition: width 0s ease-out;
+// // }
+// // .progress-leave-to {
+// // 	width: 0;
+// // }

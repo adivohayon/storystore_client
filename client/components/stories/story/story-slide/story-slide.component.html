@@ -2,5 +2,24 @@
 	class="story-slide"
 	:style="{ backgroundImage: 'url(' + slideAsset + ')' }"
 >
-	{{ slideAsset }} - {{ shelfName }} - {{ variation.property_label }}
+
+	<div class="story-slide__cta" @click="pauseAutoplay">
+		<attribute-picker
+			v-for="(attribute, attributeKey) in availableAttributes"
+			:key="attributeKey"
+			:attribute="attribute"
+			:att-key="attributeKey"
+			:selected-attribute="selectedAttributes[attributeKey]"
+			@changed-att="setAtt"
+		></attribute-picker>
+		
+		<add-to-cart
+			:variant="variation"
+			:selected-attributes="selectedAttributes"
+			:selected-property="selectedProperty"
+			:shelf="shelf"
+			:show-go-to-payment="showGoToPayment"
+			@setGoToPayment="showGoToPayment = true;"
+		></add-to-cart>
+	</div>
 </div>
