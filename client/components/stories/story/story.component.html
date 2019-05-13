@@ -1,5 +1,7 @@
 <div class="story">
 	<div class="story__view">
+
+		<!-- PROGRESS BARS -->
 		<div class="story__pagination">
 			<ul>
 				<li
@@ -24,7 +26,12 @@
 			</ul>
 		</div>
 
-		<!-- {{currentSlideIndex}} -->
+		<!--CLOSE BUTTON -->
+		<button class="btn--close" @click="closeStory">
+			<icon name="close" width="22" height="22"></icon>
+		</button>
+
+		<!-- STORY SLIDES -->
 		<story-slide
 			v-for="(variation, variationIndex) in story.variations"
 			v-if="showStorySlide(variationIndex)"
@@ -33,12 +40,15 @@
 			:shelf="story"
 			@autoplay="toggleAutoplay"
 			@close-story="closeStory"
+			@next-slide="nextSlide"
+			@previous-slide="previousSlide"
 			:class="{'story-slide--on-top' : variationIndex === currentSlideIndex}"
 		></story-slide>
 
+		<!-- CLICKABLE AREA
 		<div class="clickable-area" ref="clickableArea">
 			<div class="clickable-area__previous"></div>
 			<div class="clickable-area__next"></div>
-		</div>
+		</div> -->
 	</div>
 </div>

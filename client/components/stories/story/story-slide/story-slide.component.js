@@ -26,6 +26,7 @@ export default {
 			showGoToPayment: false,
 			touchStartTimestamp: 0,
 			touchThreshold: 300, // ms
+			clickableAreaEl: null,
 		};
 	},
 	computed: {
@@ -75,9 +76,54 @@ export default {
 	mounted() {
 		this.initializeSelectedAttributes();
 		this.initializeSelectedProperty();
+		this.initializeClickableArea();
 	},
-	destroyed() {},
+	destroyed() {
+		this.hammer.destroy();
+	},
 	methods: {
+		initializeClickableArea() {
+			this.clickableAreaEl = this.$refs.clickableArea;
+			if (this.clickableAreaEl) {
+				// const Hammer = this.$Hammer;
+				this.hammer = new this.$Hammer.Manager(this.clickableAreaEl, {
+					domEvents: true,
+				});
+
+				this.hammer.add(new Hammer.Press({ time: 251 }));
+				this.hammer.add(new Hammer.Tap());
+				// console.log('hammer', this.hammer);
+
+				this.hammer.on('press', () => {
+					this.toggleAutoplay('PAUSE');
+				});
+
+				this.hammer.on('pressup', () => {
+					this.toggleAutoplay('RESUME');
+				});
+
+				this.hammer.on('tap', e => {
+					// console.log('e', )
+					// e.srcEvent.stopPropagation();
+					// e.srcEvent.preventDefault();
+					const isNext = e.target.className.includes('__next');
+					const isPrev = e.target.className.includes('__previous');
+
+					if (isNext) {
+						this.$emit('next-slide');
+						// this.nextSlide();
+					}
+
+					if (isPrev) {
+						this.$emit('previous-slide');
+						//this.previousSlide();
+					}
+					console.log('e', e);
+					e.preventDefault();
+					return;
+				});
+			}
+		},
 		resumeAutoplay() {
 			this.$emit('autoplay', 'RESUME');
 		},
@@ -126,9 +172,6 @@ export default {
 				...att,
 				itemPropertyLabel: this.availableAttributes[attKey].label,
 			};
-		},
-		close() {
-			this.$emit('close-story');
 		},
 	},
 };

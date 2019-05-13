@@ -2,12 +2,6 @@
 	class="story-slide"
 	:style="{ backgroundImage: 'url(' + slideAsset + ')' }"
 >
-	<!--CLOSE BUTTON -->
-	<button class="btn--close" @click="close">
-		<icon name="close"width="22" height="22"></icon>
-	</button>
-
-
 	<!-- STORY CTA -->
 	<div class="story-slide__cta" @click="pauseAutoplay">
 		<attribute-picker
@@ -29,6 +23,11 @@
 		></add-to-cart>
 	</div>
 
+	<!-- CLICKABLE AREA -->
+	<div class="clickable-area" ref="clickableArea">
+		<div class="clickable-area__previous"></div>
+		<div class="clickable-area__next"></div>
+	</div>
 	<!-- SCRIMS -->
 	<scrims></scrims>
 </div>

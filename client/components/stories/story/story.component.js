@@ -27,7 +27,7 @@ export default {
 			clickableAreaEl: null,
 			hammer: null,
 			lastProgress: 0,
-			duration: 333000,
+			duration: 3000,
 		};
 	},
 	watch: {
@@ -65,46 +65,8 @@ export default {
 	created() {},
 	mounted() {
 		this.startProgress(this.currentSlideIndex);
-		this.clickableAreaEl = this.$refs.clickableArea;
-		if (this.clickableAreaEl) {
-			// const Hammer = this.$Hammer;
-			this.hammer = new this.$Hammer.Manager(this.clickableAreaEl, {
-				domEvents: true,
-			});
-
-			this.hammer.add(new Hammer.Press({ time: 251 }));
-			this.hammer.add(new Hammer.Tap());
-			// console.log('hammer', this.hammer);
-
-			this.hammer.on('press', () => {
-				this.toggleAutoplay('PAUSE');
-			});
-
-			this.hammer.on('pressup', () => {
-				this.toggleAutoplay('RESUME');
-			});
-
-			this.hammer.on('tap', e => {
-				// e.preventDefault();
-				// e.srcEvent.stopPropagation();
-				// e.srcEvent.preventDefault();
-				const isNext = e.target.className.includes('__next');
-				const isPrev = e.target.className.includes('__previous');
-
-				if (isNext) {
-					this.nextSlide();
-				}
-
-				if (isPrev) {
-					this.previousSlide();
-				}
-				return;
-			});
-		}
 	},
-	destroyed() {
-		this.hammer.destroy();
-	},
+
 	methods: {
 		closeStory() {
 			this.$emit('close-story');

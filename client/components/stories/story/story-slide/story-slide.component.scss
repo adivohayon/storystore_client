@@ -3,14 +3,14 @@
 	width: 100%;
 	background-size: cover;
 	position: absolute;
-	top:0;
+	top: 0;
 	left: 0;
 	background-color: white;
 	z-index: 50;
 	&__cta {
 		position: absolute;
-		z-index: 200;
-		bottom:0;
+		z-index: 60;
+		bottom: 0;
 		width: 100%;
 		padding: 1rem;
 		.attribute-picker {
@@ -18,19 +18,27 @@
 		}
 		// margin-bottom: 4rem;
 	}
-	
-	.btn--close {
+
+	.clickable-area {
+		display: flex;
+		flex-direction: row;
 		position: absolute;
-		top: 1rem;
-		left: 0.5rem;
-		z-index: 200;
-		.svg-fill {
-			stroke: #ffffff;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		z-index: 50;
+		&__previous {
+			flex: 1;
+			// background-color: red;
+		}
+		&__next {
+			flex: 2;
+			// background-color: green;
 		}
 	}
+
 	&--on-top {
-		position: relative;
 		z-index: 60;
 	}
-
 }
