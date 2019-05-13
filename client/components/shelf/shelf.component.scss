@@ -19,6 +19,15 @@
 				padding: 0;
 				text-align: center;
 				width: 100%;
+
+				.swiper-pagination-bullet {
+					border: 1px solid #ffffff;
+					background-color: transparent;
+					margin: 0 0.3rem;
+					opacity: 1;
+					width: 9px;
+					height: 9px;
+				}
 			}
 		}
 		.carousel {

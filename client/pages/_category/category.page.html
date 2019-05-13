@@ -10,5 +10,5 @@
 		<!-- <h2>{{category.label}}</h2> -->
 		<stories :stories="category.shelves" :title="category.label"> </stories>
 	</div>
-	<feed :shelves="categories[0].shelves"></feed>
+	<feed :shelves="stateShelves"></feed>
 </div>

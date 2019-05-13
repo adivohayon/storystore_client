@@ -34,6 +34,9 @@ export default {
 	},
 	mounted() {},
 	computed: {
+		stateShelves() {
+			return this.$store.state.store.shelves || [];
+		},
 		// categ() {
 		// 	return _get(this.$store.state, 'store.shelves', []);
 		// },

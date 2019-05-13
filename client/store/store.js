@@ -26,11 +26,11 @@ export const mutations = {
 	},
 	populateShelves(state, shelves) {
 		for (const shelf of shelves) {
-			shelf.variations = _orderBy(
-				shelf.variations,
-				['variation_order'],
-				['asc']
+			// if (shelf.va)
+			const variations = shelf.variations.filter(
+				variation => variation.assets.length > 0
 			);
+			shelf.variations = _orderBy(variations, ['variation_order'], ['asc']);
 		}
 
 		Vue.set(state, 'shelves', shelves);

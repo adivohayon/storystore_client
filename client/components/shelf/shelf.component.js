@@ -94,10 +94,21 @@ export default {
 			}
 		},
 		variantAssets() {
+			console.log('$nuxt.$route.name', this.$nuxt.$route.name);
 			const assets = _get(this.variant, 'assets', []);
+
+			// if (this.$nuxt.$route.name === 'category') {
+			// 	return assets.map(
+			// 		asset =>
+			// 			`${this.assetsPath}/${this.shelf.slug}/${
+			// 				this.variant.slug
+			// 			}/${asset}`
+			// 	);
+			// } else {
 			return assets.map(asset =>
 				asset.loaded ? this.assetsPath + asset.src : ''
 			);
+			// }
 			// let img = 'url(';
 			// img += asset.loaded ? this.assetsPath + asset.src : '';
 			// img += ')';
@@ -254,6 +265,8 @@ export default {
 				};
 				this.selectedVariationId = att.variationId;
 
+				// Do not run this in category page as there is currently no lazy loading
+
 				// Load assets
 				this.variant.assets.forEach((asset, assetIndex) => {
 					const variationIndex = this.shelf.variations.findIndex(
@@ -268,7 +281,10 @@ export default {
 				});
 
 				// go to first slide
-				this.assetsSwiper.slideTo(0);
+				if (this.assetsSwiper) {
+					console.log('this.assets', this.assetsSwiper);
+					this.assetsSwiper.slideTo(0);
+				}
 			} else {
 				this.selectedAttributes[attKey] = {
 					...att,

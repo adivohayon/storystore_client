@@ -128,6 +128,11 @@ body {
 
 	/* overflow: hidden; */
 }
+
+.btn {
+	outline: none;
+	border: none;
+}
 html {
 	font-size: 14px;
 	word-spacing: 1px;
