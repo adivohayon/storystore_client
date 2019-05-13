@@ -1,6 +1,7 @@
 <div class="page category-page">
-	<h1>Stories</h1>
-
+	<div class="category-page__banner">
+		<img src="/ladila/banner.png" />
+	</div>
 	<div
 		v-for="(category, categoryIndex) in categories"
 		:key="categoryIndex"
@@ -9,4 +10,5 @@
 		<!-- <h2>{{category.label}}</h2> -->
 		<stories :stories="category.shelves" :title="category.label"> </stories>
 	</div>
+	<feed :shelves="categories[1].shelves"></feed>
 </div>

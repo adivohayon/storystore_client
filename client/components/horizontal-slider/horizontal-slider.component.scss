@@ -1,6 +1,6 @@
 .horizontal-slider {
 	display: flex;
-	overflow-x: auto;
+	overflow-x: scroll;
 	-webkit-overflow-scrolling: touch;
 	& > div {
 		margin-left: 1rem;

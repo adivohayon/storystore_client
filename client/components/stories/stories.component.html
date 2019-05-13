@@ -7,7 +7,9 @@
 			:key="thumbnailIndex"
 			@click="enterStory(thumbnailIndex)"
 		>
-			<img :src="thumbnail.asset" class="stories__thumbnail--img" alt="" />
+			<div class="stories__thumbnail--border">
+				<img :src="thumbnail.asset" class="stories__thumbnail--img" alt="" />
+			</div>
 			<div class="stories__thumbnail--price">{{ thumbnail.price }} ש״ח</div>
 			<div class="stories__thumbnail--name">{{ thumbnail.name }}</div>
 		</div>

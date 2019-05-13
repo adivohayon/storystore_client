@@ -1,9 +1,10 @@
 import Stories from '@/components/stories';
 import Story from '@/components/stories/story';
+import Feed from '@/components/feed';
 import _get from 'lodash.get';
 import axios from 'axios';
 export default {
-	components: { Stories, Story },
+	components: { Stories, Story, Feed },
 	async asyncData({ req, store, params }) {
 		const categories = await store.dispatch(
 			'store/getCategories',
