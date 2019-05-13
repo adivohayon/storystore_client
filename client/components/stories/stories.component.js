@@ -20,8 +20,6 @@ export default {
 			currentStoryIndex: 0,
 			currentSlideIndex: 0,
 			showStory: false,
-			storyInterval: null,
-			duration: 3000, // ms
 		};
 	},
 	computed: {
@@ -53,13 +51,9 @@ export default {
 	},
 	created() {},
 	mounted() {},
-	destroyed() {
-		this.toggleAutoplay({ toggle: 'PAUSE' });
-	},
+	destroyed() {},
 	methods: {
 		goToSlide({ param, storyIndex }) {
-			clearInterval(this.storyInterval);
-			this.toggleAutoplay({ toggle: 'RESUME' });
 			if (param === 'NEXT_SLIDE') {
 				if (
 					this.currentSlideIndex ===
@@ -85,25 +79,7 @@ export default {
 			this.currentStoryIndex = storyIndex;
 			this.currentSlideIndex = 0;
 			this.showStory = true;
-			this.toggleAutoplay({ toggle: 'RESUME' });
 			console.log('enter story', storyIndex);
-		},
-		toggleAutoplay({ toggle, newDuration = null }) {
-			if (toggle === 'PAUSE') {
-				clearInterval(this.storyInterval);
-			}
-
-			if (toggle === 'RESUME') {
-				const duration = this.duration;
-				console.log('duration', duration);
-				console.log('autoplay');
-				this.storyInterval = setInterval(() => {
-					this.goToSlide({
-						param: 'NEXT_SLIDE',
-						storyIndex: this.currentStoryIndex,
-					});
-				}, duration);
-			}
 		},
 		goToStory({ param, storyIndex }) {
 			if (param === 'NEXT_STORY') {
@@ -136,8 +112,6 @@ export default {
 			this.currentSlideIndex = 0;
 			this.showStory = false;
 			console.log('exit story');
-			// this.stopAutoplay();
-			this.toggleAutoplay({ toggle: 'PAUSE' });
 		},
 	},
 };

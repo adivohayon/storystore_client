@@ -74,7 +74,7 @@ export default {
 			this.hammer = new this.$Hammer.Manager(this.clickableAreaEl);
 
 			this.hammer.add(new Hammer.Press({ time: 251 }));
-
+			this.hammer.add(new Hammer.Tap());
 			// console.log('hammer', this.hammer);
 
 			this.hammer.on('press', () => {
@@ -84,10 +84,22 @@ export default {
 			this.hammer.on('pressup', () => {
 				this.toggleAutoplay('RESUME');
 			});
+
+			this.hammer.on('tap', e => {
+				const isNext = e.target.className.includes('__next');
+				const isPrev = e.target.className.includes('__previous');
+
+				if (isNext) {
+					this.nextSlide();
+				}
+
+				if (isPrev) {
+					this.previousSlide();
+				}
+			});
 		}
 	},
 	destroyed() {
-		console.log('story destroyed');
 		this.hammer.destroy();
 	},
 	methods: {
@@ -105,7 +117,8 @@ export default {
 
 			this.progressTickers[progressBarIndex] = setInterval(() => {
 				if (progress >= 100) {
-					clearInterval(this.progressTickers[progressBarIndex]);
+					// clearInterval(this.progressTickers[progressBarIndex]);
+					this.nextSlide();
 				} else {
 					progress++;
 					this.setProgress(progress, progressBar);
@@ -125,10 +138,6 @@ export default {
 		nextSlide() {
 			this.setProgress(100, this.$refs.progressBars[this.currentSlideIndex]);
 			this.clearTickers();
-			// for (let ticker)
-			// this.progressTickers
-			// this.progressTickers = { 0: null };
-			// clearInterval(this.progressTickers[this.currentSlideIndex]);
 			this.$emit('go-to-slide', {
 				param: 'NEXT_SLIDE',
 				storyIndex: this.storyIndex,
@@ -142,19 +151,15 @@ export default {
 		toggleAutoplay(toggle) {
 			if (toggle === 'PAUSE') {
 				this.clearTickers();
-				this.$emit('autoplay', { toggle });
 			}
 
 			if (toggle === 'RESUME') {
 				this.startProgress(this.currentSlideIndex, this.lastProgress);
-				this.$emit('autoplay', { toggle, newDuration: this.lastProgress });
 			}
 		},
 		previousSlide() {
 			this.setProgress(0, this.$refs.progressBars[this.currentSlideIndex]);
 			this.clearTickers();
-			// clearInterval(this.progressTickers[this.currentSlideIndex]);
-			// this.progressTickers = { 0: null };
 			this.$emit('go-to-slide', {
 				param: 'PREVIOUS_SLIDE',
 				storyIndex: this.storyIndex,
