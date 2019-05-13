@@ -1,8 +1,14 @@
 .category-page {
-	color: white;
+
+	background-color: white;
 	&__banner {
 		img {
 			display: block;
 		}
+	}
+	h2 {
+		text-align: center;
+		padding: 2rem;
+		font-size: 2rem;
 	}
 }

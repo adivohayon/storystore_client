@@ -70,6 +70,9 @@ export default {
 				path += `${this.storeSlug}/`;
 			}
 
+			if (this.$nuxt.$route.name === 'category') {
+				path += this.shelf.slug + '/' + this.variant.slug + '/';
+			}
 			return path;
 		},
 	},
@@ -120,7 +123,7 @@ export default {
 			// 		return variant.attributes.size;
 			// 	}
 			// });
-			const imageName = this.variant.assets[0].src;
+			const imageName = this.variant.assets[0].src || this.variant.assets[0];
 			const image = this.assetsPath + imageName;
 			// const image = `https://assets.storystore.co.il/${this.storeSlug}/${
 			// 	this.shelf.slug
