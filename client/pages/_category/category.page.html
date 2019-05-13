@@ -5,10 +5,10 @@
 	<div
 		v-for="(category, categoryIndex) in categories"
 		:key="categoryIndex"
-		v-if="category.shelves.length > 0"
+		v-if="category && category.shelves.length > 0"
 	>
 		<!-- <h2>{{category.label}}</h2> -->
 		<stories :stories="category.shelves" :title="category.label"> </stories>
 	</div>
-	<feed :shelves="categories[1].shelves"></feed>
+	<feed :shelves="categories[0].shelves"></feed>
 </div>
