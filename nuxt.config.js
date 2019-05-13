@@ -22,7 +22,7 @@ module.exports = {
 			{ charset: 'utf-8' },
 			{
 				name: 'viewport',
-				content: 'width=device-width, initial-scale=1, minimal-ui',
+				content: 'user-scalable=no, width=device-width, initial-scale=1, minimal-ui maximum-scale=1',
 			},
 			{
 				'http-equiv': 'ScreenOrientation',
@@ -74,14 +74,16 @@ module.exports = {
 		// { src: '~/plugins/swiper', ssr: false },
 		{ src: '~/plugins/smoothscroll-polyfill', ssr: false },
 		{ src: '~/plugins/vuex-persist', ssr: false },
-		{ src: '~/plugins/fullpage', ssr: false },
+		// { src: '~/plugins/fullpage', ssr: false },
 		{ src: '~/plugins/v-selectmenu', ssr: false },
 		{ src: '~/plugins/svg', ssr: true },
 		{ src: '~/plugins/v-touch', ssr: false },
 		{ src: '~/plugins/vue-video-player', ssr: true },
 		{ src: '~/plugins/vue-scrollto', ssr: true },
 		{ src: '~/plugins/vuelidate', ssr: true },
-		{ src: '~/plugins/carousel', ssr: false },
+		{ src: '~/plugins/hammer', ssr: false },
+		// { src: '~/plugins/carousel', ssr: false },
+		
 	],
 
 	/*
@@ -137,7 +139,7 @@ module.exports = {
 		publicPath: `/${secrets.NODE_ENV}/_nuxt/`,
 		// babel: {},
 		transpile: ['vuex-persist'],
-		// vendor: ['vue-glide-js'],
+		// vendor: ['hammerjs'],
 		/*
 		 ** You can extend webpack config here
 		 */

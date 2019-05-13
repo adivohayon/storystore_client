@@ -23,6 +23,8 @@ export default {
 			selectedAttributes: {},
 			selectedProperty: {},
 			showGoToPayment: false,
+			touchStartTimestamp: 0,
+			touchThreshold: 300, // ms
 		};
 	},
 	computed: {
@@ -72,23 +74,9 @@ export default {
 	mounted() {
 		this.initializeSelectedAttributes();
 		this.initializeSelectedProperty();
-
-		window.addEventListener('touchstart', this.onTouch, false);
-		window.addEventListener('touchend', this.onTouch, false);
 	},
+	destroyed() {},
 	methods: {
-		onTouch(e) {
-			console.log('e', e);
-			e.stopPropagation();
-
-			if (e.type === 'touchstart') {
-				this.pauseAutoplay();
-			}
-
-			if (e.type === 'touchend') {
-				this.resumeAutoplay();
-			}
-		},
 		resumeAutoplay() {
 			this.$emit('autoplay', 'RESUME');
 		},

@@ -28,7 +28,9 @@ export default {
 			progressTickers: {
 				0: null,
 			},
-			progressRunning: false,
+			clickableAreaEl: null,
+			hammer: null,
+			lastProgress: 0,
 		};
 	},
 	watch: {
@@ -66,16 +68,38 @@ export default {
 	created() {},
 	mounted() {
 		this.startProgress(this.currentSlideIndex);
+		this.clickableAreaEl = this.$refs.clickableArea;
+		if (this.clickableAreaEl) {
+			// const Hammer = this.$Hammer;
+			this.hammer = new this.$Hammer.Manager(this.clickableAreaEl);
+
+			this.hammer.add(new Hammer.Press({ time: 251 }));
+
+			// console.log('hammer', this.hammer);
+
+			this.hammer.on('press', () => {
+				this.toggleAutoplay('PAUSE');
+			});
+
+			this.hammer.on('pressup', () => {
+				this.toggleAutoplay('RESUME');
+			});
+		}
+	},
+	destroyed() {
+		console.log('story destroyed');
+		this.hammer.destroy();
 	},
 	methods: {
 		setProgress(progress, element) {
+			this.lastProgress = progress;
 			element.style.width = progress + '%';
 		},
 
-		startProgress(progressBarIndex) {
+		startProgress(progressBarIndex, initial = 0) {
 			const progressBar = this.$refs.progressBars[progressBarIndex];
 
-			let progress = 0;
+			let progress = initial;
 
 			this.setProgress(progress, progressBar);
 
@@ -112,15 +136,19 @@ export default {
 		},
 		clearTickers() {
 			for (let tickerIndex in this.progressTickers) {
-				console.log('clearing ticker', this.progressTickers[tickerIndex]);
 				clearInterval(this.progressTickers[tickerIndex]);
 			}
 		},
 		toggleAutoplay(toggle) {
 			if (toggle === 'PAUSE') {
 				this.clearTickers();
+				this.$emit('autoplay', { toggle });
 			}
-			this.$emit('autoplay', toggle);
+
+			if (toggle === 'RESUME') {
+				this.startProgress(this.currentSlideIndex, this.lastProgress);
+				this.$emit('autoplay', { toggle, newDuration: this.lastProgress });
+			}
 		},
 		previousSlide() {
 			this.setProgress(0, this.$refs.progressBars[this.currentSlideIndex]);
