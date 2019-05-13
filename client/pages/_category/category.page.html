@@ -6,7 +6,7 @@
 		:key="categoryIndex"
 		v-if="category.shelves.length > 0"
 	>
-		<h2>{{category.label}}</h2>
-		<stories :stories="category.shelves"> </stories>
+		<!-- <h2>{{category.label}}</h2> -->
+		<stories :stories="category.shelves" :title="category.label"> </stories>
 	</div>
 </div>

@@ -1,12 +1,15 @@
 <div class="stories">
+	<h2 class="stories__title">{{ title }}</h2>
 	<horizontal-slider>
 		<div
-			class="product--story"
+			class="stories__thumbnail"
 			v-for="(thumbnail, thumbnailIndex) in storyThumbnails"
 			:key="thumbnailIndex"
 			@click="enterStory(thumbnailIndex)"
 		>
-			<img :src="thumbnail" style="width: 5rem" alt="">
+			<img :src="thumbnail.asset" class="stories__thumbnail--img" alt="" />
+			<div class="stories__thumbnail--price">{{ thumbnail.price }} ש״ח</div>
+			<div class="stories__thumbnail--name">{{ thumbnail.name }}</div>
 		</div>
 	</horizontal-slider>
 

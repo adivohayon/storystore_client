@@ -1,3 +1,25 @@
 .stories {
-	
+	background: #fff;
+	color: #000;
+	&__title {
+		font-size: 1.3rem;
+		font-weight: bold;
+	}
+	&__thumbnail {
+		&--img {
+			width: 9rem;
+			min-height: 14rem;
+			// border-width: 4px;
+			// border-style: solid;
+			border-radius: 64px;
+			// border-image: linear-gradient(to bottom, red, rgba(0, 0, 0, 0)) 1 100%;
+		}
+		&--price {
+			font-size: 1rem;
+			font-weight: bold;
+		}
+		&--name {
+			font-size: 1rem;
+		}
+	}
 }

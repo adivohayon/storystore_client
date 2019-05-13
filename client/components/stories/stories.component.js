@@ -11,6 +11,9 @@ export default {
 				return [];
 			},
 		},
+		title: {
+			type: String,
+		},
 	},
 	data() {
 		return {
@@ -27,7 +30,14 @@ export default {
 				let asset = this.assetsPath;
 				asset += `${story.slug}/${story.variations[0].slug}/`;
 				asset += _get(story, 'variations[0].assets[0]', '');
-				return asset;
+				const name = _get(story, 'name', '');
+				const price = _get(story, 'variations[0].price', 0);
+				// return asset;
+				return {
+					asset,
+					name,
+					price,
+				};
 			});
 		},
 		assetsPath() {
