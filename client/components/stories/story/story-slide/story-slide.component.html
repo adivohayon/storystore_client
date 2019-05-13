@@ -2,6 +2,13 @@
 	class="story-slide"
 	:style="{ backgroundImage: 'url(' + slideAsset + ')' }"
 >
+	<!--CLOSE BUTTON -->
+	<button class="btn--close" @click="close">
+		<icon name="close"width="22" height="22"></icon>
+	</button>
+
+
+	<!-- STORY CTA -->
 	<div class="story-slide__cta" @click="pauseAutoplay">
 		<attribute-picker
 			v-for="(attribute, attributeKey) in availableAttributes"
@@ -21,5 +28,7 @@
 			@setGoToPayment="showGoToPayment = true;"
 		></add-to-cart>
 	</div>
+
+	<!-- SCRIMS -->
 	<scrims></scrims>
 </div>

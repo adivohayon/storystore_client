@@ -127,5 +127,8 @@ export default {
 				itemPropertyLabel: this.availableAttributes[attKey].label,
 			};
 		},
+		close() {
+			this.$emit('close-story');
+		},
 	},
 };

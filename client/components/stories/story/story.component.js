@@ -27,7 +27,7 @@ export default {
 			clickableAreaEl: null,
 			hammer: null,
 			lastProgress: 0,
-			duration: 3000,
+			duration: 333000,
 		};
 	},
 	watch: {
@@ -86,8 +86,8 @@ export default {
 
 			this.hammer.on('tap', e => {
 				// e.preventDefault();
-				e.srcEvent.stopPropagation();
-				e.srcEvent.preventDefault();
+				// e.srcEvent.stopPropagation();
+				// e.srcEvent.preventDefault();
 				const isNext = e.target.className.includes('__next');
 				const isPrev = e.target.className.includes('__previous');
 
@@ -106,6 +106,9 @@ export default {
 		this.hammer.destroy();
 	},
 	methods: {
+		closeStory() {
+			this.$emit('close-story');
+		},
 		setProgress(progress, element) {
 			this.lastProgress = progress;
 			if (element && element.style) {
@@ -172,6 +175,19 @@ export default {
 				param: 'PREVIOUS_SLIDE',
 				storyIndex: this.storyIndex,
 			});
+		},
+
+		showStorySlide(variationIndex) {
+			if (!_get(this.story, `variations[${variationIndex}].assets[0]`, false)) {
+				return false;
+			}
+
+			return (
+				variationIndex === this.currentSlideIndex ||
+				variationIndex === this.currentSlideIndex + 1 ||
+				variationIndex === this.currentSlideIndex - 1
+			);
+			// if (this.story.variations[variationIndex].assets[0])
 		},
 	},
 };

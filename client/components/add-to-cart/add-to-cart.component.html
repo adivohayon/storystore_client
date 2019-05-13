@@ -2,6 +2,7 @@
 	<button
 		class="btn btn--add-to-cart"
 		:class="{'checkout': showGoToPayment}"
+		:style="{backgroundColor: bgColor, color: textColor}" 
 		@click="ctaClick(shelf)"
 	>
 		{{ buttonText }}

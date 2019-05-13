@@ -41,6 +41,12 @@ export default {
 		return {};
 	},
 	computed: {
+		bgColor() {
+			return _get(this.$store.state, 'store.settings.ctaColor', '#ffffff');
+		},
+		textColor() {
+			return this.bgColor === '#ffffff' ? '#000000' : '#ffffff';
+		},
 		shelfGoal() {
 			if (this.storeSlug === 'oz-nadlan') {
 				return 'CONTACT';

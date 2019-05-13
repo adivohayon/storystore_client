@@ -25,19 +25,21 @@ export default {
 	},
 	computed: {
 		storyThumbnails() {
-			return this.stories.map(story => {
-				let asset = this.assetsPath;
-				asset += `${story.slug}/${story.variations[0].slug}/`;
-				asset += _get(story, 'variations[0].assets[0]', '');
-				const name = _get(story, 'name', '');
-				const price = _get(story, 'variations[0].price', 0);
-				// return asset;
-				return {
-					asset,
-					name,
-					price,
-				};
-			});
+			return this.stories
+				.filter(story => _get(story, 'variations[0].assets[0]', false))
+				.map(story => {
+					let asset = this.assetsPath;
+					asset += `${story.slug}/${story.variations[0].slug}/`;
+					asset += _get(story, 'variations[0].assets[0]', '');
+					const name = _get(story, 'name', '');
+					const price = _get(story, 'variations[0].price', 0);
+					// return asset;
+					return {
+						asset,
+						name,
+						price,
+					};
+				});
 		},
 		assetsPath() {
 			let path = process.env.staticDir ? process.env.staticDir : '/';

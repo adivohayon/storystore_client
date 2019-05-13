@@ -5,11 +5,11 @@
 	position: absolute;
 	top:0;
 	left: 0;
-
+	background-color: white;
 	z-index: 50;
 	&__cta {
 		position: absolute;
-		z-index: 50;
+		z-index: 200;
 		bottom:0;
 		width: 100%;
 		padding: 1rem;
@@ -19,6 +19,15 @@
 		// margin-bottom: 4rem;
 	}
 	
+	.btn--close {
+		position: absolute;
+		top: 1rem;
+		left: 0.5rem;
+		z-index: 200;
+		.svg-fill {
+			stroke: #ffffff;
+		}
+	}
 	&--on-top {
 		position: relative;
 		z-index: 60;
