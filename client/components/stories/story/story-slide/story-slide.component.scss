@@ -4,9 +4,17 @@
 	background-size: cover;
 
 	&__cta {
-		position: relative;
+		position: absolute;
 		z-index: 50;
+		bottom:0;
+		width: 100%;
+		padding: 1rem;
+		.attribute-picker {
+			margin: 1rem 0;
+		}
+		// margin-bottom: 4rem;
 	}
+	
 	
 
 }

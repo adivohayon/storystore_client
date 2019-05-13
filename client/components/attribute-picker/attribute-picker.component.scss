@@ -3,7 +3,6 @@
 	padding: 0.7rem 0;
 	width: auto;
 
-	
 	ul {
 		display: inline-block;
 		list-style: none;
@@ -22,10 +21,16 @@
 	}
 
 	.att {
-		
 		.btn {
 			border: 1px solid #ffffff;
 			text-transform: uppercase;
+			border-radius: 1.5rem;
+			height: 2.1rem;
+			width: auto;
+			padding: 0 0.4rem;
+			min-width: 2.1rem;
+			font-weight: bold;
+			color: #474747;
 		}
 		&--active {
 			border-bottom: 3px solid white;

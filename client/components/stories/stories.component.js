@@ -20,6 +20,7 @@ export default {
 			currentStoryIndex: 0,
 			currentSlideIndex: 0,
 			showStory: false,
+			clickAvailable: true,
 		};
 	},
 	computed: {
@@ -76,10 +77,15 @@ export default {
 			}
 		},
 		enterStory(storyIndex) {
+			if (!this.clickAvailable) {
+				return;
+			}
+			this.clickAvailable = false;
+
 			this.currentStoryIndex = storyIndex;
 			this.currentSlideIndex = 0;
 			this.showStory = true;
-			console.log('enter story', storyIndex);
+			// console.log('enter story', storyIndex);
 		},
 		goToStory({ param, storyIndex }) {
 			if (param === 'NEXT_STORY') {
@@ -111,6 +117,9 @@ export default {
 			this.currentStoryIndex = 0;
 			this.currentSlideIndex = 0;
 			this.showStory = false;
+			setTimeout(() => {
+				this.clickAvailable = true;
+			}, 300);
 			console.log('exit story');
 		},
 	},

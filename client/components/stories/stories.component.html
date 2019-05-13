@@ -5,7 +5,8 @@
 			class="stories__thumbnail"
 			v-for="(thumbnail, thumbnailIndex) in storyThumbnails"
 			:key="thumbnailIndex"
-			@click="enterStory(thumbnailIndex)"
+			@click.stop.prevent="enterStory(thumbnailIndex)"
+			:class="{'no-click': showStory}"
 		>
 			<div class="stories__thumbnail--border">
 				<img :src="thumbnail.asset" class="stories__thumbnail--img" alt="" />
@@ -24,7 +25,6 @@
 		:story="story"
 		:current-slide-index="currentSlideIndex"
 		:story-index="storyIndex"
-		:duration="duration"
 	>
 	</story>
 	<!-- 

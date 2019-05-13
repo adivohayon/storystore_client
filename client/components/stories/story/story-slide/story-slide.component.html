@@ -2,7 +2,6 @@
 	class="story-slide"
 	:style="{ backgroundImage: 'url(' + slideAsset + ')' }"
 >
-
 	<div class="story-slide__cta" @click="pauseAutoplay">
 		<attribute-picker
 			v-for="(attribute, attributeKey) in availableAttributes"
@@ -12,7 +11,7 @@
 			:selected-attribute="selectedAttributes[attributeKey]"
 			@changed-att="setAtt"
 		></attribute-picker>
-		
+
 		<add-to-cart
 			:variant="variation"
 			:selected-attributes="selectedAttributes"
@@ -22,4 +21,5 @@
 			@setGoToPayment="showGoToPayment = true;"
 		></add-to-cart>
 	</div>
+	<scrims></scrims>
 </div>

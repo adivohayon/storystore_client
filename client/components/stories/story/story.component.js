@@ -18,10 +18,6 @@ export default {
 			type: Number,
 			default: 0,
 		},
-		duration: {
-			type: Number,
-			default: 5000,
-		},
 	},
 	data() {
 		return {
@@ -31,6 +27,7 @@ export default {
 			clickableAreaEl: null,
 			hammer: null,
 			lastProgress: 0,
+			duration: 3000,
 		};
 	},
 	watch: {
@@ -71,7 +68,9 @@ export default {
 		this.clickableAreaEl = this.$refs.clickableArea;
 		if (this.clickableAreaEl) {
 			// const Hammer = this.$Hammer;
-			this.hammer = new this.$Hammer.Manager(this.clickableAreaEl);
+			this.hammer = new this.$Hammer.Manager(this.clickableAreaEl, {
+				domEvents: true,
+			});
 
 			this.hammer.add(new Hammer.Press({ time: 251 }));
 			this.hammer.add(new Hammer.Tap());
@@ -86,6 +85,9 @@ export default {
 			});
 
 			this.hammer.on('tap', e => {
+				// e.preventDefault();
+				e.srcEvent.stopPropagation();
+				e.srcEvent.preventDefault();
 				const isNext = e.target.className.includes('__next');
 				const isPrev = e.target.className.includes('__previous');
 
@@ -96,6 +98,7 @@ export default {
 				if (isPrev) {
 					this.previousSlide();
 				}
+				return;
 			});
 		}
 	},
@@ -105,7 +108,9 @@ export default {
 	methods: {
 		setProgress(progress, element) {
 			this.lastProgress = progress;
-			element.style.width = progress + '%';
+			if (element && element.style) {
+				element.style.width = progress + '%';
+			}
 		},
 
 		startProgress(progressBarIndex, initial = 0) {
@@ -127,6 +132,9 @@ export default {
 		},
 		convertHex(hex, opacity) {
 			hex = hex.replace('#', '');
+			if (hex === 'ffffff') {
+				return '#d3d3d3';
+			}
 			const r = parseInt(hex.substring(0, 2), 16);
 			const g = parseInt(hex.substring(2, 4), 16);
 			const b = parseInt(hex.substring(4, 6), 16);
