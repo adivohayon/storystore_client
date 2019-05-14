@@ -146,6 +146,9 @@ export const actions = {
 	getShelves({ state, commit }, { storeId, offset }) {
 		return new Promise(async (resolve, reject) => {
 			try {
+				if (!storeId) {
+					reject('storeId no found');
+				}
 				const { shelves, pagination } = await this.$axios.$get(
 					`stores/${storeId}/shelves?offset=${offset}&limit=5`
 				);
@@ -190,5 +193,20 @@ export const actions = {
 			}
 		});
 		// return
+	},
+	getInfluencer({}, { storeId, influencerSlug }) {
+		return new Promise(async (resolve, reject) => {
+			try {
+				if (!storeId || !influencerSlug) {
+					throw new Error('getInfluencerShelves: missing params');
+				}
+				const influencer = await this.$axios.$get(
+					`stores/${storeId}/influencers/${influencerSlug}`
+				);
+				resolve(influencer);
+			} catch (err) {
+				reject(err);
+			}
+		});
 	},
 };

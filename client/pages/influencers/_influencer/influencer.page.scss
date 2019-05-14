@@ -1,0 +1,16 @@
+.influencer-page {
+
+	background-color: white;
+	&__banner {
+		img {
+			display: block;
+			width:100%;
+			height: auto;
+		}
+	}
+	h2 {
+		text-align: center;
+		padding: 2rem;
+		font-size: 2rem;
+	}
+}

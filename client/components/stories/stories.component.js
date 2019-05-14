@@ -14,6 +14,10 @@ export default {
 		title: {
 			type: String,
 		},
+		autostart: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	data() {
 		return {
@@ -53,7 +57,11 @@ export default {
 		},
 	},
 	created() {},
-	mounted() {},
+	mounted() {
+		if (this.autostart) {
+			this.enterStory(0);
+		}
+	},
 	destroyed() {},
 	methods: {
 		goToSlide({ param, storyIndex }) {
