@@ -53,6 +53,12 @@ export default {
 		storeSlug() {
 			return this.$store.state.store.slug;
 		},
+		showCart() {
+			return _get(this.$store.state, 'store.settings.hasCart', true);
+		},
+		cartItemsCount() {
+			return this.$store.getters['cart/itemsCount'](this.storeSlug);
+		},
 		slideAsset() {
 			return this.assetsPath + this.variation.assets[0];
 		},
@@ -151,10 +157,10 @@ export default {
 		// resumeAutoplay() {
 		// 	this.$emit('autoplay', 'RESUME');
 		// },
-		// pauseAutoplay() {
-		// 	console.log('story slide - stop autoplay');
-		// 	this.$emit('autoplay', 'PAUSE');
-		// },
+		pauseAutoplay() {
+			console.log('story slide - stop autoplay');
+			this.$emit('autoplay', 'PAUSE');
+		},
 		initializeSelectedAttributes() {
 			for (const attributeKey in this.availableAttributes) {
 				if (this.availableAttributes.hasOwnProperty(attributeKey)) {
