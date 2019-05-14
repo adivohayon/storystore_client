@@ -38,7 +38,14 @@ export default {
 			return this.$store.state.store.slug;
 		},
 		banner() {
-			return `/${this.storeSlug}/banner.png`;
+			return this.assetsPath + 'banner.png';
+		},
+		assetsPath() {
+			let path = process.env.staticDir ? process.env.staticDir : '/';
+			if (process.env.staticDir) {
+				path += `${this.storeSlug}/`;
+			}
+			return path;
 		},
 		stateShelves() {
 			return this.$store.state.store.shelves || [];
