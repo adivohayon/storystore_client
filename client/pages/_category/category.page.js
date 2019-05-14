@@ -34,6 +34,12 @@ export default {
 	},
 	mounted() {},
 	computed: {
+		storeSlug() {
+			return this.$store.state.store.slug;
+		},
+		banner() {
+			return `/${this.storeSlug}/banner.png`;
+		},
 		stateShelves() {
 			return this.$store.state.store.shelves || [];
 		},

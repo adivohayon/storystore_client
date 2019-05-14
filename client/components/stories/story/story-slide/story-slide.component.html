@@ -4,6 +4,12 @@
 >
 	<!-- STORY CTA -->
 	<div class="story-slide__cta" @click="pauseAutoplay">
+		<shelf-title
+			v-if="variation && variation.price"
+			:price="variation.price"
+			:currency="variation.currency"
+			:title="shelfTitle"
+		></shelf-title>
 		<attribute-picker
 			v-for="(attribute, attributeKey) in availableAttributes"
 			:key="attributeKey"

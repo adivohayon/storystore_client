@@ -1,10 +1,11 @@
 import AddToCart from '@/components/add-to-cart';
 import AttributePicker from '@/components/attribute-picker';
+import ShelfTitle from '@/components/shelf-title';
 import Scrims from '@/components/scrims';
 import _get from 'lodash.get';
 export default {
 	name: 'story-slide',
-	components: { AddToCart, AttributePicker, Scrims },
+	components: { AddToCart, AttributePicker, Scrims, ShelfTitle },
 	props: {
 		variation: {
 			type: Object,
@@ -30,6 +31,16 @@ export default {
 		};
 	},
 	computed: {
+		shelfTitle() {
+			let title = this.shelf.name;
+			if (
+				this.variation.property_label &&
+				this.variation.property_label.length > 0
+			) {
+				title += ' - ' + this.variation.property_label.toUpperCase();
+			}
+			return title;
+		},
 		assetsPath() {
 			let path = process.env.staticDir ? process.env.staticDir : '/';
 			if (process.env.staticDir) {
