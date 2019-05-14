@@ -17,7 +17,6 @@
 	</horizontal-slider>
 
 	<story
-		@go-to-story="goToStory"
 		@go-to-slide="goToSlide"
 		v-for="(story, storyIndex) in stories"
 		v-if="currentStoryIndex === storyIndex && showStory"
@@ -25,7 +24,8 @@
 		:story="story"
 		:current-slide-index="currentSlideIndex"
 		:story-index="storyIndex"
-		@close-story=exitStory
+		@close-story="exitStory"
+		@go-to-story="goToStory({param: $event, storyIndex})"
 	>
 	</story>
 	<!-- 

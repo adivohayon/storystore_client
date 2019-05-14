@@ -103,6 +103,7 @@ export default {
 
 				this.hammer.add(new Hammer.Press({ time: 251 }));
 				this.hammer.add(new Hammer.Tap());
+				this.hammer.add(new Hammer.Swipe());
 				// console.log('hammer', this.hammer);
 
 				this.hammer.on('press', () => {
@@ -111,6 +112,16 @@ export default {
 
 				this.hammer.on('pressup', () => {
 					this.toggleAutoplay('RESUME');
+				});
+
+				this.hammer.on('swiperight', () => {
+					console.log('swiperight');
+					this.$emit('go-to-story', 'NEXT_STORY');
+				});
+
+				this.hammer.on('swipeleft', () => {
+					console.log('swipeleft');
+					this.$emit('go-to-story', 'PREVIOUS_STORY');
 				});
 
 				this.hammer.on('tap', e => {
