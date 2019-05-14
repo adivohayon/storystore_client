@@ -107,11 +107,13 @@ export default {
 				// console.log('hammer', this.hammer);
 
 				this.hammer.on('press', () => {
-					this.toggleAutoplay('PAUSE');
+					this.$emit('autoplay', 'PAUSE');
+					// this.toggleAutoplay('PAUSE');
 				});
 
 				this.hammer.on('pressup', () => {
-					this.toggleAutoplay('RESUME');
+					this.$emit('autoplay', 'RESUME');
+					// this.toggleAutoplay('RESUME');
 				});
 
 				this.hammer.on('swiperight', () => {
@@ -146,13 +148,13 @@ export default {
 				});
 			}
 		},
-		resumeAutoplay() {
-			this.$emit('autoplay', 'RESUME');
-		},
-		pauseAutoplay() {
-			console.log('story slide - stop autoplay');
-			this.$emit('autoplay', 'PAUSE');
-		},
+		// resumeAutoplay() {
+		// 	this.$emit('autoplay', 'RESUME');
+		// },
+		// pauseAutoplay() {
+		// 	console.log('story slide - stop autoplay');
+		// 	this.$emit('autoplay', 'PAUSE');
+		// },
 		initializeSelectedAttributes() {
 			for (const attributeKey in this.availableAttributes) {
 				if (this.availableAttributes.hasOwnProperty(attributeKey)) {

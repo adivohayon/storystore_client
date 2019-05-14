@@ -43,6 +43,8 @@
 
 	.btn--close {
 		position: absolute;
+		outline: none;
+		border: none;
 		top: 1.8rem;
 		left: 0.5rem;
 		z-index: 200;
