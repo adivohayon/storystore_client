@@ -1,6 +1,5 @@
 <div class="story">
 	<div class="story__view">
-
 		<!-- PROGRESS BARS -->
 		<div class="story__pagination">
 			<ul>
@@ -38,10 +37,11 @@
 			:key="variationIndex"
 			:variation="variation"
 			:shelf="story"
-			@autoplay="toggleAutoplay"
+			@autoplay="toggleAutoplay($event)"
 			@close-story="closeStory"
 			@next-slide="nextSlide"
 			@previous-slide="previousSlide"
+			@go-to-story="goToStory($event)"
 			:class="{'story-slide--on-top' : variationIndex === currentSlideIndex}"
 		></story-slide>
 

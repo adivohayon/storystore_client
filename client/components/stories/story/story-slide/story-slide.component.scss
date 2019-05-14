@@ -16,6 +16,40 @@
 		.attribute-picker {
 			margin-bottom: 1rem;
 		}
+		&--footer {
+			display: flex;
+			.cart-button {
+				margin-right: 1rem;
+				.btn {
+					position: relative;
+					height: 3.7rem;
+					width: 3.7rem;
+					border-radius: 50%;
+					background: #fff;
+					outline: none;
+					border: none;
+					svg {
+						stroke: #000;
+						fill: #fff;
+					}
+					.counter {
+						background: #51A152;
+						text-align: center;
+						height: 1.9rem;
+						width: 1.9rem;
+						border-radius: 50%;
+						color: #fff;
+						font-size: 14px;
+						font-weight: bold;
+						line-height: 1.7rem;
+						position: absolute;
+						bottom: 0.2rem;
+						right: 0.3rem;
+						border: none;
+					}
+				}
+			}
+		}
 		// margin-bottom: 4rem;
 	}
 

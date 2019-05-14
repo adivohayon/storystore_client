@@ -19,14 +19,24 @@
 			@changed-att="setAtt"
 		></attribute-picker>
 
-		<add-to-cart
-			:variant="variation"
-			:selected-attributes="selectedAttributes"
-			:selected-property="selectedProperty"
-			:shelf="shelf"
-			:show-go-to-payment="showGoToPayment"
-			@setGoToPayment="showGoToPayment = true;"
-		></add-to-cart>
+		<div class="story-slide__cta--footer">
+			<add-to-cart
+				:variant="variation"
+				:selected-attributes="selectedAttributes"
+				:selected-property="selectedProperty"
+				:shelf="shelf"
+				:show-go-to-payment="showGoToPayment"
+				@setGoToPayment="showGoToPayment = true;"
+			></add-to-cart>
+			<nuxt-link to="/cart" class="cart-button" v-if="showCart">
+				<button class="btn">
+					<icon name="cart" width="23" height="23"></icon>
+					<div v-if="cartItemsCount != 0" class="counter">
+						{{ cartItemsCount }}
+					</div>
+				</button>
+			</nuxt-link>
+		</div>
 	</div>
 
 	<!-- CLICKABLE AREA -->

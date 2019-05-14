@@ -53,6 +53,12 @@ export default {
 		storeSlug() {
 			return this.$store.state.store.slug;
 		},
+		showCart() {
+			return _get(this.$store.state, 'store.settings.hasCart', true);
+		},
+		cartItemsCount() {
+			return this.$store.getters['cart/itemsCount'](this.storeSlug);
+		},
 		slideAsset() {
 			return this.assetsPath + this.variation.assets[0];
 		},
@@ -103,14 +109,27 @@ export default {
 
 				this.hammer.add(new Hammer.Press({ time: 251 }));
 				this.hammer.add(new Hammer.Tap());
+				this.hammer.add(new Hammer.Swipe());
 				// console.log('hammer', this.hammer);
 
 				this.hammer.on('press', () => {
-					this.toggleAutoplay('PAUSE');
+					this.$emit('autoplay', 'PAUSE');
+					// this.toggleAutoplay('PAUSE');
 				});
 
 				this.hammer.on('pressup', () => {
-					this.toggleAutoplay('RESUME');
+					this.$emit('autoplay', 'RESUME');
+					// this.toggleAutoplay('RESUME');
+				});
+
+				this.hammer.on('swiperight', () => {
+					console.log('swiperight');
+					this.$emit('go-to-story', 'NEXT_STORY');
+				});
+
+				this.hammer.on('swipeleft', () => {
+					console.log('swipeleft');
+					this.$emit('go-to-story', 'PREVIOUS_STORY');
 				});
 
 				this.hammer.on('tap', e => {
@@ -135,9 +154,9 @@ export default {
 				});
 			}
 		},
-		resumeAutoplay() {
-			this.$emit('autoplay', 'RESUME');
-		},
+		// resumeAutoplay() {
+		// 	this.$emit('autoplay', 'RESUME');
+		// },
 		pauseAutoplay() {
 			console.log('story slide - stop autoplay');
 			this.$emit('autoplay', 'PAUSE');

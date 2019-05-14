@@ -68,6 +68,10 @@ export default {
 	},
 
 	methods: {
+		goToStory(event) {
+			console.log('story / goToStory', event);
+			this.$emit('go-to-story', event);
+		},
 		closeStory() {
 			this.$emit('close-story');
 		},
