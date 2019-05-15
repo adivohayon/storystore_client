@@ -209,15 +209,16 @@ export default {
 			});
 		},
 	},
-	created() {
+	created() {},
+	mounted() {
 		this.initializeVariation();
 		this.initializeSelectedAttributes();
 		this.initializeSelectedProperty();
 	},
-	mounted() {},
 
 	methods: {
 		initializeVariation() {
+			console.log('variation', this.shelf);
 			this.selectedVariationId = this.shelf.variations[0].variationId;
 		},
 		initializeSelectedAttributes() {

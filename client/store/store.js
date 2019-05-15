@@ -27,10 +27,16 @@ export const mutations = {
 	populateShelves(state, shelves) {
 		for (const shelf of shelves) {
 			// if (shelf.va)
-			const variations = shelf.variations.filter(
-				variation => variation.assets.length > 0
+			// const variations = shelf.variations.filter(
+			// 	variation => variation.assets.length > 0
+			// );
+			// shelf.variations = _orderBy(variations, ['variation_order'], ['asc']);
+
+			shelf.variations = _orderBy(
+				shelf.variations,
+				['variation_order'],
+				['asc']
 			);
-			shelf.variations = _orderBy(variations, ['variation_order'], ['asc']);
 		}
 
 		Vue.set(state, 'shelves', shelves);
@@ -125,6 +131,8 @@ export const actions = {
 				const { shelves, pagination } = await this.$axios.$get(
 					`stores/${store.id}/shelves?limit=${limit}`
 				);
+
+				console.log('shelvess', shelves);
 				// console.log(useMockData, store.shelves);
 				// const store = await this.$axios.$get(`stores/${storeSlug}`);
 				// console.log('store - usemocks: ' + useMockData, store);
