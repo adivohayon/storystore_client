@@ -94,7 +94,7 @@ export default {
 			}
 		},
 		variantAssets() {
-			console.log('$nuxt.$route.name', this.$nuxt.$route.name);
+			// console.log('$nuxt.$route.name', this.$nuxt.$route.name);
 			const assets = _get(this.variant, 'assets', []);
 
 			// if (this.$nuxt.$route.name === 'category') {

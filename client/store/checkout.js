@@ -60,7 +60,7 @@ export const actions = {
 					};
 				});
 				// return;
-				const shippingPayload = state.shippingOption;
+				const shippingPayload = state.shippingOption || {};
 
 				shippingPayload.id = -1;
 				const resp = await this.$axios.$post(`order`, {
