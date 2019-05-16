@@ -42,7 +42,7 @@ export const actions = {
 			commit('toggleLoader', false);
 		}, 6000);
 	},
-	async nuxtServerInit({ dispatch }, { req, redirect, error, route }) {
+	async nuxtServerInit({ dispatch }, { req, redirect, error, route, app }) {
 		console.log('---nuxtServerInit---');
 		const host = process.server ? req.headers.host : window.location.hostname;
 		// console.log('nuxtServerInit subdomains', req);
@@ -57,7 +57,15 @@ export const actions = {
 			return error('החנות לא נמצאה');
 		}
 
-		console.log('done');
+		// if ()
+		console.log('done', app.isMobile);
+		if (!app.isMobile) {
+			const desktopUrl = fetchStoreResp.desktop_url;
+			console.log('desktiopUrl', fetchStoreResp.desktopUrl);
+			if (desktopUrl) {
+				return redirect(desktopUrl);
+			}
+		}
 		// const hostsParts = req.headers.host.split('.');
 		// const isDomain = hostsParts.findIndex(item => item === 'storystore') > -1;
 

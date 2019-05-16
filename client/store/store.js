@@ -45,7 +45,7 @@ export const mutations = {
 		Vue.set(state, 'storeId', store.id);
 		Vue.set(state, 'slug', store.slug);
 		Vue.set(state, 'name', store.name);
-
+		// console.log('store', store.desktop_url);
 		if (store.shipping_options) {
 			const shippingOptions = store.shipping_options.sort((obj1, obj2) => {
 				return obj1.price - obj2.price;
@@ -59,6 +59,7 @@ export const mutations = {
 		Vue.set(state, 'tagline', store.tagline);
 		Vue.set(state, 'settings', store.settings);
 		Vue.set(state, 'returns', store.returns);
+		Vue.set(state, 'desktopUrl', store.desktop_url);
 	},
 	updateShelfAssetLoaded(
 		state,
@@ -141,7 +142,7 @@ export const actions = {
 					commit('setPagination', pagination);
 					commit('populateShelves', shelves);
 					commit('populateStore', store);
-					return true;
+					return store;
 				}
 			}
 			return false;
