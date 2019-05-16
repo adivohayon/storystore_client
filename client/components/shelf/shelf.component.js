@@ -33,6 +33,10 @@ export default {
 		shelfIndex: {
 			type: Number,
 		},
+		showSeeMore: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	data() {
 		return {
@@ -197,7 +201,7 @@ export default {
 			return true;
 		},
 		footerBottom() {
-			if (this.shelfIndex === 0) {
+			if (this.shelfIndex === 0 && this.showSeeMore) {
 				return '6rem';
 			}
 

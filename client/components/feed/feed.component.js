@@ -107,7 +107,7 @@ export default {
 			return new Promise(async (resolve, reject) => {
 				// console.log('paginationOffset', this.paginationOffset);
 				// console.log('nextSectionIndex', nextSectionIndex);
-				const moreShelvesThreshold = 3;
+				const moreShelvesThreshold = 2;
 				try {
 					if (
 						nextSectionIndex > 0 &&
@@ -189,7 +189,7 @@ export default {
 		loadAssets() {
 			return new Promise(async (resolve, reject) => {
 				try {
-					const numberOfAssetsOnFirstRun = 2;
+					const numberOfAssetsOnFirstRun = 5;
 
 					const firstRunAssets = this.shelves.reduce(
 						(assetsToLoad, shelf, shelfIndex) => {
