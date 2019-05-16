@@ -1,33 +1,25 @@
-<div class="page cart-page">
-	<div class="cart-page__container">
-		<div ref="stickyHeader" class="cart-page__header">
-			<div class="cart-page__header--checkout">
-				<nuxt-link to="/" class="cart-page__header--close">
-					<icon name="chevron" :original="true" width="22" height="22"></icon>
-				</nuxt-link>
-				<nuxt-link to="/checkout/shipping-options" class="checkout-btn">
-					לתשלום
-				</nuxt-link>
-			</div>
-			<div class="cart-page__header--total">
-				<span class="cart-page__header--total__text">
-					{{ itemsCount }} פריטים: סה"כ
-				</span>
-				<span class="cart-page__header--total__price">{{ subtotal }} ש"ח</span>
-			</div>
+<div class="page cart-page">	
+	<div ref="stickyHeader" class="cart-page__header">
+		<nuxt-link to="/" class="back">
+			<icon name="chevron" :original="true" width="22" height="22"></icon>
+		</nuxt-link>
+		<div class="header-text">סל הקניות שלי</div>
+	</div>
+	<div class="cart-page__items">
+		<cart-item
+			v-for="(item, itemIndex) of items"
+			:key="itemIndex"
+			:item="item"
+			:itemIndex="itemIndex"
+		></cart-item>
+	</div>
+	<div class="cart-page__checkout">
+		<div class="total">
+			<span class="total__text"> {{ itemsCount }} פריטים: סה"כ </span>
+			<span class="total__price">{{ subtotal }} ש"ח</span>
 		</div>
-		<div class="cart-page__items">
-			<cart-item
-				v-for="(item, itemIndex) of items"
-				:key="itemIndex"
-				:item="item"
-				:itemIndex="itemIndex"
-			></cart-item>
-		</div>
-		<div class="cart-page__checkout">
-			<nuxt-link to="/checkout/shipping-options" class="checkout-btn">
-				לתשלום
-			</nuxt-link>
-		</div>
+		<nuxt-link to="/checkout/shipping-options" class="checkout-btn">
+			לתשלום
+		</nuxt-link>
 	</div>
 </div>
