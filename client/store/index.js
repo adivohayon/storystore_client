@@ -60,8 +60,8 @@ export const actions = {
 		// if ()
 		console.log('done', app.isMobile);
 		if (!app.isMobile) {
-			const desktopUrl = fetchStoreResp.desktop_url;
-			console.log('desktiopUrl', fetchStoreResp.desktopUrl);
+			const desktopUrl = fetchStoreResp['desktop_url'];
+			// console.log('desktopUrl', desktopUrl);
 			if (desktopUrl) {
 				return redirect(desktopUrl);
 			}
