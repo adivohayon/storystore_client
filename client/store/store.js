@@ -124,7 +124,7 @@ export const actions = {
 			}
 			// console.log('store', store);
 			if (store && store.id) {
-				let limit = 5;
+				let limit = 3;
 				if (storeSlug === 'stores') {
 					limit = 15;
 				}

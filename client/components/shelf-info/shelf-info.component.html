@@ -2,8 +2,8 @@
 	<div class="shelf-info__tabs" ref="shelfInfoComponent">
 		<div
 			class="shelf-info__tabs--label"
-			:class="{active: selectedTabIndex == index}"
 			v-for="(tab, index) in infoTabs"
+			:class="{'active': selectedTabIndex == index}"
 			@click="toggleShowContent(index)"
 			v-if="getTabContent(index) && getTabContent(index).length"
 		>
