@@ -23,6 +23,7 @@ export default {
 	computed: {
 		showCart() {
 			return _get(this.$store.state, 'store.settings.hasCart', true);
+			// return false;
 		},
 		storeSlug() {
 			return this.$store.state.store.slug;

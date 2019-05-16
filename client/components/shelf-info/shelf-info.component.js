@@ -18,6 +18,7 @@ export default {
 	},
 	data() {
 		return {
+			selectedTabIndex: 0,
 			shelfInfo: [
 				{
 					tabLabel: 'תיאור',

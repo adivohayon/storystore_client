@@ -69,20 +69,32 @@ export default {
 			const freeOptions = [];
 			const alwaysShowOptions = [];
 			const paidOptions = [];
+			const parsedOptions = [];
 			// const freeOptions = options.filter(v => v.price === 0);
 			for (const option of options) {
 				// Free option
-				if (option.price === 0) {
-					if (
-						option.condition &&
-						option.condition.type &&
-						option.condition.type === 'subtotal' &&
-						checkRule(option.condition, this.subtotal)
-					) {
-						freeOptions.push(option);
-						continue;
-					}
+
+				// SUBTOTAL CONDITION
+				if (
+					option.condition &&
+					option.condition.type &&
+					option.condition.type === 'subtotal'
+				) {
+					const price = checkRule(option.condition, this.subtotal)
+						? 0
+						: option.price;
+
+					parsedOptions.push({
+						condition: option.condition,
+						type: option.type,
+						eta: option.eta,
+						price,
+					});
+
+					continue;
 				}
+				// }
+
 				// Always SHOW
 				if (
 					option.condition &&
@@ -92,19 +104,10 @@ export default {
 					alwaysShowOptions.push(option);
 					continue;
 				}
-
-				// Paid option
-				if (option.price > 0) {
-					paidOptions.push(option);
-					continue;
-				}
 			}
-
-			if (freeOptions.length > 0) {
-				return [...freeOptions, ...alwaysShowOptions];
-			} else {
-				return [...paidOptions, ...alwaysShowOptions];
-			}
+			console.log('freeOptions', freeOptions);
+			console.log('alwaysShowOptions', alwaysShowOptions);
+			return [...parsedOptions, ...alwaysShowOptions];
 		},
 		selectedShipping: {
 			get() {

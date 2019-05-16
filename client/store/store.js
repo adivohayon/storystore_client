@@ -132,7 +132,7 @@ export const actions = {
 					`stores/${store.id}/shelves?limit=${limit}`
 				);
 
-				console.log('shelvess', shelves);
+				// console.log('shelvess', shelves);
 				// console.log(useMockData, store.shelves);
 				// const store = await this.$axios.$get(`stores/${storeSlug}`);
 				// console.log('store - usemocks: ' + useMockData, store);

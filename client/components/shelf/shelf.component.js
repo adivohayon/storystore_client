@@ -10,6 +10,7 @@ import VideoPlayer from './../video-player';
 import AttributePicker from './../attribute-picker';
 import AddToCart from './../add-to-cart';
 import ContactForm from '@/components/contact-form';
+import Scrims from '@/components/scrims';
 export default {
 	name: 'shelf',
 	components: {
@@ -20,6 +21,7 @@ export default {
 		AttributePicker,
 		AddToCart,
 		ContactForm,
+		Scrims,
 	},
 	props: {
 		shelf: {
