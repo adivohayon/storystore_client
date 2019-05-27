@@ -1,20 +1,22 @@
 <div class="stories">
-	<h2 class="stories__title">{{ title }}</h2>
-	<horizontal-slider>
-		<div
-			class="stories__thumbnail"
-			v-for="(thumbnail, thumbnailIndex) in storyThumbnails"
-			:key="thumbnailIndex"
-			@click.stop.prevent="enterStory(thumbnailIndex)"
-			:class="{'no-click': showStory}"
-		>
-			<div class="stories__thumbnail--border">
-				<img :src="thumbnail.asset" class="stories__thumbnail--img" alt="" />
+	<div class="container" v-if="!hideEls">
+		<h2 class="stories__title">{{ title }}</h2>
+		<horizontal-slider>
+			<div
+				class="stories__thumbnail stories__thumbnail--circle"
+				v-for="(thumbnail, thumbnailIndex) in storyThumbnails"
+				:key="thumbnailIndex"
+				@click.stop.prevent="enterStory(thumbnailIndex)"
+				:class="{'no-click': showStory}"
+			>
+				<div class="stories__thumbnail--border">
+					<img :src="thumbnail.asset" class="stories__thumbnail--img" alt="" />
+				</div>
+				<div class="stories__thumbnail--price">{{ thumbnail.price }} ש״ח</div>
+				<div class="stories__thumbnail--name">{{ thumbnail.name }}</div>
 			</div>
-			<div class="stories__thumbnail--price">{{ thumbnail.price }} ש״ח</div>
-			<div class="stories__thumbnail--name">{{ thumbnail.name }}</div>
-		</div>
-	</horizontal-slider>
+		</horizontal-slider>
+	</div>
 
 	<story
 		@go-to-slide="goToSlide"

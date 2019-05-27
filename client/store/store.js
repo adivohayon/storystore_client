@@ -85,6 +85,9 @@ export const mutations = {
 		}
 		state.shelves.push(...shelves);
 	},
+	updateStoryStarted(state, toggle) {
+		Vue.set(state.settings.stories, 'started', toggle);
+	},
 };
 
 export const getters = {
@@ -96,7 +99,10 @@ export const getters = {
 		return atts.length ? removeDuplicates(atts, 'value') : [];
 	},
 	currency: state => {
-		return _get(state.shelves[0].variations[0].currency);
+		return _get(state, 'shelves[0].variations[0].currency', '');
+	},
+	integrations: state => {
+		return _get(state, 'settings.integrations', null);
 	},
 
 	// shelfSizes: () => variations => {

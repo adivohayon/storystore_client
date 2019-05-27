@@ -1,6 +1,6 @@
 <template>
 	<div :style="{ backgroundColor: bgColor }" class="layout layout--mobile">
-		<page-header></page-header>
+		<page-header v-if="!autostartStories || storiesStarted"></page-header>
 		<loader v-if="showLoader"></loader>
 		<!-- <no-ssr> -->
 		<!-- <full-page
@@ -58,6 +58,15 @@ export default {
 		},
 		hideLoaderElements() {
 			return this.$store.state.loader.hideElements;
+		},
+		autostartStories() {
+			return _get(this.$store.state, 'store.settings.stories.autostart', false);
+		},
+		storiesStarted() {
+			return (
+				this.autostartStories &&
+				_get(this.$store.state, 'store.settings.stories.started', false)
+			);
 		},
 		// hasShelves() {
 		// 	return (

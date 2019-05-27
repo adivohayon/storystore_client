@@ -51,6 +51,24 @@
 			font-size: 1rem;
 			padding-right: 0.5rem;
 		}
+
+		&--circle {
+			height: 5rem;
+			width: 5rem;
+			.stories__thumbnail--border {
+				border-radius: 50%;
+				height: inherit;
+				img.stories__thumbnail--img {
+					// width: fit-content;
+					// max-height:3.9rem;
+					width: 4.5rem;
+					height: 4.5rem;
+					min-height:auto;
+					object-fit: cover;
+					object-position: top;
+				}
+			}
+		}
 	}
 
 	.no-click {

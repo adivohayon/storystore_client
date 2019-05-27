@@ -62,9 +62,25 @@ export default {
 		stateShelves() {
 			return this.$store.state.store.shelves || [];
 		},
+		autostartStories() {
+			return _get(this.$store.state, 'store.settings.stories.autostart', false);
+		},
+		storiesStarted() {
+			return (
+				this.autostartStories &&
+				_get(this.$store.state, 'store.settings.stories.started', false)
+			);
+		},
 		// categ() {
 		// 	return _get(this.$store.state, 'store.shelves', []);
 		// },
 	},
-	methods: {},
+	methods: {
+		toggleStoryStarted() {
+			console.log('aaaa');
+			setTimeout(() => {
+				this.$store.commit('store/updateStoryStarted', true);
+			}, 2300);
+		},
+	},
 };

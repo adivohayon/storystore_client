@@ -25,6 +25,7 @@ export default {
 			currentSlideIndex: 0,
 			showStory: false,
 			clickAvailable: true,
+			hideEls: false,
 		};
 	},
 	computed: {
@@ -56,10 +57,18 @@ export default {
 			return this.$store.state.store.slug;
 		},
 	},
-	created() {},
+	created() {
+		if (this.autostart) {
+			this.hideEls = true;
+		}
+	},
 	mounted() {
 		if (this.autostart) {
+			// this.hideEls = true;
 			this.enterStory(0);
+			setTimeout(() => {
+				this.$emit('started');
+			}, 1300);
 		}
 	},
 	destroyed() {},
@@ -127,6 +136,9 @@ export default {
 			this.currentStoryIndex = 0;
 			this.currentSlideIndex = 0;
 			this.showStory = false;
+			if (this.autostart) {
+				this.hideEls = false;
+			}
 			setTimeout(() => {
 				this.clickAvailable = true;
 			}, 300);
