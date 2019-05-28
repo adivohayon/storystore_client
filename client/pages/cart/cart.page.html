@@ -1,4 +1,4 @@
-<div class="page cart-page">	
+<div class="page cart-page">
 	<div ref="stickyHeader" class="cart-page__header">
 		<nuxt-link to="/" class="back">
 			<icon name="chevron" :original="true" width="22" height="22"></icon>
@@ -18,8 +18,14 @@
 			<span class="total__text"> {{ itemsCount }} פריטים: סה"כ </span>
 			<span class="total__price">{{ subtotal }} ש"ח</span>
 		</div>
-		<nuxt-link to="/checkout/shipping-options" class="checkout-btn">
+		<!-- <a v-if="hoodiesCustom" :href="getHoodiesCheckoutLink">
+			תשלום הודיס
+		</a>
+		<nuxt-link v-else to="/checkout/shipping-options" class="checkout-btn">
 			לתשלום
-		</nuxt-link>
+		</nuxt-link> -->
+		<button class="checkout-btn" @click="goToCheckout">
+			לתשלום
+		</button>
 	</div>
 </div>

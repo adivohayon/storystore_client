@@ -76,7 +76,7 @@ export const actions = {
 
 						const hoodies = new Hoodies(integrations);
 						const externalId = '2136_23909_1.416071.0_2.415145.0';
-						hoodies.cart(externalId, 'Add');
+						hoodies.cart(externalId);
 
 						resolve();
 					} catch (err) {

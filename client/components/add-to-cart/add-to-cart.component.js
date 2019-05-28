@@ -1,7 +1,9 @@
 import { removeDuplicates } from '@/helpers/collection.helpers';
+import { hoodies } from '@/mixins/hoodies.js';
 import _get from 'lodash.get';
 export default {
 	name: 'add-to-cart',
+	mixins: [hoodies],
 	components: {},
 	props: {
 		variationAttribute: {
@@ -75,6 +77,17 @@ export default {
 			}
 			return path;
 		},
+		// hoodiesCustom() {
+		// 	const integrationType = _get(
+		// 		this.$store.state,
+		// 		'store.settings.integrations.type',
+		// 		null
+		// 	);
+		// 	console.log('cart page / hoodiesCustom', integrationType);
+		// 	if (integrationType && integrationType === 'HOODIES_CUSTOM') {
+		// 		return true;
+		// 	}
+		// },
 	},
 	created() {},
 	mounted() {
@@ -110,8 +123,13 @@ export default {
 		},
 		async addToCart(shelf, selectedAttributes, selectedProperty) {
 			if (this.showGoToPayment) {
-				this.$router.replace('/checkout/shipping-options');
-				return;
+				if (this.hoodiesCustom) {
+					this.goToHoodiesCheckout();
+					return;
+				} else {
+					this.$router.replace('/checkout/shipping-options');
+					return;
+				}
 			}
 
 			setTimeout(function() {
