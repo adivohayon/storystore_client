@@ -49,7 +49,9 @@ export default {
 	computed: {
 		showHeader() {
 			return (
-				this.$route.name === 'index' || !this.autostartStories || storiesStarted
+				this.$route.name === 'index' ||
+				!this.autostartStories ||
+				this.storiesStarted
 			);
 		},
 		primaryColor() {
