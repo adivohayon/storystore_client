@@ -29,6 +29,59 @@ For detailed explanation on how things work, checkout [Nuxt.js docs](https://nux
 3. `sendEmail: false [Boolean]` - If true, sends an email to the store info email on checkout response.
 4. `showSeeMore: true [Boolean]` - shows the 'See More' button in the first shelf.
 
+```
+{
+  "hasCart": true,
+  "primaryColor": "#000000",
+  "ctaColor": "#ffffff",
+  "sendEmail": false,
+  "showSeeMore": true,
+  "integrations": {
+    "order": {
+      "connector": "WOOCOMMERCE",
+      "baseURL": "http://localhost:8080/wp-json/",
+      "auth": {
+        "username": "adivohayon",
+        "password": "dsadsad!"
+      }
+    }
+  },
+  "colors": {
+    "primary": "#000000",
+    "cta": "#ffffff"
+  },
+  "feed": {
+    "showSeeMore": true
+  },
+  "stories": {
+    "autostart": false,
+    "started": false
+  }
+}
+```
+
+```
+{
+  "hasCart": true,
+  "primaryColor": "#000000",
+  "ctaColor": "#ffffff",
+  "sendEmail": false,
+  "showSeeMore": true,
+  "integrations": {
+    "type": "HOODIES_CUSTOM",
+    "baseUrl": "https://www.hoodies.co.il/Handlers/",
+    "cart": "AddToCartHandler.ashx"
+  },
+  "feed": {
+    
+  },
+  "stories": {
+    "autostart": true,
+    "started": false
+  }
+}
+```
+
 ## Shelf Types
 1. `ADD_TO_CART` [default] - Shelf is shoppable and can be added to cart.
 2. `SCROLL_TO` - makes the button scroll to section. Possible values are: `0` (first shelf), `4` (fifth shelf), `LAST_SHELF`.
