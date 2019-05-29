@@ -56,7 +56,7 @@ For detailed explanation on how things work, checkout [Nuxt.js docs](https://nux
 
 
 # CDN Sync
-aws s3 sync ./client/static s3://storystore-api/ --exclude ".DS_STORE" --delete
+aws s3 sync s3://storystore-api/ ./client/static --exclude ".DS_STORE" --delete
 
 # Register new store in production
 http://store_slug .storystore.co.il/register

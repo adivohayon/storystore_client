@@ -68,7 +68,9 @@ export default {
 		},
 		assetsPath() {
 			let path = process.env.staticDir ? process.env.staticDir : '/';
+			console.log('add-to-cart / assetsPath', path);
 			if (process.env.staticDir) {
+				// path += `${this.storeSlug}/${this.shelf.slug}/`;
 				path += `${this.storeSlug}/`;
 			}
 
@@ -141,6 +143,7 @@ export default {
 			// 		return variant.attributes.size;
 			// 	}
 			// });
+			console.log('addToCart / assetPath', this.assetsPath);
 			const imageName = this.variant.assets[0].src || this.variant.assets[0];
 			const image = this.assetsPath + imageName;
 			// const image = `https://assets.storystore.co.il/${this.storeSlug}/${

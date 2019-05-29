@@ -169,7 +169,7 @@ export default {
 					label: attribute.label || null,
 					value: attribute.value || null,
 					variationAttributeId: attribute.variationAttribute.id,
-					externalId: attribute.variationAttribute.external_id,
+					external_id: attribute.variationAttribute.external_id,
 				});
 			}
 			return attributes;

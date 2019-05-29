@@ -34,30 +34,21 @@ export const hoodies = {
 			let queryString = '?';
 			for (const item of cartItems) {
 				console.log('item', item);
-				let externalId = _get(
+				let external_id = _get(
 					item,
-					'attributes.fashion_simple_size.externalId',
+					'attributes.fashion_simple_size.external_id',
 					null
 				);
-				console.log('external id', externalId);
-				if (!externalId) {
+				console.log('external id', external_id);
+				if (!external_id) {
 					continue;
 				}
-				queryString += 'q=' + externalId + '&';
+				queryString += 'q=' + external_id + '&';
 			}
 			console.log('$$$$', queryString);
 			if (queryString == '?') {
 				return;
 			}
-			// cartItems.forEach(item => {
-			// 	let externalId = item.attributes.fashion_simple_size.externalId;
-			// 	items.push(externalId);
-			// });
-			// console.log('hoodies / items', items);
-			// const items = [
-			// 	'2136_23908_1.416072.0_2.415194.0',
-			// 	'2136_23908_1.416070.0_2.415194.0',
-			// ];
 			if (baseUrl && cartEndpoint) {
 				const checkoutLink = baseUrl + cartEndpoint;
 				console.log(
