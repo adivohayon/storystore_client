@@ -1,6 +1,6 @@
 <template>
 	<div :style="{ backgroundColor: bgColor }" class="layout layout--mobile">
-		<page-header v-if="!autostartStories || storiesStarted"></page-header>
+		<page-header v-if="showHeader"></page-header>
 		<loader v-if="showLoader"></loader>
 		<!-- <no-ssr> -->
 		<!-- <full-page
@@ -47,6 +47,11 @@ export default {
 		};
 	},
 	computed: {
+		showHeader() {
+			return (
+				this.$route.name === 'index' || !this.autostartStories || storiesStarted
+			);
+		},
 		primaryColor() {
 			return _get(this.$store.state, 'store.settings.primaryColor', '#ffffff');
 		},

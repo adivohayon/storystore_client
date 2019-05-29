@@ -1,7 +1,6 @@
 import _get from 'lodash/get';
 import Vue from 'vue';
 import { removeDuplicates } from '@/helpers/collection.helpers';
-import Hoodies from './../services/hoodies.service';
 export const state = () => ({
 	// added: {},
 });
@@ -62,31 +61,6 @@ export const actions = {
 				commit('addStore', storeSlug);
 			}
 			commit('addItem', { item, storeSlug });
-
-			const integrations = rootGetters['store/integrations'];
-			if (integrations) {
-				if (
-					integrations.type === 'HOODIES_CUSTOM' &&
-					integrations.baseUrl &&
-					integrations.cart
-				) {
-					console.log('aaaa');
-					try {
-						// const Hoodies = require('./../services/hoodies.service');
-
-						const hoodies = new Hoodies(integrations);
-						const externalId = '2136_23909_1.416071.0_2.415145.0';
-						hoodies.cart(externalId);
-
-						resolve();
-					} catch (err) {
-						reject(err);
-					}
-
-					// addToCartExternal(cartSettings.type, cartSettings.endpoint, externalId);
-				}
-			}
-
 			resolve();
 		});
 		// Add item integration
