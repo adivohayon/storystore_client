@@ -80,8 +80,8 @@ export default {
 		shelfInfo() {
 			// return this.$store.state.store.shelves[this.currentStoryIndex].info;
 			return _get(
-				this.$store.state,
-				`store.shelves[${this.currentStoryIndex}].info`,
+				this.influencer,
+				`shelves[${this.currentStoryIndex}].info`,
 				null
 			);
 		},
