@@ -3,7 +3,11 @@
 	:style="{ backgroundImage: 'url(' + slideAsset + ')' }"
 >
 	<!-- STORY CTA -->
-	<div class="story-slide__cta" @click="pauseAutoplay">
+	<div
+		class="story-slide__cta"
+		:class="{'story-slide__cta--ios': isIOS}"
+		@click="pauseAutoplay"
+	>
 		<shelf-title
 			v-if="variation && variation.price"
 			:price="variation.price"

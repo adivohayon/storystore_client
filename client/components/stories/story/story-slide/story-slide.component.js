@@ -31,6 +31,13 @@ export default {
 		};
 	},
 	computed: {
+		isIOS() {
+			console.log('navigator', navigator);
+			return (
+				(navigator && navigator.platform && navigator.platform === 'iOS') ||
+				navigator.userAgent.includes('iPhone')
+			);
+		},
 		shelfTitle() {
 			let title = this.shelf.name;
 			if (
