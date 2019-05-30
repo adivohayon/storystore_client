@@ -153,6 +153,7 @@ export default {
 						this.stories[storyIndex - 1].variations.length - 1;
 
 					this.currentStoryIndex--;
+					this.$emit('story-index-changed', this.currentStoryIndex);
 					console.log(
 						'previous story currentSlideIndex',
 						this.currentSlideIndex
