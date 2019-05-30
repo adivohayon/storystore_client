@@ -142,6 +142,13 @@ body {
 		// }
 	}
 
+	.story {
+		&__view {
+			height: calc(100vh);
+			position: relative;
+		}
+	}
+
 	/* overflow: hidden; */
 }
 
