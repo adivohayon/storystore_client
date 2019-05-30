@@ -126,6 +126,7 @@ export default {
 		async addToCart(shelf, selectedAttributes, selectedProperty) {
 			if (this.showGoToPayment) {
 				if (this.hoodiesCustom) {
+					this.$store.dispatch('toggleLoader', true);
 					this.goToHoodiesCheckout();
 					return;
 				} else {

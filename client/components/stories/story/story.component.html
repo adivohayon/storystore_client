@@ -30,6 +30,16 @@
 			<icon name="close" width="22" height="22"></icon>
 		</button>
 
+		<!-- PROMOTIONAL MESSAGE -->
+		<div
+			v-if="promotionalMessage"
+			class="promotional-message"
+			:style="{color: promotionalMessage.color, backgroundColor: promotionalMessage.bgColor}"
+		>
+		{{promotionalMessage.text}}
+	</div>
+
+
 		<!-- STORY SLIDES -->
 		<story-slide
 			v-for="(variation, variationIndex) in sortedVariations"
