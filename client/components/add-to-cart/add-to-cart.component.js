@@ -144,8 +144,21 @@ export default {
 			// 	}
 			// });
 			console.log('addToCart / assetPath', this.assetsPath);
-			const imageName = this.variant.assets[0].src || this.variant.assets[0];
-			const image = this.assetsPath + imageName;
+			console.log('addToCart asset[0]', this.variant.assets[0]);
+
+			// Regular shelf
+			let image = this.assetsPath;
+			if (this.variant.assets[0].src) {
+				image += this.variant.assets[0].src;
+			} else {
+				// Story shelf - or non-lazyloaded shelf
+				if (this.variant.assets[0]) {
+					image += `${shelf.slug}/${this.variant.slug}/${
+						this.variant.assets[0]
+					}`;
+				}
+			}
+
 			// const image = `https://assets.storystore.co.il/${this.storeSlug}/${
 			// 	this.shelf.slug
 			// }/${this.variant.slug}/${imageName}`;
