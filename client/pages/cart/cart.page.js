@@ -93,6 +93,7 @@ export default {
 	methods: {
 		goToCheckout() {
 			if (this.hoodiesCustom) {
+				this.$store.dispatch('toggleLoader', true);
 				this.goToHoodiesCheckout();
 			} else {
 				this.$router.replace('/checkout/shipping-options');
