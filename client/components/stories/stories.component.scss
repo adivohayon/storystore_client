@@ -53,7 +53,7 @@
 		}
 
 		&--circle {
-			height: 5rem;
+			height: auto;
 			width: 5rem;
 			.stories__thumbnail--border {
 				border-radius: 50%;
@@ -63,7 +63,7 @@
 					// max-height:3.9rem;
 					width: 4.5rem;
 					height: 4.5rem;
-					min-height:auto;
+					min-height: auto;
 					object-fit: cover;
 					object-position: top;
 				}
