@@ -43,7 +43,9 @@ export default {
 		};
 	},
 	data() {
-		return {};
+		return {
+			currentStoryIndex: 0,
+		};
 	},
 	mounted() {},
 	computed: {
@@ -76,8 +78,12 @@ export default {
 			return this.$store.state.showShelfInfo;
 		},
 		shelfInfo() {
-			const currentShelfIndex = this.$store.state.currentShelfIndex;
-			return this.$store.state.store.shelves[currentShelfIndex].info;
+			// return this.$store.state.store.shelves[this.currentStoryIndex].info;
+			return _get(
+				this.$store.state,
+				`store.shelves[${this.currentStoryIndex}].info`,
+				null
+			);
 		},
 		shippingDetails() {
 			return this.$store.state.store.shippingDetails;
@@ -92,6 +98,9 @@ export default {
 			setTimeout(() => {
 				this.$store.commit('store/updateStoryStarted', true);
 			}, 2300);
+		},
+		setStoryIndex(index) {
+			this.currentStoryIndex = index;
 		},
 	},
 };

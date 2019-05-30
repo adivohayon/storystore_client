@@ -140,6 +140,7 @@ export default {
 				} else {
 					this.currentSlideIndex = 0;
 					this.currentStoryIndex++;
+					this.$emit('story-index-changed', this.currentStoryIndex);
 					console.log('next story', this.currentStoryIndex);
 				}
 			}
