@@ -35,6 +35,9 @@ export default {
 	},
 	mounted() {},
 	computed: {
+		// referer() {
+		// 	console
+		// },
 		items() {
 			return this.$store.getters['cart/items'](this.storeSlug);
 		},
@@ -94,6 +97,9 @@ export default {
 			} else {
 				this.$router.replace('/checkout/shipping-options');
 			}
+		},
+		back() {
+			window.history.back();
 		},
 	},
 };

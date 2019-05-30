@@ -1,8 +1,8 @@
 <div class="page cart-page">
 	<div ref="stickyHeader" class="cart-page__header">
-		<nuxt-link to="/" class="back">
+		<div @click="back" class="back">
 			<icon name="chevron" :original="true" width="22" height="22"></icon>
-		</nuxt-link>
+		</div>
 		<div class="header-text">סל הקניות שלי</div>
 	</div>
 	<div class="cart-page__items">
