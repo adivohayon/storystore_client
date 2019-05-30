@@ -4,7 +4,9 @@
 	width: auto;
 
 	ul {
-		display: inline-block;
+		display: flex;
+		overflow-x: auto;
+		-webkit-overflow-scrolling: touch;
 		list-style: none;
 		padding: 0;
 	}
