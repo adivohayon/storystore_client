@@ -1,6 +1,7 @@
 import HorizontalSlider from '@/components/horizontal-slider';
 import Story from '@/components/stories/story';
 import _get from 'lodash.get';
+import _orderBy from 'lodash.orderby';
 export default {
 	name: 'stories',
 	components: { HorizontalSlider, Story },
@@ -29,22 +30,48 @@ export default {
 		};
 	},
 	computed: {
+		sortedVariations() {
+			return _orderBy(this.story.variations, ['variation_order'], ['asc']);
+		},
 		storyThumbnails() {
-			return this.stories
-				.filter(story => _get(story, 'variations[0].assets[0]', false))
-				.map(story => {
+			const thumbnails = [];
+			for (const story of this.stories) {
+				const variations = _orderBy(
+					story.variations,
+					['variation_order'],
+					['asc']
+				);
+				if (variations[0] && variations[0].assets && variations[0].assets[0]) {
 					let asset = this.assetsPath;
-					asset += `${story.slug}/${story.variations[0].slug}/`;
-					asset += _get(story, 'variations[0].assets[0]', '');
+					asset += `${story.slug}/${variations[0].slug}/`;
+					asset += variations[0].assets[0];
 					const name = _get(story, 'name', '');
-					const price = _get(story, 'variations[0].price', 0);
-					// return asset;
-					return {
+					const price = variations[0].price || '';
+
+					thumbnails.push({
 						asset,
 						name,
 						price,
-					};
-				});
+					});
+				}
+			}
+			return thumbnails;
+
+			// return this.stories
+			// 	.filter(story => _get(story, 'variations[0].assets[0]', false))
+			// 	.map(story => {
+			// 		let asset = this.assetsPath;
+			// 		asset += `${story.slug}/${story.variations[0].slug}/`;
+			// 		asset += _get(story, 'variations[0].assets[0]', '');
+			// 		const name = _get(story, 'name', '');
+			// 		const price = _get(story, 'variations[0].price', 0);
+			// 		// return asset;
+			// 		return {
+			// 			asset,
+			// 			name,
+			// 			price,
+			// 		};
+			// 	});
 		},
 		assetsPath() {
 			let path = process.env.staticDir ? process.env.staticDir : '/';
