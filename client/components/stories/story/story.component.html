@@ -32,7 +32,7 @@
 
 		<!-- STORY SLIDES -->
 		<story-slide
-			v-for="(variation, variationIndex) in story.variations"
+			v-for="(variation, variationIndex) in sortedVariations"
 			v-if="showStorySlide(variationIndex)"
 			:key="variationIndex"
 			:variation="variation"

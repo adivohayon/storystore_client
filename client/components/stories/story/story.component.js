@@ -1,4 +1,5 @@
 import _get from 'lodash.get';
+import _orderBy from 'lodash.orderby';
 import StorySlide from '@/components/stories/story/story-slide';
 export default {
 	name: 'story',
@@ -27,7 +28,7 @@ export default {
 			clickableAreaEl: null,
 			hammer: null,
 			lastProgress: 0,
-			duration: 3500,
+			duration: 63500,
 		};
 	},
 	watch: {
@@ -39,6 +40,9 @@ export default {
 		},
 	},
 	computed: {
+		sortedVariations() {
+			return _orderBy(this.story.variations, ['variation_order'], ['asc']);
+		},
 		paginationItems() {
 			return this.story.variations.map(variation => {
 				if (variation.itemProperty.type === 'fashion_simple_color') {
