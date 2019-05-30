@@ -1,10 +1,24 @@
 <div class="page influencer-page">
 	<div v-if="influencer && influencer.shelves.length > 0 ">
 		<!-- <h2>{{category.label}}</h2> -->
-		<stories :stories="influencer.shelves" :title="influencer.name" :autostart="autostartStories" @started="toggleStoryStarted"> </stories>
+		<stories
+			:stories="influencer.shelves"
+			:title="influencer.name"
+			:autostart="autostartStories"
+			@started="toggleStoryStarted"
+		>
+		</stories>
 	</div>
 	<div class="container" v-if="!autostartStories || storiesStarted">
 		<h2>כל הפריטים</h2>
 		<feed :shelves="stateShelves"></feed>
 	</div>
+	<transition name="modal-fade">
+		<shelf-info
+			v-if="showShelfInfo"
+			:info="shelfInfo"
+			:returns="returns"
+			:shipping="shippingDetails"
+		></shelf-info>
+	</transition>
 </div>

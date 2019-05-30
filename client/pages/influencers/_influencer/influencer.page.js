@@ -1,10 +1,11 @@
 import Stories from '@/components/stories';
 import Story from '@/components/stories/story';
 import Feed from '@/components/feed';
+import ShelfInfo from '@/components/shelf-info';
 import _get from 'lodash.get';
 import axios from 'axios';
 export default {
-	components: { Stories, Story, Feed },
+	components: { Stories, Story, Feed, ShelfInfo },
 	async asyncData({ req, store, params, error }) {
 		try {
 			const storeId = _get(store.state, 'store.storeId', null);
@@ -71,9 +72,19 @@ export default {
 				_get(this.$store.state, 'store.settings.stories.started', false)
 			);
 		},
-		// categ() {
-		// 	return _get(this.$store.state, 'store.shelves', []);
-		// },
+		showShelfInfo() {
+			return this.$store.state.showShelfInfo;
+		},
+		shelfInfo() {
+			const currentShelfIndex = this.$store.state.currentShelfIndex;
+			return this.$store.state.store.shelves[currentShelfIndex].info;
+		},
+		shippingDetails() {
+			return this.$store.state.store.shippingDetails;
+		},
+		returns() {
+			return this.$store.state.store.returns;
+		},
 	},
 	methods: {
 		toggleStoryStarted() {

@@ -1,10 +1,9 @@
 .influencer-page {
-
 	background-color: white;
 	&__banner {
 		img {
 			display: block;
-			width:100%;
+			width: 100%;
 			height: auto;
 		}
 	}
@@ -12,5 +11,23 @@
 		text-align: center;
 		padding: 2rem;
 		font-size: 2rem;
+	}
+	.modal-fade-enter {
+		opacity: 0;
+	}
+	.modal-fade-enter-active {
+		transition: opacity 0.2s ease-in;
+	}
+	.modal-fade-enter-to {
+		opacity: 0.7;
+	}
+	.modal-fade-leave {
+		opacity: 0.7;
+	}
+	.modal-fade-leave-active {
+		transition: opacity 0.25s ease-out;
+	}
+	.modal-fade-leave-to {
+		opacity: 0;
 	}
 }

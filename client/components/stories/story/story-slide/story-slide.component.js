@@ -48,6 +48,18 @@ export default {
 			}
 			return title;
 		},
+		showShelfInfo() {
+			return this.$store.state.showShelfInfo;
+		},
+		shelfInfo() {
+			return this.shelf.info;
+		},
+		shippingDetails() {
+			return this.$store.state.store.shippingDetails;
+		},
+		returns() {
+			return this.$store.state.store.returns;
+		},
 		assetsPath() {
 			let path = process.env.staticDir ? process.env.staticDir : '/';
 			if (process.env.staticDir) {
