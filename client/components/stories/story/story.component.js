@@ -40,6 +40,23 @@ export default {
 		},
 	},
 	computed: {
+		promotionalMessage() {
+			const integrationType = _get(
+				this.$store.state,
+				'store.settings.integrations.type',
+				null
+			);
+
+			if (integrationType && integrationType === 'HOODIES_CUSTOM') {
+				return {
+					text: 'הפריט השני ב-50% הנחה',
+					bgColor: '#D10303',
+					color: '#ffffff',
+				};
+			} else {
+				return null;
+			}
+		},
 		sortedVariations() {
 			return _orderBy(this.story.variations, ['variation_order'], ['asc']);
 		},
