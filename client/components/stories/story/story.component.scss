@@ -32,8 +32,10 @@
 			justify-content: space-evenly;
 			li {
 				flex: 1;
-				background-color: #ffffff;
-				margin-left: 0.4rem;
+				background-color: rgba(255, 255, 255, 0.3);
+				opacity: 0.5;
+				margin-left: 0.23rem;
+				border-radius: 2px;
 				&:first-child {
 					margin-right: 0.4rem;
 				}
@@ -46,6 +48,8 @@
 			&--progress {
 				height: 100%;
 				width: 0;
+				background-color: rgba(255, 255, 255, 1);
+				border-radius: 2px;
 			}
 		}
 	}

@@ -5,6 +5,11 @@
 		</div>
 		<div class="header-text">סל הקניות שלי</div>
 	</div>
+	<div class="discount" v-if="hoodiesCustom && items.length > 0">
+		<span class="discount__promotional">הפריט השני ב-50% הנחה</span>
+		<br />
+		<span class="discount__text">ההנחה תתעדכן בקופה</span>
+	</div>
 	<div class="cart-page__items">
 		<cart-item
 			v-for="(item, itemIndex) of items"
@@ -12,18 +17,12 @@
 			:item="item"
 			:itemIndex="itemIndex"
 		></cart-item>
-		<div class="discount" v-if="hoodiesCustom && items.length > 0">
-			<span class="discount__promotional">הפריט השני ב-50% הנחה</span>
-			<br />
-			<span class="discount__text" >ההנחה תתעדכן בקופה</span>
-		</div>
 	</div>
 	<div class="cart-page__checkout">
 		<div class="total">
 			<span class="total__text"> {{ itemsCount }} פריטים: סה"כ </span>
 			<span class="total__price">{{ subtotal }} ש"ח</span>
-			<br>
-
+			<br />
 		</div>
 		<!-- <a v-if="hoodiesCustom" :href="getHoodiesCheckoutLink">
 			תשלום הודיס

@@ -22,6 +22,7 @@ export default {
 		return {
 			// selectedAttIndex: 0,
 			setAttDeferredClick: false,
+			sizeError: false,
 		};
 	},
 	computed: {
@@ -63,7 +64,7 @@ export default {
 	mounted() {},
 	methods: {
 		async setAtt(att) {
-			console.log('change att');
+			console.log('change att', att, this.attKey);
 			this.$emit('changed-att', {
 				att,
 				attKey: this.attKey,

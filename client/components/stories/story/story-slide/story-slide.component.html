@@ -23,7 +23,6 @@
 			:selected-attribute="selectedAttributes[attributeKey]"
 			@changed-att="setAtt"
 		></attribute-picker>
-
 		<div class="story-slide__cta--footer">
 			<add-to-cart
 				:variant="variation"
@@ -32,6 +31,7 @@
 				:shelf="shelf"
 				:show-go-to-payment="showGoToPayment"
 				@setGoToPayment="showGoToPayment = true;"
+				@select-size-error="sizeErrorNotification"
 			></add-to-cart>
 			<nuxt-link to="/cart" class="cart-button" v-if="showCart">
 				<button class="btn">
@@ -43,7 +43,15 @@
 			</nuxt-link>
 		</div>
 	</div>
-
+	<transition name="size-error-notification">
+		<div v-if="sizeError" class="size-error">
+			<div>
+				<strong>אנא בחרי מידה</strong>
+				<br />
+				כדי להשלים את ההוספה לסל
+			</div>
+		</div>
+	</transition>
 	<!-- CLICKABLE AREA -->
 	<div class="clickable-area" ref="clickableArea">
 		<div class="clickable-area__previous"></div>

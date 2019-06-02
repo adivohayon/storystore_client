@@ -6,12 +6,19 @@
 		text-align: center;
 		font-size: 1.2rem;
 		padding: 1rem;
+		position: fixed;
+		top: 7rem;
+		width: 100%;
+		border-bottom: 1px solid #dbdbdb;
+		background: #fff;
+		z-index: 5;
 		&__text {
 			font-weight: bold;
 		}
 	}
 	&__header {
 		position: fixed;
+		top: 3rem;
 		width: 100%;
 		z-index: 10;
 		background: #fff;
@@ -23,7 +30,7 @@
 			right: 0;
 			bottom: 0;
 			height: 4rem;
-			line-height: 4.3;
+			line-height: 5.3;
 			padding: 0 1rem;
 		}
 		.header-text {
@@ -36,7 +43,7 @@
 	}
 	&__items {
 		z-index: 5;
-		padding-top: 4rem;
+		padding-top: 9rem;
 		padding-bottom: 9rem;
 	}
 	&__checkout {
@@ -57,8 +64,6 @@
 			&__price {
 				font-weight: bold;
 			}
-
-			
 		}
 		.checkout-btn {
 			display: block;

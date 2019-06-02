@@ -79,6 +79,12 @@ export default {
 			}
 			return path;
 		},
+		userSelectedSize() {
+			return (
+				this.selectedAttributes['fashion_simple_size'] &&
+				Object.keys(this.selectedAttributes['fashion_simple_size']).length > 0
+			);
+		},
 		// hoodiesCustom() {
 		// 	const integrationType = _get(
 		// 		this.$store.state,
@@ -99,9 +105,19 @@ export default {
 		ctaClick(shelf) {
 			switch (shelf.type) {
 				case 'ADD_TO_CART':
-					this.addToCart(shelf, this.selectedAttributes, this.selectedProperty);
-					this.$emit('setGoToPayment');
-					break;
+					console.log('this.userSelectedSize', this.userSelectedSize);
+
+					if (!this.userSelectedSize) {
+						this.$emit('select-size-error');
+					} else {
+						this.addToCart(
+							shelf,
+							this.selectedAttributes,
+							this.selectedProperty
+						);
+						this.$emit('setGoToPayment');
+						break;
+					}
 				case 'SCROLL_TO':
 					// const
 					let scrollTo = 0;

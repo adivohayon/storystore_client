@@ -7,19 +7,37 @@
 	left: 0;
 	background-color: white;
 	z-index: 50;
+	.size-error {
+		background: white;
+		color: black;
+		position: absolute;
+		width: 100%;
+		bottom: 0;
+		z-index: 2000;
+		height: 6rem;
+		text-align: center;
+		font-size: 1.2rem;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		// line-height: 6rem;
+	}
 	&__cta {
 		position: absolute;
 		z-index: 60;
 		bottom: 0;
 		width: 100%;
-		padding: 1rem 1rem 4.5rem 1rem;
+		padding: 1rem 1rem 1.5rem 1rem;
 
 		&--ios {
-			padding-bottom: 8.5rem;
+			padding-bottom: 1.5rem;
 		}
 
 		.attribute-picker {
 			margin-bottom: 1rem;
+			// &.size-error {
+			// 	border: 1px solid red;
+			// }
 		}
 		&--footer {
 			display: flex;
@@ -38,7 +56,7 @@
 						fill: #fff;
 					}
 					.counter {
-						background: #51A152;
+						background: #51a152;
 						text-align: center;
 						height: 1.9rem;
 						width: 1.9rem;
@@ -79,5 +97,24 @@
 
 	&--on-top {
 		z-index: 60;
+	}
+
+	.size-error-notification-enter {
+		height: 0;
+	}
+	.size-error-notification-enter-active {
+		transition: height 0.4s ease-out;
+	}
+	.size-error-notification-enter-to {
+		height: 6rem;
+	}
+	.size-error-notification-leave {
+		height: 6rem;
+	}
+	.size-error-notification-leave-active {
+		transition: height 0.2s ease-in;
+	}
+	.size-error-notification-leave-to {
+		height: 0;
 	}
 }

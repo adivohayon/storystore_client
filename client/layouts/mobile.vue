@@ -50,6 +50,7 @@ export default {
 		showHeader() {
 			return (
 				this.$route.name === 'index' ||
+				this.$route.name === 'cart' ||
 				!this.autostartStories ||
 				this.storiesStarted
 			);

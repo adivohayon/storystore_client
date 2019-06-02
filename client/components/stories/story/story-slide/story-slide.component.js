@@ -28,6 +28,7 @@ export default {
 			touchStartTimestamp: 0,
 			touchThreshold: 300, // ms
 			clickableAreaEl: null,
+			sizeError: false,
 		};
 	},
 	computed: {
@@ -198,7 +199,11 @@ export default {
 						...availableAttribute[0],
 						itemPropertyLabel,
 					};
-					this.$set(this.selectedAttributes, attributeKey, selectedAttribute);
+					console.log(
+						'story-slide / initializeSelectedAttributes / selectedAttribute',
+						selectedAttribute
+					);
+					this.$set(this.selectedAttributes, attributeKey, {});
 				}
 			}
 		},
@@ -222,6 +227,14 @@ export default {
 				...att,
 				itemPropertyLabel: this.availableAttributes[attKey].label,
 			};
+		},
+		sizeErrorNotification() {
+			console.log('sizeErrorNotification');
+			this.sizeError = true;
+			setTimeout(() => {
+				console.log('disappear!!!!');
+				this.sizeError = false;
+			}, 3000);
 		},
 	},
 };
