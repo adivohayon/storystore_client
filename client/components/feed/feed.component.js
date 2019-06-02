@@ -182,6 +182,8 @@ export default {
 					currency: shelf.variations[0].currency,
 					value: shelf.variations[0].finalPrice,
 				};
+
+				this.$analytics.productView(shelf.slug, shelf.variations[0].slug);
 				console.log('ViewContent', ViewContentValues);
 				fbq('track', 'ViewContent', ViewContentValues);
 			}

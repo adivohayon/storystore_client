@@ -34,6 +34,14 @@ export default {
 		return {};
 	},
 	mounted() {},
+	// watch: {
+	// 	itemsCount: function(newVal) {
+	// 		if (typeof dataLayer !== 'undefined' && dataLayer && newVal > 0) {
+	// 			console.log('dataLayer', dataLayer);
+	// 			this.$analytics.goToCart(newVal);
+	// 		}
+	// 	},
+	// },
 	computed: {
 		// referer() {
 		// 	console
@@ -94,8 +102,10 @@ export default {
 		goToCheckout() {
 			if (this.hoodiesCustom) {
 				this.$store.dispatch('toggleLoader', true);
+				this.$analytics.goToCheckout(this.subtotal);
 				this.goToHoodiesCheckout();
 			} else {
+				this.$analytics.goToCheckout(this.subtotal);
 				this.$router.replace('/checkout/shipping-options');
 			}
 		},

@@ -275,11 +275,17 @@ export default {
 
 				// Do not run this in category page as there is currently no lazy loading
 
+				const variationIndex = this.shelf.variations.findIndex(
+					variation => variation.variationId === this.variant.variationId
+				);
+
+				this.$analytics.productView(
+					this.shelf.slug,
+					this.shelf.variations[variationIndex].slug
+				);
+
 				// Load assets
 				this.variant.assets.forEach((asset, assetIndex) => {
-					const variationIndex = this.shelf.variations.findIndex(
-						variation => variation.variationId === this.variant.variationId
-					);
 					this.$store.commit('store/updateShelfAssetLoaded', {
 						shelfIndex: this.shelfIndex,
 						variationIndex,

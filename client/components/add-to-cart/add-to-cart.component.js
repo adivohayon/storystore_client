@@ -85,6 +85,9 @@ export default {
 				Object.keys(this.selectedAttributes['fashion_simple_size']).length > 0
 			);
 		},
+		subtotal() {
+			return this.$store.getters['cart/subtotal'](this.storeSlug);
+		},
 		// hoodiesCustom() {
 		// 	const integrationType = _get(
 		// 		this.$store.state,
@@ -139,13 +142,16 @@ export default {
 			const win = window.open(url, '_blank');
 			win.focus();
 		},
+
 		async addToCart(shelf, selectedAttributes, selectedProperty) {
 			if (this.showGoToPayment) {
 				if (this.hoodiesCustom) {
 					this.$store.dispatch('toggleLoader', true);
+					this.$analytics.goToCheckout(this.subtotal);
 					this.goToHoodiesCheckout();
 					return;
 				} else {
+					this.$analytics.goToCheckout(this.subtotal);
 					this.$router.replace('/checkout/shipping-options');
 					return;
 				}
@@ -215,6 +221,8 @@ export default {
 				item,
 				storeSlug: this.storeSlug,
 			});
+
+			this.$analytics.addToCart(item.shelfSlug, item.variationSlug);
 
 			if (typeof fbq !== 'undefined' && fbq) {
 				fbq('track', 'AddToCart', {

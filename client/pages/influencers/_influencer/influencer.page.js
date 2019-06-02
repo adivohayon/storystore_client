@@ -4,6 +4,7 @@ import Feed from '@/components/feed';
 import ShelfInfo from '@/components/shelf-info';
 import _get from 'lodash.get';
 import axios from 'axios';
+import { pageHeadMixin } from '@/helpers/mixins';
 export default {
 	components: { Stories, Story, Feed, ShelfInfo },
 	async asyncData({ req, store, params, error }) {
@@ -31,17 +32,18 @@ export default {
 	layout(ctx) {
 		return ctx.app.isMobile ? 'mobile' : 'desktop';
 	},
-	head() {
-		const storeSlug = this.$store.state.store.slug;
-		const faviconPath =
-			process.env.staticDir + storeSlug + `/${storeSlug}_favicon.png`;
+	mixins: [pageHeadMixin],
+	// head() {
+	// 	const storeSlug = this.$store.state.store.slug;
+	// 	const faviconPath =
+	// 		process.env.staticDir + storeSlug + `/${storeSlug}_favicon.png`;
 
-		return {
-			title:
-				this.$store.state.store.name + ' - ' + this.$store.state.store.tagline,
-			link: [{ rel: 'icon', href: faviconPath }],
-		};
-	},
+	// 	return {
+	// 		title:
+	// 			this.$store.state.store.name + ' - ' + this.$store.state.store.tagline,
+	// 		link: [{ rel: 'icon', href: faviconPath }],
+	// 	};
+	// },
 	data() {
 		return {
 			currentStoryIndex: 0,

@@ -93,6 +93,13 @@ export default {
 		if (this.autostart) {
 			// this.hideEls = true;
 			this.enterStory(0);
+			// const variations = _orderBy(
+			// 	this.stories[0].variations,
+			// 	['variation_order'],
+			// 	['asc']
+			// );
+			// this.$analytics.productView(variations[0].slug);
+			// this.goToSlide('', 0);
 			setTimeout(() => {
 				this.$emit('started');
 			}, 1300);
@@ -107,6 +114,7 @@ export default {
 					this.stories[storyIndex].variations.length - 1
 				) {
 					this.goToStory({ param: 'NEXT_STORY', storyIndex });
+					storyIndex++;
 				} else {
 					this.currentSlideIndex++;
 					console.log('next slide', this.currentSlideIndex, storyIndex);
@@ -116,11 +124,17 @@ export default {
 			if (param === 'PREVIOUS_SLIDE') {
 				if (this.currentSlideIndex === 0) {
 					this.goToStory({ param: 'PREVIOUS_STORY', storyIndex });
+					storyIndex--;
 				} else {
 					this.currentSlideIndex--;
 					console.log('previous slide', this.currentSlideIndex, storyIndex);
 				}
 			}
+
+			this.$analytics.productView(
+				this.stories[storyIndex].slug,
+				this.stories[storyIndex].variations[this.currentSlideIndex].slug
+			);
 		},
 		enterStory(storyIndex) {
 			if (!this.clickAvailable) {
@@ -131,6 +145,11 @@ export default {
 			this.currentStoryIndex = storyIndex;
 			this.currentSlideIndex = 0;
 			this.showStory = true;
+
+			this.$analytics.productView(
+				this.stories[storyIndex].slug,
+				this.stories[storyIndex].variations[this.currentSlideIndex].slug
+			);
 			// console.log('enter story', storyIndex);
 		},
 		goToStory({ param, storyIndex }) {

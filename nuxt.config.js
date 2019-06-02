@@ -83,6 +83,7 @@ module.exports = {
 		{ src: '~/plugins/vuelidate', ssr: true },
 		{ src: '~/plugins/hammer', ssr: false },
 		{ src: '~/plugins/carousel', ssr: false },
+		{ src: '~/plugins/analytics', ssr: true },
 		
 	],
 
@@ -91,18 +92,19 @@ module.exports = {
 	 */
 	modules: [
 		// Doc: https://github.com/nuxt-community/axios-module#usage
-		[
-			'@nuxtjs/google-tag-manager',
-			{
-				id: 'GTM-TQKQL2Z',
-				// dev: false,
-				// query: {
-				// 	gtm_preview: 'env-6',
-				// 	gtm_debug: 'x',
-				// 	url: 'http://localhost:3000',
-				// },
-			},
-		],
+		// [
+		// 	'@nuxtjs/google-tag-manager',
+		// 	{
+		// 		id: 'GTM-TQKQL2Z',
+		// 		dev: true,
+		// 		layer: 'dataLayer',
+		// 		query: {
+		// 			gtm_preview: 'env-6',
+		// 			gtm_debug: 'x',
+		// 			url: 'http://localhost:3000',
+		// 		},
+		// 	},
+		// ],
 		'@nuxtjs/axios',
 		'nuxt-polyfill',
 	],

@@ -44,6 +44,7 @@ export const actions = {
 	},
 	async nuxtServerInit({ dispatch }, { req, redirect, error, route, app }) {
 		console.log('---nuxtServerInit---');
+
 		const host = process.server ? req.headers.host : window.location.hostname;
 		// console.log('nuxtServerInit subdomains', req);
 		// console.log('host', host);

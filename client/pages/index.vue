@@ -43,6 +43,7 @@ import '@/icons';
 import { mapState } from 'vuex';
 import ScrollSnap from 'scroll-snap';
 import { pageHeadMixin } from '@/helpers/mixins';
+
 export default {
 	components: { Feed, PageHeader, CheckoutResponse, ShelfInfo },
 	layout(ctx) {
@@ -94,6 +95,7 @@ export default {
 	watch: {},
 	created() {},
 	async mounted() {
+		// console.log('analytics')
 		// window.ScreenOrientation.lock('portrait');
 		// this.$store.commit('toggleLoader');
 	},

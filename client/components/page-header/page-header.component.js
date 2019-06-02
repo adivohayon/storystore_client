@@ -50,5 +50,9 @@ export default {
 			return this.$store.getters['cart/itemsCount'](this.storeSlug);
 		},
 	},
-	methods: {},
+	methods: {
+		// goToCart() {
+		// 	this.$analytics.goToCart(this.cartItemsCount);
+		// },
+	},
 };
