@@ -51,11 +51,18 @@ export const hoodies = {
 			}
 			if (baseUrl && cartEndpoint) {
 				const checkoutLink = baseUrl + cartEndpoint;
+				const path = this.$route.path;
+				const lastIndex = path.lastIndexOf('/');
+				const influencer = path.substr(lastIndex + 1);
+				console.log(
+					'cart.page / hoodiesCheckoutLink / $route.path',
+					influencer
+				);
 				console.log(
 					'cart.page / hoodiesCheckoutLink',
-					checkoutLink + queryString
+					checkoutLink + queryString + 'i=' + influencer
 				);
-				return checkoutLink + queryString;
+				return checkoutLink + queryString + 'i=' + influencer;
 			}
 		},
 		goToHoodiesCheckout() {
