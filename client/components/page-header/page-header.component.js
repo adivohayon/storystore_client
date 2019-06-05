@@ -43,7 +43,7 @@ export default {
 				case '#ffffff':
 					return '#000000';
 				default:
-					return '#000000';
+					return '#ffffff';
 			}
 		},
 		cartItemsCount() {

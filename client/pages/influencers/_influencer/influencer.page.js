@@ -47,6 +47,7 @@ export default {
 	data() {
 		return {
 			currentStoryIndex: 0,
+			brandWebsiteUrl: 'https://www.hoodies.co.il/hoodies-pro/',
 		};
 	},
 	mounted() {},
@@ -55,7 +56,7 @@ export default {
 			return this.$store.state.store.slug;
 		},
 		banner() {
-			return this.assetsPath + 'banner.png';
+			return this.assetsPath + 'banner.jpg';
 		},
 		assetsPath() {
 			let path = process.env.staticDir ? process.env.staticDir : '/';
@@ -103,6 +104,9 @@ export default {
 		},
 		setStoryIndex(index) {
 			this.currentStoryIndex = index;
+		},
+		goToBrandWebsite() {
+			window.location.href = this.brandWebsiteUrl;
 		},
 	},
 };

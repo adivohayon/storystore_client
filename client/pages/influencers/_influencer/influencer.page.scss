@@ -1,10 +1,27 @@
 .influencer-page {
 	background-color: white;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
 	&__banner {
-		img {
+		flex: 1;
+		background-size: cover;
+		background-repeat: no-repeat;
+		position: relative;
+		.banner-cta {
+			position: absolute;
+			top: 24rem;
+			text-transform: uppercase;
+			background: #ffffff;
+			font-weight: bold;
+			width: 12rem;
+			height: 3rem;
 			display: block;
-			width: 100%;
-			height: auto;
+			margin: auto;
+			right: 0;
+			left: 0;
+			font-size: 1.2rem;
+			border: 2px solid #000000;
 		}
 	}
 	h2 {

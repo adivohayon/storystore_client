@@ -10,9 +10,17 @@
 		>
 		</stories>
 	</div>
-	<div class="container" v-if="!autostartStories || storiesStarted">
+	<!-- <div class="container" v-if="!autostartStories || storiesStarted">
 		<h2>כל הפריטים</h2>
 		<feed :shelves="stateShelves"></feed>
+	</div> -->
+	<div
+		class="influencer-page__banner"
+		:style="{backgroundImage: 'url(' + banner + ')'}"
+	>
+		<button class="banner-cta" @click="goToBrandWebsite">
+			shop now
+		</button>
 	</div>
 	<transition name="modal-fade">
 		<shelf-info
