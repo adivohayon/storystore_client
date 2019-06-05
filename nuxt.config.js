@@ -84,6 +84,7 @@ module.exports = {
 		{ src: '~/plugins/hammer', ssr: false },
 		{ src: '~/plugins/carousel', ssr: false },
 		{ src: '~/plugins/analytics', ssr: true },
+		{ src: '~/plugins/modernizr-custom', ssr: false },
 		
 	],
 

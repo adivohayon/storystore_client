@@ -32,6 +32,9 @@ export default {
 		};
 	},
 	computed: {
+		webpSupport() {
+			return Modernizr.webp;
+		},
 		isIOS() {
 			console.log('navigator', navigator);
 			return (
@@ -80,7 +83,11 @@ export default {
 			return this.$store.getters['cart/itemsCount'](this.storeSlug);
 		},
 		slideAsset() {
-			return this.assetsPath + this.variation.assets[0];
+			if (this.webpSupport) {
+				return this.assetsPath + this.variation.assets[1];
+			} else {
+				return this.assetsPath + this.variation.assets[0];
+			}
 		},
 		availableAttributes() {
 			const attributesArr = _get(this.variation, 'attributes', []);
