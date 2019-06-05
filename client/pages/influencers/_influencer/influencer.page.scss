@@ -5,12 +5,13 @@
 	flex-direction: column;
 	&__banner {
 		flex: 1;
-		background-size: cover;
-		background-repeat: no-repeat;
 		position: relative;
+		img {
+			width: 100%;
+		}
 		.banner-cta {
 			position: absolute;
-			top: 24rem;
+			top: 12rem;
 			text-transform: uppercase;
 			background: #ffffff;
 			font-weight: bold;

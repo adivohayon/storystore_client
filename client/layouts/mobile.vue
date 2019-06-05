@@ -170,7 +170,6 @@ html {
 }
 body {
 	overscroll-behavior-y: contain;
-	overflow: hidden;
 }
 *,
 *:before,
