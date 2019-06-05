@@ -49,12 +49,11 @@ export default {
 
 			if (integrationType && integrationType === 'HOODIES_CUSTOM') {
 				if (
-					this.story.slug === 'mor-swide1-pro-legging' ||
-					this.story.slug === 'mor-swide2-pro-legging' ||
-					this.story.slug === 'alina-levi1-pro-3-4-basic-skinny' ||
-					this.story.slug === 'alina-levi2-pro-3-4-basic-skinny' ||
+					this.story.slug === 'mor-swide1-pro-3-4-basic-skinny' ||
+					this.story.slug === 'nelly1-pro-3-4-basic-skinny' ||
+					this.story.slug === 'alina-levi1-pro-3-4-legging' ||
 					this.story.slug === 'mor-dvir1-pro-3-4-legging' ||
-					this.story.slug === 'inbar-alexandernrin1-pro-legging'
+					this.story.slug === 'inbar-alexandernrin1-stormtrooper-pro-legging'
 				) {
 					return {
 						text: '30% הנחה במילוי קוד קופון',
