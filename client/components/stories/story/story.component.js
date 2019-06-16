@@ -48,19 +48,21 @@ export default {
 			);
 
 			if (integrationType && integrationType === 'HOODIES_CUSTOM') {
-				if (
-					this.story.slug === 'mor-swide1-pro-3-4-basic-skinny' ||
-					this.story.slug === 'nelly1-pro-3-4-basic-skinny' ||
-					this.story.slug === 'alina-levi1-pro-3-4-legging' ||
-					this.story.slug === 'mor-dvir1-pro-3-4-legging' ||
-					this.story.slug === 'inbar-alexandernrin1-stormtrooper-pro-legging'
-				) {
-					return {
-						text: '30% הנחה במילוי קוד קופון',
-						bgColor: '#D10303',
-						color: '#ffffff',
-					};
-				}
+				// if (
+				// 	this.story.slug === 'mor-swide1-pro-3-4-basic-skinny' ||
+				// 	this.story.slug === 'nelly1-pro-3-4-basic-skinny' ||
+				// 	this.story.slug === 'alina-levi1-pro-3-4-legging' ||
+				// 	this.story.slug === 'mor-dvir1-pro-3-4-legging' ||
+				// 	this.story.slug === 'inbar-alexandernrin1-stormtrooper-pro-legging'
+				// ) {
+				// 	return {
+				// 		text: '30% הנחה במילוי קוד קופון',
+				// 		bgColor: '#D10303',
+				// 		color: '#ffffff',
+				// 	};
+				// }
+				const promotionMessage = _get(this.story.data, 'promotion', null);
+				return promotionMessage;
 			} else {
 				return null;
 			}
