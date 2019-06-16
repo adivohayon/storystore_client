@@ -39,7 +39,16 @@
 			@toggle-read-more="toggleReadMore"
 		></variation-info>
 		<div class="story-slide__cta--footer">
-			<add-to-cart
+			<cta
+				:shelf="shelf"
+				:variation="variation"
+				:selected-property="selectedProperty"
+				:selected-attributes="selectedAttributes"
+				:show-go-to-payment="showGoToPayment"
+				@setGoToPayment="showGoToPayment = true;"
+				@select-size-error="sizeErrorNotification"
+			></cta>
+			<!-- <add-to-cart
 				:variant="variation"
 				:selected-attributes="selectedAttributes"
 				:selected-property="selectedProperty"
@@ -47,7 +56,7 @@
 				:show-go-to-payment="showGoToPayment"
 				@setGoToPayment="showGoToPayment = true;"
 				@select-size-error="sizeErrorNotification"
-			></add-to-cart>
+			></add-to-cart> -->
 			<nuxt-link
 				to="/cart"
 				class="cart-button"

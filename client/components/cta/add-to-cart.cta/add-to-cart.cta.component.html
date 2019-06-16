@@ -1,0 +1,10 @@
+<div class="add-to-cart-cta">
+	<button
+		class="btn btn--add-to-cart"
+		:class="{'checkout': showGoToPayment}"
+		:style="{backgroundColor: bgColor, color: textColor}"
+		@click="addToCart(shelf)"
+	>
+		{{ ctaText }}
+	</button>
+</div>

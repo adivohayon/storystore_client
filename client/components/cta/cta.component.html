@@ -1,0 +1,9 @@
+<div class="cta">
+	<add-to-cart-cta
+		v-if="shelfType === 'ADD_TO_CART'"
+		@select-size-error="$emit('select-size-error')"
+		@setGoToPayment="$emit('setGoToPayment')"
+		v-bind="$props"
+	></add-to-cart-cta>
+	<order-cta v-if="shelfType === 'ORDER'"></order-cta>
+</div>
