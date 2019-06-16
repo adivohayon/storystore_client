@@ -33,7 +33,7 @@
 			:selected-attribute="selectedAttributes[attributeKey]"
 			@changed-att="setAtt"
 		></attribute-picker>
-		<variation-info
+		<variation-info v-if="variation.variation_info"
 			:info="variation.variation_info"
 			:showFullText="isCtaExpanded"
 			@toggle-read-more="toggleReadMore"
