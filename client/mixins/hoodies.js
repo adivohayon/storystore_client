@@ -49,7 +49,11 @@ export const hoodies = {
 			if (queryString == '?') {
 				return;
 			}
-			if (baseUrl && cartEndpoint) {
+			// UTM
+			let utmString = location.search;
+			utmString = utmString.substr(1);
+			console.log('utm string', utmString.substr(1));
+			if (baseUrl && cartEndpoint && utmString) {
 				const checkoutLink = baseUrl + cartEndpoint;
 				const path = this.$route.path;
 				const lastIndex = path.lastIndexOf('/');
@@ -60,9 +64,9 @@ export const hoodies = {
 				);
 				console.log(
 					'cart.page / hoodiesCheckoutLink',
-					checkoutLink + queryString + 'i=' + influencer
+					checkoutLink + queryString + 'i=' + influencer + '&' + utmString
 				);
-				return checkoutLink + queryString + 'i=' + influencer;
+				return checkoutLink + queryString + 'i=' + influencer + '&' + utmString;
 			}
 		},
 		goToHoodiesCheckout() {
