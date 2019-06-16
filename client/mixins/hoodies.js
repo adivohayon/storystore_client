@@ -18,60 +18,64 @@ export const hoodies = {
 	},
 	methods: {
 		getHoodiesCheckoutLink() {
+			let checkoutLink = '';
 			const baseUrl = _get(
 				this.$store.state,
 				'store.settings.integrations.baseUrl',
 				null
 			);
+
 			const cartEndpoint = _get(
 				this.$store.state,
 				'store.settings.integrations.cart',
 				null
 			);
-			const items = [];
+
+			if (!baseUrl || !cartEndpoint) {
+				throw new Error('Hoodies / Could not find baseUrl or cart endpoint');
+			}
+
+			checkoutLink = baseUrl + cartEndpoint;
+
+			// HANDLE ITEMS
 			const cartItems = this.$store.getters['cart/items']('hoodies');
-			console.log('hoodies / cartItems', cartItems);
-			let queryString = '?';
+			let queryString = '';
 			for (const item of cartItems) {
-				console.log('item', item);
 				let external_id = _get(
 					item,
 					'attributes.fashion_simple_size.external_id',
 					null
 				);
-				console.log('external id', external_id);
 				if (!external_id) {
 					continue;
 				}
 				queryString += 'q=' + external_id + '&';
 			}
-			console.log('$$$$', queryString);
-			if (queryString == '?') {
-				return;
+
+			// HANDLE INFLUENCER
+			const path = this.$route.path;
+			const matchStr = 'influencers/';
+			const lastIndex = path.lastIndexOf(matchStr) + matchStr.length;
+			const influencer = path.substr(lastIndex);
+
+			if (!influencer) {
+				throw new Error('influencer not found');
 			}
-			// UTM
-			let utmString = location.search;
-			utmString = utmString.substr(1);
-			console.log('utm string', utmString.substr(1));
-			if (baseUrl && cartEndpoint && utmString) {
-				const checkoutLink = baseUrl + cartEndpoint;
-				const path = this.$route.path;
-				const lastIndex = path.lastIndexOf('/');
-				const influencer = path.substr(lastIndex + 1);
-				console.log(
-					'cart.page / hoodiesCheckoutLink / $route.path',
-					influencer
-				);
-				console.log(
-					'cart.page / hoodiesCheckoutLink',
-					checkoutLink + queryString + 'i=' + influencer + '&' + utmString
-				);
-				return checkoutLink + queryString + 'i=' + influencer + '&' + utmString;
+			queryString += 'i=' + influencer;
+
+			// ADDS CURRENT QUERY STRING TO LINK
+			console.log('currentQueryStr', currentQueryStr);
+			let currentQueryStr = location.search.substr(1);
+			if (currentQueryStr) {
+				queryString += `&${currentQueryStr}`;
 			}
+
+			checkoutLink += `?${queryString}`;
+			console.log('cart.page / hoodiesCheckoutLink', checkoutLink);
 		},
 		goToHoodiesCheckout() {
 			const url = this.getHoodiesCheckoutLink();
-			window.location.href = url;
+			// window.location.href = url;
 		},
 	},
 };
