@@ -2,10 +2,11 @@ import AddToCart from '@/components/add-to-cart';
 import AttributePicker from '@/components/attribute-picker';
 import ShelfTitle from '@/components/shelf-title';
 import Scrims from '@/components/scrims';
+import VariationInfo from '@/components/variation-info';
 import _get from 'lodash.get';
 export default {
 	name: 'story-slide',
-	components: { AddToCart, AttributePicker, Scrims, ShelfTitle },
+	components: { AddToCart, AttributePicker, Scrims, ShelfTitle, VariationInfo },
 	props: {
 		variation: {
 			type: Object,
