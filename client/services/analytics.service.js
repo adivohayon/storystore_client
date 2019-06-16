@@ -39,10 +39,13 @@ export class Analytics {
 	}
 
 	productView(shelfSlug, variationSlug) {
-		window.dataLayer.push({
-			event: 'productView',
-			variationSlug,
-			shelfSlug,
-		});
+		console.log('window', window.dataLayer);
+		if (window.dataLayer) {
+			window.dataLayer.push({
+				event: 'productView',
+				variationSlug,
+				shelfSlug,
+			});
+		}
 	}
 }

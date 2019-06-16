@@ -3,6 +3,8 @@ import Story from '@/components/stories/story';
 import Feed from '@/components/feed';
 import _get from 'lodash.get';
 import axios from 'axios';
+import { pageHeadMixin } from '@/helpers/mixins';
+
 export default {
 	components: { Stories, Story, Feed },
 	async asyncData({ req, store, params }) {
@@ -18,6 +20,7 @@ export default {
 	layout(ctx) {
 		return ctx.app.isMobile ? 'mobile' : 'desktop';
 	},
+	mixins: [pageHeadMixin],
 	head() {
 		const storeSlug = this.$store.state.store.slug;
 		const faviconPath =

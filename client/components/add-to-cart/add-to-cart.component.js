@@ -148,7 +148,14 @@ export default {
 					break;
 				case 'CONTACT_FORM':
 					this.$emit('cta-clicked');
+					break;
+				case 'ORDER':
+					this.createOrder(shelf, this.selectedProperty, quantity);
+					break;
 			}
+		},
+		createOrder(shelf, quantity) {
+			console.log('createOrder');
 		},
 		goToLink(url) {
 			const win = window.open(url, '_blank');

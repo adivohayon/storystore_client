@@ -4,6 +4,7 @@ import ShelfTitle from '@/components/shelf-title';
 import Scrims from '@/components/scrims';
 import VariationInfo from '@/components/variation-info';
 import _get from 'lodash.get';
+import { getFilenameWithoutExtension } from './../../../../helpers/utilities.helpers';
 export default {
 	name: 'story-slide',
 	components: { AddToCart, AttributePicker, Scrims, ShelfTitle, VariationInfo },
@@ -86,7 +87,8 @@ export default {
 		},
 		slideAsset() {
 			if (this.webpSupport) {
-				return this.assetsPath + this.variation.assets[1];
+				// return this.assetsPath + this.variation.assets[0] + '.webp';
+				return this.assetsPath + this.variation.assets[0];
 			} else {
 				return this.assetsPath + this.variation.assets[0];
 			}
