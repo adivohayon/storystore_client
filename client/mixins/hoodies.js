@@ -15,7 +15,17 @@ export const hoodies = {
 				return true;
 			}
 		},
+		influencer() {
+			return _get(this.$store.state, 'store.influencer', null);
+			// const path = this.$route.path;
+			// const matchStr = 'influencers/';
+			// const lastIndex = path.lastIndexOf(matchStr) + matchStr.length;
+			// const influencer = path.substr(lastIndex);
+
+			// return influencer || null;
+		},
 	},
+
 	methods: {
 		getHoodiesCheckoutLink() {
 			let checkoutLink = '';
@@ -53,15 +63,11 @@ export const hoodies = {
 			}
 
 			// HANDLE INFLUENCER
-			const path = this.$route.path;
-			const matchStr = 'influencers/';
-			const lastIndex = path.lastIndexOf(matchStr) + matchStr.length;
-			const influencer = path.substr(lastIndex);
 
-			if (!influencer) {
+			if (!this.influencer.slug) {
 				throw new Error('influencer not found');
 			}
-			queryString += 'i=' + influencer;
+			queryString += 'i=' + this.influencer.slug;
 
 			// ADDS CURRENT QUERY STRING TO LINK
 			console.log('currentQueryStr', currentQueryStr);

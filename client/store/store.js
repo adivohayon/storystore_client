@@ -10,6 +10,7 @@ export const state = () => ({
 	shelves: [],
 	pagination: {},
 	settings: {},
+	influencer: {},
 	// feedComponent: {},
 	// slug: null,
 });
@@ -87,6 +88,9 @@ export const mutations = {
 	},
 	updateStoryStarted(state, toggle) {
 		Vue.set(state.settings.stories, 'started', toggle);
+	},
+	setInfluencer(state, influencer) {
+		Vue.set(state, 'influencer', influencer);
 	},
 };
 
@@ -209,7 +213,7 @@ export const actions = {
 		});
 		// return
 	},
-	getInfluencer({}, { storeId, influencerSlug }) {
+	getInfluencer({ commit }, { storeId, influencerSlug }) {
 		return new Promise(async (resolve, reject) => {
 			try {
 				if (!storeId || !influencerSlug) {
@@ -218,6 +222,7 @@ export const actions = {
 				const influencer = await this.$axios.$get(
 					`stores/${storeId}/influencers/${influencerSlug}`
 				);
+				commit('setInfluencer', influencer);
 				resolve(influencer);
 			} catch (err) {
 				reject(err);

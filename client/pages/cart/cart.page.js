@@ -3,8 +3,9 @@ import { hoodies } from '@/mixins/hoodies.js';
 import '@/icons';
 import { getSubdomainFromHost } from '@/helpers/async-data.helpers';
 import _get from 'lodash.get';
+import { pageHeadMixin } from '@/helpers/mixins';
 export default {
-	mixins: [hoodies],
+	mixins: [pageHeadMixin, hoodies],
 	components: { CartItem },
 	async asyncData({ req, store }) {
 		const host = process.server ? req.headers.host : window.location.hostname;
