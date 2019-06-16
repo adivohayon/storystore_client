@@ -8,13 +8,8 @@
 					:key="paginationIndex"
 				>
 					<!-- {{ showProgress }} -->
-					<div
-						class="story__progress-bar"
-					>
-						<div
-							class="story__progress-bar--progress"
-							ref="progressBars"
-						></div>
+					<div class="story__progress-bar">
+						<div class="story__progress-bar--progress" ref="progressBars"></div>
 					</div>
 
 					<!-- {{ itemIndex }} -->
@@ -24,7 +19,7 @@
 		</div>
 
 		<!--CLOSE BUTTON -->
-		<button class="btn--close" @click="closeStory">
+		<button v-if="showCloseBtn" class="btn--close" @click="closeStory">
 			<icon name="close" width="22" height="22"></icon>
 		</button>
 
@@ -34,9 +29,8 @@
 			class="promotional-message"
 			:style="{color: promotionalMessage.color, backgroundColor: promotionalMessage.bgColor}"
 		>
-		{{promotionalMessage.text}}
-	</div>
-
+			{{ promotionalMessage.text }}
+		</div>
 
 		<!-- STORY SLIDES -->
 		<story-slide
@@ -50,6 +44,7 @@
 			@next-slide="nextSlide"
 			@previous-slide="previousSlide"
 			@go-to-story="goToStory($event)"
+			@toggle-story-slide-close-btn="showCloseBtn = !showCloseBtn"
 			:class="{'story-slide--on-top' : variationIndex === currentSlideIndex}"
 		></story-slide>
 

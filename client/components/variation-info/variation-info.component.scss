@@ -1,10 +1,13 @@
 .variation-info {
 	width: 100%;
-	color: #ffffff;
+	color: #000000;
 	&__content {
 		max-height: 7rem;
 		overflow: hidden;
+		// transition: max-height 0.4s;
 		&.show-full-text {
+			// transition: max-height 0.4s;
+			// max-height: 100%;
 			max-height: 100%;
 			overflow: auto;
 		}
@@ -13,4 +16,23 @@
 		color: #0080ff;
 		text-decoration: underline;
 	}
+}
+
+.test-enter {
+	height: 7rem;
+}
+.test-enter-active {
+	transition: height 2s;
+}
+.test-enter-to {
+	height: 100%;
+}
+.test-leave {
+	height: 100%;
+}
+.test-leave-active {
+	transition: height 2s;
+}
+.test-leave-to {
+	height: 7rem;
 }

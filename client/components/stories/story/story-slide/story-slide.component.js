@@ -251,5 +251,9 @@ export default {
 				this.sizeError = false;
 			}, 3000);
 		},
+		toggleReadMore() {
+			this.isCtaExpanded = !this.isCtaExpanded;
+			this.$emit('toggle-story-slide-close-btn');
+		},
 	},
 };

@@ -1,10 +1,16 @@
 <div class="variation-info">
+	<transition name="expand-variation-info">
+		<div
+			v-html="info"
+			class="variation-info__content"
+			:class="{'show-full-text': showFullText}"
+		></div>
+	</transition>
 	<div
-		v-html="info"
-		class="variation-info__content"
-		:class="{'show-full-text': showFullText}"
-	></div>
-	<div class="variation-info__read-more" @click="$emit('toggle-read-more')">
+		v-if="!showFullText"
+		class="variation-info__read-more"
+		@click="$emit('toggle-read-more')"
+	>
 		קרא עוד...
 	</div>
 </div>

@@ -4,17 +4,26 @@
 	:style="{ backgroundImage: 'url(' + slideAsset + ')' }"
 >
 	<!-- STORY CTA -->
+	<!-- <transition name="expand-read-more"> -->
 	<div
 		class="story-slide__cta"
 		:class="{'story-slide__cta--ios': isIOS, 'story-slide__cta--expanded': isCtaExpanded}"
 		@click="pauseAutoplay"
 	>
+		<button
+			v-if="isCtaExpanded"
+			class="close-read-more"
+			@click="toggleReadMore"
+		>
+			<icon name="close" width="22" height="22"></icon>
+		</button>
 		<shelf-title
 			v-if="variation && variation.price"
 			:price="variation.price"
 			:currency="variation.currency"
 			:title="shelfTitle"
 			:info="shelf.info"
+			:shelfType="shelf.type"
 		></shelf-title>
 		<attribute-picker
 			v-for="(attribute, attributeKey) in availableAttributes"
@@ -27,7 +36,7 @@
 		<variation-info
 			:info="variation.variation_info"
 			:showFullText="isCtaExpanded"
-			@toggle-read-more="isCtaExpanded = !isCtaExpanded"
+			@toggle-read-more="toggleReadMore"
 		></variation-info>
 		<div class="story-slide__cta--footer">
 			<add-to-cart
@@ -54,6 +63,7 @@
 			</nuxt-link>
 		</div>
 	</div>
+	<!-- </transition> -->
 	<transition name="size-error-notification">
 		<div v-if="sizeError" class="size-error">
 			<div>
@@ -69,5 +79,5 @@
 		<div class="clickable-area__next"></div>
 	</div>
 	<!-- SCRIMS -->
-	<scrims></scrims>
+	<scrims :bottom="shelf.type === 'ADD_TO_CART'"></scrims>
 </div>

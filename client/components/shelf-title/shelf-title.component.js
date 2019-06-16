@@ -18,6 +18,10 @@ export default {
 			type: String,
 			default: '',
 		},
+		shelfType: {
+			type: String,
+			default: '',
+		},
 	},
 	data() {
 		return {
@@ -35,6 +39,13 @@ export default {
 			if (this.currency == 'USD') return '$';
 			if (this.currency == 'EUR') return '€';
 			return this.currency;
+		},
+		textColor() {
+			if (this.shelfType === 'ADD_TO_CART') {
+				return '#ffffff';
+			} else {
+				return '#000000';
+			}
 		},
 	},
 	created() {},

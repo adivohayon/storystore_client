@@ -29,6 +29,7 @@ export default {
 			hammer: null,
 			lastProgress: 0,
 			duration: 94000,
+			showCloseBtn: true,
 		};
 	},
 	watch: {
