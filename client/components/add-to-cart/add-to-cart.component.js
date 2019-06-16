@@ -1,4 +1,5 @@
 import { removeDuplicates } from '@/helpers/collection.helpers';
+import { WoocommerceService } from './../../services/woocommerce.service';
 import { hoodies } from '@/mixins/hoodies.js';
 import _get from 'lodash.get';
 export default {
@@ -88,6 +89,17 @@ export default {
 		subtotal() {
 			return this.$store.getters['cart/subtotal'](this.storeSlug);
 		},
+		cartIntegration() {
+			const integrations = _get(
+				this.$store.state,
+				'store.settings.integrations',
+				[]
+			);
+			const cartIntegration = integrations.find(
+				integration => integration.type === 'cart'
+			);
+			return cartIntegration;
+		},
 		// hoodiesCustom() {
 		// 	const integrationType = _get(
 		// 		this.$store.state,
@@ -144,6 +156,7 @@ export default {
 		},
 
 		async addToCart(shelf, selectedAttributes, selectedProperty) {
+			// Handle show go to payment
 			if (this.showGoToPayment) {
 				if (this.hoodiesCustom) {
 					this.$store.dispatch('toggleLoader', true);
@@ -157,34 +170,57 @@ export default {
 				}
 			}
 
+			// NOT SURE ???
 			setTimeout(function() {
 				let el = document.querySelector(':focus');
 				if (el) el.blur();
 			}, 300);
-			// const sizes = shelf.variations.map(variant => {
-			// 	if (variant.attributes.size) {
-			// 		return variant.attributes.size;
-			// 	}
-			// });
-			console.log('addToCart / assetPath', this.assetsPath);
-			console.log('addToCart asset[0]', this.variant.assets[0]);
 
-			// Regular shelf
-			let image = this.assetsPath;
-			if (this.variant.assets[0].src) {
-				image += this.variant.assets[0].src;
-			} else {
-				// Story shelf - or non-lazyloaded shelf
-				if (this.variant.assets[0]) {
-					image += `${shelf.slug}/${this.variant.slug}/${
-						this.variant.assets[0]
-					}`;
-				}
+			// HANDLE CART ITEM IMAGE
+			const image = this.getCartItemImage(shelf);
+
+			// SETUP ITEM
+			const variationAttributeIds = getVariationAttributeIds(
+				selectedAttributes
+			);
+			const item = createItem(
+				shelf,
+				variationAttributeIds,
+				selectedAttributes,
+				selectedProperty,
+				image
+			);
+
+			// ADD ITEM TO STATE
+			await this.$store.dispatch('cart/add', {
+				item,
+				storeSlug: this.storeSlug,
+			});
+
+			// INTEGRATE WITH CONNECTORS
+			if (cartIntegration.connector === 'WOOCOMMERCE') {
+				console.log('WOOCOMMERCE');
+				const woocommerceService = new WoocommerceService();
+				woocommerceService.addToCart(item);
 			}
 
-			// const image = `https://assets.storystore.co.il/${this.storeSlug}/${
-			// 	this.shelf.slug
-			// }/${this.variant.slug}/${imageName}`;
+			// ANALYTICS
+			this.$analytics.addToCart(item.shelfSlug, item.variationSlug);
+			if (typeof fbq !== 'undefined' && fbq) {
+				fbq('track', 'AddToCart', {
+					content_name: `${this.shelf.name} - ${this.variant.property_label}`,
+					content_category: this.storeSlug,
+					content_ids: [this.variant.variationId],
+					content_type: 'product',
+					value: this.variant.finalPrice,
+					currency: this.variant.currency,
+				});
+			}
+
+			console.log('Cart / Add to cart', item);
+		},
+
+		getVariationAttributeIds(selectedAttributes) {
 			const variationAttributeIds = [];
 			for (const attributeKey in selectedAttributes) {
 				if (
@@ -196,6 +232,17 @@ export default {
 					);
 				}
 			}
+
+			return variationAttributeIds;
+		},
+
+		createItem(
+			shelf,
+			variationAttributeIds,
+			selectedAttributes,
+			selectedProperty,
+			image
+		) {
 			const item = {
 				shelfId: shelf.id,
 				name: shelf.name,
@@ -215,35 +262,23 @@ export default {
 			delete item.assets;
 			delete item.variations;
 
-			console.log('ADD TO CART', item);
+			return item;
+		},
 
-			await this.$store.dispatch('cart/add', {
-				item,
-				storeSlug: this.storeSlug,
-			});
-
-			this.$analytics.addToCart(item.shelfSlug, item.variationSlug);
-
-			if (typeof fbq !== 'undefined' && fbq) {
-				fbq('track', 'AddToCart', {
-					content_name: `${this.shelf.name} - ${this.variant.property_label}`,
-					content_category: this.storeSlug,
-					content_ids: [this.variant.variationId],
-					content_type: 'product',
-					value: this.variant.finalPrice,
-					currency: this.variant.currency,
-				});
+		getCartItemImage(shelf) {
+			let image = this.assetsPath;
+			if (this.variant.assets[0].src) {
+				image += this.variant.assets[0].src;
+			} else {
+				// Story shelf - or non-lazyloaded shelf
+				if (this.variant.assets[0]) {
+					image += `${shelf.slug}/${this.variant.slug}/${
+						this.variant.assets[0]
+					}`;
+				}
 			}
-			// console.log('this.ga', this.$ga);
-			item.storeSlug = this.storeSlug;
 
-			// this.added = true;
-			// this.$ga.event({
-			// 	eventCategory: 'category',
-			// 	eventAction: 'add-to-cart',
-			// 	eventLabel: 'item',
-			// 	eventValue: JSON.stringify(item),
-			// });
+			return image;
 		},
 	},
 };
