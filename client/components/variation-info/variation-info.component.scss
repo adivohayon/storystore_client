@@ -1,2 +1,16 @@
 .variation-info {
+	width: 100%;
+	color: #ffffff;
+	&__content {
+		max-height: 7rem;
+		overflow: hidden;
+		&.show-full-text {
+			max-height: 100%;
+			overflow: auto;
+		}
+	}
+	&__read-more {
+		color: #0080ff;
+		text-decoration: underline;
+	}
 }

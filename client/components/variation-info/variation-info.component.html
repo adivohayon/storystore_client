@@ -1,3 +1,10 @@
 <div class="variation-info">
-	VARIATION INFO
+	<div
+		v-html="info"
+		class="variation-info__content"
+		:class="{'show-full-text': showFullText}"
+	></div>
+	<div class="variation-info__read-more" @click="$emit('toggle-read-more')">
+		קרא עוד...
+	</div>
 </div>

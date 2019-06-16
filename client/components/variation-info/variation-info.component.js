@@ -2,7 +2,22 @@
 export default {
 	name: 'variation-info',
 	components: {},
-	props: {},
+	props: {
+		// info: {
+		// 	type: Object,
+		// 	default() {
+		// 		return {};
+		// 	},
+		// },
+		info: {
+			type: String,
+			default: '',
+		},
+		showFullText: {
+			type: Boolean,
+			default: false,
+		},
+	},
 	data() {
 		return {};
 	},

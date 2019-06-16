@@ -33,6 +33,12 @@
 			padding-bottom: 1.5rem;
 		}
 
+		&--expanded {
+			position: relative;
+			height: 100%;
+			background: rgba(0,0,0,0.8);
+		}
+
 		.attribute-picker {
 			margin-bottom: 1rem;
 			// &.size-error {

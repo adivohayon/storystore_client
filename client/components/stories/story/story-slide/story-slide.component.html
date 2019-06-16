@@ -5,7 +5,7 @@
 	<!-- STORY CTA -->
 	<div
 		class="story-slide__cta"
-		:class="{'story-slide__cta--ios': isIOS}"
+		:class="{'story-slide__cta--ios': isIOS, 'story-slide__cta--expanded': isCtaExpanded}"
 		@click="pauseAutoplay"
 	>
 		<shelf-title
@@ -23,7 +23,11 @@
 			:selected-attribute="selectedAttributes[attributeKey]"
 			@changed-att="setAtt"
 		></attribute-picker>
-		<variation-info></variation-info>
+		<variation-info
+			:info="variation.variation_info"
+			:showFullText="isCtaExpanded"
+			@toggle-read-more="isCtaExpanded = !isCtaExpanded"
+		></variation-info>
 		<div class="story-slide__cta--footer">
 			<add-to-cart
 				:variant="variation"

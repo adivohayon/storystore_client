@@ -30,6 +30,7 @@ export default {
 			touchThreshold: 300, // ms
 			clickableAreaEl: null,
 			sizeError: false,
+			isCtaExpanded: false,
 		};
 	},
 	computed: {
@@ -125,7 +126,9 @@ export default {
 		this.initializeClickableArea();
 	},
 	destroyed() {
-		this.hammer.destroy();
+		if (this.hammer) {
+			this.hammer.destroy();
+		}
 	},
 	methods: {
 		initializeClickableArea() {
