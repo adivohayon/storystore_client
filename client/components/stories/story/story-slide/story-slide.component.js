@@ -118,7 +118,9 @@ export default {
 				});
 			}
 			return attributes;
-			// attributesArr.
+		},
+		shelfTypeClass() {
+			return 'story-slide--' + this.shelf.type.toLowerCase();
 		},
 	},
 	created() {},
