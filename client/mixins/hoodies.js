@@ -75,7 +75,7 @@ export const hoodies = {
 		},
 		goToHoodiesCheckout() {
 			const url = this.getHoodiesCheckoutLink();
-			// window.location.href = url;
+			window.location.href = url;
 		},
 	},
 };
