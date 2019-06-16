@@ -72,6 +72,8 @@ export const hoodies = {
 
 			checkoutLink += `?${queryString}`;
 			console.log('cart.page / hoodiesCheckoutLink', checkoutLink);
+
+			return checkoutLink;
 		},
 		goToHoodiesCheckout() {
 			const url = this.getHoodiesCheckoutLink();
