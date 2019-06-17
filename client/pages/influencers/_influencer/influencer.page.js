@@ -97,7 +97,6 @@ export default {
 	},
 	methods: {
 		toggleStoryStarted() {
-			console.log('aaaa');
 			setTimeout(() => {
 				this.$store.commit('store/updateStoryStarted', true);
 			}, 2300);

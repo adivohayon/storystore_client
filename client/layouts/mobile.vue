@@ -68,9 +68,11 @@ export default {
 			return this.$store.state.loader.hideElements;
 		},
 		autostartStories() {
+			console.log('autostartStories');
 			return _get(this.$store.state, 'store.settings.stories.autostart', false);
 		},
 		storiesStarted() {
+			console.log('storiesStarted');
 			return (
 				this.autostartStories &&
 				_get(this.$store.state, 'store.settings.stories.started', false)
@@ -83,13 +85,17 @@ export default {
 		// 	);
 		// },
 	},
-	created() {},
+	created() {
+		console.log('! ! ! mobile vue created');
+		this.$store.dispatch('toggleLoader', true);
+	},
 	mounted() {
-		console.log('aaaa', this.$analytics);
+		console.log('mobile vue mounted', this.$analytics);
 		// Full height fix
 		const vh = window.innerHeight * 0.01;
 		document.documentElement.style.setProperty('--vh', `${vh}px`);
 		// this.orderQuery = this.$route.query.order;
+		this.$store.dispatch('toggleLoader', false);
 	},
 	methods: {
 		test() {
