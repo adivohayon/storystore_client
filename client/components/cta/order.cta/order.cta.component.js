@@ -1,6 +1,7 @@
+import QuantityPicker from '@/components/quantity-picker';
 export default {
 	name: 'order-cta',
-	components: {},
+	components: { QuantityPicker },
 	props: {},
 	data() {
 		return {};

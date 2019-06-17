@@ -1,3 +1,20 @@
 .order-cta {
-	
+	display: flex;
+	.btn--order {
+		color: #ffffff;
+		letter-spacing: 0.19rem;
+		text-align: center;
+		padding: 1.2rem 0.9rem;
+		border: none;
+		background-color: #02AEEF;
+		font-size: 1.2rem;
+		height: 3.4rem;
+		line-height: 1;
+		border-radius: 23px;
+		display: block;
+		width: 100%;
+		font-weight: bold;
+		transition: 0.5s all;
+		-webkit-transition: 0.5s all;
+	}
 }

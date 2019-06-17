@@ -1,3 +1,20 @@
 .quantity-picker {
-	
+	position: relative;
+	&__select {
+		margin-left: 1rem;
+		font-size: 1.3rem;
+		-webkit-appearance: none;
+		background: #ffffff;
+		width: 5.2rem;
+		height: 3.2rem;
+		border: 1px solid #000000;
+		border-radius: 22.5px;
+		direction: rtl;
+    padding-right: 1.4rem;
+	}
+	&__arrow {
+		position: absolute;
+		left: 2rem;
+		top: 1.2rem;
+	}
 }

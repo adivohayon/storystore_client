@@ -1,3 +1,8 @@
 <div class="quantity-picker">
-	qty picker
+	<select class="quantity-picker__select">
+		<option v-for="i in 10" :value="i">{{ i }}</option>
+		<!-- <option value="1"></option>
+		<option value="2"></option> -->
+	</select>
+	<icon name="arrow" class="quantity-picker__arrow" :original="true" width="14" height="14"></icon>
 </div>
