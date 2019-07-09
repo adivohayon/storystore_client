@@ -2,6 +2,7 @@ import HorizontalSlider from '@/components/horizontal-slider';
 import Story from '@/components/stories/story';
 import _get from 'lodash.get';
 import _orderBy from 'lodash.orderby';
+import { getAssetsPath, formatAsset } from './../../helpers/assets.helpers';
 export default {
 	name: 'stories',
 	components: { HorizontalSlider, Story },
@@ -41,10 +42,15 @@ export default {
 					['variation_order'],
 					['asc']
 				);
-				if (variations[0] && variations[0].assets && variations[0].assets[0]) {
-					let asset = this.assetsPath;
-					asset += `${story.slug}/${variations[0].slug}/`;
-					asset += variations[0].assets[0];
+
+				const baseAsset = _get(variations[0], 'assets[0]', null);
+				if (baseAsset) {
+					const { asset } = formatAsset(
+						baseAsset,
+						this.storeSlug,
+						story.slug,
+						variations[0].slug
+					);
 					const name = _get(story, 'name', '');
 					const price = variations[0].price || '';
 
@@ -56,29 +62,9 @@ export default {
 				}
 			}
 			return thumbnails;
-
-			// return this.stories
-			// 	.filter(story => _get(story, 'variations[0].assets[0]', false))
-			// 	.map(story => {
-			// 		let asset = this.assetsPath;
-			// 		asset += `${story.slug}/${story.variations[0].slug}/`;
-			// 		asset += _get(story, 'variations[0].assets[0]', '');
-			// 		const name = _get(story, 'name', '');
-			// 		const price = _get(story, 'variations[0].price', 0);
-			// 		// return asset;
-			// 		return {
-			// 			asset,
-			// 			name,
-			// 			price,
-			// 		};
-			// 	});
 		},
 		assetsPath() {
-			let path = process.env.staticDir ? process.env.staticDir : '/';
-			if (process.env.staticDir) {
-				path += `${this.storeSlug}/`;
-			}
-			return path;
+			return getAssetsPath(this.storeSlug);
 		},
 		storeSlug() {
 			return this.$store.state.store.slug;
@@ -131,10 +117,12 @@ export default {
 				}
 			}
 
-			this.$analytics.productView(
-				this.stories[storyIndex].slug,
-				this.stories[storyIndex].variations[this.currentSlideIndex].slug
-			);
+			if (this.stories[storyIndex].variations[this.currentSlideIndex]) {
+				this.$analytics.productView(
+					this.stories[storyIndex].slug,
+					this.stories[storyIndex].variations[this.currentSlideIndex].slug
+				);
+			}
 		},
 		enterStory(storyIndex) {
 			if (!this.clickAvailable) {

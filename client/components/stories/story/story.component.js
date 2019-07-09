@@ -1,6 +1,7 @@
 import _get from 'lodash.get';
 import _orderBy from 'lodash.orderby';
 import StorySlide from '@/components/stories/story/story-slide';
+
 export default {
 	name: 'story',
 	components: { StorySlide },
@@ -28,7 +29,7 @@ export default {
 			clickableAreaEl: null,
 			hammer: null,
 			lastProgress: 0,
-			duration: 4000,
+			duration: 94000,
 		};
 	},
 	watch: {
@@ -77,18 +78,12 @@ export default {
 				}
 			});
 		},
-		thumbnail() {
-			return this.assetsPath + _get(this.story, 'variations[0].assets[0]', '');
-		},
-		assetsPath() {
-			let path = process.env.staticDir ? process.env.staticDir : '/';
-			if (process.env.staticDir) {
-				path += `${this.storeSlug}/`;
-			}
-
-			path += `${this.shelfSlug}/${this.variation.slug}/`;
-			return path;
-		},
+		// thumbnail() {
+		// 	return this.assetsPath + _get(this.story, 'variations[0].assets[0]', '');
+		// },
+		// assetsPath() {
+		// 	return getAssetsPath(this.storeSlug);
+		// },
 		storeSlug() {
 			return this.$store.state.store.slug;
 		},

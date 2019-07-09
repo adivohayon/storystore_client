@@ -3,6 +3,10 @@ import AttributePicker from '@/components/attribute-picker';
 import ShelfTitle from '@/components/shelf-title';
 import Scrims from '@/components/scrims';
 import _get from 'lodash.get';
+import {
+	getAssetsPath,
+	formatAsset,
+} from './../../../../helpers/assets.helpers';
 export default {
 	name: 'story-slide',
 	components: { AddToCart, AttributePicker, Scrims, ShelfTitle },
@@ -65,13 +69,7 @@ export default {
 			return this.$store.state.store.returns;
 		},
 		assetsPath() {
-			let path = process.env.staticDir ? process.env.staticDir : '/';
-			if (process.env.staticDir) {
-				path += `${this.storeSlug}/`;
-			}
-
-			path += `${this.shelf.slug}/${this.variation.slug}/`;
-			return path;
+			return getAssetsPath(this.storeSlug);
 		},
 		storeSlug() {
 			return this.$store.state.store.slug;
@@ -83,11 +81,23 @@ export default {
 			return this.$store.getters['cart/itemsCount'](this.storeSlug);
 		},
 		slideAsset() {
-			let asset = this.assetsPath + this.variation.assets[0];
-			if (this.webpSupport) {
-				asset += '.webp';
+			const baseAsset = this.variation.assets[0];
+			if (baseAsset) {
+				let { asset, isExternalAsset } = formatAsset(
+					baseAsset,
+					this.storeSlug,
+					this.shelf.slug,
+					this.variation.slug
+				);
+
+				if (!isExternalAsset && this.webpSupport) {
+					asset += '.webp';
+				}
+
+				return asset;
+			} else {
+				return null;
 			}
-			return asset;
 			// if (this.webpSupport) {
 			// 	return this.assetsPath + this.variation.assets[1];
 			// } else {
