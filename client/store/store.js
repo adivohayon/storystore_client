@@ -106,7 +106,7 @@ export const getters = {
 		return _get(state, 'shelves[0].variations[0].currency', '');
 	},
 	integrations: state => {
-		return _get(state, 'settings.integrations', null);
+		return _get(state, 'settings.integrations', []);
 	},
 
 	// shelfSizes: () => variations => {
@@ -199,11 +199,11 @@ export const actions = {
 			};
 		});
 	},
-	getCategories({}, categorySlug) {
+	getCategories({}, { storeId, categorySlug }) {
 		return new Promise(async (resolve, reject) => {
 			try {
 				const categories = await this.$axios.$get(
-					`stores/1/categories/${categorySlug}`
+					`stores/${storeId}/categories/${categorySlug}`
 				);
 				resolve(categories);
 			} catch (err) {

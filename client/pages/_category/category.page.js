@@ -7,10 +7,15 @@ import { pageHeadMixin } from '@/helpers/mixins';
 export default {
 	components: { Stories, Story, Feed },
 	async asyncData({ req, store, params }) {
-		const categories = await store.dispatch(
-			'store/getCategories',
-			params.category
-		);
+		const storeId = _get(store, 'state.store.storeId', null);
+		let categories = [];
+
+		if (storeId) {
+			categories = await store.dispatch('store/getCategories', {
+				categorySlug: params.category,
+				storeId,
+			});
+		}
 
 		return {
 			categories,
@@ -23,7 +28,13 @@ export default {
 	data() {
 		return {};
 	},
-	mounted() {},
+	async mounted() {
+		try {
+			this.handleCartIntegration();
+		} catch (err) {
+			console.error('Category Page / created() / Error', err);
+		}
+	},
 	computed: {
 		storeSlug() {
 			return this.$store.state.store.slug;
@@ -41,9 +52,21 @@ export default {
 		stateShelves() {
 			return this.$store.state.store.shelves || [];
 		},
+		cartIntegration() {
+			return this.$store.getters['cart/integration'];
+		},
 		// categ() {
 		// 	return _get(this.$store.state, 'store.shelves', []);
 		// },
 	},
-	methods: {},
+	methods: {
+		async handleCartIntegration() {
+			try {
+				const cart = await this.$store.dispatch('cart/get');
+				console.log('cart', cart);
+			} catch (err) {
+				console.error('Category Page / handleCartIntegration / Error', err);
+			}
+		},
+	},
 };

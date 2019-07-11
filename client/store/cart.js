@@ -1,6 +1,7 @@
 import _get from 'lodash/get';
 import Vue from 'vue';
 import { removeDuplicates } from '@/helpers/collection.helpers';
+import { WooCommerce } from './../services/woocommerce.service';
 export const state = () => ({
 	// added: {},
 });
@@ -55,19 +56,49 @@ export const mutations = {
 };
 
 export const actions = {
-	async add({ commit, state, rootGetters }, { item, storeSlug }) {
+	async add(
+		{ commit, state, rootGetters },
+		{ item, storeSlug, wooCommerceConnector }
+	) {
 		return new Promise((resolve, reject) => {
 			if (!state[storeSlug]) {
 				commit('addStore', storeSlug);
 			}
 			commit('addItem', { item, storeSlug });
-			resolve();
+
+			if (this.$integrations.cart) {
+				if (
+					this.$integrations.cart.connector === 'WOOCOMMERCE' &&
+					item.externalId
+				) {
+					return this.$integrations.cart.service.addToCart(externalId, 2);
+				} else {
+					resolve();
+				}
+			} else {
+				resolve();
+			}
 		});
 		// Add item integration
+	},
+
+	async get() {
+		console.log('this.integrations.cart', this.$integrations.cart);
+		if (this.$integrations.cart) {
+			return this.$integrations.cart.service.getCart().then(resp => resp.data);
+		} else {
+			return Promise.resolve();
+		}
 	},
 };
 
 export const getters = {
+	integration: (state, getters, rootState) => {
+		const integrations = _get(rootState, 'store.settings.integrations', []);
+		return (
+			integrations.find(integration => integration.type === 'CART') || null
+		);
+	},
 	subtotal: (state, getters) => storeSlug => {
 		return getters.items(storeSlug).reduce((acc, item) => {
 			const itemTotal = item.quantity * item.price;

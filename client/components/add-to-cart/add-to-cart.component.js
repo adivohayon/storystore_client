@@ -88,6 +88,11 @@ export default {
 		subtotal() {
 			return this.$store.getters['cart/subtotal'](this.storeSlug);
 		},
+		externalId() {
+			return Number(
+				_get(this.variant, 'attributes[0].variationAttribute.external_id', null)
+			);
+		},
 		// hoodiesCustom() {
 		// 	const integrationType = _get(
 		// 		this.$store.state,
@@ -106,11 +111,12 @@ export default {
 	},
 	methods: {
 		ctaClick(shelf) {
+			console.log('Add to cart / ctaClick / Shelf Type', shelf.type);
 			switch (shelf.type) {
 				case 'ADD_TO_CART':
 					console.log('this.userSelectedSize', this.userSelectedSize);
 
-					if (!this.userSelectedSize) {
+					if (!this.selectedAttributes.no_attribute && !this.userSelectedSize) {
 						this.$emit('select-size-error');
 					} else {
 						this.addToCart(
@@ -118,16 +124,15 @@ export default {
 							this.selectedAttributes,
 							this.selectedProperty
 						);
-						this.$emit('setGoToPayment');
-						break;
 					}
+					break;
 				case 'SCROLL_TO':
 					// const
+					console.log('scrollTo', scrollTo);
 					let scrollTo = 0;
 					if (shelf.data.scrollTo && shelf.data.scrollTo === 'LAST_SHELF') {
 						scrollTo = _get(this.$store.state, 'store.shelves', []).length - 1;
 					}
-					// console.log('scrollTo', scrollTo);
 					this.$emit('scrollTo', scrollTo);
 					break;
 				case 'LINK':
@@ -142,100 +147,117 @@ export default {
 			const win = window.open(url, '_blank');
 			win.focus();
 		},
-
-		async addToCart(shelf, selectedAttributes, selectedProperty) {
-			if (this.showGoToPayment) {
-				if (this.hoodiesCustom) {
-					this.$store.dispatch('toggleLoader', true);
-					this.$analytics.goToCheckout(this.subtotal);
-					this.goToHoodiesCheckout();
-					return;
-				} else {
-					this.$analytics.goToCheckout(this.subtotal);
-					this.$router.replace('/checkout/shipping-options');
-					return;
-				}
-			}
-
-			setTimeout(function() {
-				let el = document.querySelector(':focus');
-				if (el) el.blur();
-			}, 300);
-			// const sizes = shelf.variations.map(variant => {
-			// 	if (variant.attributes.size) {
-			// 		return variant.attributes.size;
-			// 	}
-			// });
-			console.log('addToCart / assetPath', this.assetsPath);
-			console.log('addToCart asset[0]', this.variant.assets[0]);
-
-			// Regular shelf
+		addToCartImage() {
 			let image = this.assetsPath;
+			// Regular shelf
 			if (this.variant.assets[0].src) {
 				image += this.variant.assets[0].src;
 			} else {
 				// Story shelf - or non-lazyloaded shelf
 				if (this.variant.assets[0]) {
-					image += `${shelf.slug}/${this.variant.slug}/${
+					image += `${this.shelf.slug}/${this.variant.slug}/${
 						this.variant.assets[0]
 					}`;
 				}
 			}
-
-			// const image = `https://assets.storystore.co.il/${this.storeSlug}/${
-			// 	this.shelf.slug
-			// }/${this.variant.slug}/${imageName}`;
+			return image;
+		},
+		addToCartVariationAttributeIds() {
 			const variationAttributeIds = [];
-			for (const attributeKey in selectedAttributes) {
+			for (const attributeKey in this.selectedAttributes) {
 				if (
-					selectedAttributes.hasOwnProperty(attributeKey) &&
-					selectedAttributes[attributeKey].variationAttributeId
+					this.selectedAttributes.hasOwnProperty(attributeKey) &&
+					this.selectedAttributes[attributeKey].variationAttributeId
 				) {
 					variationAttributeIds.push(
-						selectedAttributes[attributeKey].variationAttributeId
+						this.selectedAttributes[attributeKey].variationAttributeId
 					);
 				}
 			}
+			return variationAttributeIds;
+		},
+		addToCartItem(image, variationAttributeIds, attrs) {
+			console.log('attt');
+
 			const item = {
-				shelfId: shelf.id,
-				name: shelf.name,
-				shelfSlug: shelf.slug,
+				shelfId: this.shelf.id,
+				name: this.shelf.name,
+				shelfSlug: this.shelf.slug,
 				currency: this.variant.currency,
 				price: this.variant.price,
 				sale_price: this.variant.sale_price,
 				variationId: this.variant.variationId,
 				variationSlug: this.variant.slug,
 				quantity: 1,
+				externalId: this.externalId,
 				image,
 				variationAttributeIds,
-				// variationAttributeId: this.variant
-				attributes: { ...selectedAttributes, ...selectedProperty },
-				// sizes: removeDuplicates(sizes, 'value'),
+				attributes: attrs,
 			};
 			delete item.assets;
 			delete item.variations;
 
 			console.log('ADD TO CART', item);
-
-			await this.$store.dispatch('cart/add', {
-				item,
-				storeSlug: this.storeSlug,
-			});
-
-			this.$analytics.addToCart(item.shelfSlug, item.variationSlug);
-
-			if (typeof fbq !== 'undefined' && fbq) {
-				fbq('track', 'AddToCart', {
-					content_name: `${this.shelf.name} - ${this.variant.property_label}`,
-					content_category: this.storeSlug,
-					content_ids: [this.variant.variationId],
-					content_type: 'product',
-					value: this.variant.finalPrice,
-					currency: this.variant.currency,
-				});
+			return item;
+		},
+		handleShowGoToPayment() {
+			if (this.showGoToPayment) {
+				if (this.hoodiesCustom) {
+					this.$store.dispatch('toggleLoader', true);
+					this.$analytics.goToCheckout(this.subtotal);
+					this.goToHoodiesCheckout();
+					return true;
+				} else {
+					this.$analytics.goToCheckout(this.subtotal);
+					this.$router.replace('/checkout/shipping-options');
+					return true;
+				}
+			} else {
+				return false;
 			}
-			// console.log('this.ga', this.$ga);
-			item.storeSlug = this.storeSlug;
+		},
+		async addToCart(shelf, selectedAttributes, selectedProperty) {
+			try {
+				if (this.handleShowGoToPayment()) {
+					return;
+				}
+
+				setTimeout(function() {
+					let el = document.querySelector(':focus');
+					if (el) el.blur();
+				}, 300);
+
+				const image = this.addToCartImage();
+				const variationAttributeIds = this.addToCartVariationAttributeIds();
+				const attributes = { ...selectedAttributes, ...selectedProperty };
+				const item = this.addToCartItem(
+					image,
+					variationAttributeIds,
+					attributes
+				);
+
+				await this.$store.dispatch('cart/add', {
+					item,
+					storeSlug: this.storeSlug,
+				});
+				this.$emit('setGoToPayment');
+				this.$analytics.addToCart(item.shelfSlug, item.variationSlug);
+
+				if (typeof fbq !== 'undefined' && fbq) {
+					fbq('track', 'AddToCart', {
+						content_name: `${this.shelf.name} - ${this.variant.property_label}`,
+						content_category: this.storeSlug,
+						content_ids: [this.variant.variationId],
+						content_type: 'product',
+						value: this.variant.finalPrice,
+						currency: this.variant.currency,
+					});
+				}
+				// console.log('this.ga', this.$ga);
+				item.storeSlug = this.storeSlug;
+			} catch (err) {
+				console.error('add-to-cart.component / addToCart / Error', err);
+			}
 
 			// this.added = true;
 			// this.$ga.event({
