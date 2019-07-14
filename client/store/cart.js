@@ -71,7 +71,7 @@ export const actions = {
 					this.$integrations.cart.connector === 'WOOCOMMERCE' &&
 					item.externalId
 				) {
-					return this.$integrations.cart.service.addToCart(externalId, 2);
+					return this.$integrations.cart.service.addToCart(item.externalId, 2);
 				} else {
 					resolve();
 				}
