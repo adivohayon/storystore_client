@@ -5,7 +5,10 @@ export default (ctx, inject) => {
 	const cartIntegration = ctx.store.getters['cart/integration'];
 	const integrations = {};
 	if (cartIntegration && cartIntegration.connector === 'WOOCOMMERCE') {
-		cartIntegration.service = new WooCommerce(cartIntegration.baseUrl);
+		cartIntegration.service = new WooCommerce(
+			cartIntegration.baseUrl,
+			ctx.$axios
+		);
 		integrations.cart = cartIntegration;
 	}
 	console.log('integrations', integrations);

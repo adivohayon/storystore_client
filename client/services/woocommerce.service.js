@@ -1,6 +1,7 @@
 import axios from 'axios';
 export class WooCommerce {
-	constructor(baseUrl) {
+	constructor(baseUrl, axios) {
+		this.axios = axios;
 		this.baseUrl = baseUrl;
 		this.cartEndpoint = '/wp-json/wc/v2/cart';
 	}
@@ -19,8 +20,11 @@ export class WooCommerce {
 			...(variationAttributes && { variation: variationAttributes }),
 		};
 		console.log('WooCommerce Service / addToCart / payload', payload);
-		return axios
-			.post(this.baseUrl + this.cartEndpoint + '/add', payload)
+		return this.axios
+			.$post(this.baseUrl + this.cartEndpoint + '/add', payload, {
+				withCredentials: true,
+				headers: { 'Content-Type': 'application/json' },
+			})
 			.catch(err => {
 				console.error(
 					'WooCommerce Service / addToCart / Error',
