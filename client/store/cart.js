@@ -9,7 +9,22 @@ export const state = () => ({
 export const mutations = {
 	removeItem(state, { itemIndex, storeSlug }) {
 		console.log('removed item number', itemIndex);
+		console.log('removeItem - item', state[storeSlug].added[itemIndex]);
+		const removedItem = state[storeSlug].added[itemIndex];
+		console.log('removeItem - item - key', removedItem.external_cart_key);
 		state[storeSlug].added.splice(itemIndex, 1);
+		if (this.$integrations.cart) {
+			if (
+				this.$integrations.cart.connector === 'WOOCOMMERCE' &&
+				removedItem.external_cart_key
+			) {
+				return this.$integrations.cart.service
+					.removeFromCart(removedItem.external_cart_key)
+					.then(res => {
+						console.log('store / cart / removeItem res', res);
+					});
+			}
+		}
 	},
 
 	addItem(state, { item, storeSlug }) {
@@ -32,6 +47,23 @@ export const mutations = {
 			const items = state[storeSlug].added;
 			items.push(item);
 			Vue.set(state[storeSlug], 'added', items);
+		}
+	},
+
+	updateItemExternalKey(state, { item, storeSlug, externalCartKey }) {
+		const cartItemIndex = state[storeSlug].added.findIndex(
+			cartItem =>
+				cartItem.shelfId === item.shelfId &&
+				cartItem.variationId === item.variationId
+		);
+
+		if (cartItemIndex > -1) {
+			console.log('%%%%% externalItem', externalCartKey);
+			Vue.set(
+				state[storeSlug].added[cartItemIndex],
+				'external_cart_key',
+				externalCartKey
+			);
 		}
 	},
 
@@ -71,7 +103,19 @@ export const actions = {
 					this.$integrations.cart.connector === 'WOOCOMMERCE' &&
 					item.externalId
 				) {
-					return this.$integrations.cart.service.addToCart(item.externalId, 2);
+					return this.$integrations.cart.service
+						.addToCart(item.externalId, 1)
+						.then(wcItem => {
+							commit('updateItemExternalKey', {
+								item,
+								storeSlug,
+								externalCartKey: wcItem.key,
+							});
+						});
+					// console.log('wcItem', wcItem);
+					// console.log('wcItem KEY', wcItem.key);
+					// resolve();
+					// return this.$integrations.cart.service.addToCart(item.externalId, 2);
 				} else {
 					resolve();
 				}
@@ -80,6 +124,15 @@ export const actions = {
 			}
 		});
 		// Add item integration
+	},
+
+	async remove(
+		{ commit, state, rootGetters },
+		{ itemIndex, storeSlug, wooCommerceConnector }
+	) {
+		return new Promise((resolve, reject) => {
+			commit('addItem', { itemIndex, storeSlug });
+		});
 	},
 
 	async get() {

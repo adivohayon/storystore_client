@@ -25,9 +25,38 @@ export class WooCommerce {
 				withCredentials: true,
 				headers: { 'Content-Type': 'application/json' },
 			})
+			.then(function(res) {
+				console.log('woocomnerce service addToCart res', res);
+				return res;
+			})
 			.catch(err => {
 				console.error(
 					'WooCommerce Service / addToCart / Error',
+					err.response.data.message
+				);
+			});
+	}
+	removeFromCart(cartItemKey) {
+		if (!cartItemKey) {
+			return Promise.reject();
+		}
+		const payload = {
+			data: {
+				cart_item_key: cartItemKey,
+			},
+		};
+		console.log('wc service / removeFromCart - payload', payload);
+		return this.axios
+			.$delete(this.baseUrl + this.cartEndpoint + '/cart-item', payload, {
+				withCredentials: false,
+				headers: { 'Content-Type': 'application/json' },
+			})
+			.then(function(res) {
+				return res;
+			})
+			.catch(err => {
+				console.error(
+					'WooCommerce Service / removeFromCart / Error',
 					err.response.data.message
 				);
 			});
