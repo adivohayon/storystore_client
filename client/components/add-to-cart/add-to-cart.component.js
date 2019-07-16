@@ -93,6 +93,26 @@ export default {
 				_get(this.variant, 'attributes[0].variationAttribute.external_id', null)
 			);
 		},
+		integrations() {
+			const integrations = _get(
+				this.$store.state,
+				'store.settings.integrations',
+				null
+			);
+			return integrations;
+		},
+		integrationCart() {
+			const integrationCart = this.integrations.find(
+				integration => integration.type === 'CART'
+			);
+			return integrationCart;
+		},
+		integrationCheckout() {
+			const integrationCheckout = this.integrations.find(
+				integration => integration.type === 'CHECKOUT'
+			);
+			return integrationCheckout;
+		},
 		// hoodiesCustom() {
 		// 	const integrationType = _get(
 		// 		this.$store.state,
@@ -202,10 +222,12 @@ export default {
 		},
 		handleShowGoToPayment() {
 			if (this.showGoToPayment) {
-				if (this.hoodiesCustom) {
+				// console.log('add-to-cart comp / handleShowGoToPayment');
+				if (this.integrations && this.integrationCheckout) {
 					this.$store.dispatch('toggleLoader', true);
 					this.$analytics.goToCheckout(this.subtotal);
-					this.goToHoodiesCheckout();
+					window.location.href = this.integrationCheckout.url;
+					// this.goToHoodiesCheckout();
 					return true;
 				} else {
 					this.$analytics.goToCheckout(this.subtotal);

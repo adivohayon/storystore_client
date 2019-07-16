@@ -56,6 +56,26 @@ export default {
 		itemsCount() {
 			return this.$store.getters['cart/itemsCount'](this.storeSlug);
 		},
+		integrations() {
+			const integrations = _get(
+				this.$store.state,
+				'store.settings.integrations',
+				null
+			);
+			return integrations;
+		},
+		integrationCart() {
+			const integrationCart = this.integrations.find(
+				integration => integration.type === 'CART'
+			);
+			return integrationCart;
+		},
+		integrationCheckout() {
+			const integrationCheckout = this.integrations.find(
+				integration => integration.type === 'CHECKOUT'
+			);
+			return integrationCheckout;
+		},
 		// hoodiesCustom() {
 		// 	const integrationType = _get(
 		// 		this.$store.state,
@@ -101,10 +121,11 @@ export default {
 	},
 	methods: {
 		goToCheckout() {
-			if (this.hoodiesCustom) {
+			if (this.integrations && this.integrationCheckout) {
 				this.$store.dispatch('toggleLoader', true);
 				this.$analytics.goToCheckout(this.subtotal);
-				this.goToHoodiesCheckout();
+				window.location.href = this.integrationCheckout.url;
+				// this.goToHoodiesCheckout();
 			} else {
 				this.$analytics.goToCheckout(this.subtotal);
 				this.$router.replace('/checkout/shipping-options');
