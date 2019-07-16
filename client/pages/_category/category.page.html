@@ -1,10 +1,25 @@
 <div class="page category-page">
+	<div v-if="firstCategory && firstCategory.shelves.length > 0">
+		<h2>{{ firstCategory.label }}</h2>
+		<stories :stories="firstCategory.shelves" :title="firstCategory.label">
+		</stories>
+	</div>
+
 	<div
-		v-for="(category, categoryIndex) in categories"
+		v-for="(category, subCategoryIndex) in subCategories"
 		:key="categoryIndex"
-		v-if="category && category.shelves.length > 0"
+		v-if="category && category.shelves && category.shelves.length > 0"
 	>
-		<!-- <h2>{{category.label}}</h2> -->
+		<h2>{{ category.label }}</h2>
+		<stories :stories="category.shelves" :title="category.label"> </stories>
+	</div>
+
+	<div
+		v-for="(category, restCategoryIndex) in restOfCategories"
+		:key="categoryIndex"
+		v-if="category && category.shelves && category.shelves.length > 0"
+	>
+		<h2>{{ category.label }}</h2>
 		<stories :stories="category.shelves" :title="category.label"> </stories>
 	</div>
 </div>

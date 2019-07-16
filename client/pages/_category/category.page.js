@@ -8,17 +8,52 @@ export default {
 	components: { Stories, Story, Feed },
 	async asyncData({ req, store, params }) {
 		const storeId = _get(store, 'state.store.storeId', null);
-		let categories = [];
-
+		let resp;
 		if (storeId) {
-			categories = await store.dispatch('store/getCategories', {
+			resp = await store.dispatch('store/getCategories', {
 				categorySlug: params.category,
 				storeId,
 			});
 		}
 
+		const { firstCategory, subCategories, restOfCategories } = resp;
+
+		firstCategory.shelves = [];
+
+		const shelves = _get(store, 'state.store.shelves', []);
+		for (const shelf of shelves) {
+			const categoryIds = shelf.Categories.map(category => category.id);
+
+			// if shelf category ids are included in first category, add them
+			if (categoryIds.includes(firstCategory.id)) {
+				firstCategory.shelves.push(shelf);
+			}
+
+			for (let i = 0; i < subCategories.length; i++) {
+				if (categoryIds.includes(subCategories[i].id)) {
+					if (subCategories[i].shelves) {
+						subCategories[i].shelves.push(shelf);
+					} else {
+						subCategories[i].shelves = [shelf];
+					}
+				}
+			}
+
+			for (let i = 0; i < restOfCategories.length; i++) {
+				if (categoryIds.includes(restOfCategories[i].id)) {
+					if (restOfCategories[i].shelves) {
+						restOfCategories[i].shelves.push(shelf);
+					} else {
+						restOfCategories[i].shelves = [shelf];
+					}
+				}
+			}
+		}
+
 		return {
-			categories,
+			firstCategory,
+			subCategories,
+			restOfCategories,
 		};
 	},
 	mixins: [pageHeadMixin],
