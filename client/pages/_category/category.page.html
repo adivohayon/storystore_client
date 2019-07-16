@@ -7,7 +7,7 @@
 
 	<div
 		v-for="(category, subCategoryIndex) in subCategories"
-		:key="categoryIndex"
+		:key="subCategoryIndex"
 		v-if="category && category.shelves && category.shelves.length > 0"
 	>
 		<h2>{{ category.label }}</h2>
@@ -16,7 +16,7 @@
 
 	<div
 		v-for="(category, restCategoryIndex) in restOfCategories"
-		:key="categoryIndex"
+		:key="restCategoryIndex"
 		v-if="category && category.shelves && category.shelves.length > 0"
 	>
 		<h2>{{ category.label }}</h2>
