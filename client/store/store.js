@@ -127,39 +127,28 @@ export const getters = {
 export const actions = {
 	async get({ commit }, storeSlug) {
 		try {
-			let store;
-			if (useMockData == 'true') {
-				store = (await import(`@/mocks/${storeSlug}.mock.json`)).default;
-			} else {
-				store = await this.$axios.$get(`stores/${storeSlug}`);
-			}
-			// console.log('store', store);
+			const store = await this.$axios.$get(`stores/${storeSlug}`);
 			if (store && store.id) {
-				let limit = 3;
-				if (storeSlug === 'stores') {
-					limit = 15;
-				}
+				let limit = 50;
+
 				const { shelves, pagination } = await this.$axios.$get(
 					`stores/${store.id}/shelves?limit=${limit}`
 				);
 
-				// console.log('shelvess', shelves);
-				// console.log(useMockData, store.shelves);
-				// const store = await this.$axios.$get(`stores/${storeSlug}`);
-				// console.log('store - usemocks: ' + useMockData, store);
-				// console.log('stores', store);
 				if (shelves && pagination) {
 					commit('setPagination', pagination);
 					commit('populateShelves', shelves);
 					commit('populateStore', store);
 					return store;
+				} else {
+					throw new Error('Could not find shelves and pagination');
 				}
+			} else {
+				throw new Error('Could not find store');
 			}
-			return false;
 			// console.log('resp', resp.data);
 		} catch (err) {
 			console.error('State / Store / Dispatch get / Error', err);
-			return false;
 		}
 	},
 	getShelves({ state, commit }, { storeId, offset }) {

@@ -4,16 +4,16 @@ export const formatAsset = (
 	shelfSlug,
 	variationSlug
 ) => {
-	const isExternalAsset = /^(https?|chrome):\/\/[^\s$.?#].[^\s]*$/gm.test(
-		inputAsset
+	const isExternalAsset = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/gi.test(
+		inputAsset.src || inputAsset
 	);
 	let asset;
 	if (isExternalAsset) {
-		asset = inputAsset;
+		asset = inputAsset.src || inputAsset;
 	} else {
 		asset = getAssetsPath(storeSlug);
 		asset += `${shelfSlug}/${variationSlug}/`;
-		asset += inputAsset;
+		asset += inputAsset.src || inputAsset;
 	}
 
 	return { isExternalAsset, asset };

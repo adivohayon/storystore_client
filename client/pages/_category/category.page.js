@@ -6,29 +6,26 @@ import axios from 'axios';
 import { pageHeadMixin } from '@/helpers/mixins';
 export default {
 	components: { Stories, Story, Feed },
-	async asyncData({ req, store, params }) {
+	async asyncData({ req, store, params, $axios }) {
 		const storeId = _get(store, 'state.store.storeId', null);
-		let resp;
-		if (storeId) {
-			resp = await store.dispatch('store/getCategories', {
-				categorySlug: params.category,
-				storeId,
-			});
-		}
-
-		const { firstCategory, subCategories, restOfCategories } = resp;
+		console.log('yooooo', params);
+		const {
+			firstCategory,
+			subCategories,
+			restOfCategories,
+		} = await $axios.$get(
+			`stores/${storeId}/categories/${encodeURI(params.category)}`
+		);
 
 		firstCategory.shelves = [];
 
 		const shelves = _get(store, 'state.store.shelves', []);
 		for (const shelf of shelves) {
 			const categoryIds = shelf.Categories.map(category => category.id);
-
 			// if shelf category ids are included in first category, add them
 			if (categoryIds.includes(firstCategory.id)) {
 				firstCategory.shelves.push(shelf);
 			}
-
 			for (let i = 0; i < subCategories.length; i++) {
 				if (categoryIds.includes(subCategories[i].id)) {
 					if (subCategories[i].shelves) {
@@ -38,7 +35,6 @@ export default {
 					}
 				}
 			}
-
 			for (let i = 0; i < restOfCategories.length; i++) {
 				if (categoryIds.includes(restOfCategories[i].id)) {
 					if (restOfCategories[i].shelves) {
@@ -49,13 +45,24 @@ export default {
 				}
 			}
 		}
-
-		return {
-			firstCategory,
-			subCategories,
-			restOfCategories,
-		};
+		return { firstCategory, subCategories, restOfCategories };
 	},
+	// 	let resp;
+	// 	if (storeId) {
+	// 		resp = await store.dispatch('store/getCategories', {
+	// 			categorySlug: encodeURI(params.category),
+	// 			storeId,
+	// 		});
+	// 	}
+
+	// 	const { firstCategory, subCategories, restOfCategories } = resp;
+
+	// 	return {
+	// 		firstCategory,
+	// 		subCategories,
+	// 		restOfCategories,
+	// 	};
+	// },
 	mixins: [pageHeadMixin],
 	layout(ctx) {
 		return ctx.app.isMobile ? 'mobile' : 'desktop';
