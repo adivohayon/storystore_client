@@ -32,7 +32,28 @@ export default {
 	},
 	computed: {
 		sortedVariations() {
-			return _orderBy(this.story.variations, ['variation_order'], ['asc']);
+			return _orderBy(
+				this.stories[this.currentStoryIndex].variations,
+				['variation_order'],
+				['asc']
+			);
+		},
+		storySlides() {
+			if (this.sortedVariations) {
+				console.log('sortedVariations', this.sortedVariations);
+				const storySlides = [];
+				for (let variation of this.sortedVariations) {
+					for (let asset of variation.assets) {
+						(function() {
+							let variationClone = Object.assign({}, variation);
+							variationClone.assets = [asset];
+							storySlides.push(variationClone);
+						})();
+					}
+					console.log('storySlides', storySlides);
+				}
+				return storySlides;
+			}
 		},
 		storyThumbnails() {
 			const thumbnails = [];
@@ -95,10 +116,7 @@ export default {
 	methods: {
 		goToSlide({ param, storyIndex }) {
 			if (param === 'NEXT_SLIDE') {
-				if (
-					this.currentSlideIndex ===
-					this.stories[storyIndex].variations.length - 1
-				) {
+				if (this.currentSlideIndex === this.storySlides.length - 1) {
 					this.goToStory({ param: 'NEXT_STORY', storyIndex });
 					storyIndex++;
 				} else {

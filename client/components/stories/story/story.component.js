@@ -1,4 +1,5 @@
 import _get from 'lodash.get';
+import _find from 'lodash.find';
 import _orderBy from 'lodash.orderby';
 import StorySlide from '@/components/stories/story/story-slide';
 
@@ -29,7 +30,7 @@ export default {
 			clickableAreaEl: null,
 			hammer: null,
 			lastProgress: 0,
-			duration: 94000,
+			duration: 4000,
 		};
 	},
 	watch: {
@@ -71,8 +72,33 @@ export default {
 		sortedVariations() {
 			return _orderBy(this.story.variations, ['variation_order'], ['asc']);
 		},
+		storySlides() {
+			if (this.sortedVariations) {
+				console.log('sortedVariations', this.sortedVariations);
+				const storySlides = [];
+				for (let variation of this.sortedVariations) {
+					for (let asset of variation.assets) {
+						(function() {
+							// console.log('variation', variation);
+							let variationClone = Object.assign({}, variation);
+							// console.log('asset', asset);
+							variationClone.assets = [asset];
+							// console.log('variationClone', variationClone);
+							storySlides.push(variationClone);
+						})();
+
+						// console.log('variationClone', variationClone);
+
+						// console.log('variationClone', variationClone);
+					}
+					console.log('storySlides', storySlides);
+				}
+
+				return storySlides;
+			}
+		},
 		paginationItems() {
-			return this.story.variations.map(variation => {
+			return this.storySlides.map(variation => {
 				if (variation.itemProperty.type === 'fashion_simple_color') {
 					return variation.property_value || '#ffffff';
 				}
@@ -170,13 +196,19 @@ export default {
 		},
 
 		showStorySlide(variationIndex) {
-			if (!_get(this.story, `variations[${variationIndex}].assets[0]`, false)) {
+			// if (!_get(this.story, `variations[${variationIndex}].assets[0]`, false)) {
+			// 	return false;
+			// }
+
+			if (!_get(this.storySlides[variationIndex], 'assets[0]', false)) {
 				return false;
 			}
 
 			return (
 				variationIndex === this.currentSlideIndex ||
 				variationIndex === this.currentSlideIndex + 1 ||
+				variationIndex === this.currentSlideIndex + 2 ||
+				variationIndex === this.currentSlideIndex + 3 ||
 				variationIndex === this.currentSlideIndex - 1
 			);
 			// if (this.story.variations[variationIndex].assets[0])

@@ -83,15 +83,15 @@ export default {
 		slideAsset() {
 			const baseAsset = this.variation.assets[0];
 			if (baseAsset) {
-				let { asset, isExternalAsset } = formatAsset(
+				let { asset } = formatAsset(
 					baseAsset,
 					this.storeSlug,
 					this.shelf.slug,
 					this.variation.slug
 				);
 
-				if (!isExternalAsset && this.webpSupport) {
-					asset += '.webp';
+				if (this.webpSupport) {
+					asset = asset.replace('jpg', 'webp');
 				}
 
 				return asset;
