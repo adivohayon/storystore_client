@@ -79,21 +79,13 @@ export default {
 				for (let variation of this.sortedVariations) {
 					for (let asset of variation.assets) {
 						(function() {
-							// console.log('variation', variation);
 							let variationClone = Object.assign({}, variation);
-							// console.log('asset', asset);
 							variationClone.assets = [asset];
-							// console.log('variationClone', variationClone);
 							storySlides.push(variationClone);
 						})();
-
-						// console.log('variationClone', variationClone);
-
-						// console.log('variationClone', variationClone);
 					}
 					console.log('storySlides', storySlides);
 				}
-
 				return storySlides;
 			}
 		},
