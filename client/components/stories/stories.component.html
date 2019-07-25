@@ -24,6 +24,7 @@
 		v-if="currentStoryIndex === storyIndex && showStory"
 		:key="storyIndex"
 		:story="story"
+		:story-slides="storySlides"
 		:current-slide-index="currentSlideIndex"
 		:story-index="storyIndex"
 		@close-story="exitStory"

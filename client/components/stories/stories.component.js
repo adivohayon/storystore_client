@@ -38,19 +38,30 @@ export default {
 				['asc']
 			);
 		},
+		webpSupport() {
+			return Modernizr.webp;
+		},
 		storySlides() {
 			if (this.sortedVariations) {
-				console.log('sortedVariations', this.sortedVariations);
+				// console.log('sortedVariations', this.sortedVariations);
 				const storySlides = [];
 				for (let variation of this.sortedVariations) {
-					for (let asset of variation.assets) {
+					const jpgAssets = variation.assets.filter(asset => {
+						if (this.webpSupport) {
+							return asset.src.includes('.webp');
+						}
+						return asset.src.includes('.jpg');
+					});
+
+					// console.log('jpgAssets', jpgAssets);
+					for (let asset of jpgAssets) {
 						(function() {
 							let variationClone = Object.assign({}, variation);
 							variationClone.assets = [asset];
 							storySlides.push(variationClone);
 						})();
 					}
-					console.log('storySlides', storySlides);
+					// console.log('storySlides', storySlides);
 				}
 				return storySlides;
 			}

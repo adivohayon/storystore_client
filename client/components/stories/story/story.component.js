@@ -13,6 +13,12 @@ export default {
 				return {};
 			},
 		},
+		storySlides: {
+			type: Array,
+			default() {
+				return [];
+			},
+		},
 		currentSlideIndex: {
 			type: Number,
 			default: 0,
@@ -72,23 +78,34 @@ export default {
 		sortedVariations() {
 			return _orderBy(this.story.variations, ['variation_order'], ['asc']);
 		},
-		storySlides() {
-			if (this.sortedVariations) {
-				console.log('sortedVariations', this.sortedVariations);
-				const storySlides = [];
-				for (let variation of this.sortedVariations) {
-					for (let asset of variation.assets) {
-						(function() {
-							let variationClone = Object.assign({}, variation);
-							variationClone.assets = [asset];
-							storySlides.push(variationClone);
-						})();
-					}
-					console.log('storySlides', storySlides);
-				}
-				return storySlides;
-			}
-		},
+		// webpSupport() {
+		// 	return Modernizr.webp;
+		// },
+		// storySlides() {
+		// 	if (this.sortedVariations) {
+		// 		// console.log('sortedVariations', this.sortedVariations);
+		// 		const storySlides = [];
+		// 		for (let variation of this.sortedVariations) {
+		// 			const jpgAssets = variation.assets.filter(asset => {
+		// 				if (this.webpSupport) {
+		// 					return asset.src.includes('.webp');
+		// 				}
+		// 				return asset.src.includes('.jpg');
+		// 			});
+
+		// 			// console.log('jpgAssets', jpgAssets);
+		// 			for (let asset of jpgAssets) {
+		// 				(function() {
+		// 					let variationClone = Object.assign({}, variation);
+		// 					variationClone.assets = [asset];
+		// 					storySlides.push(variationClone);
+		// 				})();
+		// 			}
+		// 			// console.log('storySlides', storySlides);
+		// 		}
+		// 		return storySlides;
+		// 	}
+		// },
 		paginationItems() {
 			return this.storySlides.map(variation => {
 				if (variation.itemProperty.type === 'fashion_simple_color') {
@@ -196,13 +213,7 @@ export default {
 				return false;
 			}
 
-			return (
-				variationIndex === this.currentSlideIndex ||
-				variationIndex === this.currentSlideIndex + 1 ||
-				variationIndex === this.currentSlideIndex + 2 ||
-				variationIndex === this.currentSlideIndex + 3 ||
-				variationIndex === this.currentSlideIndex - 1
-			);
+			return variationIndex === this.currentSlideIndex;
 			// if (this.story.variations[variationIndex].assets[0])
 		},
 	},
