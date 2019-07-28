@@ -1,16 +1,15 @@
 <div class="page-header" :style="{backgroundColor: bgColor}" ref="pageHeader">
-	<nuxt-link
-		to="/profile"
-		:style="[showCart ? {textAlign: 'right'} : {textAlign: 'center'}]"
-	>
-		<!-- <img :src="logoSrc" :alt="`${storeSlug} Logo`" /> -->
-		<div class="logo">
-			<img :src="logoSrc" alt="" />
-		</div>
-	</nuxt-link>
+	<div class="logo">
+		<img :src="logoSrc" alt="" />
+	</div>
 
-	<nuxt-link to="/cart" class="cart-button" @click.native="$analytics.goToCart(cartItemsCount)" v-if="showCart">
-		<button class="btn" >
+	<nuxt-link
+		to="/cart"
+		class="cart-button"
+		@click.native="$analytics.goToCart(cartItemsCount)"
+		v-if="showCart"
+	>
+		<button class="btn">
 			<icon name="cart" width="20" height="20"></icon>
 			<div v-if="cartItemsCount != 0" class="counter">
 				{{ cartItemsCount }}

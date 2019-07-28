@@ -112,6 +112,15 @@ export default {
 body {
 	// background-color: #000000;
 }
+.no-text-select {
+	-webkit-touch-callout: none; /* iOS Safari */
+	-webkit-user-select: none; /* Safari */
+	-khtml-user-select: none; /* Konqueror HTML */
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* Internet Explorer/Edge */
+	user-select: none; /* Non-prefixed version, currently
+																		supported by Chrome and Opera */
+}
 .layout--mobile {
 	$page-header-height: 3.2rem;
 	// $viewport-height: var(--vh, 1vh) * 100;
