@@ -1,10 +1,12 @@
 <div class="add-to-cart">
 	<button
 		class="btn btn--add-to-cart"
-		:class="{'checkout': showGoToPayment}"
+		:class="{'checkout': showGoToPayment, 'checkout--loading': goToCheckoutLoading}"
 		:style="{backgroundColor: bgColor, color: textColor}" 
 		@click="ctaClick(shelf)"
 	>
 		{{ buttonText }}
+
+		<div v-if="goToCheckoutLoading" class="lds-ring"><div></div><div></div><div></div><div></div></div>
 	</button>
 </div>

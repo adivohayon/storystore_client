@@ -41,7 +41,9 @@ export default {
 		// showButton: true,
 	},
 	data() {
-		return {};
+		return {
+			goToCheckoutLoading: false,
+		};
 	},
 	computed: {
 		bgColor() {
@@ -58,6 +60,8 @@ export default {
 			}
 		},
 		buttonText() {
+			if (this.goToCheckoutLoading) return '';
+
 			if (this.showGoToPayment) {
 				return 'לתשלום';
 			} else {
@@ -229,6 +233,8 @@ export default {
 		},
 		async addToCart(shelf, selectedAttributes, selectedProperty) {
 			try {
+				if (this.goToCheckoutLoading) return;
+
 				if (this.handleShowGoToPayment()) {
 					return;
 				}
@@ -247,12 +253,14 @@ export default {
 					attributes
 				);
 
-				this.$emit('setGoToPayment');
-
+				this.goToCheckoutLoading = true;
 				await this.$store.dispatch('cart/add', {
 					item,
 					storeSlug: this.storeSlug,
 				});
+				this.goToCheckoutLoading = false;
+				this.$emit('setGoToPayment');
+
 				console.log('ADD TO CART :: setgoToPayment');
 
 				this.$analytics.addToCart(item.shelfSlug, item.variationSlug);
