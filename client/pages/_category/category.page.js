@@ -3,7 +3,7 @@ import Story from '@/components/stories/story';
 import ShelfInfo from '@/components/shelf-info';
 import Feed from '@/components/feed';
 import _get from 'lodash.get';
-import _sortBy from 'lodash.sortBy';
+import _sortBy from 'lodash.sortby';
 import axios from 'axios';
 import { pageHeadMixin } from '@/helpers/mixins';
 
