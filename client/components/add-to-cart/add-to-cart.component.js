@@ -1,6 +1,7 @@
 import { removeDuplicates } from '@/helpers/collection.helpers';
 import { hoodies } from '@/mixins/hoodies.js';
 import _get from 'lodash.get';
+import _isEmpty from 'lodash.isempty';
 export default {
 	name: 'add-to-cart',
 	mixins: [hoodies],
@@ -136,14 +137,14 @@ export default {
 				case 'ADD_TO_CART':
 					console.log('this.userSelectedSize', this.userSelectedSize);
 
-					if (!this.selectedAttributes.no_attribute && !this.userSelectedSize) {
-						this.$emit('select-size-error');
-					} else {
+					if (this.selectedAttributes.no_attribute || this.userSelectedSize) {
 						this.addToCart(
 							shelf,
 							this.selectedAttributes,
 							this.selectedProperty
 						);
+					} else {
+						this.$emit('select-size-error');
 					}
 					break;
 				case 'SCROLL_TO':
