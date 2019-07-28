@@ -35,7 +35,7 @@ export default {
 			clickableAreaEl: null,
 			hammer: null,
 			lastProgress: 0,
-			duration: 4000,
+			duration: 84000,
 		};
 	},
 	watch: {
@@ -124,6 +124,10 @@ export default {
 	},
 	created() {},
 	mounted() {
+		const vh = window.innerHeight * 0.01;
+		// Then we set the value in the --vh custom property to the root of the document
+		document.documentElement.style.setProperty('--vh', `${vh}px`);
+
 		this.startProgress(this.currentSlideIndex);
 	},
 
