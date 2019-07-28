@@ -38,8 +38,13 @@ export default {
 		},
 	},
 	created() {},
-	mounted() {},
+	mounted() {
+		this.setStoreInfo();
+	},
 	methods: {
+		setStoreInfo() {
+			this.$store.commit('store/updateShelfInfo', this.info);
+		},
 		showShelfInfo() {
 			this.$store.commit('toggleShelfInfo');
 		},

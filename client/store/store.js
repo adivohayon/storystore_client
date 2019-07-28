@@ -11,6 +11,7 @@ export const state = () => ({
 	pagination: {},
 	settings: {},
 	influencer: {},
+	shelfInfo: '',
 	// feedComponent: {},
 	// slug: null,
 });
@@ -91,6 +92,9 @@ export const mutations = {
 	},
 	setInfluencer(state, influencer) {
 		Vue.set(state, 'influencer', influencer);
+	},
+	updateShelfInfo(state, info) {
+		Vue.set(state, 'shelfInfo', info);
 	},
 };
 

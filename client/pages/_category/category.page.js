@@ -1,11 +1,12 @@
 import Stories from '@/components/stories';
 import Story from '@/components/stories/story';
+import ShelfInfo from '@/components/shelf-info';
 import Feed from '@/components/feed';
 import _get from 'lodash.get';
 import axios from 'axios';
 import { pageHeadMixin } from '@/helpers/mixins';
 export default {
-	components: { Stories, Story },
+	components: { Stories, Story, ShelfInfo },
 	async asyncData({ req, store, params, $axios }) {
 		const storeId = _get(store, 'state.store.storeId', null);
 		console.log('yooooo', params);
@@ -52,7 +53,9 @@ export default {
 		return ctx.app.isMobile ? 'mobile' : 'desktop';
 	},
 	data() {
-		return {};
+		return {
+			currentStoryIndex: 0,
+		};
 	},
 	async mounted() {
 		try {
@@ -81,6 +84,19 @@ export default {
 		cartIntegration() {
 			return this.$store.getters['cart/integration'];
 		},
+		shelfInfo() {
+			// return this.$store.state.store.shelves[this.currentStoryIndex].info;
+			return _get(this.$store.state, `store.shelfInfo`, null);
+		},
+		shippingDetails() {
+			return this.$store.state.store.shippingDetails;
+		},
+		returns() {
+			return this.$store.state.store.returns;
+		},
+		showShelfInfo() {
+			return this.$store.state.showShelfInfo;
+		},
 		// categ() {
 		// 	return _get(this.$store.state, 'store.shelves', []);
 		// },
@@ -93,6 +109,9 @@ export default {
 			} catch (err) {
 				console.error('Category Page / handleCartIntegration / Error', err);
 			}
+		},
+		setStoryIndex(index) {
+			this.currentStoryIndex = index;
 		},
 	},
 };

@@ -22,4 +22,13 @@
 		<h2>{{ category.label }}</h2>
 		<stories :stories="category.shelves" :title="category.label"> </stories>
 	</div>
+
+		<transition name="modal-fade">
+		<shelf-info
+			v-if="showShelfInfo"
+			:info="shelfInfo"
+			:returns="returns"
+			:shipping="shippingDetails"
+		></shelf-info>
+	</transition>
 </div>
