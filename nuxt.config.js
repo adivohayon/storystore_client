@@ -71,6 +71,7 @@ module.exports = {
 	// plugins: [],
 	plugins: [
 		{ src: '~/plugins/integrations', ssr: false },
+		{ src: '~/plugins/events', ssr: false },
 		{ src: '~/plugins/is-mobile', ssr: true },
 		// { src: '~/plugins/swiper', ssr: false },
 		{ src: '~/plugins/smoothscroll-polyfill', ssr: false },

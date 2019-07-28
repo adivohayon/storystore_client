@@ -1,6 +1,7 @@
 import _get from 'lodash.get';
 import _orderBy from 'lodash.orderby';
 import StorySlide from '@/components/stories/story/story-slide';
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 
 export default {
 	name: 'story',
@@ -128,6 +129,11 @@ export default {
 		// Then we set the value in the --vh custom property to the root of the document
 		document.documentElement.style.setProperty('--vh', `${vh}px`);
 
+		// turn of scrolling behind
+		// this.$events.$emit('TOGGLE_SCROLL');
+		disableBodyScroll(this.$refs.storyView);
+		this.$events.$emit('BLACK_BG');
+		// window.e;
 		this.startProgress(this.currentSlideIndex);
 	},
 
@@ -138,6 +144,10 @@ export default {
 		},
 		closeStory() {
 			this.$emit('close-story');
+
+			// enable scrolling
+			enableBodyScroll(this.$refs.storyView);
+			this.$events.$emit('BLACK_BG');
 		},
 		setProgress(progress, element) {
 			this.lastProgress = progress;
