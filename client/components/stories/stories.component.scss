@@ -35,12 +35,6 @@
 			); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#87b23f', endColorstr='#87b23f',GradientType=0 ); /* IE6-9 */
 		}
-		&--img {
-			width: 9rem;
-			min-height: 14rem;
-			display: block;
-			border-radius: 64px;
-		}
 		&--price {
 			font-size: 1rem;
 			font-weight: bold;
@@ -57,15 +51,17 @@
 
 		&--circle {
 			height: auto;
-			width: 5rem;
+			width: 8rem;
 			.stories__thumbnail--border {
 				border-radius: 50%;
 				height: inherit;
 				img.stories__thumbnail--img {
 					// width: fit-content;
 					// max-height:3.9rem;
-					width: 4.5rem;
-					height: 4.5rem;
+					display: block;
+					border-radius: 64px;
+					width: 7.5rem;
+					height: 7.5rem;
 					min-height: auto;
 					object-fit: cover;
 					object-position: center;
