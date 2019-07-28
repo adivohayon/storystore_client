@@ -1,5 +1,4 @@
 import _get from 'lodash.get';
-import _find from 'lodash.find';
 import _orderBy from 'lodash.orderby';
 import StorySlide from '@/components/stories/story/story-slide';
 
@@ -144,6 +143,15 @@ export default {
 		},
 
 		startProgress(progressBarIndex, initial = 0) {
+			// $refs.progressBars depends on a v-for loop of paginationItems
+			if (!this.$refs.progressBars) {
+				console.log(
+					'STORY :: startProgress / no progressBars element',
+					this.$refs.progressBars
+				);
+				return;
+			}
+
 			const progressBar = this.$refs.progressBars[progressBarIndex];
 
 			let progress = initial;

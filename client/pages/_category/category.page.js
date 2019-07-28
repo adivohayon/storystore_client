@@ -5,7 +5,7 @@ import _get from 'lodash.get';
 import axios from 'axios';
 import { pageHeadMixin } from '@/helpers/mixins';
 export default {
-	components: { Stories, Story, Feed },
+	components: { Stories, Story },
 	async asyncData({ req, store, params, $axios }) {
 		const storeId = _get(store, 'state.store.storeId', null);
 		console.log('yooooo', params);
@@ -47,22 +47,6 @@ export default {
 		}
 		return { firstCategory, subCategories, restOfCategories };
 	},
-	// 	let resp;
-	// 	if (storeId) {
-	// 		resp = await store.dispatch('store/getCategories', {
-	// 			categorySlug: encodeURI(params.category),
-	// 			storeId,
-	// 		});
-	// 	}
-
-	// 	const { firstCategory, subCategories, restOfCategories } = resp;
-
-	// 	return {
-	// 		firstCategory,
-	// 		subCategories,
-	// 		restOfCategories,
-	// 	};
-	// },
 	mixins: [pageHeadMixin],
 	layout(ctx) {
 		return ctx.app.isMobile ? 'mobile' : 'desktop';

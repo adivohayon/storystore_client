@@ -52,8 +52,8 @@ export const actions = {
 			const store = await dispatch('store/get', storeSlug);
 			// console.log('nuxtServerInit / store', store);
 		} catch (err) {
-			console.error('ERROR :: nuxtServerInit', err);
-			return;
+			// console.error('ERROR :: nuxtServerInit', err);
+			return error(err);
 		}
 		// if (!fetchStoreResp) {
 		// 	console.log(`'${storeSlug}' store was not found`);

@@ -148,7 +148,8 @@ export const actions = {
 			}
 			// console.log('resp', resp.data);
 		} catch (err) {
-			console.error('State / Store / Dispatch get / Error', err);
+			console.error('State / Store / get / Error', err);
+			throw new Error('State / Store / get / ' + err);
 		}
 	},
 	getShelves({ state, commit }, { storeId, offset }) {

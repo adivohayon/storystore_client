@@ -2,6 +2,7 @@ import HorizontalSlider from '@/components/horizontal-slider';
 import Story from '@/components/stories/story';
 import _get from 'lodash.get';
 import _orderBy from 'lodash.orderby';
+import _isEmpty from 'lodash.isempty';
 import { getAssetsPath, formatAsset } from './../../helpers/assets.helpers';
 export default {
 	name: 'stories',
@@ -39,29 +40,34 @@ export default {
 			);
 		},
 		webpSupport() {
-			return Modernizr.webp;
+			console.log('Modernizr.webp', Modernizr.webp);
+			return !_isEmpty(Modernizr.webp);
+			// return false;
 		},
 		storySlides() {
-			if (this.sortedVariations) {
-				// console.log('sortedVariations', this.sortedVariations);
-				const storySlides = [];
-				for (let variation of this.sortedVariations) {
-					const jpgAssets = variation.assets.filter(asset => {
-						if (this.webpSupport) {
-							return asset.src.includes('.webp');
-						}
-						return asset.src.includes('.jpg');
-					});
+			console.log('STORY SLIDES :: invoked');
+			if (!this.sortedVariations) return [];
 
-					// console.log('jpgAssets', jpgAssets);
-					for (let asset of jpgAssets) {
+			if (this.sortedVariations) {
+				const storySlides = [];
+				console.log('this.sortedVariations', this.sortedVariations);
+
+				for (let variation of this.sortedVariations) {
+					const relevantAssets = variation.assets.filter(asset =>
+						this.webpSupport
+							? asset.src.includes('.webp')
+							: !asset.src.includes('.webp')
+					);
+
+					console.log('relevantAssets', relevantAssets);
+					for (let asset of relevantAssets) {
 						(function() {
 							let variationClone = Object.assign({}, variation);
 							variationClone.assets = [asset];
 							storySlides.push(variationClone);
 						})();
 					}
-					// console.log('storySlides', storySlides);
+					console.log('storySlides', storySlides);
 				}
 				return storySlides;
 			}
