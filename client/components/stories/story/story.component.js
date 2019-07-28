@@ -35,7 +35,7 @@ export default {
 			clickableAreaEl: null,
 			hammer: null,
 			lastProgress: 0,
-			duration: 84000,
+			duration: 4500,
 		};
 	},
 	watch: {
