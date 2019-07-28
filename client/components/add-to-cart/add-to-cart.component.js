@@ -136,8 +136,12 @@ export default {
 			switch (shelf.type) {
 				case 'ADD_TO_CART':
 					console.log('this.userSelectedSize', this.userSelectedSize);
+					console.log(
+						'this.selectedAttributes',
+						!!this.selectedAttributes.no_attribute
+					);
 
-					if (this.selectedAttributes.no_attribute || this.userSelectedSize) {
+					if (!!this.selectedAttributes.no_attribute || this.userSelectedSize) {
 						this.addToCart(
 							shelf,
 							this.selectedAttributes,
@@ -169,19 +173,20 @@ export default {
 			win.focus();
 		},
 		addToCartImage() {
-			let image = this.assetsPath;
-			// Regular shelf
-			if (this.variant.assets[0].src) {
-				image += this.variant.assets[0].src;
-			} else {
-				// Story shelf - or non-lazyloaded shelf
-				if (this.variant.assets[0]) {
-					image += `${this.shelf.slug}/${this.variant.slug}/${
-						this.variant.assets[0]
-					}`;
-				}
-			}
-			return image;
+			return _get(this.variant, 'assets[0].src', null);
+			// let image = this.assetsPath;
+			// // Regular shelf
+			// if (this.variant.assets[0].src) {
+			// 	image += this.variant.assets[0].src;
+			// } else {
+			// 	// Story shelf - or non-lazyloaded shelf
+			// 	if (this.variant.assets[0]) {
+			// 		image += `${this.shelf.slug}/${this.variant.slug}/${
+			// 			this.variant.assets[0]
+			// 		}`;
+			// 	}
+			// }
+			// return image;
 		},
 		addToCartVariationAttributeIds() {
 			const variationAttributeIds = [];
