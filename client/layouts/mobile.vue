@@ -99,8 +99,9 @@ export default {
 		// document.documentElement.style.setProperty('--vh', `${vh}px`);
 		// this.orderQuery = this.$route.query.order;
 
-		this.$events.$on('BLACK_BG', () => {
-			this.showBlackBg = !this.showBlackBg;
+		this.$events.$on('BLACK_BG', toggle => {
+			console.log('blackbg', toggle);
+			this.showBlackBg = toggle;
 		});
 
 		this.$store.dispatch('toggleLoader', false);

@@ -124,6 +124,12 @@ export default {
 		},
 	},
 	created() {},
+	beforeDestroy() {
+		console.log('STORY :: Close Story');
+		// enable scrolling
+		enableBodyScroll(this.$refs.storyView);
+		this.$events.$emit('BLACK_BG', false);
+	},
 	mounted() {
 		const vh = window.innerHeight * 0.01;
 		// Then we set the value in the --vh custom property to the root of the document
@@ -132,7 +138,7 @@ export default {
 		// turn of scrolling behind
 		// this.$events.$emit('TOGGLE_SCROLL');
 		disableBodyScroll(this.$refs.storyView);
-		this.$events.$emit('BLACK_BG');
+		this.$events.$emit('BLACK_BG', true);
 		// window.e;
 		this.startProgress(this.currentSlideIndex);
 	},
@@ -144,10 +150,6 @@ export default {
 		},
 		closeStory() {
 			this.$emit('close-story');
-
-			// enable scrolling
-			enableBodyScroll(this.$refs.storyView);
-			this.$events.$emit('BLACK_BG');
 		},
 		setProgress(progress, element) {
 			this.lastProgress = progress;
