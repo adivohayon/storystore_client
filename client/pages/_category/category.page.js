@@ -10,13 +10,15 @@ export default {
 	async asyncData({ req, store, params, $axios }) {
 		const storeId = _get(store, 'state.store.storeId', null);
 		console.log('yooooo', params);
+		let endpointUrl = params.category
+			? `stores/${storeId}/categories/${encodeURI(params.category)}`
+			: `stores/${storeId}/categories/null`;
+
 		const {
 			firstCategory,
 			subCategories,
 			restOfCategories,
-		} = await $axios.$get(
-			`stores/${storeId}/categories/${encodeURI(params.category)}`
-		);
+		} = await $axios.$get(endpointUrl);
 
 		firstCategory.shelves = [];
 
