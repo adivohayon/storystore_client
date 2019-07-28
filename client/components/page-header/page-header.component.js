@@ -34,7 +34,11 @@ export default {
 			return path;
 		},
 		bgColor() {
-			return _get(this.$store.state, 'store.settings.primaryColor', '#ffffff');
+			return _get(
+				this.$store.state,
+				'store.settings.options.theme.primaryColor',
+				'#ffffff'
+			);
 		},
 		textColor() {
 			switch (this.bgColor) {
