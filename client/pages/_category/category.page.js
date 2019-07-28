@@ -3,8 +3,10 @@ import Story from '@/components/stories/story';
 import ShelfInfo from '@/components/shelf-info';
 import Feed from '@/components/feed';
 import _get from 'lodash.get';
+import _sortBy from 'lodash.sortBy';
 import axios from 'axios';
 import { pageHeadMixin } from '@/helpers/mixins';
+
 export default {
 	components: { Stories, Story, ShelfInfo },
 	async asyncData({ req, store, params, $axios }) {
@@ -22,6 +24,7 @@ export default {
 
 		firstCategory.shelves = [];
 
+		// ADDS SHELVES TO CATEGORIES
 		const shelves = _get(store, 'state.store.shelves', []);
 		for (const shelf of shelves) {
 			const categoryIds = shelf.Categories.map(category => category.id);
@@ -48,7 +51,18 @@ export default {
 				}
 			}
 		}
-		return { firstCategory, subCategories, restOfCategories };
+
+		return {
+			firstCategory,
+			subCategories: _sortBy(
+				subCategories,
+				category => category.shelves.length
+			).reverse(),
+			restOfCategories: _sortBy(
+				restOfCategories,
+				category => category.shelves.length
+			).reverse(),
+		};
 	},
 	mixins: [pageHeadMixin],
 	layout(ctx) {

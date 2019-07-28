@@ -1,7 +1,9 @@
 <template>
 	<div :style="{ backgroundColor: bgColor }" class="layout layout--mobile">
+		<div v-if="showBlackBg" class="black_bg"></div>
 		<page-header v-if="showHeader"></page-header>
 		<loader v-if="showLoader"></loader>
+
 		<!-- <no-ssr> -->
 		<!-- <full-page
 				v-if="hasShelves"
@@ -30,6 +32,7 @@ export default {
 	},
 	data() {
 		return {
+			showBlackBg: false,
 			// feedOptions: {
 			// 	sectionSelector: '.shelf',
 			// 	// slideSelector: '.shelf-content',
@@ -92,9 +95,14 @@ export default {
 	mounted() {
 		console.log('mobile vue mounted', this.$analytics);
 		// Full height fix
-		const vh = window.innerHeight * 0.01;
-		document.documentElement.style.setProperty('--vh', `${vh}px`);
+		// const vh = window.innerHeight * 0.01;
+		// document.documentElement.style.setProperty('--vh', `${vh}px`);
 		// this.orderQuery = this.$route.query.order;
+
+		this.$events.$on('BLACK_BG', () => {
+			this.showBlackBg = !this.showBlackBg;
+		});
+
 		this.$store.dispatch('toggleLoader', false);
 	},
 	methods: {
@@ -121,7 +129,16 @@ body {
 	user-select: none; /* Non-prefixed version, currently
 																		supported by Chrome and Opera */
 }
+
+.black_bg {
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	background-color: black;
+}
+
 .layout--mobile {
+	position: relative;
 	$page-header-height: 3.2rem;
 	// $viewport-height: var(--vh, 1vh) * 100;
 
