@@ -134,8 +134,12 @@ export default {
 		goToSlide({ param, storyIndex }) {
 			if (param === 'NEXT_SLIDE') {
 				if (this.currentSlideIndex === this.storySlides.length - 1) {
-					this.goToStory({ param: 'NEXT_STORY', storyIndex });
-					storyIndex++;
+					if (storyIndex < this.stories.length - 1) {
+						this.goToStory({ param: 'NEXT_STORY', storyIndex });
+						storyIndex++;
+					} else {
+						this.exitStory();
+					}
 				} else {
 					this.currentSlideIndex++;
 					console.log('next slide', this.currentSlideIndex, storyIndex);
@@ -144,8 +148,12 @@ export default {
 
 			if (param === 'PREVIOUS_SLIDE') {
 				if (this.currentSlideIndex === 0) {
-					this.goToStory({ param: 'PREVIOUS_STORY', storyIndex });
-					storyIndex--;
+					if (storyIndex > 0) {
+						this.goToStory({ param: 'PREVIOUS_STORY', storyIndex });
+						storyIndex--;
+					} else {
+						this.exitStory();
+					}
 				} else {
 					this.currentSlideIndex--;
 					console.log('previous slide', this.currentSlideIndex, storyIndex);
