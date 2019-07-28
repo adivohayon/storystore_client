@@ -20,17 +20,6 @@ export default {
 	layout(ctx) {
 		return ctx.app.isMobile ? 'mobile' : 'desktop';
 	},
-	head() {
-		const storeSlug = this.$store.state.store.slug;
-		const faviconPath =
-			process.env.staticDir + storeSlug + `/${storeSlug}_favicon.png`;
-
-		return {
-			title:
-				this.$store.state.store.name + ' - ' + this.$store.state.store.tagline,
-			link: [{ rel: 'icon', href: faviconPath }],
-		};
-	},
 	data() {
 		return {};
 	},
@@ -70,61 +59,15 @@ export default {
 			);
 			return integrationCart;
 		},
-		integrationCheckout() {
-			const integrationCheckout = this.integrations.find(
-				integration => integration.type === 'CHECKOUT'
-			);
-			return integrationCheckout;
-		},
-		// hoodiesCustom() {
-		// 	const integrationType = _get(
-		// 		this.$store.state,
-		// 		'store.settings.integrations.type',
-		// 		null
-		// 	);
-		// 	console.log('cart page / hoodiesCustom', integrationType);
-		// 	if (integrationType && integrationType === 'HOODIES_CUSTOM') {
-		// 		return true;
-		// 	}
-		// },
-		// hoodiesCheckoutLink() {
-		// 	return this.getHoodiesCheckoutLink();
-		// },
-		// hoodiesCheckoutLink() {
-		// 	const baseUrl = _get(
-		// 		this.$store.state,
-		// 		'store.settings.integrations.baseUrl',
-		// 		null
-		// 	);
-		// 	const cart = _get(
-		// 		this.$store.state,
-		// 		'store.settings.integrations.cart',
-		// 		null
-		// 	);
-		// 	const items = [
-		// 		'2136_23908_1.416072.0_2.415194.0',
-		// 		'2136_23908_1.416070.0_2.415194.0',
-		// 	];
-		// 	if (baseUrl && cart && items) {
-		// 		const checkoutLink = baseUrl + cart;
-		// 		let queryString = '?';
-		// 		items.forEach(item => {
-		// 			queryString += 'q=' + item + '&';
-		// 		});
-		// 		console.log(
-		// 			'cart.page / hoodiesCheckoutLink',
-		// 			checkoutLink + queryString
-		// 		);
-		// 		return checkoutLink + queryString;
-		// 	}
-		// },
 	},
 	methods: {
 		goToCheckout() {
-			if (this.integrations && this.integrationCheckout) {
+			const checkoutUrl = this.$integrations.cart.service.checkoutUrl;
+			if (this.integrations && this.integrationCart && checkoutUrl) {
+				console.log('checkoutUrl', checkoutUrl);
 				this.$store.dispatch('toggleLoader', true);
 				this.$analytics.goToCheckout(this.subtotal);
-				window.location.href = this.integrationCheckout.url;
+				window.location.href = checkoutUrl;
 				// this.goToHoodiesCheckout();
 			} else {
 				this.$analytics.goToCheckout(this.subtotal);

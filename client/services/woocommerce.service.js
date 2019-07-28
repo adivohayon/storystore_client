@@ -4,6 +4,7 @@ export class WooCommerce {
 		this.axios = axios;
 		this.baseUrl = baseUrl;
 		this.cartEndpoint = '/wp-json/wc/v2/cart';
+		this.checkoutUrl = this.baseUrl + '/cart';
 	}
 
 	getCart() {

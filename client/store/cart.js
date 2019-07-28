@@ -103,6 +103,7 @@ export const actions = {
 					this.$integrations.cart.connector === 'WOOCOMMERCE' &&
 					item.externalId
 				) {
+					console.log('ADD TO CART :: cart state');
 					return this.$integrations.cart.service
 						.addToCart(item.externalId, 1)
 						.then(wcItem => {
@@ -111,6 +112,7 @@ export const actions = {
 								storeSlug,
 								externalCartKey: wcItem.key,
 							});
+							resolve(wcItem);
 						});
 					// console.log('wcItem', wcItem);
 					// console.log('wcItem KEY', wcItem.key);

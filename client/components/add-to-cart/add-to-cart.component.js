@@ -108,12 +108,6 @@ export default {
 			);
 			return integrationCart;
 		},
-		integrationCheckout() {
-			const integrationCheckout = this.integrations.find(
-				integration => integration.type === 'CHECKOUT'
-			);
-			return integrationCheckout;
-		},
 		// hoodiesCustom() {
 		// 	const integrationType = _get(
 		// 		this.$store.state,
@@ -174,19 +168,6 @@ export default {
 		},
 		addToCartImage() {
 			return _get(this.variant, 'assets[0].src', null);
-			// let image = this.assetsPath;
-			// // Regular shelf
-			// if (this.variant.assets[0].src) {
-			// 	image += this.variant.assets[0].src;
-			// } else {
-			// 	// Story shelf - or non-lazyloaded shelf
-			// 	if (this.variant.assets[0]) {
-			// 		image += `${this.shelf.slug}/${this.variant.slug}/${
-			// 			this.variant.assets[0]
-			// 		}`;
-			// 	}
-			// }
-			// return image;
 		},
 		addToCartVariationAttributeIds() {
 			const variationAttributeIds = [];
@@ -229,10 +210,12 @@ export default {
 		handleShowGoToPayment() {
 			if (this.showGoToPayment) {
 				// console.log('add-to-cart comp / handleShowGoToPayment');
-				if (this.integrations && this.integrationCheckout) {
+				console.log('this.$integrations.cart', this.$integrations.cart);
+				const checkoutUrl = this.$integrations.cart.service.checkoutUrl;
+				if (this.integrations && this.integrationCart && checkoutUrl) {
 					this.$store.dispatch('toggleLoader', true);
 					this.$analytics.goToCheckout(this.subtotal);
-					window.location.href = this.integrationCheckout.url;
+					window.location.href = checkoutUrl;
 					// this.goToHoodiesCheckout();
 					return true;
 				} else {
@@ -264,11 +247,14 @@ export default {
 					attributes
 				);
 
+				this.$emit('setGoToPayment');
+
 				await this.$store.dispatch('cart/add', {
 					item,
 					storeSlug: this.storeSlug,
 				});
-				this.$emit('setGoToPayment');
+				console.log('ADD TO CART :: setgoToPayment');
+
 				this.$analytics.addToCart(item.shelfSlug, item.variationSlug);
 
 				if (typeof fbq !== 'undefined' && fbq) {
