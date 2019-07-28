@@ -75,7 +75,8 @@ export default {
 			}
 		},
 		back() {
-			window.history.back();
+			// window.history.back();
+			this.$router.back();
 		},
 	},
 };
